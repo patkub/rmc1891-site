@@ -1,6 +1,6 @@
 {
     "entrypoint": "index.html",
-    "shell": "src/theme/rmc-theme.html",
+    "shell": "src/rmc.html",
     "fragments": [],
     "sources": [
         "src/**/*",

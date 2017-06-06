@@ -67,8 +67,8 @@
     <!-- Load jQuery -->
     <script src="bower_components/jquery/dist/jquery.slim.min.js"></script>
 
-    <!-- RMC Theme -->
-    <link rel="import" href="src/theme/rmc-theme.html">
+    <!-- RMC -->
+    <link rel="import" href="src/rmc.html">
 </head>
 
 <body>
@@ -163,45 +163,8 @@
             </p>
         </div>
 
-        <!-- cards -->
-        <div class="card-deck" style="padding-bottom: 2rem;">
-          <div class="card">
-            <img class="card-img-top" src="http://via.placeholder.com/250x250" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Quality</h4>
-              <p class="card-text">
-                  With over 45 years of design expertise and 21 plastic molding machines,
-                  our seasoned manufacturing team provides consistent on-time delivery for critical product requirements.
-              </p>
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-outline-primary">Learn More</button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="http://via.placeholder.com/250x250" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Lean Manufacturing</h4>
-              <p class="card-text">We provide mold making either in house, or with our domestic and worldwide partners to ensure prompt and affordable service.</p>
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-outline-primary">Learn More</button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="http://via.placeholder.com/250x250" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Capabilities</h4>
-              <p class="card-text">
-                  The Rogers Manufacturing Company is experienced in processing hundreds of resins and colors.
-                  We process commodity as well as “specialty” engineered resins. We have seven silos making room to store over
-                  1 million pounds of resin on site for economical procurement capabilities.</p>
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-outline-primary">Learn More</button>
-            </div>
-          </div>
-        </div>
+        <!-- feature cards -->
+        <rmc-feature-cards></rmc-feature-cards>
 
     </div>
 

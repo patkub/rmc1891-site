@@ -1,0 +1,76 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="rmc-feature-cards">
+    <template>
+        <div class="card-deck" style="padding-bottom: 2rem;">
+            <template is="dom-repeat" items="{{cards}}">
+                <div class="card">
+                    <img class="card-img-top" src="[[item.image]]" alt="[[item.caption]]">
+                    <div class="card-block">
+                        <h4 class="card-title">[[item.title]]</h4>
+                        <p class="card-text">[[item.text]]</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-outline-primary">[[item.button]]</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+  <script>
+    class RMCFeatureCards extends Polymer.Element {
+      static get is() { return 'rmc-feature-cards'; }
+
+      static get properties() {
+        return {
+            cards: {
+                type: Object,
+                value: function() {
+                    return [
+                        {
+                            image: 'http://via.placeholder.com/250x250',
+                            caption: 'image caption',
+                            title: 'Quality',
+                            text: 'ok',
+                            button: 'Learn More'
+                        },
+                        {
+                            image: 'http://via.placeholder.com/250x250',
+                            caption: 'image caption',
+                            title: 'Quality 2',
+                            text: 'ok2',
+                            button: 'Learn More'
+                        },
+                        {
+                            image: 'http://via.placeholder.com/250x250',
+                            caption: 'image caption',
+                            title: 'Quality 3',
+                            text: 'ok3',
+                            button: 'Learn More'
+                        }
+                    ];
+                }
+            }
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCFeatureCards.is, RMCFeatureCards);
+  </script>
+</dom-module>
