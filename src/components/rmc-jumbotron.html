@@ -1,0 +1,42 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="rmc-jumbotron">
+    <template>
+        <div class="jumbotron">
+            <h1 class="display-4">[[title]]</h1>
+            <p class="lead">[[text]]</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="[[link]]" role="button">[[button]]</a>
+            </p>
+        </div>
+    </template>
+
+  <script>
+    class RMCJumbotron extends Polymer.Element {
+      static get is() { return 'rmc-jumbotron'; }
+
+      static get properties() {
+        return {
+            title: String,
+            text: String,
+            button: String,
+            link: String
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCJumbotron.is, RMCJumbotron);
+  </script>
+</dom-module>

@@ -1,3 +1,13 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <!doctype html>
 <html lang="en">
 
@@ -108,6 +118,7 @@
 
         </div>
     </nav>
+    <!-- /navbar -->
 
     <!-- carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
@@ -152,28 +163,25 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <!-- /carousel -->
 
+    <!-- container -->
     <div class="container">
 
-        <!-- header -->
-        <div class="jumbotron">
-            <h1 class="display-4">The Rogers Manufacturing Company</h1>
-            <p class="lead">Manufacturing Company Established in 1891.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
-        </div>
+        <!-- jumbotron -->
+        <rmc-jumbotron title="The Rogers Manufacturing Company"
+                       text="Manufacturing Company Established in 1891."
+                       button="Learn more"
+                       link="#"></rmc-jumbotron>
 
         <!-- feature cards -->
         <rmc-feature-cards></rmc-feature-cards>
 
     </div>
+    <!-- /container -->
 
     <!-- footer -->
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Copyright &copy 2017 The Rogers Manufacturing Company.</span>
-      </div>
-    </footer>
+    <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer>
 
 </body>
 </html>
