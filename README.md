@@ -5,11 +5,25 @@ Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http:
 
 [Bootstrap 4](http://getbootstrap.com/) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 
-### Local Setup:
+### Install:
 
-Install [Node.js](https://nodejs.org/en/)
+1) Install [Git](https://git-scm.com/downloads).
 
-Install local dependencies
+2) Install [Node.js](https://nodejs.org/en/)
+
+3) Install Bower.
+
+```sh
+npm install -g bower
+```
+
+4) Install Polymer CLI.
+
+```sh
+npm install -g polymer-cli
+```
+
+### Fetch dependencies:
 
 ```sh
 npm install
