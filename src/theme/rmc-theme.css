@@ -8,20 +8,12 @@ body {
   background-color: #f5f5f5;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;         /* Fixed footer height */
-  line-height: 60px;    /* Vertically center footer text */
-  background-color: #eee;
-}
-
 /* navbar on right */
 .navbar-nav {
     padding-right:20rem;
 }
 
+/* carousel images */
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
     display: block;
     height: auto;

@@ -13,6 +13,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="rmc-footer">
     <template>
+        <style>
+            .footer {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              height: 60px;             /* Fixed footer height */
+              line-height: 60px;        /* Vertically center footer text */
+              background-color: #eee;
+            }
+        </style>
+
         <footer class="footer">
           <div class="container">
             <span class="text-muted">[[text]]</span>
