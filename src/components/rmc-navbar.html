@@ -1,0 +1,97 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<!-- DOM If -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="rmc-navbar">
+    <template>
+        <!-- navbar -->
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">RMC 1891</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- padding -->
+                <ul class="mr-auto"></ul>
+
+                <ul class="nav navbar-nav">
+
+                    <template is="dom-repeat" items="{{links}}">
+                        <li class$="nav-item {{_isActiveClass(item.text)}}">
+                            <a class="nav-link" href="[[item.link]]">[[item.text]]
+                                <template is="dom-if" if="{{_isActive(item.text)}}">
+                                    <span class="sr-only">(current)</span>
+                                </template>
+                            </a>
+                        </li>
+                    </template>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- /navbar -->
+    </template>
+
+  <script>
+    class RMCNavBar extends Polymer.Element {
+        static get is() { return 'rmc-navbar'; }
+
+        static get properties() {
+            return {
+                active: String,
+                links: {
+                    type: Object,
+                    value: function() {
+                        return [
+                            {
+                                text: 'Home',
+                                link: '/#/home'
+                            },
+                            {
+                                text: 'About',
+                                link: '/#/about'
+                            },
+                            {
+                                text: 'Capabilities',
+                                link: '/#/capabilities'
+                            },
+                            {
+                                text: 'Contact',
+                                link: '/#/contact'
+                            },
+                        ];
+                    }
+                }
+            };
+        }
+
+        /* compare current to active page */
+        _isActiveCmp(current) {
+            return this.active == current.toLowerCase();
+        }
+
+        /* check if current is the active page */
+        _isActive(current) {
+            return this._isActiveCmp(current);
+        }
+
+        /* add css class 'active' if current is the active page */
+        _isActiveClass(current) {
+            return (this._isActiveCmp(current)) ? 'active' : '';
+        }
+    }
+
+    window.customElements.define(RMCNavBar.is, RMCNavBar);
+  </script>
+</dom-module>
