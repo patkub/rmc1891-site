@@ -16,9 +16,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="rmc-feature-cards">
     <template>
-        <div class="card-deck" style="margin-bottom: 2rem;">
+        <style>
+            .card-deck {
+                margin-bottom: 2rem;
+            }
+
+            .card {
+                width: 20rem;
+                margin-bottom: 2rem;
+            }
+
+            .card-title {
+                color: #0d47a1;
+            }
+        </style>
+
+        <div class="card-deck">
             <template is="dom-repeat" items="{{cards}}">
-                <div class="card" style="width: 20rem; margin-bottom: 2rem;">
+                <div class="card">
                     <img class="card-img-top" src="[[item.image]]" alt="[[item.caption]]">
                     <div class="card-block">
                         <h4 class="card-title">[[item.title]]</h4>
