@@ -16,9 +16,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="rmc-feature-cards">
     <template>
-        <div class="card-deck" style="padding-bottom: 2rem;">
+        <div class="card-deck" style="margin-bottom: 2rem;">
             <template is="dom-repeat" items="{{cards}}">
-                <div class="card">
+                <div class="card" style="width: 20rem; margin-bottom: 2rem;">
                     <img class="card-img-top" src="[[item.image]]" alt="[[item.caption]]">
                     <div class="card-block">
                         <h4 class="card-title">[[item.title]]</h4>
@@ -44,21 +44,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     return [
                         {
                             title: 'Quality',
-                            image: 'http://via.placeholder.com/250x250',
-                            caption: 'image caption',
+                            image: 'images/feature/quality.jpg',
+                            caption: 'Milk Crates',
                             text: 'With over 45 years of design expertise and 21 plastic molding machines, our seasoned manufacturing team provides consistent on-time delivery for critical product requirements.',
                             button: 'Learn More'
                         },
                         {
                             title: 'Lean Manufacturing',
-                            image: 'http://via.placeholder.com/250x250',
+                            image: 'images/feature/lean.jpg',
                             caption: 'image caption',
                             text: 'We provide mold making either in house, or with our domestic and worldwide partners to ensure prompt and affordable service.',
                             button: 'Learn More'
                         },
                         {
                             title: 'Capabilities',
-                            image: 'http://via.placeholder.com/250x250',
+                            image: 'images/feature/capabilities.jpg',
                             caption: 'image caption',
                             text: 'The Rogers Manufacturing Company is experienced in processing hundreds of resins and colors. We process commodity as well as “specialty” engineered resins. We have seven silos making room to store over 1 million pounds of resin on site for economical procurement capabilities.',
                             button: 'Learn More'
