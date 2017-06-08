@@ -87,6 +87,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           background-color: #f5f5f5;
         }
 
+        /* navbar on right */
+        .navbar-nav {
+            padding-right:20rem;
+        }
+
         /* carousel images */
         .carousel-inner>.item>img, .carousel-inner>.item>a>img {
             display: block;
@@ -105,7 +110,50 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <body>
     <!-- navbar -->
-    <rmc-navbar active="home"></rmc-navbar>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">RMC 1891</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- padding -->
+            <ul class="mr-auto"></ul>
+
+            <ul class="nav navbar-nav">
+                <dom-repeat>
+                  <template>
+                      <li class="nav-item">
+                          <a class="nav-link" href="[[item.link]]">[[item.text]]</a>
+                      </li>
+                  </template>
+                </dom-repeat>
+            </ul>
+        </div>
+    </nav>
+    <!-- /navbar -->
+
+    <script>
+        var repeater = document.querySelector('dom-repeat');
+        repeater.items = [
+            {
+                text: 'Home',
+                link: '/#/home'
+            },
+            {
+                text: 'About',
+                link: '/#/about'
+            },
+            {
+                text: 'Capabilities',
+                link: '/#/capabilities'
+            },
+            {
+                text: 'Contact',
+                link: '/#/contact'
+            },
+        ];
+    </script>
 
     <!-- carousel -->
     <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
