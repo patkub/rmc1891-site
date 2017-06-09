@@ -78,13 +78,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <link rel="import" href="src/rmc.html">
 
     <style>
-        html {
-          position: relative;
-          min-height: 100%;
-        }
-
+        /* flexbox */
         body {
-          background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        
+        main {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
         }
 
         /* navbar on right */
@@ -109,109 +114,118 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 </head>
 
 <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">RMC 1891</a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- padding -->
-            <ul class="mr-auto"></ul>
+    <header>
 
-            <ul class="nav navbar-nav">
-                <dom-repeat>
-                  <template>
-                      <li class="nav-item">
-                          <a class="nav-link" href="[[item.link]]">[[item.text]]</a>
-                      </li>
-                  </template>
-                </dom-repeat>
-            </ul>
-        </div>
-    </nav>
-    <!-- /navbar -->
+        <!-- navbar -->
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">RMC 1891</a>
 
-    <script>
-        var repeater = document.querySelector('dom-repeat');
-        repeater.items = [
-            {
-                text: 'Home',
-                link: '/#/home'
-            },
-            {
-                text: 'About',
-                link: '/#/about'
-            },
-            {
-                text: 'Capabilities',
-                link: '/#/capabilities'
-            },
-            {
-                text: 'Contact',
-                link: '/#/contact'
-            },
-        ];
-    </script>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- padding -->
+                <ul class="mr-auto"></ul>
 
-    <!-- carousel -->
-    <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
-
-      <!-- carousel indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-
-        <!-- slide 1 -->
-        <div class="carousel-item active" style="height:500px">
-          <img class="img-responsive" src="images/carousel/slide1.jpg" alt="First slide">
-          <div class="carousel-caption d-none d-block">
-            <h3>Rogers Manufacturing Company</h3>
-            <p>Manufacturing Company Established in 1891.</p>
-          </div>
-        </div>
-
-        <!-- slide 2 -->
-        <div class="carousel-item" style="height:500px">
-            <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide">
-            <div class="carousel-caption d-none d-block">
-              <h3>Quality</h3>
-              <p>Over 60 years of experience in Plastic Injection Molding.</p>
+                <ul class="nav navbar-nav">
+                    <dom-repeat>
+                      <template>
+                          <li class="nav-item">
+                              <a class="nav-link" href="[[item.link]]">[[item.text]]</a>
+                          </li>
+                      </template>
+                    </dom-repeat>
+                </ul>
             </div>
+        </nav>
+        <!-- /navbar -->
+
+
+        <script>
+            var repeater = document.querySelector('dom-repeat');
+            repeater.items = [
+                {
+                    text: 'Home',
+                    link: '/#/home'
+                },
+                {
+                    text: 'About',
+                    link: '/#/about'
+                },
+                {
+                    text: 'Capabilities',
+                    link: '/#/capabilities'
+                },
+                {
+                    text: 'Contact',
+                    link: '/#/contact'
+                },
+            ];
+        </script>
+
+    </header>
+
+    <main>
+
+        <!-- carousel -->
+        <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
+
+          <!-- carousel indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+
+            <!-- slide 1 -->
+            <div class="carousel-item active" style="height:500px">
+              <img class="img-responsive" src="images/carousel/slide1.jpg" alt="First slide">
+              <div class="carousel-caption d-none d-block">
+                <h3>Rogers Manufacturing Company</h3>
+                <p>Manufacturing Company Established in 1891.</p>
+              </div>
+            </div>
+
+            <!-- slide 2 -->
+            <div class="carousel-item" style="height:500px">
+                <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-block">
+                  <h3>Quality</h3>
+                  <p>Over 60 years of experience in Plastic Injection Molding.</p>
+                </div>
+            </div>
+
+          </div>
+
+          <!-- carousel controls -->
+          <a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="carousel-control-next" href="#mainCarouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
+        <!-- /carousel -->
 
-      </div>
+        <!-- container -->
+        <div class="container">
 
-      <!-- carousel controls -->
-      <a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
+            <!-- jumbotron -->
+            <rmc-jumbotron title="The Rogers Manufacturing Company"
+                           text="Manufacturing Company Established in 1891."
+                           button="Learn more"
+                           link="#"></rmc-jumbotron>
 
-      <a class="carousel-control-next" href="#mainCarouselIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <!-- /carousel -->
+            <!-- feature cards -->
+            <rmc-feature-cards></rmc-feature-cards>
 
-    <!-- container -->
-    <div class="container">
-
-        <!-- jumbotron -->
-        <rmc-jumbotron title="The Rogers Manufacturing Company"
-                       text="Manufacturing Company Established in 1891."
-                       button="Learn more"
-                       link="#"></rmc-jumbotron>
-
-        <!-- feature cards -->
-        <rmc-feature-cards></rmc-feature-cards>
-
-    </div>
-    <!-- /container -->
+        </div>
+        <!-- /container -->
+    </main>
 
     <!-- footer -->
     <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer>
