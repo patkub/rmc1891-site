@@ -72,25 +72,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Load jQuery -->
-    <script defer src="bower_components/jquery/dist/jquery.slim.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.slim.min.js"></script>
 
     <!-- RMC -->
     <link rel="import" href="bower_components/rmc1891-elements/rmc.html">
-
-    <!-- Polymer Library -->
-    <!-- <link rel="import" href="bower_components/polymer/polymer.html"> -->
-
-    <!-- App Location -->
-    <link rel="import" href="bower_components/app-route/app-location.html">
-
-    <!-- App Route -->
-    <link rel="import" href="bower_components/app-route/app-route.html">
-
-    <!-- Iron Pages -->
-    <link rel="import" href="bower_components/iron-pages/iron-pages.html">
-
-    <!-- Template Repeater -->
-    <link rel="import" href="bower_components/polymer/lib/elements/dom-repeat.html">
 
     <style>
         /* flexbox */
@@ -100,7 +85,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             min-height: 100vh;
             background-color: #f5f5f5;
         }
-
+        
         main {
             -webkit-flex: 1;
             -ms-flex: 1;
@@ -129,6 +114,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 </head>
 
 <body>
+
     <header>
 
         <!-- navbar -->
@@ -145,8 +131,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 <ul class="nav navbar-nav">
                     <dom-repeat>
                       <template>
-                          <li class="nav-item" id="[[item.id]]">
-                              <a class="nav-link">[[item.text]]</a>
+                          <li class="nav-item">
+                              <a class="nav-link" href="[[item.link]]">[[item.text]]</a>
                           </li>
                       </template>
                     </dom-repeat>
@@ -154,30 +140,35 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </div>
         </nav>
         <!-- /navbar -->
+
+
+        <script>
+            var repeater = document.querySelector('dom-repeat');
+            repeater.items = [
+                {
+                    text: 'Home',
+                    link: '/#/home'
+                },
+                {
+                    text: 'About',
+                    link: '/#/about'
+                },
+                {
+                    text: 'Capabilities',
+                    link: '/#/capabilities'
+                },
+                {
+                    text: 'Contact',
+                    link: '/#/contact'
+                },
+            ];
+        </script>
+
     </header>
 
+    <main>
 
-    <app-location route="{{route}}"></app-location>
-    <app-route
-        route="{{route}}"
-        pattern="/:page"
-        data="{{data}}"
-        tail="{{tail}}">
-    </app-route>
-
-    <iron-pages selected="home"
-                attr-for-selected="page"
-                fallback-selection="home"
-                role="main"
-                id="pages">
-
-      <!-- home -->
-      <div page="home">
-
-          <br><br><br><br><br>[[data]]
-
-
-          <!-- carousel -->
+        <!-- carousel -->
         <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
 
           <!-- carousel indicators -->
@@ -234,93 +225,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
         </div>
         <!-- /container -->
-
-      </div>
-      <!-- /home -->
-
-      <!-- about -->
-      <div page="about">
-          <br><br> <br><br> <br><br> <br><br>about page
-      </div>
-      <!-- /about -->
-
-      <!-- capabilities -->
-      <div page="capabilities">
-          <br><br> <br><br> <br><br> <br><br>capabilities
-      </div>
-      <!-- /capabilities -->
-
-      <!-- contact -->
-      <div page="contact">
-          <br><br> <br><br> <br><br> <br><br>contact
-      </div>
-      <!-- /contact -->
-
-    </iron-pages>
-
-    <!-- <main>
-
-
-
-
-
-    </main> -->
+    </main>
 
     <!-- footer -->
-    <!-- <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer> -->
+    <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer>
 
-    <script>
-        var repeater = document.querySelector('dom-repeat');
-        repeater.items = [
-            {
-                text: 'Home',
-                link: '/#/home',
-                id: 'home'
-            },
-            {
-                text: 'About',
-                link: '/#/about',
-                id: 'about'
-            },
-            {
-                text: 'Capabilities',
-                link: '/#/capabilities',
-                id: 'capabilities'
-            },
-            {
-                text: 'Contact',
-                link: '/#/contact',
-                id: 'contact'
-            },
-        ];
-
-        document.addEventListener('click', function(e) {
-            //var pages = document.querySelector('iron-pages');
-            //pages.selectNext();
-
-            document.getElementById("home").click(function() {
-              alert('home clicked');
-              console.log("home clicked");
-            });
-
-            document.getElementById("about").click(function() {
-              alert('about clicked');
-              console.log("about clicked");
-            });
-
-            document.getElementById("capabilities").click(function() {
-              alert('capabilities clicked');
-              console.log("capabilities clicked");
-            });
-
-            document.getElementById("contact").click(function() {
-              alert('contact clicked');
-              console.log("contact clicked");
-            });
-
-            // select the page on click
-            //pages.select("home");
-        });
-    </script>
 </body>
 </html>
