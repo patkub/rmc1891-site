@@ -76,7 +76,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
     <!-- RMC -->
     <link rel="import" href="bower_components/rmc1891-elements/rmc.html">
-
+    
     <style>
         /* flexbox */
         body {
@@ -132,7 +132,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                     <dom-repeat>
                       <template>
                           <li class="nav-item">
-                              <a class="nav-link" href="[[item.link]]">[[item.text]]</a>
+                              <a class$="nav-link [[item.active]]" href="[[item.link]]">[[item.text]]</a>
                           </li>
                       </template>
                     </dom-repeat>
@@ -140,26 +140,29 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </div>
         </nav>
         <!-- /navbar -->
-
-
+        
         <script>
             var repeater = document.querySelector('dom-repeat');
             repeater.items = [
                 {
                     text: 'Home',
-                    link: '/home'
+                    link: '/home',
+                    active: 'active'
                 },
                 {
                     text: 'About',
-                    link: '/about'
+                    link: '/about',
+                    active: ''
                 },
                 {
                     text: 'Capabilities',
-                    link: '/capabilities'
+                    link: '/capabilities',
+                    active: ''
                 },
                 {
                     text: 'Contact',
-                    link: '/contact'
+                    link: '/contact',
+                    active: ''
                 },
             ];
         </script>
