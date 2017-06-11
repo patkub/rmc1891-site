@@ -21,7 +21,7 @@ gulp.task('sass', function () {
 });
 
 // Minify CSS
-gulp.task('clean-css', function () {
+gulp.task('clean-css', ['sass'], function () {
   return gulp.src('css/rmc-theme.css')
     .pipe(cleanCSS())
     .pipe(rename({suffix: '.min'}))
@@ -29,7 +29,7 @@ gulp.task('clean-css', function () {
 });
 
 // Inline CSS
-gulp.task('inline-css', function () {
+gulp.task('inline-css', ['clean-css'], function () {
   return gulp.src('build/es5-bundled/index.html')
     .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
         var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
@@ -42,4 +42,4 @@ gulp.task('inline-css', function () {
 gulp.task('css', ['sass', 'clean-css']);
 
 // Compile & Inline CSS
-gulp.task('default', ['css', 'inline-css']);
+gulp.task('default', ['sass', 'clean-css', 'inline-css']);
