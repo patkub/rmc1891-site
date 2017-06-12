@@ -23,7 +23,9 @@ gulp.task('sass', function () {
 // Minify CSS
 gulp.task('clean-css', ['sass'], function () {
   return gulp.src('css/rmc-theme.css')
-    .pipe(cleanCSS())
+    .pipe(cleanCSS({
+        level: 2
+    }))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('css/'));
 });

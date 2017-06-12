@@ -87,7 +87,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             min-height: 100vh;
             background-color: #f5f5f5;
         }
-        
+
         main {
             -webkit-flex: 1;
             -ms-flex: 1;
@@ -96,7 +96,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
         /* navbar on right */
         .navbar-nav {
-            padding-right:20rem;
+            padding-right: 20rem;
+        }
+
+        .carousel {
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            height: 500px;
         }
 
         /* carousel images */
@@ -174,7 +182,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <main>
 
         <!-- carousel -->
-        <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel"  style="overflow:hidden">
+        <div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel">
 
           <!-- carousel indicators -->
           <ol class="carousel-indicators">
@@ -184,7 +192,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           <div class="carousel-inner" role="listbox">
 
             <!-- slide 1 -->
-            <div class="carousel-item active" style="height:500px">
+            <div class="carousel-item active" role="option">
               <img class="img-responsive" src="images/carousel/slide1.jpg" alt="First slide">
               <div class="carousel-caption d-none d-block">
                 <h3>Rogers Manufacturing Company</h3>
@@ -193,7 +201,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </div>
 
             <!-- slide 2 -->
-            <div class="carousel-item" style="height:500px">
+            <div class="carousel-item" role="option">
                 <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-block">
                   <h3>Quality</h3>
