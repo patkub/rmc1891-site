@@ -40,8 +40,18 @@ gulp.task('inline-css', ['clean-css'], function () {
     .pipe(gulp.dest('build/es5-bundled/'));
 });
 
+// Inline ES5 Adapter
+gulp.task('inline-es5-adapter', function () {
+  return gulp.src('build/es5-bundled/index.html')
+    .pipe(replace('<script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>', function(s) {
+        var es5adapter = fs.readFileSync('bower_components/webcomponentsjs/custom-elements-es5-adapter.js', 'utf8');
+        return '<script>' + es5adapter + '</script>';
+    }))
+    .pipe(gulp.dest('build/es5-bundled/'));
+});
+
 // Compile Stylesheets
 gulp.task('css', ['sass', 'clean-css']);
 
-// Compile & Inline CSS
-gulp.task('default', ['sass', 'clean-css', 'inline-css']);
+// Compile & Inline
+gulp.task('default', ['sass', 'clean-css', 'inline-css', 'inline-es5-adapter']);
