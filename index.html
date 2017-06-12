@@ -76,9 +76,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <script defer src="bower_components/tether/dist/js/tether.min.js"></script>
     <script defer src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     
-    <!-- RMC Elements -->
-    <link rel="import" href="bower_components/rmc1891-elements/rmc.html">
-    
+    <!-- RMC Shell -->
+    <link rel="import" href="src/rmc-shell.html">
+	
     <style>
         /* flexbox */
         body {
@@ -108,7 +108,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         }
 
         /* carousel images */
-        .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+        .carousel-inner>.item>img,
+		.carousel-inner>.item>a>img,
+		.carousel-inner>.item>iron-image,
+		.carousel-inner>.item>a>iron-image
+		{
             display: block;
             height: auto;
             max-width: 100%;
@@ -120,6 +124,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         .carousel-indicators .active {
             background-color: #d32f2f;
         }
+		
+		iron-image {
+			background-color: lightgray;
+		}
     </style>
 </head>
 
@@ -202,7 +210,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
             <!-- slide 2 -->
             <div class="carousel-item" role="option">
-                <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide">
+                <!-- <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide"> -->
+				<iron-image class="img-responsive" preload src="images/carousel/slide2.jpg" alt="Second slide"></iron-image>
+				
                 <div class="carousel-caption d-none d-block">
                   <h3>Quality</h3>
                   <p>Over 60 years of experience in Plastic Injection Molding.</p>

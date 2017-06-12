@@ -9,7 +9,8 @@
     "bootstrap": "v4.0.0-alpha.6",
     "jquery": "^3.2.1",
     "tether": "^1.4.0",
-    "rmc1891-elements": "git@bitbucket.org:rmc1891/rmc1891-elements.git"
+    "rmc1891-elements": "git@bitbucket.org:rmc1891/rmc1891-elements.git",
+    "iron-image": "PolymerElements/iron-image#^2.1.1"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0-prerelease.7"

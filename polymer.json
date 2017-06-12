@@ -1,9 +1,9 @@
 {
     "entrypoint": "index.html",
-    "shell": "bower_components/rmc1891-elements/rmc.html",
+    "shell": "src/rmc-shell.html",
     "fragments": [],
     "sources": [
-        "bower_components/rmc1891-elements/**/*",
+        "src/**/*",
         "images/**/*",
         "bower.json"
     ],
