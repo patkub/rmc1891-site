@@ -1,4 +1,4 @@
-# Rogers Manufacturing Company Home Page
+# Rogers Manufacturing Company Website
 Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
