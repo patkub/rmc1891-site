@@ -3,6 +3,9 @@
 Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 -->
 
+<!-- Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
 <!-- RMC Elements -->
 <link rel="import" href="../bower_components/rmc1891-elements/rmc.html">
 
@@ -20,10 +23,16 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-shell">
     <template>
-        <app-location route="{{route}}" use-hash-as-path></app-location>
-		<app-route route="{{route}}" pattern="/:page" data="{{data}}"></app-route>
+        <app-location route="{{route}}"></app-location>
+		<app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
 
-		<iron-pages attr-for-selected="id" selected="about">
+		<iron-pages
+			selected="[[page]]"
+			attr-for-selected="id"
+			fallback-selection="home"
+			role="main">
+			
+			
 			<div id="home">
 				<!-- carousel -->
 				<div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel">
@@ -81,7 +90,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 					<!-- feature cards -->
 					<rmc-feature-cards></rmc-feature-cards>
-
+					
+					The page is [[page]]
+					
 				</div>
 				<!-- /container -->
 			</div>
@@ -102,9 +113,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</div>
 		</iron-pages>
 
-		<br><br><br><br><br><br><br><br><br>
-		MY = [[data.page]]
-		<br><br><br><br><br><br><br><br><br>
     </template>
 
   <script>
@@ -113,8 +121,29 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
       static get properties() {
         return {
-            text: String
+			page: {
+				type: String,
+				reflectToAttribute: true
+			},
+			routeData: Object
         };
+      }
+	  
+	  static get observers() {
+        return [
+          '_routePageChanged(routeData.page)',
+        ];
+      }
+	  
+	  _routePageChanged(page) {
+        // Polymer 2.0 will call with `undefined` on initialization.
+        // Ignore until we are properly called with a string.
+        if (page === undefined) {
+          return;
+        }
+        // If no page was found in the route data, page will be an empty string.
+        // Deault to 'home' in that case.
+        this.page = page || 'home';
       }
     }
 
