@@ -76,6 +76,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         // If no page was found in the route data, page will be an empty string.
         // Deault to 'home' in that case.
         this.page = page || 'home';
+		
+		// Scroll to top of page
+		window.scrollTo(0, 0);
       }
 	  
 	  _pageChanged(page) {
