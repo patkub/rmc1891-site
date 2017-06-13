@@ -1,0 +1,72 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="view-home">
+  <template>
+	<!-- carousel -->
+	<div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel">
+
+	  <!-- carousel indicators -->
+	  <ol class="carousel-indicators">
+		<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
+		<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
+	  </ol>
+	  <div class="carousel-inner" role="listbox">
+
+		<!-- slide 1 -->
+		<div class="carousel-item active" role="option">
+		  <img class="img-responsive" src="images/carousel/slide1.jpg" alt="First slide">
+		  <div class="carousel-caption d-none d-block">
+			<h3>Rogers Manufacturing Company</h3>
+			<p>Manufacturing Company Established in 1891.</p>
+		  </div>
+		</div>
+
+		<!-- slide 2 -->
+		<div class="carousel-item" role="option">
+			<!-- <img class="img-responsive" src="images/carousel/slide2.jpg" alt="Second slide"> -->
+			<iron-image class="img-responsive" preload src="images/carousel/slide2.jpg" alt="Second slide"></iron-image>
+			
+			<div class="carousel-caption d-none d-block">
+			  <h3>Quality</h3>
+			  <p>Over 60 years of experience in Plastic Injection Molding.</p>
+			</div>
+		</div>
+
+	  </div>
+
+	  <!-- carousel controls -->
+	  <a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	  </a>
+
+	  <a class="carousel-control-next" href="#mainCarouselIndicators" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	  </a>
+	</div>
+	<!-- /carousel -->
+
+	<!-- container -->
+	<div class="container">
+
+		<!-- jumbotron -->
+		<rmc-jumbotron title="The Rogers Manufacturing Company"
+					   text="Manufacturing Company Established in 1891."
+					   button="Learn more"
+					   link="#"></rmc-jumbotron>
+
+		<!-- feature cards -->
+		<rmc-feature-cards></rmc-feature-cards>
+		
+	</div>
+	<!-- /container -->
+  </template>
+
+  <script>
+    class ViewHome extends Polymer.Element {
+      static get is() { return 'view-home'; }
+    }
+    window.customElements.define(ViewHome.is, ViewHome);
+  </script>
+</dom-module>

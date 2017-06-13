@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="view-capabilities">
+  <template>
+	<!-- container -->
+	<div class="container">
+		
+		<br><br><br><br>
+			<h1>Capabilities</h1>
+			
+			<p>With over 45 years of design expertise and 21 plastic molding machines, our seasoned manufacturing team provides consistent on-time delivery for critical product requirements.</p>
+			<p>We provide mold making either in house, or with our domestic and worldwide partners to ensure prompt and affordable service.</p>
+			<p>The Rogers Manufacturing Company is experienced in processing hundreds of resins and colors. We process commodity as well as “specialty” engineered resins. We have seven silos making room to store over 1 million pounds of resin on site for economical procurement capabilities.</p>
+			<p>For your convenience we operate 24 hours a day, 5 to 7 days a week.</p>
+			
+			<h3>Manufacturing Services:</h3>
+			
+			<!-- manufacturing services -->
+			<rmc-manufacturing-services></rmc-manufacturing-services>
+			
+			<h3>Equipment List:</h3>
+			
+			<!-- equipment list -->
+			<rmc-equipment-list></rmc-equipment-list>
+			
+			<h3>Tool Room:</h3>
+			<rmc-tool-room-list></rmc-tool-room-list>
+
+	</div>
+	<!-- /container -->
+  </template>
+
+  <script>
+    class ViewCapabilities extends Polymer.Element {
+      static get is() { return 'view-capabilities'; }
+    }
+    window.customElements.define(ViewCapabilities.is, ViewCapabilities);
+  </script>
+</dom-module>
