@@ -1,7 +1,13 @@
 {
     "entrypoint": "index.html",
     "shell": "src/rmc-shell.html",
-    "fragments": [],
+    "fragments": [
+		"src/views/view-home.html",
+		"src/views/view-about.html",
+		"src/views/view-capabilities.html",
+		"src/views/view-contact.html",
+		"src/views/view-404.html"
+	],
     "sources": [
         "src/**/*",
         "images/**/*",
