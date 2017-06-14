@@ -4,7 +4,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 -->
 
 <!-- Polymer -->
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 <!-- App Location -->
 <link rel="import" href="../bower_components/app-route/app-location.html">
@@ -24,6 +24,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <link rel="lazy-import" href="views/view-capabilities.html">
 <link rel="lazy-import" href="views/view-contact.html">
 <link rel="lazy-import" href="views/view-404.html">
+
 
 <dom-module id="rmc-shell">
     <template>
@@ -71,9 +72,17 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           return;
         }
         // If no page was found in the route data, page will be an empty string.
-        // Deault to 'home' in that case.
+        // Default to 'home' in that case.
         this.page = page || 'home';
 		
+        // The active page has changed
+        this.dispatchEvent(new CustomEvent('ActivePageChanged', {
+            detail: {
+                active: this.page
+            },
+            composed: true
+        }));
+        
 		// Scroll to top of page
 		window.scrollTo(0, 0);
       }

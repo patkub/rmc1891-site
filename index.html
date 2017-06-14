@@ -14,10 +14,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <title>RMC 1891</title>
     <meta name="description" content="Rogers Manufacturing Company">
     <meta name="author" content="Rogers Manufacturing Company">
-
-    <!-- Enable Shady DOM instead of default Shadow DOM -->
-    <script>window.ShadyDOM = { force: true };</script>
-
+    
     <!--
       If deploying to a non-root path, replace href="/" with the full path to the project root.
       For example: href="/polymer-starter-kit/relative-path-example/"
@@ -54,6 +51,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <meta name="msapplication-tap-highlight" content="no">
 
     <script>
+      // Enable Shady DOM instead of default Shadow DOM
+      window.ShadyDOM = { force: true };
+      
       // Register the base URL
       const baseUrl = document.querySelector('base').href;
 
@@ -78,6 +78,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
     <!-- RMC Shell -->
     <link rel="import" href="src/rmc-shell.html">
+    
     
     <style>
         /* flexbox */
@@ -126,6 +127,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             background-color: #d32f2f;
         }
         
+        iron-image {
+            background-color: lightgray;
+        }
+        
+        .h2, h2 {
+            color: #1565c0;
+            font-size: 3rem;
+        }
+        
         p {
             font-size: 1.2em;
         }
@@ -135,6 +145,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <body>
 
     <header>
+    
         <!-- navbar -->
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,43 +158,23 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 <ul class="mr-auto"></ul>
 
                 <ul class="nav navbar-nav">
-                    <dom-repeat>
-                      <template>
-                          <li class="nav-item">
-                              <a class$="nav-link [[item.active]]" href="[[item.link]]" data-toggle="collapse" data-target=".navbar-collapse.show">[[item.text]]</a>
-                          </li>
-                      </template>
-                    </dom-repeat>
+                    
+                    <!-- navbar items -->
+                    <dom-bind>
+                        <template>
+                            <template is="dom-repeat" items="{{links}}" mutable-data>
+                              <li class="nav-item">
+                                  <a class$="nav-link {{item.active}}" href="{{item.link}}" data-toggle="collapse" data-target=".navbar-collapse.show">{{item.text}}</a>
+                              </li>
+                            </template>
+                        </template>
+                    </dom-bind>
+                    
                 </ul>
             </div>
         </nav>
         <!-- /navbar -->
         
-        <script>
-            var repeater = document.querySelector('dom-repeat');
-            repeater.items = [
-                {
-                    text: 'Home',
-                    link: '/',
-                    active: 'active'
-                },
-                {
-                    text: 'About',
-                    link: '/about/',
-                    active: ''
-                },
-                {
-                    text: 'Capabilities',
-                    link: '/capabilities/',
-                    active: ''
-                },
-                {
-                    text: 'Contact',
-                    link: '/contact/',
-                    active: ''
-                },
-            ];
-        </script>
     </header>
 
     <main>
@@ -192,6 +183,37 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
     <!-- footer -->
     <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer>
+    
+    <script>
+        // auto-binding template
+        var autobind = document.querySelector('dom-bind');
 
+        // set links property
+        autobind.links = [
+            { text: 'Home', link: '/', active: 'active' },
+            { text: 'About', link: '/about/', active: '' },
+            { text: 'Capabilities', link: '/capabilities/', active: '' },
+            { text: 'Contact', link: '/contact/', active: '' }
+        ];
+        
+        // listen for page changed event and update active item
+        document.querySelector('rmc-shell').addEventListener('ActivePageChanged', function (e) {
+            // clone the array
+            autobind.links = autobind.links.slice();
+            
+            // change the active item
+            for (i = 0; i < autobind.links.length; i++) {
+                if (autobind.links[i].text.toLowerCase() === e.detail.active) {
+                    autobind.links[i].active = 'active';
+                } else {
+                    autobind.links[i].active = '';
+                }
+            }
+            
+            // notify the template of changes
+            this.notifyPath('links');
+        })
+    </script>
+    
 </body>
 </html>
