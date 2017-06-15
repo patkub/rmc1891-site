@@ -9,15 +9,17 @@ Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http:
 
 1) Install [Git](https://git-scm.com/downloads).
 
-2) Install [Node.js](https://nodejs.org/en/)
+2) Install [Composer](https://getcomposer.org/).
 
-3) Install Bower.
+3) Install [Node.js](https://nodejs.org/en/).
+
+4) Install Bower.
 
 ```sh
 npm install -g bower
 ```
 
-4) Install Polymer CLI.
+5) Install Polymer CLI.
 
 ```sh
 npm install -g polymer-cli
@@ -28,6 +30,7 @@ npm install -g polymer-cli
 ```sh
 npm install
 bower update
+php composer.phar install
 ```
 
 ### Build:

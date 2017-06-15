@@ -1,22 +1,36 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
+<!-- App Location -->
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
 <dom-module id="view-404">
   <template>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	404 page not found
+	<style>
+		.container {
+			text-align: left;
+			margin-top: 100px;
+		}
+		
+		ins {
+			text-decoration: none;
+		}
+	</style>
+	
+	<div class="container">
+		<app-location route="{{route}}"></app-location>
+		<p>
+			<b>404.</b> <ins>That’s an error.</ins><br>
+			The requested URL {{route.path}} was not found on this server.<br>
+			<a href="/">Go back home</a>.
+		</p>
+	</div>
   </template>
 
   <script>
     class View404 extends Polymer.Element {
       static get is() { return 'view-404'; }
+	  
+	  
     }
     window.customElements.define(View404.is, View404);
   </script>
