@@ -2,24 +2,25 @@
     "entrypoint": "index.html",
     "shell": "src/rmc-shell.html",
     "fragments": [
-		"src/views/view-home.html",
-		"src/views/view-about.html",
-		"src/views/view-capabilities.html",
-		"src/views/view-contact.html",
-		"src/views/view-404.html"
-	],
+        "src/views/view-home.html",
+        "src/views/view-about.html",
+        "src/views/view-capabilities.html",
+        "src/views/view-contact.html",
+        "src/views/view-404.html"
+    ],
     "sources": [
         "src/**/*",
         "images/**/*",
         "bower.json"
     ],
     "extraDependencies": [
-        "manifest.json",
-        ".htaccess",
         "bower_components/webcomponentsjs/webcomponents-lite.js",
         "bower_components/bootstrap/dist/js/bootstrap.min.js",
         "bower_components/jquery/dist/jquery.slim.min.js",
-        "bower_components/tether/dist/js/tether.min.js"
+        "bower_components/tether/dist/js/tether.min.js",
+        "manifest.json",
+        ".htaccess",
+        "mail.php"
     ],
     "lint": {
         "rules": ["polymer-2"],

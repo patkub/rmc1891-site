@@ -14,32 +14,22 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 		<br><br><br><br>
 		<h2>Contact</h2>
 		
-		<form>
+		<form action="/mail.php" method="POST">
 		  <div class="form-group">
-			<label for="inputName">Name</label>
-			<input type="text" class="form-control" id="inputName" aria-describedby="name" placeholder="Your name">
+			<label for="email">Email</label>
+			<input name="email" type="email" class="form-control" aria-describedby="email" placeholder="Your email">
 		  </div>
 		  
 		  <div class="form-group">
-			<label for="inputEmail">Email</label>
-			<input type="email" class="form-control" id="inputEmail" aria-describedby="email" placeholder="Your email">
+			<label for="subject">Subject</label>
+			<input name="subject" type="text" class="form-control" aria-describedby="subject">
 		  </div>
 		  
 		  <div class="form-group">
-			<label for="inputEmail">Phone Number</label>
-			<input type="tel" class="form-control" id="inputPhoneNumber" aria-describedby="phone number" placeholder="Your phone number">
+			<label for="message">Message</label>
+			<textarea class="form-control" name="message" rows="20"></textarea>
 		  </div>
-		  
-		  <div class="form-group">
-			<label for="inputEmail">Subject</label>
-			<input type="text" class="form-control" id="inputSubject" aria-describedby="subject">
-		  </div>
-		  
-		  <div class="form-group">
-			<label for="exampleTextarea">Message</label>
-			<textarea class="form-control" id="exampleTextarea" rows="20"></textarea>
-		  </div>
-		  <button type="submit" class="btn btn-primary">Submit</button>
+		  <button name="submit" type="submit" class="btn btn-primary">Submit</button>
 		</form>
 
 	</div>
