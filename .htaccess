@@ -15,6 +15,9 @@ AddOutputFilterByType DEFLATE application/x-javascript
 AddOutputFilter DEFLATE .shtml
 </IfModule>
 
+# 404
+ErrorDocument 404 https://%{SERVER_NAME}%/404/
+
 # Rewrite
 <IfModule mod_rewrite.c>
 RewriteEngine on
