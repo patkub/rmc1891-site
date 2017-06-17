@@ -12,6 +12,7 @@ var replace = require('gulp-replace');
 var fs = require('fs');
 var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
+var webp = require('gulp-webp');
 
 // Compile Stylesheets
 gulp.task('sass', function () {
@@ -48,6 +49,13 @@ gulp.task('inline-es5-adapter', function () {
         return '<script>' + es5adapter + '</script>';
     }))
     .pipe(gulp.dest('build/es5-bundled/'));
+});
+
+// WebP
+gulp.task('webp', function () {
+    return gulp.src('images/**/*')
+        .pipe(webp())
+        .pipe(gulp.dest('build/es5-bundled/images/'));
 });
 
 // Compile Stylesheets
