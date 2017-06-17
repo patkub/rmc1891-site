@@ -62,4 +62,4 @@ gulp.task('webp', function () {
 gulp.task('css', ['sass', 'clean-css']);
 
 // Compile & Inline
-gulp.task('default', ['sass', 'clean-css', 'inline-css', 'inline-es5-adapter']);
+gulp.task('default', ['sass', 'clean-css', 'inline-css', 'inline-es5-adapter', 'webp']);
