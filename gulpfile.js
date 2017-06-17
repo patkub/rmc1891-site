@@ -53,7 +53,7 @@ gulp.task('inline-es5-adapter', function () {
 
 // WebP
 gulp.task('webp', function () {
-    return gulp.src('images/**/*')
+    return gulp.src(['images/**/*', '!images/manifest/**/*', '!images/favicon.ico'])
         .pipe(webp())
         .pipe(gulp.dest('build/es5-bundled/images/'));
 });
