@@ -4,3 +4,5 @@ node_modules/
 css/
 vendor/
 npm-debug*
+*.webp
+

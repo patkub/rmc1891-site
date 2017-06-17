@@ -31,19 +31,13 @@ gulp.task('clean-css', ['sass'], function () {
     .pipe(gulp.dest('css/'));
 });
 
-// Inline CSS
-gulp.task('inline-css', ['clean-css'], function () {
+// Inline CSS & ES5 Adapter
+gulp.task('inline', function () {
   return gulp.src('build/es5-bundled/index.html')
     .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
         var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
         return '<style>' + style + '</style>';
     }))
-    .pipe(gulp.dest('build/es5-bundled/'));
-});
-
-// Inline ES5 Adapter
-gulp.task('inline-es5-adapter', function () {
-  return gulp.src('build/es5-bundled/index.html')
     .pipe(replace('<script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>', function(s) {
         var es5adapter = fs.readFileSync('bower_components/webcomponentsjs/custom-elements-es5-adapter.js', 'utf8');
         return '<script>' + es5adapter + '</script>';
@@ -53,13 +47,16 @@ gulp.task('inline-es5-adapter', function () {
 
 // WebP
 gulp.task('webp', function () {
-    return gulp.src(['images/**/*', '!images/manifest/**/*', '!images/favicon.ico'])
+    return gulp.src(['images/**/*', '!images/manifest/**/*', '!images/favicon.ico', '!images/**/*.webp'])
         .pipe(webp())
-        .pipe(gulp.dest('build/es5-bundled/images/'));
+        .pipe(gulp.dest('images/'));
 });
 
 // Compile Stylesheets
 gulp.task('css', ['sass', 'clean-css']);
 
-// Compile & Inline
-gulp.task('default', ['sass', 'clean-css', 'inline-css', 'inline-es5-adapter', 'webp']);
+// Before polymer build
+gulp.task('before', ['sass', 'clean-css', 'webp']);
+
+// After polymer build
+gulp.task('after', ['inline']);
