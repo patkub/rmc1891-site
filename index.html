@@ -105,13 +105,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             font-size: 20px;
         }
 		
-		/* center image horizontally */
-		.img-center {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
 		iron-image {
             background-color: lightgray;
         }
@@ -124,24 +117,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         .navbar-nav {
             padding-right: 20rem;
         }
-
-		my-carousel {
-		  width: 100%;
-		  contain: content;
+        
+        /* center image horizontally */
+		.img-center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 		}
-
-		my-carousel::after {
-		  display: block;
-		  content: '';
-		  padding-top: 75%; /* 4:3 = height is 75% of width */
-		}
-
-		my-carousel img {
-		  position: absolute;
-		  width: 100%;
-		  height: 100%;
-		}
-		
     </style>
 </head>
 
