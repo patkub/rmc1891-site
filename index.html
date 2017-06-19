@@ -93,25 +93,25 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             -ms-flex: 1;
             flex: 1;
         }
-		
-		.h2, h2 {
+        
+        .h2, h2 {
             color: #1565c0;
             font-size: 3rem;
-			line-height: 6rem;
+            line-height: 6rem;
             margin-bottom: 0px;
         }
         
         p {
             font-size: 20px;
         }
-		
-		iron-image {
+        
+        iron-image {
             background-color: lightgray;
         }
-		
-		.container {
-			margin-top: 56px;
-		}
+        
+        .container {
+            margin-top: 56px;
+        }
 
         /* navbar on right */
         .navbar-nav {
@@ -119,15 +119,31 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         }
         
         /* center image horizontally */
-		.img-center {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-		}
+        .img-center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
     
     <!-- WebP polyfill -->
-    <script>(function(){var WebP=new Image();WebP.onload=WebP.onerror=function(){if(WebP.height!=2){var sc=document.createElement('script');sc.type='text/javascript';sc.async=true;var s=document.getElementsByTagName('script')[0];sc.src='webpjs/webpjs-0.0.2.min.js';s.parentNode.insertBefore(sc,s);}};WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';})();</script>
+    <script>
+        (function() {
+            var WebP = new Image();
+            WebP.onload = WebP.onerror = function() {
+                if (WebP.height != 2) {
+                    var sc = document.createElement('script');
+                    sc.type = 'text/javascript';
+                    sc.async = true;
+                    
+                    var s = document.getElementsByTagName('script')[0];
+                    sc.src = 'webpjs/webpjs-0.0.2.min.js';
+                    s.parentNode.insertBefore(sc, s);
+                }
+            };
+            WebP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        })();
+    </script>
     
 </head>
 
