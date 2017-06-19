@@ -54,7 +54,12 @@ gulp.task('inline', function () {
 
 // WebP
 gulp.task('webp', function () {
-	return gulp.src(['images/**/*', '!images/manifest/**/*', '!images/favicon.ico', '!images/**/*.webp'])
+	return gulp.src([
+			'images/**/*',
+			'!images/manifest/**/*',
+			'!images/favicon.ico',
+			'!images/**/*.webp'
+		])
 		.pipe(webp())
 		.pipe(gulp.dest('images/'));
 });
