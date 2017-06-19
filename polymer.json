@@ -14,7 +14,6 @@
         "bower.json"
     ],
     "extraDependencies": [
-        "bower_components/webcomponentsjs/webcomponents-lite.js",
         "bower_components/bootstrap/dist/js/bootstrap.min.js",
         "bower_components/jquery/dist/jquery.slim.min.js",
         "bower_components/tether/dist/js/tether.min.js",

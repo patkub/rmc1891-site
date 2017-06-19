@@ -12,11 +12,16 @@
 
 module.exports = {
   staticFileGlobs: [
-    '/index.html',
-    '/manifest.json',
-    '/bower_components/webcomponentsjs/*',
-    '/bower_components/bootstrap/dist/css/*',
-    '/bower_components/jquery/dist/*'
+	'/bower_components/webcomponentsjs/*.js',
+	'/bower_components/bootstrap/dist/js/bootstrap.min.js',
+	'/bower_components/jquery/dist/jquery.slim.min.js',
+	'/bower_components/tether/dist/js/tether.min.js',
+	'/images/**/*',
+	'/js/**/*',
+	'/.htaccess',
+	'/index.html',
+	'/mail.php',
+	'/manifest.json'
   ],
   navigateFallback: 'index.html',
 };
