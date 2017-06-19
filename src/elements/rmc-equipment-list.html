@@ -1,0 +1,99 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="rmc-equipment-list">
+    <template>
+		<table class="table">
+			<thead class="thead-inverse">
+			<tr>
+			  <th>#</th>
+			  <th>Weight</th>
+			  <th>Name</th>
+			</tr>
+			</thead>
+			<tbody>
+				<template is="dom-repeat" items="{{equipment}}">
+					<tr>
+						<th scope="row">[[item.count]]</th>
+						<td>[[item.weight]] Ton</td>
+						<td>[[item.name]]</td>
+					</tr>
+				</template>
+			</tbody>
+		</table>
+    </template>
+
+  <script>
+    class RMCEquipmentList extends Polymer.Element {
+      static get is() { return 'rmc-equipment-list'; }
+
+      static get properties() {
+        return {
+            equipment: {
+                type: Object,
+                value: function() {
+                    return [
+						{
+							count: '1',
+							weight: '800',
+							name: 'Servo-Hydraulic Machine'
+						},
+						{
+							count: '2',
+							weight: '700',
+							name: 'Hydraulic Machines'
+						},
+						{
+							count: '6',
+							weight: '500',
+							name: 'All-Electric Machines'
+						},
+						{
+							count: '2',
+							weight: '500',
+							name: 'Hydraulic Machines'
+						},
+						{
+							count: '3',
+							weight: '425',
+							name: 'Servo Hydraulic Machines'
+						},
+						{
+							count: '1',
+							weight: '385',
+							name: 'All-Electric Machine'
+						},
+						{
+							count: '3',
+							weight: '350',
+							name: 'Hydraulic Machines'
+						},
+						{
+							count: '2',
+							weight: '200',
+							name: 'Hydraulic Machines'
+						},
+						{
+							count: '1',
+							weight: '75',
+							name: 'Hydraulic Machines'
+						}
+					];
+                }
+            }
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCEquipmentList.is, RMCEquipmentList);
+  </script>
+</dom-module>

@@ -1,0 +1,85 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="rmc-feature-cards">
+    <template>
+        <style>
+            .card {
+                width: 20rem;
+                margin-bottom: 2rem;
+            }
+
+            .card-title {
+                color: #0d47a1;
+            }
+        </style>
+
+        <div class="card-deck">
+            <template is="dom-repeat" items="{{cards}}">
+                <div class="card">
+                    <img class="card-img-top" src="[[item.image]]" alt="[[item.caption]]">
+                    <div class="card-block">
+                        <h4 class="card-title">[[item.title]]</h4>
+                        <p class="card-text">[[item.text]]</p>
+                    </div>
+                    <div class="card-footer">
+						<a href="[[item.link]]" class="btn btn-outline-primary" role="button">[[item.button]]</a>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+  <script>
+    class RMCFeatureCards extends Polymer.Element {
+      static get is() { return 'rmc-feature-cards'; }
+
+      static get properties() {
+        return {
+            cards: {
+                type: Object,
+                value: function() {
+                    return [
+                        {
+                            title: 'About',
+                            image: 'images/feature/about.webp',
+                            caption: 'Machines',
+                            text: 'With over 45 years of design expertise and 21 plastic molding machines, our seasoned manufacturing team provides consistent on-time delivery for critical product requirements. We provide mold making either in house, or with our domestic and worldwide partners to ensure prompt and affordable service.',
+                            button: 'Learn More',
+							link: '/about/'
+                        },
+                        {
+                            title: 'Capabilities',
+                            image: 'images/feature/capabilities.webp',
+                            caption: 'Plastic',
+                            text: 'The Rogers Manufacturing Company is experienced in processing hundreds of resins and colors. We process commodity as well as “specialty” engineered resins. We have seven silos making room to store over 1 million pounds of resin on site for economical procurement capabilities.',
+                            button: 'Explore',
+							link: '/capabilities/'
+                        },
+                        {
+                            title: 'Contact',
+                            image: 'images/feature/contact.webp',
+                            caption: 'Milk Crates',
+                            text: 'For your convenience we operate 24 hours a day, 5 to 7 days a week.',
+                            button: 'Contact Us',
+							link: '/contact/'
+                        }
+                    ];
+                }
+            }
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCFeatureCards.is, RMCFeatureCards);
+  </script>
+</dom-module>

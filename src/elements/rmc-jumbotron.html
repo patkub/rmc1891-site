@@ -1,0 +1,72 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="rmc-jumbotron">
+    <template>
+        <style>
+        /* match bootstrap bottom margin */
+        .jumbotron {
+            margin-top: 2rem;
+        }
+		
+		.display-4 {
+			font-weight: 600;
+			font-size: 2rem;
+		}
+		
+		.lead {
+			font-weight: 500;
+		}
+		
+		@media (min-width: 576px) {
+			.display-4 {
+				font-size: 2rem;
+			}
+		}
+		
+		@media (min-width: 768px) {
+			.display-4 {
+				font-size: 2.5rem;
+			}
+		}
+		
+		@media (min-width: 1200px) {
+			.display-4 {
+				font-size: 3.5rem;
+			}
+		}
+		
+        </style>
+    
+        <div class="jumbotron">
+            <h1 class="display-4">[[title]]</h1>
+            <p class="lead">[[text]]</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="[[link]]" role="button">[[button]]</a>
+            </p>
+        </div>
+    </template>
+
+  <script>
+    class RMCJumbotron extends Polymer.Element {
+      static get is() { return 'rmc-jumbotron'; }
+
+      static get properties() {
+        return {
+            title: String,
+            text: String,
+            button: String,
+            link: String
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCJumbotron.is, RMCJumbotron);
+  </script>
+</dom-module>

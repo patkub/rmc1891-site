@@ -1,0 +1,56 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="rmc-manufacturing-services">
+    <template>
+		<ul class="list-group">
+			<template is="dom-repeat" items="{{services}}">
+				<li class="list-group-item">[[item]]</li>
+			</template>
+		</ul>
+    </template>
+
+  <script>
+    class RMCManufacturingServices extends Polymer.Element {
+      static get is() { return 'rmc-manufacturing-services'; }
+
+      static get properties() {
+        return {
+            services: {
+                type: Object,
+                value: function() {
+                    return [
+						'Plastic Injection Molding', 
+						'Annealing',
+						'Finish Machining',
+						'Assembly',
+						'Insert Molding',
+						'Sonic Welding',
+						'Chemical Bonding',
+						'EMA Bonding',
+						'Hot Stamp Decorating',
+						'Pad Transfer Printing',
+						'Quality Inspection',
+						'3D Part Printing',
+						'3D Interactive Design',
+						'Solidworks Part Design and Mold Flow Analysis',
+						'Drop Shipping availability to multiple locations',
+					];
+                }
+            }
+        };
+      }
+
+    }
+
+    window.customElements.define(RMCManufacturingServices.is, RMCManufacturingServices);
+  </script>
+</dom-module>
