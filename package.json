@@ -8,6 +8,7 @@
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.4.1",
+    "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0",

@@ -13,6 +13,7 @@ var fs = require('fs');
 var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
 var webp = require('gulp-webp');
+var purify = require('gulp-purifycss');
 
 // Compile Stylesheets
 gulp.task('sass', function () {
@@ -24,6 +25,7 @@ gulp.task('sass', function () {
 // Minify CSS
 gulp.task('clean-css', ['sass'], function () {
   return gulp.src('css/rmc-theme.css')
+    .pipe(purify(['index.html', 'src/**/*.html', 'bower_components/rmc1891-elements/**/*.html']))
     .pipe(cleanCSS({
         level: 2
     }))
