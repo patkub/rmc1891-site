@@ -14,29 +14,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>AboutView</title>
+    <title>404 View</title>
 
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../bower_components/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../src/views/view-about.html">
+    <link rel="import" href="../src/views/view-404.html">
   </head>
   <body>
-    <test-fixture id="AboutView">
+    <test-fixture id="View404">
       <template>
-        <view-about></view-about>
+        <view-404></view-404>
       </template>
     </test-fixture>
+	
+	<script>
+	'use strict';
+	
+	function setLocation(url) {
+		window.history.pushState({}, '', url);
+		Polymer.Base.fire('location-changed', {}, { node: window });
+	}
+	
+	suite('view-404 tests', function() {
+		var view404;
 
-    <script>
-      suite('view-404 tests', function() {
-        test('Heading level 2 should be About', function() {
-          var aboutView = fixture('AboutView');
-          var heading = aboutView.shadowRoot.querySelector('h2');
-          assert.equal(heading.textContent, 'About');
-        });
-      });
+		setup(function() {
+			view404 = fixture('View404');
+		});
+
+		test('Location /404', function() {
+			setLocation('/404');
+			var appLoction = view404.shadowRoot.querySelector('app-location')
+			assert.equal(appLoction.route.path, '/404');
+		});
+
+		test('Go back home', function() {
+			var a = view404.shadowRoot.querySelector('a');
+			assert.equal(a.getAttribute('href'), '/');
+		});
+	});
     </script>
   </body>
 </html>
