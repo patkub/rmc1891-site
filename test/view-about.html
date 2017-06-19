@@ -28,15 +28,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <view-about></view-about>
       </template>
     </test-fixture>
-	
-	<script>
+    
+    <script>
       suite('view-about tests', function() {
-		var aboutView;
-		
-		setup(function() {
-		  aboutView = fixture('AboutView');
-		});
-		
+        var aboutView;
+
+        setup(function() {
+          aboutView = fixture('AboutView');
+        });
+
         test('Heading level 2 should be About', function() {
           var heading = aboutView.shadowRoot.querySelector('h2');
           assert.equal(heading.textContent, 'About');

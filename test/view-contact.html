@@ -28,15 +28,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <view-contact></view-contact>
       </template>
     </test-fixture>
-	
-	<script>
+    
+    <script>
       suite('view-contact tests', function() {
-		var contactView;
-		
-		setup(function() {
-		  contactView = fixture('ContactView');
-		});
-		
+        var contactView;
+
+        setup(function() {
+          contactView = fixture('ContactView');
+        });
+
         test('Heading level 2 should be Contact', function() {
           var heading = contactView.shadowRoot.querySelector('h2');
           assert.equal(heading.textContent, 'Contact');

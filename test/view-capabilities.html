@@ -28,15 +28,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <view-capabilities></view-capabilities>
       </template>
     </test-fixture>
-	
-	<script>
+    
+    <script>
       suite('view-capabilities tests', function() {
-		var capabilitiesView;
-		
-		setup(function() {
-		  capabilitiesView = fixture('CapabilitiesView');
-		});
-		
+        var capabilitiesView;
+
+        setup(function() {
+          capabilitiesView = fixture('CapabilitiesView');
+        });
+
         test('Heading level 2 should be Capabilities', function() {
           var heading = capabilitiesView.shadowRoot.querySelector('h2');
           assert.equal(heading.textContent, 'Capabilities');

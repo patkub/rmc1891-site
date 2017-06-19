@@ -5,4 +5,4 @@ css/
 vendor/
 npm-debug*
 *.webp
-
+*.min.*

@@ -31,12 +31,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
       suite('view-home tests', function() {
-		var homeView;
-		
-		setup(function() {
-		  homeView = fixture('HomeView');
-		});
-		
+        var homeView;
+
+        setup(function() {
+          homeView = fixture('HomeView');
+        });
+
         test('Jumbotron title should be The Rogers Manufacturing Company', function() {
           var jumbotron = homeView.shadowRoot.querySelector('rmc-jumbotron');
           assert.equal(jumbotron.getAttribute('title'), 'The Rogers Manufacturing Company');

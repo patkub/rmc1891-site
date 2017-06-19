@@ -1,4 +1,4 @@
-/*!
+/* !
  * RMC gulpfile
  *
  * @license
@@ -16,30 +16,30 @@ var cleanCSS = require('gulp-clean-css');
 var webp = require('gulp-webp');
 
 // Compile Stylesheets
-gulp.task('sass', function () {
+gulp.task('sass', function() {
 	return gulp.src('scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('css/'));
 });
 
 // Minify CSS
-gulp.task('clean-css', ['sass'], function () {
+gulp.task('clean-css', ['sass'], function() {
     return gulp.src('css/rmc-theme.css')
         .pipe(purifyCSS([
 			'bower_components/bootstrap/dist/js/bootstrap.min.js',
 			'bower_components/rmc1891-elements/**/*.html',
 			'src/**/*.html',
-			'index.html'
+			'index.html',
         ]))
         .pipe(cleanCSS({
-			level: 2
+			level: 2,
         }))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('css/'));
 });
 
 // Inline CSS & ES5 Adapter
-gulp.task('inline', function () {
+gulp.task('inline', function() {
     return gulp.src('build/es5-bundled/index.html')
         .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
 			var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
@@ -53,12 +53,12 @@ gulp.task('inline', function () {
 });
 
 // WebP
-gulp.task('webp', function () {
+gulp.task('webp', function() {
 	return gulp.src([
 			'images/**/*',
 			'!images/manifest/**/*',
 			'!images/favicon.ico',
-			'!images/**/*.webp'
+			'!images/**/*.webp',
 		])
 		.pipe(webp())
 		.pipe(gulp.dest('images/'));

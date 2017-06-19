@@ -52,7 +52,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
     <script>
       // Enable Shady DOM instead of default Shadow DOM
-      window.ShadyDOM = { force: true };
+      window.ShadyDOM = {force: true};
       
       // Register the base URL
       const baseUrl = document.querySelector('base').href;
@@ -135,7 +135,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                     var sc = document.createElement('script');
                     sc.type = 'text/javascript';
                     sc.async = true;
-                    
+
                     var s = document.getElementsByTagName('script')[0];
                     sc.src = 'js/webpjs-0.0.2.min.js';
                     s.parentNode.insertBefore(sc, s);
@@ -193,29 +193,30 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
         // set links property
         autobind.links = [
-            { text: 'Home', link: '/', active: 'active' },
-            { text: 'About', link: '/about/', active: '' },
-            { text: 'Capabilities', link: '/capabilities/', active: '' },
-            { text: 'Contact', link: '/contact/', active: '' }
+            {text: 'Home', link: '/', active: 'active'},
+            {text: 'About', link: '/about/', active: ''},
+            {text: 'Capabilities', link: '/capabilities/', active: ''},
+            {text: 'Contact', link: '/contact/', active: ''},
         ];
         
         // listen for page changed event and update active item
-        document.querySelector('rmc-shell').addEventListener('ActivePageChanged', function (e) {
+        document.querySelector('rmc-shell')
+                .addEventListener('ActivePageChanged', function(e) {
             // clone the array
             autobind.links = autobind.links.slice();
-            
+        
             // change the active item
-            for (i = 0; i < autobind.links.length; i++) {
+            for (var i = 0; i < autobind.links.length; i++) {
                 if (autobind.links[i].text.toLowerCase() === e.detail.active) {
                     autobind.links[i].active = 'active';
                 } else {
                     autobind.links[i].active = '';
                 }
             }
-            
+
             // notify the template of changes
             this.notifyPath('links');
-        })
+        });
     </script>
     
 </body>

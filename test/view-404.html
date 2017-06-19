@@ -28,33 +28,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <view-404></view-404>
       </template>
     </test-fixture>
-	
-	<script>
-	'use strict';
-	
-	function setLocation(url) {
-		window.history.pushState({}, '', url);
-		Polymer.Base.fire('location-changed', {}, { node: window });
-	}
-	
-	suite('view-404 tests', function() {
-		var view404;
+    
+    <script>
+    'use strict';
+    
+    function setLocation(url) {
+        window.history.pushState({}, '', url);
+        Polymer.Base.fire('location-changed', {}, {node: window});
+    }
+    
+    suite('view-404 tests', function() {
+        var view404;
 
-		setup(function() {
-			view404 = fixture('View404');
-		});
+        setup(function() {
+            view404 = fixture('View404');
+        });
 
-		test('Location /404', function() {
-			setLocation('/404');
-			var appLoction = view404.shadowRoot.querySelector('app-location')
-			assert.equal(appLoction.route.path, '/404');
-		});
+        test('Location /404', function() {
+            setLocation('/404');
+            var appLoction = view404.shadowRoot.querySelector('app-location');
+            assert.equal(appLoction.route.path, '/404');
+        });
 
-		test('Go back home', function() {
-			var a = view404.shadowRoot.querySelector('a');
-			assert.equal(a.getAttribute('href'), '/');
-		});
-	});
+        test('Go back home', function() {
+            var a = view404.shadowRoot.querySelector('a');
+            assert.equal(a.getAttribute('href'), '/');
+        });
+    });
     </script>
   </body>
 </html>

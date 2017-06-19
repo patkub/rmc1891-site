@@ -20,7 +20,7 @@ module.exports = {
 	'/js/**/*',
 	'/index.html',
 	'/mail.php',
-	'/manifest.json'
+	'/manifest.json',
   ],
   navigateFallback: 'index.html',
 };

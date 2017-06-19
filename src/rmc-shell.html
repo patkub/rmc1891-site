@@ -28,20 +28,20 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <dom-module id="rmc-shell">
     <template>
         <app-location route="{{route}}"></app-location>
-		<app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
 
-		<iron-pages
-			selected="[[page]]"
-			attr-for-selected="id"
-			fallback-selection="404"
-			role="main">
-			
-			<view-home id="home"></view-home>
-			<view-about id="about"></view-about>
-			<view-capabilities id="capabilities"></view-capabilities>
-			<view-contact id="contact"></view-contact>
-			<view-404 id="404"></view-404>
-		</iron-pages>
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="id"
+            fallback-selection="404"
+            role="main">
+            
+            <view-home id="home"></view-home>
+            <view-about id="about"></view-about>
+            <view-capabilities id="capabilities"></view-capabilities>
+            <view-contact id="contact"></view-contact>
+            <view-404 id="404"></view-404>
+        </iron-pages>
     </template>
 
   <script>
@@ -50,22 +50,22 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
       static get properties() {
         return {
-			page: {
-				type: String,
-				reflectToAttribute: true,
-				observer: '_pageChanged'
-			},
-			routeData: Object
+            page: {
+                type: String,
+                reflectToAttribute: true,
+                observer: '_pageChanged',
+            },
+            routeData: Object,
         };
       }
-	  
-	  static get observers() {
+
+      static get observers() {
         return [
           '_routePageChanged(routeData.page)',
         ];
       }
-	  
-	  _routePageChanged(page) {
+
+      _routePageChanged(page) {
         // Polymer 2.0 will call with `undefined` on initialization.
         // Ignore until we are properly called with a string.
         if (page === undefined) {
@@ -74,20 +74,20 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         // If no page was found in the route data, page will be an empty string.
         // Default to 'home' in that case.
         this.page = page || 'home';
-		
+
         // The active page has changed
         this.dispatchEvent(new CustomEvent('ActivePageChanged', {
             detail: {
-                active: this.page
+                active: this.page,
             },
-            composed: true
+            composed: true,
         }));
-        
-		// Scroll to top of page
-		window.scrollTo(0, 0);
+    
+        // Scroll to top of page
+        window.scrollTo(0, 0);
       }
-	  
-	  _pageChanged(page) {
+
+      _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('views/view-' + page + '.html');
         Polymer.importHref(
@@ -96,8 +96,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             this._showPage404.bind(this),
             true);
       }
-	  
-	  _showPage404() {
+
+      _showPage404() {
         this.page = '404';
       }
     }
