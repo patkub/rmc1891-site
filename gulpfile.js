@@ -11,9 +11,9 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var fs = require('fs');
 var sass = require('gulp-sass');
+var purifyCSS = require('gulp-purifycss');
 var cleanCSS = require('gulp-clean-css');
 var webp = require('gulp-webp');
-var purify = require('gulp-purifycss');
 
 // Compile Stylesheets
 gulp.task('sass', function () {
@@ -25,7 +25,11 @@ gulp.task('sass', function () {
 // Minify CSS
 gulp.task('clean-css', ['sass'], function () {
   return gulp.src('css/rmc-theme.css')
-    .pipe(purify(['index.html', 'src/**/*.html', 'bower_components/rmc1891-elements/**/*.html']))
+    .pipe(purifyCSS([
+        'index.html', 
+        'src/**/*.html', 
+        'bower_components/rmc1891-elements/**/*.html'
+    ]))
     .pipe(cleanCSS({
         level: 2
     }))
