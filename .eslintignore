@@ -1,0 +1,9 @@
+bower_components/
+build/
+node_modules/
+css/
+vendor/
+npm-debug*
+*.webp
+*.min.*
+gulpfile.js
