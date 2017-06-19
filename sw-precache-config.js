@@ -18,7 +18,6 @@ module.exports = {
 	'/bower_components/tether/dist/js/tether.min.js',
 	'/images/**/*',
 	'/js/**/*',
-	'/.htaccess',
 	'/index.html',
 	'/mail.php',
 	'/manifest.json'
