@@ -1,0 +1,49 @@
+// RMC Custom CSS
+// 
+//
+
+// .img-center      - center an image horizontally
+
+$h2-font-size: 3rem;
+
+// Flexbox
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+main {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.h2, h2 {
+    color: #1565c0;
+    font-size: $h2-font-size;
+    line-height: $h2-font-size * 2;
+    margin-bottom: 0px;
+}
+
+// Paragraph font size
+p {
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 56px;
+}
+
+// Navbar on right
+.navbar-nav {
+    padding-right: 20rem;
+}
+
+// Center image horizontally
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
