@@ -38,21 +38,6 @@ gulp.task('clean-css', ['sass'], function() {
         .pipe(gulp.dest('css/'));
 });
 
-// Inline CSS & ES5 Adapter
-gulp.task('inline', function() {
-    return gulp.src('build/es5-bundled/index.html')
-        .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
-			var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
-			return '<style>' + style + '</style>';
-        }))
-        .pipe(replace('<script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>', function(s) {
-			var es5adapter = fs.readFileSync('bower_components/webcomponentsjs/custom-elements-es5-adapter.js', 'utf8');
-			return '<script>' + es5adapter + '</script>';
-        }))
-        .pipe(replace('../fonts/fontawesome', 'fonts/fontawesome')) // temporarily
-        .pipe(gulp.dest('build/es5-bundled/'));
-});
-
 // WebP
 gulp.task('webp', function() {
 	return gulp.src([
@@ -68,15 +53,37 @@ gulp.task('webp', function() {
 // Copy fonts
 gulp.task('fonts', function() {
     return gulp.src(['bower_components/components-font-awesome/fonts/**'])
-        .pipe(gulp.dest('fonts/'))
         .pipe(gulp.dest('build/es5-bundled/fonts/'))
+});
+
+// Copy fonts locally
+gulp.task('fonts:local', function() {
+    return gulp.src(['bower_components/components-font-awesome/fonts/**'])
+        .pipe(gulp.dest('fonts/'))
+});
+
+// Inline CSS & ES5 Adapter
+gulp.task('inline', function() {
+    return gulp.src('build/es5-bundled/index.html')
+        .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
+			var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
+			return '<style>' + style + '</style>';
+        }))
+        .pipe(replace('<script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>', function(s) {
+			var es5adapter = fs.readFileSync('bower_components/webcomponentsjs/custom-elements-es5-adapter.js', 'utf8');
+			return '<script>' + es5adapter + '</script>';
+        }))
+        .pipe(gulp.dest('build/es5-bundled/'));
 });
 
 // Compile Stylesheets
 gulp.task('css', ['sass', 'clean-css']);
 
 // Before polymer build
-gulp.task('before', ['sass', 'clean-css', 'webp']);
+gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
-gulp.task('after', ['inline', 'fonts']);
+gulp.task('build:after', ['inline', 'fonts']);
+
+// Serve local
+gulp.task('serve:local', ['sass', 'clean-css', 'webp', 'fonts:local']);

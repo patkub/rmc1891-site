@@ -19,7 +19,8 @@
     "lint:javascript": "eslint . --ext js,html",
     "test": "polymer test",
     "test:integration": "polymer build # test that rmc1891 builds without error with the CLI",
-    "build": "gulp before && polymer build && gulp after",
-    "serve": "polymer serve build/es5-bundled"
+    "build": "gulp build:before && polymer build && gulp build:after # build rmc1891 for production",
+    "serve": "polymer serve build/es5-bundled --port 8080 # serve production build",
+    "serve:local": "gulp serve:local && polymer serve --port 8081 # serve local build"
   }
 }
