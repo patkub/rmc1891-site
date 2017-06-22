@@ -18,9 +18,9 @@
     "lint": "npm run lint:javascript",
     "lint:javascript": "eslint . --ext js,html",
     "test": "polymer test",
-    "test:integration": "polymer build # test that rmc1891 builds without error with the CLI",
-    "build": "gulp build:before && polymer build && gulp build:after # build rmc1891 for production",
-    "serve": "polymer serve build/es5-bundled --port 8080 # serve production build",
-    "serve:local": "gulp serve:local && polymer serve --port 8081 # serve local build"
+    "test:integration": "gulp build:before && polymer build && gulp build:after # test that rmc1891 builds without error with the CLI",
+    "build": "gulp build:before && polymer build && gulp build:after",
+    "serve": "polymer serve build/es5-bundled",
+    "serve:local": "gulp serve:local && polymer serve"
   }
 }

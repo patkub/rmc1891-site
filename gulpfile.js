@@ -86,4 +86,4 @@ gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 gulp.task('build:after', ['inline', 'fonts']);
 
 // Serve local
-gulp.task('serve:local', ['sass', 'clean-css', 'webp', 'fonts:local']);
+gulp.task('serve:local', ['build:before', 'fonts:local']);
