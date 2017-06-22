@@ -127,7 +127,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                         <template>
                             <template is="dom-repeat" items="{{links}}" mutable-data>
                               <li class="nav-item">
-                                  <a class$="nav-link {{item.active}}" href$="{{item.link}}" data-toggle="collapse" data-target=".navbar-collapse.show">{{item.text}}</a>
+                                  <a class$="nav-link {{item.active}}" href$="{{item.link}}" data-toggle="collapse" data-target=".navbar-collapse.show" style="white-space: nowrap">
+                                  <span class$="fa fa-fw fa-{{item.icon}}" aria-hidden="true"></span> {{item.text}}</a>
                               </li>
                             </template>
                         </template>
@@ -152,10 +153,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
         // set links property
         autobind.links = [
-            {text: 'Home', link: '/', active: 'active'},
-            {text: 'About', link: '/about/', active: ''},
-            {text: 'Capabilities', link: '/capabilities/', active: ''},
-            {text: 'Contact', link: '/contact/', active: ''},
+            {text: 'Home', link: '/', icon: 'home', active: 'active'},
+            {text: 'About', link: '/about/', icon: 'info', active: ''},
+            {text: 'Capabilities', link: '/capabilities/', icon: 'cogs', active: ''},
+            {text: 'Contact', link: '/contact/', icon: 'envelope', active: ''},
         ];
         
         // listen for page changed event and update active item

@@ -49,6 +49,7 @@ gulp.task('inline', function() {
 			var es5adapter = fs.readFileSync('bower_components/webcomponentsjs/custom-elements-es5-adapter.js', 'utf8');
 			return '<script>' + es5adapter + '</script>';
         }))
+        .pipe(replace('../fonts/fontawesome', 'fonts/fontawesome')) // temporarily
         .pipe(gulp.dest('build/es5-bundled/'));
 });
 
@@ -64,6 +65,13 @@ gulp.task('webp', function() {
 		.pipe(gulp.dest('images/'));
 });
 
+// Copy fonts
+gulp.task('fonts', function() {
+    return gulp.src(['bower_components/components-font-awesome/fonts/**'])
+        .pipe(gulp.dest('fonts/'))
+        .pipe(gulp.dest('build/es5-bundled/fonts/'))
+});
+
 // Compile Stylesheets
 gulp.task('css', ['sass', 'clean-css']);
 
@@ -71,4 +79,4 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
-gulp.task('after', ['inline']);
+gulp.task('after', ['inline', 'fonts']);
