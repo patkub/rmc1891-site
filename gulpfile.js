@@ -52,13 +52,13 @@ gulp.task('webp', function() {
 
 // Copy fonts
 gulp.task('fonts', function() {
-    return gulp.src(['bower_components/components-font-awesome/fonts/**'])
+    return gulp.src(['bower_components/components-font-awesome/fonts/*.*'])
         .pipe(gulp.dest('build/es5-bundled/fonts/'))
 });
 
 // Copy fonts locally
 gulp.task('fonts:local', function() {
-    return gulp.src(['bower_components/components-font-awesome/fonts/**'])
+    return gulp.src(['bower_components/components-font-awesome/fonts/*.*'])
         .pipe(gulp.dest('fonts/'))
 });
 

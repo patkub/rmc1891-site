@@ -16,7 +16,7 @@ module.exports = {
 	'/bower_components/bootstrap/dist/js/bootstrap.min.js',
 	'/bower_components/jquery/dist/jquery.slim.min.js',
 	'/bower_components/tether/dist/js/tether.min.js',
-	'/bower_components/components-font-awesome/fonts/*',
+	'/bower_components/components-font-awesome/fonts/*.*',
 	'/images/**/*',
 	'/js/**/*',
 	'/index.html',
