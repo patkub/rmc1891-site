@@ -6,6 +6,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
+<!-- Carousel -->
+<link rel="import" href="../elements/carousel/my-carousel.html">
+
 <!-- Jumbotron -->
 <link rel="import" href="../elements/rmc-jumbotron.html">
 
@@ -15,9 +18,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <dom-module id="view-home">
   <template>
     
+    <my-carousel>
+        <img data-src="images/about.webp">
+        <img data-src="images/about.webp">
+        <img data-src="images/about.webp">
+    </my-carousel>
+    
     <!-- container -->
     <div class="container">
-
+    
         <!-- jumbotron -->
         <rmc-jumbotron title="The Rogers Manufacturing Company"
                        text="Manufacturing Company Established in 1891."
@@ -34,7 +43,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
   <script>
     class ViewHome extends Polymer.Element {
-      static get is() { return 'view-home'; }
+        static get is() { return 'view-home'; }
     }
     window.customElements.define(ViewHome.is, ViewHome);
   </script>
