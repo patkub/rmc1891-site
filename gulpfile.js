@@ -1,4 +1,4 @@
-/* !
+/**
  * RMC gulpfile
  *
  * @license
