@@ -10,24 +10,12 @@ Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http:
 
 ### Setup
 
-First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
-[npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
-
-```sh
-npm install -g polymer-cli
-```
-
-Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
-
-```sh
-npm install -g bower
-```
+Install [Yarn](https://yarnpkg.com/lang/en/docs/install)
 
 ### Fetch dependencies
 
 ```sh
-npm install
-bower update
+yarn install
 ```
 
 ### Build
