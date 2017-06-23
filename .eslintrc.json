@@ -11,8 +11,8 @@
   ],
   "rules": {
     "brace-style": "off",
-    "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "no-var": "off",
+    "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "require-jsdoc": "off",
 	"linebreak-style": 0,
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }]

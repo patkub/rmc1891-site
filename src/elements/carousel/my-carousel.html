@@ -70,11 +70,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-
+    /* eslint new-cap: ["error", { "capIsNew": false }],
+              no-undef: 0 */
+    
     // Extend Polymer.Element with MyMixin
     class MyCarousel extends MyMixin(Polymer.Element) {
 
-      static get is() { return 'my-carousel' }
+      static get is() { return 'my-carousel'; }
 
       connectedCallback() {
         super.connectedCallback();

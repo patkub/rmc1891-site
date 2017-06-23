@@ -8,15 +8,15 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <script>
-
-  const MyMixin = superclass => class extends superclass {
+  /* exported MyMixin */
+  const MyMixin = (superclass) => class extends superclass {
 
     static get properties() {
       return {
         selected: {
           type: Object,
-          observer: '_selectedChanged'
-        }
+          observer: '_selectedChanged',
+        },
       };
     }
 
