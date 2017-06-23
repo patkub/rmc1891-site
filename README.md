@@ -1,4 +1,7 @@
 # Rogers Manufacturing Company Website
+
+[![Build Status](https://travis-ci.com/patkub/rmc1891-site.svg?token=SzEUzz2hzombHeznyA1S&branch=master)](https://travis-ci.com/patkub/rmc1891-site)
+
 Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
