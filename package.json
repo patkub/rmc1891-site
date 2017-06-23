@@ -1,7 +1,28 @@
 {
   "name": "rmc1891",
+  "description": "The Rogers Manufacturing Company website",
+  "version": "1.0.0",
   "license": "ISC",
+  "homepage": "https://therogersmanufacturingcompany.com",
+  "repository": "github:patkub/rmc1891-site",
+  "author": "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)",
+  "files": [
+    "images/",
+    "js/",
+    "scss/*.scss",
+    "src/",
+    "test/",
+    "index.html"
+  ],
+  "main": "index.html",
   "devDependencies": {
+    "@npm-polymer/app-route": "^2.0.0",
+    "@npm-polymer/iron-image": "^2.1.1",
+    "@npm-polymer/iron-pages": "^2.0.0",
+    "@npm-polymer/webcomponentsjs": "^1.0.1",
+    "@polymer/polymer": "^2.0.1",
+    "bootstrap": "v4.0.0-alpha.6",
+    "components-font-awesome": "^4.7.0",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.8.0",
     "eslint-plugin-html": "^3.0.0",
@@ -12,7 +33,11 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0",
-    "gulp-webp": "^2.3.0"
+    "gulp-webp": "^2.3.0",
+    "jquery": "^3.2.1",
+    "polymer-cli": "^1.2.0",
+    "tether": "^1.4.0",
+    "web-component-tester": "^6.0.0"
   },
   "scripts": {
     "lint": "npm run lint:javascript",
@@ -22,5 +47,6 @@
     "build": "gulp build:before && polymer build && gulp build:after",
     "serve": "polymer serve build/es5-bundled",
     "serve:local": "gulp serve:local && polymer serve"
-  }
+  },
+  "private": true
 }
