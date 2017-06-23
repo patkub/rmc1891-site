@@ -53,6 +53,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <script>
       // Enable Shady DOM instead of default Shadow DOM
       window.ShadyDOM = {force: true};
+      window.customElements.forcePolyfill = true;
       
       // Register the base URL
       const baseUrl = document.querySelector('base').href;
@@ -66,15 +67,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </script>
 
     <!-- Load webcomponents-lite.js to check and load any polyfills the browser needs -->
-    <script async src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="node_modules/@npm-polymer/webcomponentsjs/webcomponents-loader.js"></script>
 
     <!-- RMC Theme CSS -->
     <link rel="stylesheet" href="css/rmc-theme.min.css">
 
     <!-- Bootstrap JS -->
-    <script defer src="bower_components/jquery/dist/jquery.slim.min.js"></script>
-    <script defer src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script defer src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script defer src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script defer src="node_modules/tether/dist/js/tether.min.js"></script>
+    <script defer src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     
     <!-- RMC Shell -->
     <link async rel="import" href="src/rmc-shell.html">

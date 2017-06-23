@@ -11,12 +11,13 @@
     "sources": [
         "src/**/*",
         "images/**/*",
-        "bower.json"
+        "package.json"
     ],
     "extraDependencies": [
-        "bower_components/bootstrap/dist/js/bootstrap.min.js",
-        "bower_components/jquery/dist/jquery.slim.min.js",
-        "bower_components/tether/dist/js/tether.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "node_modules/jquery/dist/jquery.slim.min.js",
+        "node_modules/tether/dist/js/tether.min.js",
+        "node_modules/@npm-polymer/webcomponentsjs/*.js",
 		"js/**/*",
         "manifest.json",
         ".htaccess",

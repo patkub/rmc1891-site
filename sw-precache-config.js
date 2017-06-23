@@ -12,11 +12,11 @@
 
 module.exports = {
   staticFileGlobs: [
-	'/bower_components/webcomponentsjs/*.js',
-	'/bower_components/bootstrap/dist/js/bootstrap.min.js',
-	'/bower_components/jquery/dist/jquery.slim.min.js',
-	'/bower_components/tether/dist/js/tether.min.js',
-	'/bower_components/components-font-awesome/fonts/*.*',
+	'/node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}',
+	'/node_modules/bootstrap/dist/js/bootstrap.min.js',
+	'/node_modules/jquery/dist/jquery.slim.min.js',
+	'/node_modules/tether/dist/js/tether.min.js',
+	'/node_modules/components-font-awesome/fonts/*.*',
 	'/images/**/*',
 	'/js/**/*',
 	'/index.html',
