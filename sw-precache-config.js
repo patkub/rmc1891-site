@@ -12,10 +12,10 @@
 
 module.exports = {
   staticFileGlobs: [
-	'/node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}',
 	'/node_modules/bootstrap/dist/js/bootstrap.min.js',
-	'/node_modules/jquery/dist/jquery.slim.min.js',
+	'/node_modules/jquery/dist/jquery.slim.min.{js, map}',
 	'/node_modules/tether/dist/js/tether.min.js',
+    '/node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}',
 	'/node_modules/components-font-awesome/fonts/*.*',
 	'/images/**/*',
 	'/js/**/*',
