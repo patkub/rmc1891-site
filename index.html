@@ -7,6 +7,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="max-age=86400"/>
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
@@ -79,26 +80,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
     <!-- RMC Shell -->
     <link async rel="import" href="src/rmc-shell.html">
-    
-    <!-- WebP polyfill -->
-    <script>
-        (function() {
-            var WebP = new Image();
-            WebP.onload = WebP.onerror = function() {
-                if (WebP.height != 2) {
-                    var sc = document.createElement('script');
-                    sc.type = 'text/javascript';
-                    sc.async = true;
 
-                    var s = document.getElementsByTagName('script')[0];
-                    sc.src = 'js/webpjs-0.0.2.min.js';
-                    s.parentNode.insertBefore(sc, s);
-                }
-            };
-            WebP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-        })();
-    </script>
-    
 </head>
 
 <body>
