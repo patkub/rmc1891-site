@@ -10,7 +10,7 @@ Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http:
 
 ### Setup
 
-Install [Yarn](https://yarnpkg.com/lang/en/docs/install)
+Install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
 
 ### Fetch dependencies
 
@@ -27,7 +27,7 @@ The minified files are output to the `build/bundled` folder,
 generated using fragment bundling.
 
 ```sh
-npm run build
+yarn run build
 ```
 
 ### Start the development server
@@ -36,14 +36,13 @@ This command serves the app at http://127.0.0.1:8081 and provides basic URL
 routing for it:
 
 ```sh
-npm run serve:local
+yarn run serve:local
 ```
 
-This command serves the production, minified version of the app at
-`http://127.0.0.1:8080`:
+This command serves the production, minified version of the app at http://127.0.0.1:8080:
 
 ```sh
-npm run serve
+yarn run serve:build
 ```
 
 ### Run tests
@@ -52,7 +51,7 @@ This command will run [Web Component Tester](https://github.com/Polymer/web-comp
 against the browsers currently installed on your machine:
 
 ```sh
-npm run test
+yarn run test
 ```
 
 If running Windows you will need to set the following environment variables:
@@ -67,5 +66,5 @@ Read More here [daffl/launchpad](https://github.com/daffl/launchpad#environment-
 This command will run [ESLint](http://eslint.org/) on JavaScript and HTML files:
 
 ```sh
-npm run lint
+yarn run lint
 ```
