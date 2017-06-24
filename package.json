@@ -40,7 +40,7 @@
     "web-component-tester": "^6.0.0"
   },
   "scripts": {
-    "lint": "yarn run lint:javascript && yarn run lint:polymer",
+    "lint": "gulp build:before && yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
     "lint:polymer": "polymer lint",
     "test": "polymer test",
