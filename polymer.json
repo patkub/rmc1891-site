@@ -18,17 +18,17 @@
         "node_modules/jquery/dist/jquery.slim.min.{js, map}",
         "node_modules/tether/dist/js/tether.min.js",
         "node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}",
-		"js/**/*",
         "manifest.json",
         ".htaccess",
         "mail.php"
     ],
     "lint": {
         "rules": ["polymer-2"],
-        "ignoreWarnings": []
+        "ignoreWarnings": ["multiple-doc-comments", "unknown-superclass"]
     },
-    "builds": [{
-		"preset": "es5-bundled",
-		"addServiceWorker": true
-    }]
+    "builds": [
+        {
+          "preset": "es5-bundled"
+        }
+    ]
 }
