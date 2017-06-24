@@ -1,0 +1,21 @@
+{
+  "name": "rmc1891",
+  "description": "The Rogers Manufacturing Company website",
+  "main": "index.html",
+  "authors": [
+    "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/patkub/rmc1891-site",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "web-component-tester": "^6.0.0"
+  }
+}

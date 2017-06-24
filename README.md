@@ -10,12 +10,19 @@ Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http:
 
 ### Setup
 
-Install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
+First, install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
+
+Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
+
+```sh
+npm install -g bower
+```
 
 ### Fetch dependencies
 
 ```sh
 yarn install
+bower install
 ```
 
 ### Build
