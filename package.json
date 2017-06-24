@@ -40,8 +40,9 @@
     "web-component-tester": "^6.0.0"
   },
   "scripts": {
-    "lint": "yarn run lint:javascript",
+    "lint": "yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
+    "lint:polymer": "polymer lint",
     "test": "polymer test",
     "test:integration": "gulp build:before && polymer build && gulp build:after # test that rmc1891 builds without error with the CLI",
     "build": "yarn run lint && gulp build:before && polymer build && gulp build:after",
