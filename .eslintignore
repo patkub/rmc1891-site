@@ -6,4 +6,3 @@ fonts/
 npm-debug*
 *.webp
 *.min.*
-gulpfile.js

@@ -6,7 +6,7 @@
  */
 
 'use strict';
- 
+
 // include gulp & tools
 import gulp from 'gulp';
 import rename from 'gulp-rename';
@@ -68,13 +68,13 @@ gulp.task('webp', function() {
 // Copy fonts
 gulp.task('fonts', function() {
     return gulp.src(FONTS)
-        .pipe(gulp.dest('build/es5-bundled/fonts/'))
+        .pipe(gulp.dest('build/es5-bundled/fonts/'));
 });
 
 // Copy fonts locally
 gulp.task('fonts:local', function() {
     return gulp.src(FONTS)
-        .pipe(gulp.dest('fonts/'))
+        .pipe(gulp.dest('fonts/'));
 });
 
 // Inline CSS
@@ -95,14 +95,11 @@ gulp.task('watch', function() {
 /**
  * Serves local landing page from "./" directory.
  */
-gulp.task('serve:local:browsersync', () => {
+gulp.task('serve:browsersync:local', () => {
   browserSync({
     notify: false,
-    server: {
-      baseDir: ['./']
-    },
-    
-    browser: 'chrome'
+    server: '.',
+    browser: 'chrome',
   });
 
   watch();
@@ -111,14 +108,13 @@ gulp.task('serve:local:browsersync', () => {
 /**
  * Serves production landing page from "build/es5-bundled/" directory.
  */
-gulp.task('serve:build:browsersync', () => {
+gulp.task('serve:browsersync:build', () => {
   browserSync({
     notify: false,
     server: {
-      baseDir: ['build/es5-bundled/']
+      baseDir: ['build/es5-bundled/'],
     },
-    
-    browser: 'chrome'
+    browser: 'chrome',
   });
 
   watch();
@@ -134,5 +130,5 @@ gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 gulp.task('build:after', ['inline', 'fonts']);
 
 // Serve local
-gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:local:browsersync']);
-gulp.task('serve:build', ['serve:build:browsersync']);
+gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
+gulp.task('serve:build', ['serve:browsersync:build']);
