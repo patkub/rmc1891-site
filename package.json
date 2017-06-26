@@ -22,6 +22,7 @@
     "@npm-polymer/webcomponentsjs": "^1.0.1",
     "@polymer/polymer": "^2.0.1",
     "bootstrap": "v4.0.0-alpha.6",
+    "browser-sync": "^2.18.12",
     "components-font-awesome": "^4.7.0",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.8.0",
@@ -47,8 +48,14 @@
     "test": "polymer test",
     "test:integration": "gulp build:before && polymer build && gulp build:after # test that rmc1891 builds without error with the CLI",
     "build": "yarn run lint:javascript && yarn run lint:polymer && gulp build:before && polymer build && gulp build:after",
-    "serve:build": "polymer serve build/es5-bundled",
-    "serve:local": "gulp serve:local && polymer serve"
+    "serve:local": "gulp serve:local",
+    "serve:build": "gulp serve:build"
+  },
+  "babel": {
+    "only": "gulpfile.babel.js",
+    "presets": [
+      "es2015"
+    ]
   },
   "private": true
 }

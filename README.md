@@ -39,14 +39,13 @@ yarn run build
 
 ### Start the development server
 
-This command serves the app at http://127.0.0.1:8081 and provides basic URL
-routing for it:
+This command serves the app at http://127.0.0.1:3000 using Browsersync:
 
 ```sh
 yarn run serve:local
 ```
 
-This command serves the production, minified version of the app at http://127.0.0.1:8080:
+This command serves the production, minified version of the app using Browsersync at http://127.0.0.1:3000:
 
 ```sh
 yarn run serve:build

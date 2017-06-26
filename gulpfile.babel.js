@@ -5,17 +5,20 @@
  * Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
  */
 
+'use strict';
+ 
 // include gulp & tools
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var replace = require('gulp-replace');
-var fs = require('fs');
-var sass = require('gulp-sass');
-var purifyCSS = require('gulp-purifycss');
-var cleanCSS = require('gulp-clean-css');
-var webp = require('gulp-webp');
+import gulp from 'gulp';
+import rename from 'gulp-rename';
+import replace from 'gulp-replace';
+import fs from 'fs';
+import sass from 'gulp-sass';
+import purifyCSS from 'gulp-purifycss';
+import cleanCSS from 'gulp-clean-css';
+import webp from 'gulp-webp';
+import browserSync from 'browser-sync';
 
-// constants
+const reload = browserSync.reload;
 const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
 const IMAGES = [
     'images/**/*',
@@ -23,6 +26,15 @@ const IMAGES = [
     '!images/favicon.ico',
     '!images/**/*.webp',
 ];
+
+/**
+ * Defines the list of resources to watch for changes.
+ */
+function watch() {
+    gulp.watch(['scss/**/*.scss'], ['css', reload]);
+    gulp.watch(IMAGES, ['webp', reload]);
+    gulp.watch(['node_modules/components-font-awesome/fonts/*.*'], ['fonts:local', reload]);
+}
 
 // Compile Stylesheets
 gulp.task('sass', function() {
@@ -75,6 +87,43 @@ gulp.task('inline', function() {
         .pipe(gulp.dest('build/es5-bundled/'));
 });
 
+// Watch resources for changes.
+gulp.task('watch', function() {
+    watch();
+});
+
+/**
+ * Serves local landing page from "./" directory.
+ */
+gulp.task('serve:local:browsersync', () => {
+  browserSync({
+    notify: false,
+    server: {
+      baseDir: ['./']
+    },
+    
+    browser: 'chrome'
+  });
+
+  watch();
+});
+
+/**
+ * Serves production landing page from "build/es5-bundled/" directory.
+ */
+gulp.task('serve:build:browsersync', () => {
+  browserSync({
+    notify: false,
+    server: {
+      baseDir: ['build/es5-bundled/']
+    },
+    
+    browser: 'chrome'
+  });
+
+  watch();
+});
+
 // Compile Stylesheets
 gulp.task('css', ['sass', 'clean-css']);
 
@@ -85,11 +134,5 @@ gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 gulp.task('build:after', ['inline', 'fonts']);
 
 // Serve local
-gulp.task('serve:local', ['build:before', 'fonts:local']);
-
-// Watch resources for changes.
-gulp.task('watch', function() {
-    gulp.watch(['scss/**/*.scss'], ['css']);
-    gulp.watch(IMAGES, ['webp']);
-    gulp.watch(['node_modules/components-font-awesome/fonts/*.*'], ['fonts:local']);
-});
+gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:local:browsersync']);
+gulp.task('serve:build', ['serve:build:browsersync']);
