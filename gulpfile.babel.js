@@ -46,6 +46,8 @@ function watch() {
     gulp.watch(['scss/**/*.scss'], ['css', reload]);
     gulp.watch(IMAGES, ['webp', reload]);
     gulp.watch(['node_modules/components-font-awesome/fonts/*.*'], ['fonts:local', reload]);
+    gulp.watch(['src/**/*'], reload);
+    gulp.watch(['index.html'], reload);
 }
 
 // Compile Stylesheets
