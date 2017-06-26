@@ -25,5 +25,3 @@ before_script:
 script:
   - xvfb-run yarn run test
   - xvfb-run yarn run test:integration
-after_success:
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
