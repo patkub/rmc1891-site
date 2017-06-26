@@ -11,12 +11,24 @@
 import gulp from 'gulp';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
+import header from 'gulp-header';
+import strip from 'gulp-strip-comments';
 import fs from 'fs';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import webp from 'gulp-webp';
 import browserSync from 'browser-sync';
+import pkg from './package.json';
+
+const banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @license <%= pkg.license %>',
+  ' * @copyright 2017 The Rogers Manufacturing Company',
+  ' * @link <%= pkg.homepage %>',
+  ' */',
+  ''].join('\n');
 
 const reload = browserSync.reload;
 const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
@@ -43,8 +55,15 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest('css/'));
 });
 
+// Strip Comments
+gulp.task('strip', ['sass'], function() {
+    return gulp.src('css/rmc-theme.css')
+        .pipe(strip());
+        .pipe(gulp.dest('css/'));
+});
+
 // Minify CSS
-gulp.task('clean-css', ['sass'], function() {
+gulp.task('clean-css', ['sass', 'strip'], function() {
     return gulp.src('css/rmc-theme.css')
         .pipe(purifyCSS([
 			'node_modules/bootstrap/dist/js/bootstrap.min.js',
@@ -55,6 +74,7 @@ gulp.task('clean-css', ['sass'], function() {
 			level: 2,
         }))
         .pipe(rename({suffix: '.min'}))
+        .pipe(header(banner, {pkg : pkg}))
         .pipe(gulp.dest('css/'));
 });
 
@@ -121,10 +141,10 @@ gulp.task('serve:browsersync:build', () => {
 });
 
 // Compile Stylesheets
-gulp.task('css', ['sass', 'clean-css']);
+gulp.task('css', ['sass', 'strip', 'clean-css']);
 
 // Before polymer build
-gulp.task('build:before', ['sass', 'clean-css', 'webp']);
+gulp.task('build:before', ['sass', 'strip', 'clean-css', 'webp']);
 
 // After polymer build
 gulp.task('build:after', ['inline', 'fonts']);
