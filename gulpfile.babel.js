@@ -12,7 +12,6 @@ import gulp from 'gulp';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
 import header from 'gulp-header';
-import strip from 'gulp-strip-comments';
 import fs from 'fs';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
@@ -55,15 +54,8 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest('css/'));
 });
 
-// Strip Comments
-gulp.task('strip', ['sass'], function() {
-    return gulp.src('css/rmc-theme.css')
-        .pipe(strip())
-        .pipe(gulp.dest('css/'));
-});
-
 // Minify CSS
-gulp.task('clean-css', ['sass', 'strip'], function() {
+gulp.task('clean-css', ['sass'], function() {
     return gulp.src('css/rmc-theme.css')
         .pipe(purifyCSS([
 			'node_modules/bootstrap/dist/js/bootstrap.min.js',
@@ -141,10 +133,10 @@ gulp.task('serve:browsersync:build', () => {
 });
 
 // Compile Stylesheets
-gulp.task('css', ['sass', 'strip', 'clean-css']);
+gulp.task('css', ['sass', 'clean-css']);
 
 // Before polymer build
-gulp.task('build:before', ['sass', 'strip', 'clean-css', 'webp']);
+gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
 gulp.task('build:after', ['inline', 'fonts']);
