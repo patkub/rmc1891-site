@@ -66,7 +66,7 @@ gulp.task('clean-css', ['sass'], function() {
 			level: 2,
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(header(banner, {pkg : pkg}))
+        .pipe(header(banner, {pkg: pkg}))
         .pipe(gulp.dest('css/'));
 });
 
