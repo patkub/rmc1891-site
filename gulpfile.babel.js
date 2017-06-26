@@ -58,7 +58,7 @@ gulp.task('sass', function() {
 // Strip Comments
 gulp.task('strip', ['sass'], function() {
     return gulp.src('css/rmc-theme.css')
-        .pipe(strip());
+        .pipe(strip())
         .pipe(gulp.dest('css/'));
 });
 
