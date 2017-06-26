@@ -2,6 +2,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/patkub%2Frmc1891-site.svg)](https://badge.fury.io/gh/patkub%2Frmc1891-site)
 [![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+[![codecov](https://codecov.io/gh/patkub/rmc1891-site/branch/master/graph/badge.svg)](https://codecov.io/gh/patkub/rmc1891-site)
 [![Coverage Status](https://coveralls.io/repos/github/patkub/rmc1891-site/badge.svg?branch=master)](https://coveralls.io/github/patkub/rmc1891-site?branch=master)
 
 Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
