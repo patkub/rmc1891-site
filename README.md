@@ -1,6 +1,7 @@
 # Rogers Manufacturing Company Website
 
 [![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+
 [![Coverage Status](https://coveralls.io/repos/github/patkub/rmc1891-site/badge.svg?branch=master)](https://coveralls.io/github/patkub/rmc1891-site?branch=master)
 
 Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
