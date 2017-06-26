@@ -15,6 +15,15 @@ var purifyCSS = require('gulp-purifycss');
 var cleanCSS = require('gulp-clean-css');
 var webp = require('gulp-webp');
 
+// constants
+const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
+const IMAGES = [
+    'images/**/*',
+    '!images/manifest/**/*',
+    '!images/favicon.ico',
+    '!images/**/*.webp',
+];
+
 // Compile Stylesheets
 gulp.task('sass', function() {
 	return gulp.src('scss/**/*.scss')
@@ -39,25 +48,20 @@ gulp.task('clean-css', ['sass'], function() {
 
 // WebP
 gulp.task('webp', function() {
-	return gulp.src([
-			'images/**/*',
-			'!images/manifest/**/*',
-			'!images/favicon.ico',
-			'!images/**/*.webp',
-		])
+	return gulp.src(IMAGES)
 		.pipe(webp())
 		.pipe(gulp.dest('images/'));
 });
 
 // Copy fonts
 gulp.task('fonts', function() {
-    return gulp.src(['node_modules/components-font-awesome/fonts/*.*'])
+    return gulp.src(FONTS)
         .pipe(gulp.dest('build/es5-bundled/fonts/'))
 });
 
 // Copy fonts locally
 gulp.task('fonts:local', function() {
-    return gulp.src(['node_modules/components-font-awesome/fonts/*.*'])
+    return gulp.src(FONTS)
         .pipe(gulp.dest('fonts/'))
 });
 
@@ -82,3 +86,10 @@ gulp.task('build:after', ['inline', 'fonts']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local']);
+
+// Watch resources for changes.
+gulp.task('watch', function() {
+    gulp.watch(['scss/**/*.scss'], ['css']);
+    gulp.watch(IMAGES, ['webp']);
+    gulp.watch(['node_modules/components-font-awesome/fonts/*.*'], ['fonts:local']);
+});
