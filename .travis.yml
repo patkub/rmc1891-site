@@ -8,10 +8,6 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
-  sauce_connect:
-    username: "patkub"
-  jwt:
-    secure: "kTuklWBBYM8iRCYC193t0j9eHMEXCOnSZPgC88AG6rcZPlrDISLOJmOqk/MuaeMD4I64T1/0cSuYW7zkAiCjnGEYuJ0ksWchdlqEBgnuk4LgB5RRCe8bGlANdrDCeLJKJC4pfuyIGdNlANkrx/xZKmZ+K2MBnwbPivYEiVUqGgp3B95m5u7Fbj5uZIqiP8AEJl/gsjOJy2yco0nGewm6Bg8ommb370Bu3py3D7xziqhZe9w+vsqZ3yrVILamuSIM8JQ+4EzP4XhDboxEgVx92zWxIu3y2xe5bZ3t7Bp+pj4PpoyH4FsiLvfl3OYWzsWgeZ0UgwvZCXcs8MSCoE0EdRRzb028rntrYDmrCWPlk1ug/pbJTyxaIZBx4kVIeReDdJJ5tNlnPYyA7uUHvBvU4vR9EA9GG943z5nP46KRVoSE7/aJZlodfRvw4XxAFvohc0HqvMd8RpiL8hixAcYGdf1G0syo/3JHsXogMHlahhGtY7nD29UDClj+WooR6UmXpfz/Iet5xSEthYHz3nXkE/lMfdstxyAh26BS8wrP8QkfkrylXng67XCjiyGWl4BH5+Fhw6U4FiRrR2+mk+1iatyi/ZcJ37qZMS0MjckaycS12wbqMJv6ihZTZ5RW3WGDqbJkyk2YDOuNa+HleY9ZLqS5scjTiCYWgXMSVK/FncE="
 node_js:
   - "node"
   - "6"
