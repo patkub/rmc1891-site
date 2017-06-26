@@ -16,17 +16,18 @@ import fs from 'fs';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
+import stripCSSComments from 'gulp-strip-css-comments';
 import webp from 'gulp-webp';
 import browserSync from 'browser-sync';
 import pkg from './package.json';
 
-const banner = ['/**',
-  ' * <%= pkg.name %> - <%= pkg.description %>',
-  ' * @version v<%= pkg.version %>',
-  ' * @license <%= pkg.license %>',
-  ' * @copyright 2017 The Rogers Manufacturing Company',
-  ' * @link <%= pkg.homepage %>',
-  ' */',
+const banner = ['<!--',
+  '<%= pkg.name %> - <%= pkg.description %>',
+  '@version v<%= pkg.version %>',
+  '@license <%= pkg.license %>',
+  '@copyright 2017 The Rogers Manufacturing Company',
+  '@link <%= pkg.homepage %>',
+  '-->',
   ''].join('\n');
 
 const reload = browserSync.reload;
@@ -62,11 +63,13 @@ gulp.task('clean-css', ['sass'], function() {
 			'src/**/*.html',
 			'index.html',
         ]))
+        .pipe(stripCSSComments({
+            preserve: false,
+        }))
         .pipe(cleanCSS({
 			level: 2,
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(header(banner, {pkg: pkg}))
         .pipe(gulp.dest('css/'));
 });
 
@@ -89,13 +92,14 @@ gulp.task('fonts:local', function() {
         .pipe(gulp.dest('fonts/'));
 });
 
-// Inline CSS
+// Inline CSS & banner
 gulp.task('inline', function() {
     return gulp.src('build/es5-bundled/index.html')
         .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
 			var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
 			return '<style>' + style + '</style>';
         }))
+        .pipe(header(banner, {pkg: pkg}))
         .pipe(gulp.dest('build/es5-bundled/'));
 });
 
