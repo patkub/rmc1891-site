@@ -1,7 +1,8 @@
 # Rogers Manufacturing Company Website
 
 [![GitHub version](https://badge.fury.io/gh/patkub%2Frmc1891-site.svg)](https://badge.fury.io/gh/patkub%2Frmc1891-site)
-[![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)  
+[![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+[![Dependency Status](https://david-dm.org/patkub/rmc1891-site?type=dev)](https://david-dm.org/patkub/rmc1891-site?type=dev)  
 [![Build Status](https://saucelabs.com/browser-matrix/patrykkub.svg)](https://saucelabs.com/u/patrykkub)
 
 Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
