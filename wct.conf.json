@@ -1,7 +1,8 @@
 {
+  "suites": ["test/"],
   "plugins": {
-    "local": {
-      "browsers": ["chrome", "firefox"]
+    "sauce": {
+      "browsers": ["Linux/chrome@41"]
     }
   }
 }
