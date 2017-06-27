@@ -1,0 +1,47 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<dom-module id="view-admin">
+  <template>
+    
+    <!-- container -->
+    <div class="container">
+    
+        <h2> Admin Site </h2>
+        
+        <form>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea class="form-control" name="message" rows="5"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="capabilities">Capabilities</label>
+                <textarea class="form-control" name="message" rows="5"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <textarea class="form-control" name="message" rows="5"></textarea>
+            </div>
+            
+            <button name="submit" type="submit" class="btn btn-primary">Save</button>
+        </form>
+        
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    class ViewAdmin extends Polymer.Element {
+        static get is() { return 'view-admin'; }
+    }
+    window.customElements.define(ViewAdmin.is, ViewAdmin);
+  </script>
+</dom-module>
