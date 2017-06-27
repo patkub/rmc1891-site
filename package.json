@@ -16,6 +16,7 @@
   "main": "index.html",
   "devDependencies": {
     "@npm-polymer/app-route": "^2.0.0",
+    "@npm-polymer/iron-ajax": "v2.0.2",
     "@npm-polymer/iron-image": "^2.1.1",
     "@npm-polymer/iron-pages": "^2.0.0",
     "@npm-polymer/shadycss": "^1.0.1",

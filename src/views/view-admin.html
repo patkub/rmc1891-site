@@ -6,6 +6,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- Template Repeater -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
 <dom-module id="view-admin">
   <template>
     
@@ -14,21 +20,21 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
         <h2> Admin Site </h2>
         
-        <form>
-            <div class="form-group">
-                <label for="about">About</label>
-                <textarea class="form-control" name="message" rows="5"></textarea>
-            </div>
+        <iron-ajax
+            auto
+            url="https://therogersmanufacturingcompany.com/feature_cards.php"
+            handle-as="json"
+            last-response="{{featureCards}}"
+        ></iron-ajax>
+        
+        <form action="feature_cards_update.php" method="POST">
             
-            <div class="form-group">
-                <label for="capabilities">Capabilities</label>
-                <textarea class="form-control" name="message" rows="5"></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="contact">Contact</label>
-                <textarea class="form-control" name="message" rows="5"></textarea>
-            </div>
+            <template is="dom-repeat" items="[[featureCards]]">
+                <div class="form-group">
+                    <label for="[[item.title]]">[[item.title]]</label>
+                    <textarea name="[[item.title]]Text" class="form-control" name="message" rows="5">[[item.text]]</textarea>
+                </div>
+            </template>
             
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
         </form>

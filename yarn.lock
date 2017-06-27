@@ -9,6 +9,13 @@
     "@npm-polymer/iron-location" "2.0.1"
     "@npm-polymer/polymer" "2.0.1"
 
+"@npm-polymer/iron-ajax@v2.0.2":
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-ajax/-/iron-ajax-1.4.4.tgz#d235588841432627c38a413a5f1e2e3f10e41348"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+    "@npm-polymer/promise-polyfill" "2.0.1"
+
 "@npm-polymer/iron-image@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-image/-/iron-image-2.1.1.tgz#6001df250132983e488bea7743ec5603b0299504"
@@ -44,6 +51,10 @@
 "@npm-polymer/polymer@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@npm-polymer/polymer/-/polymer-2.0.1.tgz#6d0b8c9ad561c4f385412d442b6ef7d51bedda3b"
+
+"@npm-polymer/promise-polyfill@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/promise-polyfill/-/promise-polyfill-2.0.1.tgz#eb7aadf0877429b8229c1ff6efc364fc99765c4e"
 
 "@npm-polymer/shadycss@^1.0.1":
   version "1.0.1"
@@ -286,7 +297,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@4.0.30":
+"@types/node@*", "@types/node@4.0.30", "@types/node@^4.0.30":
   version "4.0.30"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.0.30.tgz#553f490ed3030311620f88003e7abfc0edcb301e"
 
@@ -294,7 +305,7 @@
   version "6.0.78"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.78.tgz#5d4a3f579c1524e01ee21bf474e6fba09198f470"
 
-"@types/node@^4.0.30", "@types/node@^4.2.3":
+"@types/node@^4.2.3":
   version "4.2.11"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.2.11.tgz#869d379530cd2fda2ca7ba3252a5177ac813848f"
 
@@ -7075,9 +7086,9 @@ ternary-stream@^2.0.1:
     merge-stream "^1.0.0"
     through2 "^2.0.1"
 
-"test-fixture@github:polymerelements/test-fixture":
+test-fixture@PolymerElements/test-fixture:
   version "3.0.0-rc.1"
-  resolved "https://codeload.github.com/polymerelements/test-fixture/tar.gz/26118ef0467501c33c02316e7016a2837baba10f"
+  resolved "https://codeload.github.com/PolymerElements/test-fixture/tar.gz/26118ef0467501c33c02316e7016a2837baba10f"
 
 test-value@^2.1.0:
   version "2.1.0"
