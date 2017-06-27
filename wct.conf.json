@@ -2,7 +2,13 @@
   "suites": ["test/"],
   "plugins": {
     "sauce": {
-      "browsers": ["Linux/chrome@41"]
+      "browsers": [
+        "Linux/chrome@latest",
+        "Linux/firefox@latest",
+        "windows 10/microsoftedge@latest",
+        "windows 10/internet explorer@latest",
+        "os x 10.11/safari@9"
+      ]
     }
   }
 }
