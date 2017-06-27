@@ -1,12 +1,18 @@
 {
   "suites": ["test/"],
   "plugins": {
+    "local": {
+      "browsers": [
+        "firefox",
+        "chrome"
+      ]
+    },
     "sauce": {
       "browsers": [
-        "Linux/chrome@latest",
         "Linux/firefox@latest",
-        "windows 10/microsoftedge@latest",
+        "Linux/chrome@latest",
         "windows 10/internet explorer@latest",
+        "windows 10/microsoftedge@latest",
         "os x 10.11/safari@9"
       ]
     }
