@@ -25,16 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // update queries
         $AboutQuery = sprintf("UPDATE FeatureCards SET text='%s' WHERE title='About'",
-            mysqli_escape_string($AboutText));
+            $db->real_escape_string($AboutText));
         $CapabilitiesQuery = sprintf("UPDATE FeatureCards SET text='%s' WHERE title='Capabilities'",
-            mysqli_escape_string($CapabilitiesText));
+            $db->real_escape_string($CapabilitiesText));
         $ContactQuery = sprintf("UPDATE FeatureCards SET text='%s' WHERE title='Contact'",
-            mysqli_escape_string($ContactText));
+            $db->real_escape_string($ContactText));
         
         // execute queries
-        mysql_query($AboutQuery);
-        mysql_query($CapabilitiesQuery);
-        mysql_query($ContactQuery);
+        $db->query($AboutQuery) or die($db->error);
+        $db->query($CapabilitiesQuery) or die($db->error);
+        $db->query($ContactQuery) or die($db->error);
+        
+        // redirect user back to admin page
+        header("Location: https://therogersmanufacturingcompany.com/admin/");
     }
     
 }

@@ -35,13 +35,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         <div class="card-deck">
             <template is="dom-repeat" items="[[featureCards]]">
                 <div class="card">
-                    <img class="card-img-top" src="[[item.image]]" alt="[[item.caption]]">
+                    <img class="card-img-top" src$="[[item.image]]" alt$="[[item.caption]]">
                     <div class="card-block">
                         <h4 class="card-title">[[item.title]]</h4>
                         <p class="card-text">[[item.text]]</p>
                     </div>
                     <div class="card-footer">
-						<a href="[[item.link]]" class="btn btn-outline-primary" role="button">[[item.button]]</a>
+						<a href$="[[item.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[item.icon]]" aria-hidden="true"></span>[[item.button]]</a>
                     </div>
                 </div>
             </template>

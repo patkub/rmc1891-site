@@ -20,7 +20,9 @@
         "node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}",
         "manifest.json",
         ".htaccess",
-        "mail.php"
+        "mail.php",
+        "feature_cards.php",
+        "feature_cards_update.php"
     ],
     "lint": {
         "rules": ["polymer-2"],
