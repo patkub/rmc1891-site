@@ -1,12 +1,11 @@
 <?php
 
+// Validate user input
+require_once('test_input.php');
+
 //
 // dshoemaker@rmc1891.com
 // ebitel@rmc1891.com
-//
-// reCAPTCHA
-// Site key: 6LclliUUAAAAAPfZNA39V6DGentmvLWm4ySabVVx
-// Secret key: 6LclliUUAAAAAP1LPJJa81I6yrW4V0B43fMo4Ouk
 //
 
 // recipient address
@@ -23,13 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	// send the email
 	mail($to, $subject, $message, $headers) or die('Error!');
-}
-
-// validate input
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
 }
 ?>

@@ -4,14 +4,14 @@
  * 
  */
 
+// Database info
+require_once('db.php');
+
+// Validate user input
+require_once('test_input.php');
+ 
 // Admin username
 $admin_user = "admin";
-
-// Database info
-$db_host = "db688129345.db.1and1.com";
-$db_name = "db688129345";
-$db_user = "dbo688129345";
-$db_pass = "Superpatryk123";
 
 // Connect to database
 $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
@@ -44,13 +44,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // JSON response
     header('Content-type: application/json');
     echo json_encode($response_array);
-}
-
-// Validate input
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
 }
 ?>

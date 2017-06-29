@@ -4,18 +4,16 @@
  * 
  */
 
-$db_host = "db688129345.db.1and1.com";
-$db_name = "db688129345";
-$db_user = "dbo688129345";
-$db_pass = "Superpatryk123";
+// Database info
+require_once('db.php');
+ 
+// Validate user input
+require_once('test_input.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-    if($db->connect_errno > 0){
-        //die('<p>Failed to connect to MySQL db: ' . $db->connect_error . '</p>');
-    } else {
+    if ($db->connect_errno == 0) {
         //echo '<p>Connection to MySQL server successfully established.</p >';
         
         // validate & store input
@@ -39,14 +37,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // redirect user back to admin page
         header("Location: https://therogersmanufacturingcompany.com/admin/");
     }
-    
-}
-
-// validate input
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
 }
 ?>

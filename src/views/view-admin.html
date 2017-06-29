@@ -43,12 +43,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             
             <iron-ajax
                 auto
-                url="https://therogersmanufacturingcompany.com/feature_cards.php"
+                url="php/feature_cards.php"
                 handle-as="json"
                 last-response="{{featureCards}}"
             ></iron-ajax>
             
-            <form action="feature_cards_update.php" method="POST">
+            <form action="php/feature_cards_update.php" method="POST">
                 
                 <template is="dom-repeat" items="[[featureCards]]">
                     <div class="form-group">
@@ -89,7 +89,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             // Create xhttp request
             var http = new XMLHttpRequest();
             var params = "username=" + user + "&password=" + pass;
-            http.open("POST", "login.php", true);
+            http.open("POST", "php/login.php", true);
             
             // Set header information
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

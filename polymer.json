@@ -11,20 +11,16 @@
     "sources": [
         "src/**/*",
         "images/**/*",
-        "package.json"
+        "php/**/*",
+        "package.json",
+        "manifest.json",
+        ".htaccess"
     ],
     "extraDependencies": [
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "node_modules/jquery/dist/jquery.slim.min.{js, map}",
         "node_modules/tether/dist/js/tether.min.js",
-        "node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}",
-        "node_modules/digest-auth-request/digestAuthRequest.js",
-        "manifest.json",
-        ".htaccess",
-        "mail.php",
-        "login.php",
-        "feature_cards.php",
-        "feature_cards_update.php"
+        "node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}"
     ],
     "lint": {
         "rules": ["polymer-2"],

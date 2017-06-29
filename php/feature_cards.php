@@ -4,20 +4,13 @@
  * 
  */
 
-$db_host = "db688129345.db.1and1.com";
-$db_name = "db688129345";
-$db_user = "dbo688129345";
-$db_pass = "Superpatryk123";
+// Database info
+require_once('db.php');
 
 $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
 $results = array();
 
-if($db->connect_errno > 0){
-    //die('<p>Failed to connect to MySQL db: ' . $db->connect_error . '</p>');
-} else {
-    //echo '<p>Connection to MySQL server successfully established.</p >';
-    
+if ($db->connect_errno == 0) {
     $myQuery = "SELECT * FROM FeatureCards";
     $result = $db->query($myQuery) or die($db->error);
     
