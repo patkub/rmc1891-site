@@ -12,6 +12,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- Feature Cards -->
+<link rel="import" href="../elements/rmc-feature-cards.html">
+
 <dom-module id="view-admin">
   <template>
     
@@ -20,7 +23,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
         <h2>Admin Site</h2>
         
-        <template is="dom-if" if="{{!loggedIn}}">
+        <!-- <template is="dom-if" if="{{!loggedIn}}">
             <form action="javascript:void(0);">
                 
                 <div class="form-group">
@@ -35,32 +38,24 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 
                 <button on-tap="login" name="submit" type="submit" class="btn btn-primary">Login</button>
             </form>
-        </template>
+        </template> -->
         
-        <template is="dom-if" if="{{loggedIn}}">
+        <!-- <template is="dom-if" if="{{loggedIn}}"> -->
         
             <button on-tap="logout" class="btn btn-primary">Logout</button>
             
-            <iron-ajax
-                auto
-                url="php/feature_cards.php"
-                handle-as="json"
-                last-response="{{featureCards}}"
-            ></iron-ajax>
-            
             <form action="php/feature_cards_update.php" method="POST">
                 
-                <template is="dom-repeat" items="[[featureCards]]">
-                    <div class="form-group">
-                        <label for="[[item.title]]">[[item.title]]</label>
-                        <textarea name$="[[item.title]]Text" class="form-control" rows="5">[[item.text]]</textarea>
-                    </div>
-                </template>
+                <!-- feature cards -->
+                <rmc-feature-cards editable></rmc-feature-cards>
                 
                 <button name="submit" type="submit" class="btn btn-primary">Save</button>
             </form>
             
-        </template>
+            
+            
+            
+        <!-- </template> -->
         
     </div>
     <!-- /container -->

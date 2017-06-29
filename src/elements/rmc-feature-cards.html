@@ -38,7 +38,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                     <img class="card-img-top" src$="[[item.image]]" alt$="[[item.caption]]">
                     <div class="card-block">
                         <h4 class="card-title">[[item.title]]</h4>
-                        <p class="card-text">[[item.text]]</p>
+                        <template is="dom-if" if="{{!editable}}">
+                            <p class="card-text">[[item.text]]</p>
+                        </template>
+                        <template is="dom-if" if="{{editable}}">
+                            <textarea class="form-control" name$="[[item.title]]Text" rows="10">[[item.text]]</textarea>
+                        </template>
                     </div>
                     <div class="card-footer">
 						<a href$="[[item.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[item.icon]]" aria-hidden="true"></span>[[item.button]]</a>
@@ -51,6 +56,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     class RMCFeatureCards extends Polymer.Element {
       static get is() { return 'rmc-feature-cards'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
 
     window.customElements.define(RMCFeatureCards.is, RMCFeatureCards);
