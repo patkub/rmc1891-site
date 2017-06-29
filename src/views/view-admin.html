@@ -88,11 +88,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             
             // Create xhttp request
             var http = new XMLHttpRequest();
-            var params = "username=" + user + "&password=" + pass;
-            http.open("POST", "php/login.php", true);
+            var params = 'username=' + user + '&password=' + pass;
+            http.open('POST', 'php/login.php', true);
             
             // Set header information
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             http.onreadystatechange = function() { // Call a function when the state changes.
                 if (http.readyState == 4 && http.status == 200) {
                     // Parse response text as JSON
