@@ -14,8 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="my-carousel">
   <template>
-
-    <!-- Styles MUST be inside template -->
+  
     <style>
 
       :host {
@@ -73,8 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* eslint new-cap: ["error", { "capIsNew": false }],
               no-undef: 0 */
     
-    // Extend Polymer.Element with MyMixin
     class MyCarousel extends MyMixin(Polymer.Element) {
+      // Extend Polymer.Element with MyMixin  
+      
       static get is() { return 'my-carousel'; }
 
       connectedCallback() {
