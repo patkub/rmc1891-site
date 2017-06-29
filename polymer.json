@@ -22,6 +22,7 @@
         "manifest.json",
         ".htaccess",
         "mail.php",
+        "login.php",
         "feature_cards.php",
         "feature_cards_update.php"
     ],
