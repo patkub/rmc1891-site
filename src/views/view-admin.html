@@ -23,7 +23,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
         <h2>Admin Site</h2>
         
-        <!-- <template is="dom-if" if="{{!loggedIn}}">
+        <template is="dom-if" if="{{!loggedIn}}">
             <form action="javascript:void(0);">
                 
                 <div class="form-group">
@@ -38,10 +38,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 
                 <button on-tap="login" name="submit" type="submit" class="btn btn-primary">Login</button>
             </form>
-        </template> -->
+        </template>
         
-        <!-- <template is="dom-if" if="{{loggedIn}}"> -->
-        
+        <template is="dom-if" if="{{loggedIn}}">
             <button on-tap="logout" class="btn btn-primary">Logout</button>
             
             <form action="php/feature_cards_update.php" method="POST">
@@ -51,11 +50,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 
                 <button name="submit" type="submit" class="btn btn-primary">Save</button>
             </form>
-            
-            
-            
-            
-        <!-- </template> -->
+        </template>
         
     </div>
     <!-- /container -->
