@@ -6,3 +6,6 @@ fonts/
 npm-debug*
 *.webp
 *.min.*
+js/md5.js
+
+src/views/view-admin.html

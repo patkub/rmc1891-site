@@ -25,6 +25,7 @@
     "bootstrap": "v4.0.0-alpha.6",
     "browser-sync": "^2.18.12",
     "components-font-awesome": "^4.7.0",
+    "digest-auth-request": "^0.6.2",
     "eslint": "^4.1.1",
     "eslint-config-google": "^0.8.0",
     "eslint-plugin-html": "^3.0.0",

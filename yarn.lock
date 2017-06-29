@@ -1784,6 +1784,10 @@ chalk@~0.4.0:
     has-color "~0.1.0"
     strip-ansi "~0.1.0"
 
+"charenc@~ 0.0.1":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+
 chokidar@1.7.0, chokidar@^1.6.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
@@ -2139,6 +2143,10 @@ cross-spawn@^5.0.1:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
+"crypt@~ 0.0.1":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+
 cryptiles@2.x.x:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-2.0.5.tgz#3bdfecdc608147c1c67202fa291e7dca59eaa3b8"
@@ -2409,6 +2417,12 @@ diff@3.2.0:
 diff@^2.1.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
+
+digest-auth-request@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/digest-auth-request/-/digest-auth-request-0.6.2.tgz#a2a3dfc58b6b9bcfc038af609bb0669d80fc6eb1"
+  dependencies:
+    md5 "2.0.0"
 
 doctrine@^2.0.0:
   version "2.0.0"
@@ -4104,6 +4118,10 @@ is-buffer@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
+"is-buffer@~ 1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.0.2.tgz#f5c6c051d73f86f11b4ee14267cc1029fce261d0"
+
 is-builtin-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-builtin-module/-/is-builtin-module-1.0.0.tgz#540572d34f7ac3119f8f76c30cbc1b1e037affbe"
@@ -4799,6 +4817,14 @@ map-cache@^0.2.0:
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
+
+md5@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/md5/-/md5-2.0.0.tgz#75e392e0ebd5a9b88dc7cb7a93875137b87c8a33"
+  dependencies:
+    charenc "~ 0.0.1"
+    crypt "~ 0.0.1"
+    is-buffer "~ 1.0.2"
 
 media-typer@0.3.0:
   version "0.3.0"
