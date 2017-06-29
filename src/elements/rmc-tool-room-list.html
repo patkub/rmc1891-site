@@ -6,77 +6,24 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer Library -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
-<!-- Template Repeater -->
-<link rel="import" href="../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+<!-- Tool Room Equipment -->
+<link rel="import" href="../elements/rmc-tool-room-equipment.html">
+
+<!-- Tool Room Services -->
+<link rel="import" href="../elements/rmc-tool-room-services.html">
 
 <dom-module id="rmc-tool-room-list">
     <template>
-		<!-- machines -->
-		<table class="table">
-			<thead class="thead-inverse">
-			<tr>
-			  <th>#</th>
-			  <th>Name</th>
-			</tr>
-			</thead>
-			<tbody>
-				<template is="dom-repeat" items="{{machines}}">
-					<tr>
-						<th scope="row">[[item.count]]</th>
-						<td>[[item.name]]</td>
-					</tr>
-				</template>
-			</tbody>
-		</table>
-		
-		<!-- tools -->
-		<ul class="list-group">
-			<template is="dom-repeat" items="{{tools}}">
-				<li class="list-group-item">[[item]]</li>
-			</template>
-		</ul>
+        <!-- equipment -->
+        <rmc-tool-room-equipment></rmc-tool-room-equipment>
+        
+        <!-- services -->
+        <rmc-tool-room-services></rmc-tool-room-services>
     </template>
 
   <script>
     class RMCToolRoomList extends Polymer.Element {
       static get is() { return 'rmc-tool-room-list'; }
-
-      static get properties() {
-        return {
-            machines: {
-                type: Object,
-                value: function() {
-                    return [
-						{
-							count: '4',
-							name: 'Programmable CNC milling machines',
-						},
-						{
-							count: '3',
-							name: 'Surface grinders',
-						},
-					];
-                },
-            },
-			tools: {
-                type: Object,
-                value: function() {
-                    return [
-						'CAD/CAM Software',
-						'SolidWorks',
-						'EdgeCAM',
-						'Surfcam',
-						'Welding',
-						'Micro Welding',
-						'Metal Fabrication',
-						'Lathes',
-						'Electrical Discharge Machine (EDM)',
-						'Full testing and measuring facilities',
-					];
-                },
-            },
-        };
-      }
     }
 
     window.customElements.define(RMCToolRoomList.is, RMCToolRoomList);

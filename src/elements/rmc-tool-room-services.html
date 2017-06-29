@@ -1,0 +1,38 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<dom-module id="rmc-tool-room-services">
+    <template>
+        <iron-ajax
+            auto
+            url="php/tool_room_services.php"
+            handle-as="json"
+            last-response="{{services}}"
+        ></iron-ajax>
+        
+		<!-- tools -->
+		<ul class="list-group">
+			<template is="dom-repeat" items="{{services}}">
+				<li class="list-group-item">[[item]]</li>
+			</template>
+		</ul>
+    </template>
+
+  <script>
+    class RMCToolRoomServices extends Polymer.Element {
+      static get is() { return 'rmc-tool-room-services'; }
+    }
+    window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
+  </script>
+</dom-module>

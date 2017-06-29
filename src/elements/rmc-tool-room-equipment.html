@@ -12,21 +12,20 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
-<dom-module id="rmc-equipment-list">
+<dom-module id="rmc-tool-room-equipment">
     <template>
-        
         <iron-ajax
             auto
-            url="php/equipment_list.php"
+            url="php/tool_room_equipment.php"
             handle-as="json"
             last-response="{{equipment}}"
         ></iron-ajax>
         
+		<!-- machines -->
 		<table class="table">
 			<thead class="thead-inverse">
 			<tr>
 			  <th>#</th>
-			  <th>Weight</th>
 			  <th>Name</th>
 			</tr>
 			</thead>
@@ -34,7 +33,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 				<template is="dom-repeat" items="{{equipment}}">
 					<tr>
 						<th scope="row">[[item.count]]</th>
-						<td>[[item.weight]] Ton</td>
 						<td>[[item.name]]</td>
 					</tr>
 				</template>
@@ -43,10 +41,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
-    class RMCEquipmentList extends Polymer.Element {
-      static get is() { return 'rmc-equipment-list'; }
+    class RMCToolRoomEquipment extends Polymer.Element {
+      static get is() { return 'rmc-tool-room-equipment'; }
     }
-
-    window.customElements.define(RMCEquipmentList.is, RMCEquipmentList);
+    window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);
   </script>
 </dom-module>
