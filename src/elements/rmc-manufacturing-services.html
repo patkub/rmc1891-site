@@ -9,11 +9,21 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Template Repeater -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
 
+<!-- Iron Ajax -->
+<link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
 <dom-module id="rmc-manufacturing-services">
     <template>
+        <iron-ajax
+            auto
+            url="php/manufacturing_services.php"
+            handle-as="json"
+            last-response="{{services}}"
+        ></iron-ajax>
+        
 		<ul class="list-group">
 			<template is="dom-repeat" items="{{services}}">
-				<li class="list-group-item">[[item]]</li>
+				<li class="list-group-item">[[item.name]]</li>
 			</template>
 		</ul>
     </template>
@@ -21,33 +31,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     class RMCManufacturingServices extends Polymer.Element {
       static get is() { return 'rmc-manufacturing-services'; }
-
-      static get properties() {
-        return {
-            services: {
-                type: Object,
-                value: function() {
-                    return [
-						'Plastic Injection Molding',
-						'Annealing',
-						'Finish Machining',
-						'Assembly',
-						'Insert Molding',
-						'Sonic Welding',
-						'Chemical Bonding',
-						'EMA Bonding',
-						'Hot Stamp Decorating',
-						'Pad Transfer Printing',
-						'Quality Inspection',
-						'3D Part Printing',
-						'3D Interactive Design',
-						'Solidworks Part Design and Mold Flow Analysis',
-						'Drop Shipping availability to multiple locations',
-					];
-                },
-            },
-        };
-      }
     }
 
     window.customElements.define(RMCManufacturingServices.is,

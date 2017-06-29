@@ -11,6 +11,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-equipment-list">
     <template>
+        
+        <iron-ajax
+            auto
+            url="php/equipment_list.php"
+            handle-as="json"
+            last-response="{{equipment}}"
+        ></iron-ajax>
+        
 		<table class="table">
 			<thead class="thead-inverse">
 			<tr>
@@ -34,63 +42,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     class RMCEquipmentList extends Polymer.Element {
       static get is() { return 'rmc-equipment-list'; }
-
-      static get properties() {
-        return {
-            equipment: {
-                type: Object,
-                value: function() {
-                    return [
-						{
-							count: '1',
-							weight: '800',
-							name: 'Servo-Hydraulic Machine',
-						},
-						{
-							count: '2',
-							weight: '700',
-							name: 'Hydraulic Machines',
-						},
-						{
-							count: '6',
-							weight: '500',
-							name: 'All-Electric Machines',
-						},
-						{
-							count: '2',
-							weight: '500',
-							name: 'Hydraulic Machines',
-						},
-						{
-							count: '3',
-							weight: '425',
-							name: 'Servo Hydraulic Machines',
-						},
-						{
-							count: '1',
-							weight: '385',
-							name: 'All-Electric Machine',
-						},
-						{
-							count: '3',
-							weight: '350',
-							name: 'Hydraulic Machines',
-						},
-						{
-							count: '2',
-							weight: '200',
-							name: 'Hydraulic Machines',
-						},
-						{
-							count: '1',
-							weight: '75',
-							name: 'Hydraulic Machines',
-						},
-					];
-                },
-            },
-        };
-      }
     }
 
     window.customElements.define(RMCEquipmentList.is, RMCEquipmentList);
