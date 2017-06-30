@@ -145,7 +145,10 @@ gulp.task('deploy', function() {
   /* global process */
   var args = minimist(process.argv.slice(3));
   
-  return gulp.src('build/es5-bundled/**/*')
+  return gulp.src([
+        'build/es5-bundled/**/*',
+        'build/es5-bundled/**/.*',
+    ])
     .pipe(sftp({
         host: args.host,
         user: args.user,
