@@ -27,7 +27,7 @@ script:
   - xvfb-run yarn run test:sauce
   - xvfb-run yarn run test:integration
 after_success:
-  - "find build/es5-bundled/ -name '*' -type f -exec curl -u $FTP_USER:$FTP_PASSWORD -T {} ftp://home645633144.1and1-data.host/public_html_test/ \;
+  - find build/es5-bundled/ -name '*' -type f -exec curl -u $FTP_USER:$FTP_PASSWORD -T {} ftp://home645633144.1and1-data.host/public_html_test/ \;
 env:
   global:
   - secure: Kp9mZ8a9u6QDnIFVl9C9Q5yDKAi64RPLExhZKD6FO45Vg+ql7kpMKVxMTY9N85Xg/nDfy8lmhS0GV0vCWKG/JSBA188PVNzu0czovIJj7z6OvaQ0Di9450Vmc8BaK33fp/Unbh5Cfhc6bm+1zNpHMSYff5cipkOERE+WIF88C+DoEcSyePjHtXU8JWe2Kvra0H7X0Po251v8DMaYUKAmNiKaz0HN9sypwqBgvYT1EC1Jun6kvL5WucnDUCsp0ToUbOaV9Hacw/7V2Wyqwo39ZEcB3X1ua2BPwSqtBaWP9/bRNTNGG/lLNr2unqgk7w1Vo3foYJ3IJZUZk2eT3ILja5h8O8T02MmaGc+0706Goxxf0S2740cOmUHwIehtMWO5pJ/YmXZP1fRnr2nWK2+625ZSgRB1BCbcBAXy/2CXNuybe4jAd75qGmTFCw54wjfLsUEx6gfPqRqErMa74A3T/GoHsLN105dHiS2IfwulYK+0Ww4bVSrgNNrTdkUmqeg3ZzLE2o5aEkqLuFL+FWoewCZeCIoNtgoVGlOEYZ1oKMd8HiOne2QtgmNL1IuH2hoKgXUMMoDl25Sq4Z9FJgH2MjLdXBlhvSqoLeqIlUzJM8ev6ih868X6cb4EhufjPCeC+QlyIbMfGmfk0dodRP5Q/g8gf6FzqmXdgICMFH2fCJY=
