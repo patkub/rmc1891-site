@@ -27,4 +27,5 @@ script:
   - xvfb-run yarn run test:sauce
   - xvfb-run yarn run test:integration
 after_success:
-  - 'if ["$TRAVIS_BRANCH" == "deploy"]; then gulp deploy --host $FTP_HOST --user $FTP_USER --pass $FTP_PASS; fi'
+  - chmod +x scripts/deploy.sh
+  - ./scripts/deploy.sh
