@@ -17,6 +17,7 @@ cache:
     - bower_components
 install:
   - npm install -g bower web-component-tester
+  - yarn global add gulp-cli
   - yarn install
   - bower install
 before_script:
