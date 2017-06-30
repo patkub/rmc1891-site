@@ -12,12 +12,12 @@
 
 module.exports = {
   staticFileGlobs: [
-	'build/es5-bundled/bower_components/**/*',
+    'build/es5-bundled/bower_components/**/*',
     'build/es5-bundled/node_modules/**/*',
-	'build/es5-bundled/fonts/**/*',
-	'build/es5-bundled/images/**/*',
-	'build/es5-bundled/src/**/*',
-	'build/es5-bundled/index.html',
+    'build/es5-bundled/fonts/**/*',
+    'build/es5-bundled/images/**/*',
+    'build/es5-bundled/src/**/*',
+    'build/es5-bundled/index.html',
   ],
   stripPrefix: 'build/es5-bundled/',
   navigateFallback: 'index.html',
