@@ -13,11 +13,13 @@ import rename from 'gulp-rename';
 import replace from 'gulp-replace';
 import header from 'gulp-header';
 import fs from 'fs';
+import path from 'path';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import stripCSSComments from 'gulp-strip-css-comments';
 import webp from 'gulp-webp';
+import swPrecache from 'sw-precache';
 import sftp from 'gulp-sftp';
 import minimist from 'minimist';
 import browserSync from 'browser-sync';
@@ -107,6 +109,16 @@ gulp.task('inline', function() {
         .pipe(gulp.dest('build/es5-bundled/'));
 });
 
+// Generate precaching service worker
+gulp.task('generate-service-worker', function(callback) {
+  var rootDir = 'build/es5-bundled/';
+  
+  swPrecache.write(path.join(rootDir, 'sw.js'), {
+    staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
+    stripPrefix: rootDir,
+  }, callback);
+});
+
 // Watch resources for changes.
 gulp.task('watch', function() {
     watch();
@@ -164,7 +176,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'fonts']);
+gulp.task('build:after', ['inline', 'fonts', 'generate-service-worker']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);

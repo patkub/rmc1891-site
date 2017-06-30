@@ -12,16 +12,13 @@
 
 module.exports = {
   staticFileGlobs: [
-	'/node_modules/bootstrap/dist/js/bootstrap.min.js',
-	'/node_modules/jquery/dist/jquery.slim.min.{js, map}',
-	'/node_modules/tether/dist/js/tether.min.js',
-    '/node_modules/@npm-polymer/webcomponentsjs/*.{js, js.map}',
-	'/node_modules/components-font-awesome/fonts/*.*',
-	'/images/**/*',
-	'/js/**/*',
-	'/index.html',
-	'/mail.php',
-	'/manifest.json',
+	'build/es5-bundled/bower_components/**/*',
+    'build/es5-bundled/node_modules/**/*',
+	'build/es5-bundled/fonts/**/*',
+	'build/es5-bundled/images/**/*',
+	'build/es5-bundled/src/**/*',
+	'build/es5-bundled/index.html',
   ],
+  stripPrefix: 'build/es5-bundled/',
   navigateFallback: 'index.html',
 };
