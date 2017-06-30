@@ -141,8 +141,8 @@ gulp.task('serve:browsersync:build', () => {
 });
 
 // Deploy website
-gulp.task('deploy', function () {
-  // parse arguments
+gulp.task('deploy', function() {
+  /* global process */
   var args = minimist(process.argv.slice(3));
   
   return gulp.src('build/es5-bundled/**/*')
