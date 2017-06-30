@@ -128,7 +128,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </main>
 
     <!-- footer -->
-    <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."></rmc-footer>
+    <rmc-footer text="Copyright &copy 2017 The Rogers Manufacturing Company."
+                admin='{"text": "Admin", "link": "/admin/", "icon": "lock"}'></rmc-footer>
     
     <script>
         // auto-binding template
@@ -140,7 +141,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             {text: 'About', link: '/about/', icon: 'info', active: ''},
             {text: 'Capabilities', link: '/capabilities/', icon: 'cogs', active: ''},
             {text: 'Contact', link: '/contact/', icon: 'envelope', active: ''},
-            {text: 'Admin', link: '/admin/', icon: 'lock', active: ''},
         ];
         
         // listen for page changed event and update active item
