@@ -30,16 +30,50 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             persisted-data="{{persistedServices}}">
         </app-indexeddb-mirror>
         
+        <template is="dom-if" if="{{editable}}">
+            
+            <!-- TODO: make the form functional -->
+            
+            <form action="javascript:void(0);">
+                
+                <h5>Add a Manufacturing Service</h5>
+                
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" placeholder="New service">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary">Add</button>
+                
+            </form>
+        </template>
+        
 		<ul class="list-group">
 			<template is="dom-repeat" items="{{persistedServices}}" as="service">
-				<li class="list-group-item">[[service.name]]</li>
+                <template is="dom-if" if="{{!editable}}">
+                    <li class="list-group-item">[[service.name]]</li>
+                </template>
+                
+                <template is="dom-if" if="{{editable}}">
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
+                </template>
 			</template>
 		</ul>
+        
     </template>
 
   <script>
     class RMCManufacturingServices extends Polymer.Element {
       static get is() { return 'rmc-manufacturing-services'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
 
     window.customElements.define(RMCManufacturingServices.is,

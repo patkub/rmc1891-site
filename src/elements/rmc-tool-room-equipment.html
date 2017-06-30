@@ -30,6 +30,24 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             persisted-data="{{persistedEquipment}}">
         </app-indexeddb-mirror>
         
+        <template is="dom-if" if="{{editable}}">
+            
+            <!-- TODO: make the form functional -->
+            
+            <form action="javascript:void(0);">
+                
+                <h5>Add a Machine</h5>
+                
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" placeholder="New machine">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary">Add</button>
+                
+            </form>
+        </template>
+        
 		<!-- machines -->
 		<table class="table">
 			<thead class="thead-inverse">
@@ -52,6 +70,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     class RMCToolRoomEquipment extends Polymer.Element {
       static get is() { return 'rmc-tool-room-equipment'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
     window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);
   </script>

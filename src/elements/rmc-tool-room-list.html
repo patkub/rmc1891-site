@@ -14,16 +14,34 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-tool-room-list">
     <template>
-        <!-- equipment -->
-        <rmc-tool-room-equipment></rmc-tool-room-equipment>
-        
-        <!-- services -->
-        <rmc-tool-room-services></rmc-tool-room-services>
+        <template is="dom-if" if="{{!editable}}">
+            <!-- equipment -->
+            <rmc-tool-room-equipment></rmc-tool-room-equipment>
+            
+            <!-- services -->
+            <rmc-tool-room-services></rmc-tool-room-services>
+        </template>
+        <template is="dom-if" if="{{editable}}">
+            <!-- equipment -->
+            <rmc-tool-room-equipment editable></rmc-tool-room-equipment>
+            
+            <!-- services -->
+            <rmc-tool-room-services editable></rmc-tool-room-services>
+        </template>
     </template>
 
   <script>
     class RMCToolRoomList extends Polymer.Element {
       static get is() { return 'rmc-tool-room-list'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
 
     window.customElements.define(RMCToolRoomList.is, RMCToolRoomList);

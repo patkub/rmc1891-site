@@ -31,16 +31,34 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         </app-indexeddb-mirror>
         
 		<!-- tools -->
-		<ul class="list-group">
-			<template is="dom-repeat" items="{{persistedServices}}" as="service">
-				<li class="list-group-item">[[service.name]]</li>
-			</template>
-		</ul>
+        <template is="dom-if" if="{{!editable}}">
+            <ul class="list-group">
+                <template is="dom-repeat" items="{{persistedServices}}" as="service">
+                    <li class="list-group-item">[[service.name]]</li>
+                </template>
+            </ul>
+        </template>
+        <template is="dom-if" if="{{editable}}">
+            <ul class="list-group">
+                <template is="dom-repeat" items="{{persistedServices}}" as="service">
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
+                </template>
+            </ul>
+        </template>
     </template>
 
   <script>
     class RMCToolRoomServices extends Polymer.Element {
       static get is() { return 'rmc-tool-room-services'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
     window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
   </script>
