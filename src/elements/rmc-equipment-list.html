@@ -12,6 +12,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- App Storage -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="rmc-equipment-list">
     <template>
         
@@ -19,8 +22,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             auto
             url="php/equipment_list.php"
             handle-as="json"
-            last-response="{{equipment}}"
-        ></iron-ajax>
+            last-response="{{equipment}}">
+        </iron-ajax>
+        
+        <app-indexeddb-mirror
+            key="feature"
+            data="{{equipment}}"
+            persisted-data="{{persistedEquipment}}">
+        </app-indexeddb-mirror>
         
 		<table class="table">
 			<thead class="thead-inverse">
@@ -31,7 +40,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</tr>
 			</thead>
 			<tbody>
-				<template is="dom-repeat" items="{{equipment}}">
+				<template is="dom-repeat" items="{{persistedEquipment}}">
 					<tr>
 						<th scope="row">[[item.count]]</th>
 						<td>[[item.weight]] Ton</td>

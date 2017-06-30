@@ -12,19 +12,28 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- App Storage -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="rmc-tool-room-services">
     <template>
         <iron-ajax
             auto
             url="php/tool_room_services.php"
             handle-as="json"
-            last-response="{{services}}"
-        ></iron-ajax>
+            last-response="{{services}}">
+        </iron-ajax>
+        
+        <app-indexeddb-mirror
+            key="feature"
+            data="{{services}}"
+            persisted-data="{{persistedServices}}">
+        </app-indexeddb-mirror>
         
 		<!-- tools -->
 		<ul class="list-group">
-			<template is="dom-repeat" items="{{services}}">
-				<li class="list-group-item">[[item.name]]</li>
+			<template is="dom-repeat" items="{{persistedServices}}" as="service">
+				<li class="list-group-item">[[service.name]]</li>
 			</template>
 		</ul>
     </template>

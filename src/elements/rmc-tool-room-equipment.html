@@ -12,14 +12,23 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- App Storage -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="rmc-tool-room-equipment">
     <template>
         <iron-ajax
             auto
             url="php/tool_room_equipment.php"
             handle-as="json"
-            last-response="{{equipment}}"
-        ></iron-ajax>
+            last-response="{{equipment}}">
+        </iron-ajax>
+        
+        <app-indexeddb-mirror
+            key="feature"
+            data="{{equipment}}"
+            persisted-data="{{persistedEquipment}}">
+        </app-indexeddb-mirror>
         
 		<!-- machines -->
 		<table class="table">
@@ -30,7 +39,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</tr>
 			</thead>
 			<tbody>
-				<template is="dom-repeat" items="{{equipment}}">
+				<template is="dom-repeat" items="{{persistedEquipment}}">
 					<tr>
 						<th scope="row">[[item.count]]</th>
 						<td>[[item.name]]</td>
