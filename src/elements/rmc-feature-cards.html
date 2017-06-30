@@ -12,6 +12,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- App Storage -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="rmc-feature-cards">
     <template>
         <style>
@@ -32,21 +35,27 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             last-response="{{featureCards}}"
         ></iron-ajax>
         
+        <app-indexeddb-mirror
+            key="feature"
+            data="{{featureCards}}"
+            persisted-data="{{persistedFeatureCards}}">
+        </app-indexeddb-mirror>
+        
         <div class="card-deck">
-            <template is="dom-repeat" items="[[featureCards]]">
+            <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
                 <div class="card">
-                    <img class="card-img-top" src$="[[item.image]]" alt$="[[item.caption]]">
+                    <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
                     <div class="card-block">
-                        <h4 class="card-title">[[item.title]]</h4>
+                        <h4 class="card-title">[[card.title]]</h4>
                         <template is="dom-if" if="{{!editable}}">
-                            <p class="card-text">[[item.text]]</p>
+                            <p class="card-text">[[card.text]]</p>
                         </template>
                         <template is="dom-if" if="{{editable}}">
-                            <textarea class="form-control" name$="[[item.title]]Text" rows="10">[[item.text]]</textarea>
+                            <textarea class="form-control" name$="[[card.title]]Text" rows="10">[[card.text]]</textarea>
                         </template>
                     </div>
                     <div class="card-footer">
-						<a href$="[[item.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[item.icon]]" aria-hidden="true"></span>[[item.button]]</a>
+						<a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
                     </div>
                 </div>
             </template>

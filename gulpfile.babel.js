@@ -18,6 +18,8 @@ import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import stripCSSComments from 'gulp-strip-css-comments';
 import webp from 'gulp-webp';
+import sftp from 'gulp-sftp';
+import minimist from 'minimist';
 import browserSync from 'browser-sync';
 import pkg from './package.json';
 
@@ -136,6 +138,20 @@ gulp.task('serve:browsersync:build', () => {
   });
 
   watch();
+});
+
+// Deploy website
+gulp.task('deploy', function () {
+  // parse arguments
+  var args = minimist(process.argv.slice(3));
+  
+  return gulp.src('build/es5-bundled/**/*')
+    .pipe(sftp({
+        host: args.host,
+        user: args.user,
+        pass: args.pass,
+        remotePath: 'public_html/',
+    }));
 });
 
 // Compile Stylesheets
