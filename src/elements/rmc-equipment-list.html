@@ -17,7 +17,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-equipment-list">
     <template>
-        
         <iron-ajax
             auto
             url="php/json/equipment_list.php"
@@ -42,11 +41,22 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</thead>
 			<tbody>
 				<template is="dom-repeat" items="{{persistedEquipment}}">
-					<tr>
-						<th scope="row">[[item.count]]</th>
-						<td>[[item.weight]] Ton</td>
-						<td>[[item.name]]</td>
-					</tr>
+                    <template is="dom-if" if="{{!editable}}">
+                        <tr>
+                            <th scope="row">[[item.count]]</th>
+                            <td>[[item.weight]] Ton</td>
+                            <td>[[item.name]]</td>
+                        </tr>
+                    </template>
+                    
+                    <template is="dom-if" if="{{editable}}">
+                        <tr>
+                            <th scope="row">[[item.count]]</th>
+                            <td>[[item.weight]] Ton</td>
+                            <td>[[item.name]]</td>
+                            <td><i class="fa fa-trash-o"></i></td>
+                        </tr>
+                    </template>
 				</template>
 			</tbody>
 		</table>
@@ -55,6 +65,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     class RMCEquipmentList extends Polymer.Element {
       static get is() { return 'rmc-equipment-list'; }
+      static get properties() {
+            return {
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
     }
 
     window.customElements.define(RMCEquipmentList.is, RMCEquipmentList);
