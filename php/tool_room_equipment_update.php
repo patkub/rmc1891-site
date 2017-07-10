@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ToolRoomEquipment`(`count`, `name`) VALUES (%s, %s)",
-            $db->real_escape_string($count), $db->real_escape_string($name));
+            $db->real_escape_string($count), $db->real_escape_string($item));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
