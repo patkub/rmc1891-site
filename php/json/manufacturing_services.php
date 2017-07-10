@@ -1,8 +1,12 @@
 <?php
-/*
- * Manufacturing services in alphabetical order
- * 
+/**
+ * Manufacturing Services Json Data
+ * Sorted in alphabetical order
+ *
+ * @author Patrick Kubiak
  */
+ 
+Database connection info
 
 // Database info
 require_once('../db.php');

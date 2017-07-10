@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Validate user input.
  *
  * @author Patrick Kubiak

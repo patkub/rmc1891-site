@@ -1,7 +1,8 @@
 <?php
-/*
- * Admin login 
- * 
+/**
+ * Admin Login
+ *
+ * @author Patrick Kubiak
  */
 
 // Database info

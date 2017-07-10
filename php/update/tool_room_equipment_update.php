@@ -1,7 +1,8 @@
 <?php
-/*
+/**
  * Update Tool Room Equipment List
- * 
+ *
+ * @author Patrick Kubiak
  */
 
 // Database info

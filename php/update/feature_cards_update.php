@@ -1,7 +1,8 @@
 <?php
-/*
- * Feature Cards json data 
- * 
+/**
+ * Update Feature Cards
+ *
+ * @author Patrick Kubiak
  */
 
 // Database info

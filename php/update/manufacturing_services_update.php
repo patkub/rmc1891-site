@@ -1,7 +1,8 @@
 <?php
-/*
- * Update Manufacturing Services
- * 
+/**
+ * Update Manufacturing Services List
+ *
+ * @author Patrick Kubiak
  */
 
 // Database info
