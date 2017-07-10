@@ -48,6 +48,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         
         <!-- editable state form to add a new service -->
         <template is="dom-if" if="{{editable}}">
+            
+            <!-- TODO: use iron-ajax instead of form -->
             <form action="php/update/manufacturing_services_update.php" method="POST">
                 
                 <h5>Add a Manufacturing Service</h5>
