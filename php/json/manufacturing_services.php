@@ -5,8 +5,6 @@
  *
  * @author Patrick Kubiak
  */
- 
-Database connection info
 
 // Database info
 require_once('../db.php');
