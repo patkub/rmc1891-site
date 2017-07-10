@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ToolRoomServices`(`name`) VALUES ('%s')",
-            intval($count), $db->real_escape_string($item));
+            $db->real_escape_string($item));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
