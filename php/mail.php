@@ -1,7 +1,7 @@
 <?php
 
 // Validate user input
-require_once('test_input.php');
+require_once('util/test_input.php');
 
 //
 // dshoemaker@rmc1891.com

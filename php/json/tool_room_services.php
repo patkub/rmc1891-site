@@ -5,7 +5,7 @@
  */
 
 // Database info
-require_once('db.php');
+require_once('../db.php');
 
 $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 $results = array();

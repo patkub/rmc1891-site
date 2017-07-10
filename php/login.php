@@ -8,7 +8,7 @@
 require_once('db.php');
 
 // Validate user input
-require_once('test_input.php');
+require_once('util/test_input.php');
  
 // Admin username
 $admin_user = "admin";
