@@ -60,7 +60,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         </template>
         
         <iron-ajax
-            id="xhr"
+            id="delete"
             url="php/delete/manufacturing_services_delete.php"
             handle-as="json"
             method="POST">
@@ -106,7 +106,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         
         // delete the service
         var params = 'delete=' + service;
-        var xhr = this.shadowRoot.getElementById('xhr');
+        var xhr = this.shadowRoot.getElementById('delete');
         xhr.body = params;
         xhr.generateRequest();
         
