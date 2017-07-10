@@ -58,6 +58,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </form>
         </template>
         
+        <iron-ajax
+            id="xhr"
+            url="php/delete/manufacturing_services_delete.php"
+            handle-as="json"
+            method="POST">
+        </iron-ajax>
+        
 		<ul class="list-group">
 			<template is="dom-repeat" items="{{persistedServices}}" as="service">
                 <template is="dom-if" if="{{!editable}}">
@@ -65,7 +72,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 </template>
                 
                 <template is="dom-if" if="{{editable}}">
-                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true"></i></li>
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap='_deleteService' service$='[[service.name]]'></i></li>
                 </template>
 			</template>
 		</ul>
@@ -73,7 +80,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
-    class RMCManufacturingServices extends Polymer.Element {
+    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    class RMCManufacturingServices extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() { return 'rmc-manufacturing-services'; }
       static get properties() {
             return {
@@ -84,6 +93,22 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 },
             };
         }
+        
+      /**
+       * Deletes a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
+       */
+      _deleteService(e) {
+        // get service to delete
+        var service = e.target.getAttribute('service');
+        
+        // delete the service
+        var params = 'delete=' + service;
+        var xhr = this.shadowRoot.getElementById('xhr');
+        xhr.body = params;
+        xhr.generateRequest();
+      }
     }
 
     window.customElements.define(RMCManufacturingServices.is,
