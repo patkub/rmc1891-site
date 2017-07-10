@@ -31,6 +31,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         
         <iron-ajax
             auto
+            id="servicesAjax"
             url="php/json/manufacturing_services.php"
             handle-as="json"
             last-response="{{services}}">
@@ -108,6 +109,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         var xhr = this.shadowRoot.getElementById('xhr');
         xhr.body = params;
         xhr.generateRequest();
+        
+        // update services list
+        var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+        servicesAjax.generateRequest();
       }
     }
 
