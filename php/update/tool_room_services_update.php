@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
     if ($db->connect_errno == 0) {
-        //echo '<p>Connection to MySQL server successfully established.</p >';
+        // successfully connected to MySQL server
         
         // validate & store input
         $item = test_input($_POST['Item']);
