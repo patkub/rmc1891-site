@@ -48,12 +48,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 </template>
             </ul>
         </template>
+        
         <template is="dom-if" if="{{editable}}">
             <ul class="list-group">
                 <template is="dom-repeat" items="{{persistedServices}}" as="service">
-                    <li class="list-group-item">[[service.name]]
-                        <i class="fa fa-times float-right" aria-hidden="true"></i>
-                    </li>
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
                 </template>
             </ul>
         </template>
