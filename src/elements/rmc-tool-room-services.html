@@ -19,6 +19,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     <template>
         
         <style>
+        .btn {
+            margin-bottom: 1rem;
+        }
         .fa.float-right {
             line-height: inherit;
             position: absolute;
@@ -50,6 +53,20 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         </template>
         
         <template is="dom-if" if="{{editable}}">
+            
+            <form action="php/tool_room_services_update.php" method="POST">
+                
+                <h5>Add a Service</h5>
+                
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" name="Item" placeholder="New machine">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary">Add</button>
+                
+            </form>
+            
             <ul class="list-group">
                 <template is="dom-repeat" items="{{persistedServices}}" as="service">
                     <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
