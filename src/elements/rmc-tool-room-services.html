@@ -17,6 +17,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-tool-room-services">
     <template>
+        
+        <style>
+        .fa.float-right {
+            line-height: inherit;
+            position: absolute;
+            right: 20px;
+        }
+        </style>
+        
         <iron-ajax
             auto
             url="php/tool_room_services.php"
@@ -42,10 +51,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         <template is="dom-if" if="{{editable}}">
             <ul class="list-group">
                 <template is="dom-repeat" items="{{persistedServices}}" as="service">
-                    <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
+                    <li class="list-group-item">[[service.name]]
+                        <i class="fa fa-times float-right" aria-hidden="true"></i>
+                    </li>
                 </template>
             </ul>
         </template>
+        
     </template>
 
   <script>
