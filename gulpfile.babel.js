@@ -37,75 +37,75 @@ const banner = ['<!--',
 const reload = browserSync.reload;
 const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
 const IMAGES = [
-    'images/**/*',
-    '!images/manifest/**/*',
-    '!images/favicon.ico',
-    '!images/**/*.webp',
+  'images/**/*',
+  '!images/manifest/**/*',
+  '!images/favicon.ico',
+  '!images/**/*.webp',
 ];
 
 /**
  * Defines the list of resources to watch for changes.
  */
 function watch() {
-    gulp.watch(['scss/**/*.scss'], ['css', reload]);
-    gulp.watch(IMAGES, ['webp', reload]);
-    gulp.watch(['src/**/*'], reload);
-    gulp.watch(['index.html'], reload);
+  gulp.watch(['scss/**/*.scss'], ['css', reload]);
+  gulp.watch(IMAGES, ['webp', reload]);
+  gulp.watch(['src/**/*'], reload);
+  gulp.watch(['index.html'], reload);
 }
 
 // Compile Stylesheets
 gulp.task('sass', function() {
-	return gulp.src('scss/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('css/'));
+  return gulp.src('scss/**/*.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest('css/'));
 });
 
 // Minify CSS
 gulp.task('clean-css', ['sass'], function() {
-    return gulp.src('css/rmc-theme.css')
-        .pipe(purifyCSS([
-			'node_modules/bootstrap/dist/js/bootstrap.min.js',
-			'src/**/*.html',
-			'index.html',
-        ]))
-        .pipe(stripCSSComments({
-            preserve: false,
-        }))
-        .pipe(cleanCSS({
-			level: 2,
-        }))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('css/'));
+  return gulp.src('css/rmc-theme.css')
+    .pipe(purifyCSS([
+      'node_modules/bootstrap/dist/js/bootstrap.min.js',
+      'src/**/*.html',
+      'index.html',
+    ]))
+    .pipe(stripCSSComments({
+      preserve: false,
+    }))
+    .pipe(cleanCSS({
+      level: 2,
+    }))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('css/'));
 });
 
 // WebP
 gulp.task('webp', function() {
-	return gulp.src(IMAGES)
-		.pipe(webp())
-		.pipe(gulp.dest('images/'));
+  return gulp.src(IMAGES)
+    .pipe(webp())
+    .pipe(gulp.dest('images/'));
 });
 
 // Copy fonts
 gulp.task('fonts', function() {
-    return gulp.src(FONTS)
-        .pipe(gulp.dest('build/es5-bundled/fonts/'));
+  return gulp.src(FONTS)
+    .pipe(gulp.dest('build/es5-bundled/fonts/'));
 });
 
 // Copy fonts locally
 gulp.task('fonts:local', function() {
-    return gulp.src(FONTS)
-        .pipe(gulp.dest('fonts/'));
+  return gulp.src(FONTS)
+    .pipe(gulp.dest('fonts/'));
 });
 
 // Inline CSS & banner
 gulp.task('inline', function() {
-    return gulp.src('build/es5-bundled/index.html')
-        .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
-			var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
-			return '<style>' + style + '</style>';
-        }))
-        .pipe(header(banner, {pkg: pkg}))
-        .pipe(gulp.dest('build/es5-bundled/'));
+  return gulp.src('build/es5-bundled/index.html')
+    .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
+      var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
+      return '<style>' + style + '</style>';
+    }))
+    .pipe(header(banner, {pkg: pkg}))
+    .pipe(gulp.dest('build/es5-bundled/'));
 });
 
 // Generate precaching service worker
@@ -113,20 +113,20 @@ gulp.task('generate-service-worker', function(callback) {
   var rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
-    staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
-    stripPrefix: rootDir,
+  staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
+  stripPrefix: rootDir,
   }, callback);
 });
 
 // Copy app indexeddb mirror worker
 gulp.task('app-indexeddb', function() {
-    return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
-        .pipe(gulp.dest('build/es5-bundled/'));
+  return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
+    .pipe(gulp.dest('build/es5-bundled/'));
 });
 
 // Watch resources for changes.
 gulp.task('watch', function() {
-    watch();
+  watch();
 });
 
 /**
@@ -134,9 +134,9 @@ gulp.task('watch', function() {
  */
 gulp.task('serve:browsersync:local', () => {
   browserSync({
-    notify: false,
-    server: '.',
-    browser: 'chrome',
+  notify: false,
+  server: '.',
+  browser: 'chrome',
   });
 
   watch();
@@ -147,11 +147,11 @@ gulp.task('serve:browsersync:local', () => {
  */
 gulp.task('serve:browsersync:build', () => {
   browserSync({
-    notify: false,
-    server: {
-      baseDir: ['build/es5-bundled/'],
-    },
-    browser: 'chrome',
+  notify: false,
+  server: {
+    baseDir: ['build/es5-bundled/'],
+  },
+  browser: 'chrome',
   });
 
   watch();
@@ -163,15 +163,15 @@ gulp.task('deploy', function() {
   var args = minimist(process.argv.slice(3));
   
   return gulp.src([
-        'build/es5-bundled/**/*',
-        'build/es5-bundled/**/.*',
-    ])
-    .pipe(sftp({
-        host: args.host,
-        user: args.user,
-        pass: args.pass,
-        remotePath: 'public_html/',
-    }));
+    'build/es5-bundled/**/*',
+    'build/es5-bundled/**/.*',
+  ])
+  .pipe(sftp({
+    host: args.host,
+    user: args.user,
+    pass: args.pass,
+    remotePath: 'public_html/',
+  }));
 });
 
 // Compile Stylesheets

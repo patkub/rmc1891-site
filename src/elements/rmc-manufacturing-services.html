@@ -35,13 +35,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             
             <!-- TODO: make the form functional -->
             
-            <form action="javascript:void(0);">
+            <form action="php/manufacturing_services_update.php" method="POST">
                 
                 <h5>Add a Manufacturing Service</h5>
                 
                 <div class="form-group">
                     <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" placeholder="New service">
+                    <input type="text" class="form-control" id="item" name="ManufacturingService" placeholder="New service">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary">Add</button>
