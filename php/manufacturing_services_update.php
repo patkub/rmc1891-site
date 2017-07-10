@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $service = test_input($_POST['ManufacturingService']);
         
         // update query
-        $UpdateQuery = sprintf("INSERT INTO `ManufacturingServices`(`name`) VALUES (%s)",
+        $UpdateQuery = sprintf("INSERT INTO `ManufacturingServices`(`name`) VALUES ('%s')",
             $db->real_escape_string($service));
         
         // execute query
