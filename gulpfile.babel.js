@@ -49,7 +49,6 @@ const IMAGES = [
 function watch() {
     gulp.watch(['scss/**/*.scss'], ['css', reload]);
     gulp.watch(IMAGES, ['webp', reload]);
-    gulp.watch(['node_modules/components-font-awesome/fonts/*.*'], ['fonts:local', reload]);
     gulp.watch(['src/**/*'], reload);
     gulp.watch(['index.html'], reload);
 }
@@ -119,6 +118,12 @@ gulp.task('generate-service-worker', function(callback) {
   }, callback);
 });
 
+// Copy app indexeddb mirror worker
+gulp.task('app-indexeddb', function() {
+    return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
+        .pipe(gulp.dest('build/es5-bundled/'));
+});
+
 // Watch resources for changes.
 gulp.task('watch', function() {
     watch();
@@ -176,7 +181,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'fonts', 'generate-service-worker']);
+gulp.task('build:after', ['inline', 'fonts', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
