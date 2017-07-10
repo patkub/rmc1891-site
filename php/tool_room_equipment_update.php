@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $item = test_input($_POST['Item']);
         
         // update query
-        $UpdateQuery = sprintf("INSERT INTO `ToolRoomEquipment`(`count`, `name`) VALUES (%s, %s)",
-            $db->real_escape_string($count), $db->real_escape_string($item));
+        $UpdateQuery = sprintf("INSERT INTO `ToolRoomEquipment`(`count`, `name`) VALUES (%d, '%s')",
+            intval($count), $db->real_escape_string($item));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
