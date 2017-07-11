@@ -1,6 +1,6 @@
 <?php
 /**
- * Update Tool Room Services List
+ * Insert into Tool Room Services List
  *
  * @author Patrick Kubiak
  */
@@ -18,17 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // successfully connected to MySQL server
         
         // validate & store input
-        $item = test_input($_POST['Item']);
+        $service = test_input($_POST['service']);
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ToolRoomServices`(`name`) VALUES ('%s')",
-            $db->real_escape_string($item));
+            $db->real_escape_string($service));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
-        
-        // redirect user back to admin page
-        header("Location: https://therogersmanufacturingcompany.com/admin/");
     }
 }
 ?>
