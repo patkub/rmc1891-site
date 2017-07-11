@@ -118,7 +118,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            var name = e.target.getAttribute('m-name');
            
            // add the machine
-           var params = 'count=' + machine + '&weight=' + weight + '&name=' + name;
+           var params = 'count=' + count + '&weight=' + weight + '&name=' + name;
            var xhr = this.shadowRoot.getElementById('add');
            xhr.body = params;
            xhr.generateRequest();
