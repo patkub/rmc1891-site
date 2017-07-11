@@ -15,12 +15,22 @@
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
 
+"@npm-polymer/font-roboto@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/font-roboto/-/font-roboto-1.0.1.tgz#dd8f4a6a63c1e06876ab052fc042bdce17f400d4"
+
 "@npm-polymer/iron-ajax@v2.0.2":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-ajax/-/iron-ajax-1.4.4.tgz#d235588841432627c38a413a5f1e2e3f10e41348"
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
     "@npm-polymer/promise-polyfill" "2.0.1"
+
+"@npm-polymer/iron-flex-layout@1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-flex-layout/-/iron-flex-layout-1.3.7.tgz#e7389da5688b916b1654316678ef582fbe823c65"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
 
 "@npm-polymer/iron-image@^2.1.1":
   version "2.1.1"
@@ -52,6 +62,21 @@
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-selector/-/iron-selector-1.5.3.tgz#a5d23a0200648fcaa9ad2e376fdcd4dcbac2b94f"
   dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/paper-spinner@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/paper-spinner/-/paper-spinner-2.0.0.tgz#26a8e7e12f42c1e860d39ebc92c3ab504dbb23b1"
+  dependencies:
+    "@npm-polymer/paper-styles" "1.3.1"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/paper-styles@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/paper-styles/-/paper-styles-1.3.1.tgz#79579d5c0ac4d3559c134727d19b4e36f874c53f"
+  dependencies:
+    "@npm-polymer/font-roboto" "1.0.1"
+    "@npm-polymer/iron-flex-layout" "1.3.7"
     "@npm-polymer/polymer" "2.0.1"
 
 "@npm-polymer/polymer@2.0.1":
