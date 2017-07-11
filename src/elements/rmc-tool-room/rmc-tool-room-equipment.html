@@ -62,6 +62,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </div>
             
             <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
+            
+            <!-- iron ajax request to delete service -->
+            <iron-ajax
+                id="delete"
+                url="php/delete/tool_room_equipment_delete.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
         </template>
         
 		<!-- machines -->
@@ -74,17 +82,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</thead>
 			<tbody>
 				<template is="dom-repeat" items="{{persistedEquipment}}">
-                    <!-- iron ajax request to delete service -->
-                    <iron-ajax
-                        id="delete"
-                        url="php/delete/tool_room_equipment_delete.php"
-                        handle-as="json"
-                        method="POST">
-                    </iron-ajax>
 					<tr>
 						<th scope="row">[[item.count]]</th>
 						<td>[[item.name]]</td>
-                        <td><i class="fa fa-trash-o" on-tap="_deleteMachine" service$="[[item.name]]"></i></td>
+                        <template is="dom-if" if="{{editable}}">
+                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" count$="[[item.count]]" machine$="[[item.name]]"></i></td>
+                        </template>
 					</tr>
 				</template>
 			</tbody>
@@ -134,10 +137,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
          */
         _deleteMachine(e) {
           // get machine to delete
+          var count = e.target.getAttribute('count');
           var machine = e.target.getAttribute('machine');
           
           // delete the machine
-          var params = 'item=' + machine;
+          var params = 'count=' + count + '&machine=' + machine;
           var xhr = this.shadowRoot.getElementById('delete');
           xhr.body = params;
           xhr.generateRequest();

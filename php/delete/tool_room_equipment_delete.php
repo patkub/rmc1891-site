@@ -18,11 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // successfully connected to MySQL server
         
         // validate & store input
-        $service = test_input($_POST['item']);
+        $count = test_input($_POST['count']);
+        $machine = test_input($_POST['machine']);
         
         // update query
-        $UpdateQuery = sprintf("DELETE FROM `ToolRoomEquipment` WHERE `name` = '%s'",
-            $db->real_escape_string($service));
+        $UpdateQuery = sprintf("DELETE FROM `ToolRoomEquipment` WHERE `count` = %d AND `name` = '%s'",
+            intval($count), $db->real_escape_string($machine));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
