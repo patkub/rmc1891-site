@@ -26,6 +26,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         
         <iron-ajax
             auto
+            id="equipmentAjax"
             url="php/json/tool_room_equipment.php"
             handle-as="json"
             last-response="{{equipment}}">
@@ -38,24 +39,29 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
+        <!-- editable state to add a new machine -->
         <template is="dom-if" if="{{editable}}">
-            <form action="php/update/tool_room_equipment_update.php" method="POST">
-                
-                <h5>Add a Machine</h5>
-                
-                <div class="form-group">
-                    <label for="count">Count:</label>
-                    <input type="text" class="form-control" id="count" name="Count" placeholder="Count">
-                </div>
-                
-                <div class="form-group">
-                    <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" name="Item" placeholder="New machine">
-                </div>
-                
-                <button name="submit" type="submit" class="btn btn-primary">Add</button>
-                
-            </form>
+            <!-- iron ajax request to add machine -->
+            <iron-ajax
+                id="add"
+                url="php/insert/tool_room_equipment_insert.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
+            
+            <h5>Add a Machine</h5>
+            
+            <div class="form-group">
+                <label for="item">Count:</label>
+                <input type="text" class="form-control" id="count" name="count" placeholder="Count" value="{{newCount::input}}">
+            </div>
+            
+            <div class="form-group">
+                <label for="item">Item:</label>
+                <input type="text" class="form-control" id="item" name="item" placeholder="New machine" value="{{newMachine::input}}">
+            </div>
+            
+            <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
         </template>
         
 		<!-- machines -->
@@ -78,7 +84,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
-    class RMCToolRoomEquipment extends Polymer.Element {
+    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    class RMCToolRoomEquipment extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {return 'rmc-tool-room-equipment';}
       static get properties() {
             return {
@@ -88,6 +96,27 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                     reflectToAttribute: true,
                 },
             };
+        }
+        
+       /**
+        * Adds a machine
+        *
+        * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
+        */
+       _addMachine(e) {
+           // get count and machine to add
+           var count = e.target.getAttribute('count');
+           var machine = e.target.getAttribute('machine');
+           
+           // add the machine
+           var params = 'count=' + count + '&machine=' + machine;
+           var xhr = this.shadowRoot.getElementById('add');
+           xhr.body = params;
+           xhr.generateRequest();
+
+           // update equipment list
+           var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+           equipmentAjax.generateRequest();
         }
     }
     window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);

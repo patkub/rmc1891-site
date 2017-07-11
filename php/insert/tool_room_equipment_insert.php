@@ -1,6 +1,6 @@
 <?php
 /**
- * Update Tool Room Equipment List
+ * Insert into Tool Room Equipment List
  *
  * @author Patrick Kubiak
  */
@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // successfully connected to MySQL server
         
         // validate & store input
-        $count = test_input($_POST['Count']);
-        $item = test_input($_POST['Item']);
+        $count = test_input($_POST['count']);
+        $machine = test_input($_POST['machine']);
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ToolRoomEquipment`(`count`, `name`) VALUES (%d, '%s')",
-            intval($count), $db->real_escape_string($item));
+            intval($count), $db->real_escape_string($machine));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
