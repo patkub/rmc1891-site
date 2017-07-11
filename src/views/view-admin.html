@@ -34,6 +34,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         .btn {
             margin-bottom: 2rem;
         }
+        .pages {
+            margin-top: 2rem;
+        }
     </style>
     
     <!-- container -->
@@ -88,7 +91,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             <iron-pages
                 selected="[[page]]"
                 attr-for-selected="id"
-                fallback-selection="home">
+                fallback-selection="home"
+                class="pages">
                 
                 <div id="home">
                     <form action="php/update/feature_cards_update.php" method="POST">
