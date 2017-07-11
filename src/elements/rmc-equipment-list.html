@@ -91,7 +91,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                         <td>[[item.weight]] Ton</td>
                         <td>[[item.name]]</td>
                         <template is="dom-if" if="{{editable}}">
-                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-weight$="[[weight]]" m-name$="[[name]]"></i></td>
+                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-weight$="[[item.weight]]" m-name$="[[item.name]]"></i></td>
                         </template>
                     </tr>
 				</template>

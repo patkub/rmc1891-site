@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $name = test_input($_POST['name']);
         
         // update query
-        $UpdateQuery = sprintf("DELETE FROM `EquipmentList` WHERE `count` = %d AND `weight` = %d AND `name` = '%s'",
+        $UpdateQuery = sprintf("DELETE FROM `EquipmentList` WHERE (`count` = %d AND `weight` = %d AND `name` = '%s')",
             intval($count), intval($weight), $db->real_escape_string($name));
         
         // execute query
