@@ -26,6 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // dshoemaker@rmc1891.com
     // ebitel@rmc1891.com
     //
-	mail('pk9948@g.rit.edu', $subject, $message, $headers) or die('Error!');
+	if (mail('pk9948@g.rit.edu', $subject, $message, $headers)) {
+        // email sent successfully
+        $response_array['status'] = 'success';
+    } else {
+        // email failed, error!
+        $response_array['status'] = 'error';
+    }
+    
+    // JSON response
+    header('Content-type: application/json');
+    echo json_encode($response_array);
 }
 ?>

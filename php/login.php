@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Check username and password
     if ($user === $admin_user && hash_equals($admin_pass, crypt($pass, $admin_pass))) {
-        // logged successful!
+        // logged in successfully
         $_SESSION['auth'] = true;
         $response_array['status'] = 'success';
     } else {

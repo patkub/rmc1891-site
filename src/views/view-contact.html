@@ -21,12 +21,19 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 id="email"
                 url="php/mail.php"
                 handle-as="json"
-                method="POST">
+                method="POST"
+                on-response="_emailResponse">
             </iron-ajax>
             
             <template is="dom-if" if="{{sent}}">
                 <div class="alert alert-success" role="alert">
                   <strong>Email sent!</strong> Your message has been sent.
+                </div>
+            </template>
+            
+            <template is="dom-if" if="{{!sent}}">
+                <div class="alert alert-danger" role="alert">
+                  <strong>Email failed!</strong> Your message failed to sent.
                 </div>
             </template>
             
@@ -65,7 +72,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 return {
                     sent: {
                         type: Boolean,
-                        value: false,
                         reflectToAttribute: true,
                     },
                 };
@@ -88,11 +94,27 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                xhr.body = params;
                xhr.generateRequest();
                
-               // TODO: get response
-               this.sent = true;
-               
                // reset the form
                this.shadowRoot.getElementById('emailForm').reset();
+            }
+            
+            /**
+             * Email response
+             *
+             * @param {Object} e - iron ajax response.
+             */
+            _emailResponse(e) {
+                // Get response
+                var response = e.detail.response;
+                
+                // Check response status
+                if (response.status === 'success') {
+                    // Success!
+                    this.sent = true;
+                } else {
+                    // Failure
+                    this.sent = false;
+                }
             }
         }
         window.customElements.define(ViewContact.is, ViewContact);
