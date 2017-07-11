@@ -64,18 +64,25 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             <button name="submit" type="submit" class="btn btn-primary" on-tap="_addService" service$="{{newService}}">Add</button>
         </template>
         
+        <template is="dom-if" if="{{editable}}">
+            <!-- iron ajax request to delete service -->
+            <iron-ajax
+                id="delete"
+                url="php/delete/tool_room_services_delete.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
+        </template>
+        
         <!-- services -->
         <ul class="list-group">
             <template is="dom-repeat" items="{{persistedServices}}" as="service">
-                <!-- iron ajax request to delete service -->
-                <iron-ajax
-                    id="delete"
-                    url="php/delete/tool_room_services_delete.php"
-                    handle-as="json"
-                    method="POST">
-                </iron-ajax>
-                
-                <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
+                <template is="dom-if" if="{{!editable}}">
+                    <li class="list-group-item">[[service.name]]</li>
+                </template>
+                <template is="dom-if" if="{{editable}}">
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
+                </template>
             </template>
         </ul>
         
