@@ -51,17 +51,19 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             
             <h5>Add a Machine</h5>
             
-            <div class="form-group">
-                <label for="item">Count:</label>
-                <input type="text" class="form-control" placeholder="Count" value="{{newCount::input}}">
-            </div>
-            
-            <div class="form-group">
-                <label for="item">Item:</label>
-                <input type="text" class="form-control" placeholder="New machine" value="{{newMachine::input}}">
-            </div>
-            
-            <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
+            <form id="machineForm" action="javascript:void(0);">
+                <div class="form-group">
+                    <label for="item">Count:</label>
+                    <input type="text" class="form-control" placeholder="Count" value="{{newCount::input}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" placeholder="New machine" value="{{newMachine::input}}">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
+            </form>
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
@@ -129,6 +131,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // update equipment list
            var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
            equipmentAjax.generateRequest();
+           
+           // reset the form
+           this.shadowRoot.getElementById('machineForm').reset();
         }
         
         /**

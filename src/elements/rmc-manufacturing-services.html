@@ -58,12 +58,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             
             <h5>Add a Manufacturing Service</h5>
             
-            <div class="form-group">
-                <label for="item">Item:</label>
-                <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
-            </div>
-            
-            <button name="submit" type="submit" class="btn btn-primary" on-tap="_addService" service$="{{newService}}">Add</button>
+            <form id="serviceForm" action="javascript:void(0);">
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary" on-tap="_addService" service$="{{newService}}">Add</button>
+            </form>
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
@@ -122,6 +124,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // update services list
            var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
            servicesAjax.generateRequest();
+           
+           // reset the form
+           this.shadowRoot.getElementById('serviceForm').reset();
         }
        
       /**
