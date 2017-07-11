@@ -17,36 +17,60 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 <dom-module id="rmc-manufacturing-services">
     <template>
+        
+        <style>
+        .btn {
+            margin-bottom: 1rem;
+        }
+        .fa.float-right {
+            line-height: inherit;
+            position: absolute;
+            right: 20px;
+        }
+        </style>
+        
+        <!-- load manufacturing services -->
         <iron-ajax
             auto
-            url="php/manufacturing_services.php"
+            id="servicesAjax"
+            url="php/json/manufacturing_services.php"
             handle-as="json"
             last-response="{{services}}">
         </iron-ajax>
         
+        <!-- offline mirror -->
         <app-indexeddb-mirror
             key="feature"
             data="{{services}}"
-            persisted-data="{{persistedServices}}">
+            persisted-data="{{persistedServices}}"
+            worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
+        <!-- editable state form to add a new service -->
         <template is="dom-if" if="{{editable}}">
             
-            <!-- TODO: make the form functional -->
-            
-            <form action="javascript:void(0);">
+            <!-- TODO: use iron-ajax instead of form -->
+            <form action="php/update/manufacturing_services_update.php" method="POST">
                 
                 <h5>Add a Manufacturing Service</h5>
                 
                 <div class="form-group">
                     <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" placeholder="New service">
+                    <input type="text" class="form-control" id="item" name="ManufacturingService" placeholder="New service">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary">Add</button>
                 
             </form>
         </template>
+        
+        <!-- iron ajax request to delete service -->
+        <iron-ajax
+            id="delete"
+            url="php/delete/manufacturing_services_delete.php"
+            handle-as="json"
+            method="POST">
+        </iron-ajax>
         
 		<ul class="list-group">
 			<template is="dom-repeat" items="{{persistedServices}}" as="service">
@@ -55,7 +79,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 </template>
                 
                 <template is="dom-if" if="{{editable}}">
-                    <li class="list-group-item">[[service.name]]<i class="fa fa-times float-right" aria-hidden="true"></i></li>
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap='_deleteService' service$='[[service.name]]'></i></li>
                 </template>
 			</template>
 		</ul>
@@ -63,7 +87,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
-    class RMCManufacturingServices extends Polymer.Element {
+    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    class RMCManufacturingServices extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() { return 'rmc-manufacturing-services'; }
       static get properties() {
             return {
@@ -74,6 +100,26 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 },
             };
         }
+        
+      /**
+       * Deletes a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
+       */
+      _deleteService(e) {
+        // get service to delete
+        var service = e.target.getAttribute('service');
+        
+        // delete the service
+        var params = 'delete=' + service;
+        var xhr = this.shadowRoot.getElementById('delete');
+        xhr.body = params;
+        xhr.generateRequest();
+        
+        // update services list
+        var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+        servicesAjax.generateRequest();
+      }
     }
 
     window.customElements.define(RMCManufacturingServices.is,

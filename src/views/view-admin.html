@@ -25,7 +25,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <link rel="import" href="../elements/rmc-equipment-list.html">
 
 <!-- Tool Room List -->
-<link rel="import" href="../elements/rmc-tool-room-list.html">
+<link rel="import" href="../elements/rmc-tool-room/rmc-tool-room-list.html">
 
 <dom-module id="view-admin">
   <template>
@@ -42,6 +42,17 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         <h2>Admin Site</h2>
         
         <template is="dom-if" if="{{!loggedIn}}">
+            
+            <!-- iron ajax request to login -->
+            <iron-ajax
+                id="login"
+                url="php/login.php"
+                content-type="application/x-www-form-urlencoded" 
+                handle-as="json"
+                method="POST"
+                on-response="loginResponse">
+            </iron-ajax>
+            
             <form action="javascript:void(0);">
                 
                 <div class="form-group">
@@ -80,7 +91,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 fallback-selection="home">
                 
                 <div id="home">
-                    <form action="php/feature_cards_update.php" method="POST">
+                    <form action="php/update/feature_cards_update.php" method="POST">
                         <!-- feature cards -->
                         <rmc-feature-cards editable></rmc-feature-cards>
                         
@@ -92,10 +103,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 
                 <div id="capabilities">
                     <h3>Manufacturing Services:</h3>
-        
+                    
                     <!-- manufacturing services -->
                     <rmc-manufacturing-services editable></rmc-manufacturing-services>
                     <br>
+                    
+                    <h3>Equipment List:</h3>
+                    
+                    <!-- equipment list -->
+                    <rmc-equipment-list editable></rmc-equipment-list>
+                    <br>
+                    
+                    <h3>Tool Room:</h3>
                     
                     <!-- tool room list -->
                     <rmc-tool-room-list editable></rmc-tool-room-list>
@@ -132,31 +151,24 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             var user = this.shadowRoot.querySelector('#username').value;
             var pass = this.shadowRoot.querySelector('#password').value;
             
-            // Create xhttp request
-            var http = new XMLHttpRequest();
+            // login
             var params = 'username=' + user + '&password=' + pass;
-            http.open('POST', 'php/login.php', true);
+            var xhr = this.shadowRoot.getElementById('login');
+            xhr.body = params;
+            xhr.generateRequest();
+        }
+        loginResponse(e) {
+            // Get response
+            var response = e.detail.response;
             
-            // Set header information
-            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            http.onreadystatechange = function() { // Call a function when the state changes.
-                if (http.readyState == 4 && http.status == 200) {
-                    // Parse response text as JSON
-                    var response = JSON.parse(http.responseText);
-                    
-                    // Check response status
-                    if (response.status === 'success') {
-                        // Success!
-                        this.loggedIn = true;
-                    } else {
-                        // Failure
-                        this.loggedIn = false;
-                    }
-                }
-            }.bind(this);
-            
-            // Send the request
-            http.send(params);
+            // Check response status
+            if (response.status === 'success') {
+                // Success!
+                this.loggedIn = true;
+            } else {
+                // Failure
+                this.loggedIn = false;
+            }
         }
         logout(e) {
             this.loggedIn = false;
