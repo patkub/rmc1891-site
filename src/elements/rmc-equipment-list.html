@@ -66,6 +66,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             </div>
             
             <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" m-count$="{{count}}" m-weight$="{{weight}}" m-name$="{{name}}">Add</button>
+            
+            <!-- iron ajax request to delete machine -->
+            <iron-ajax
+                id="delete"
+                url="php/insert/equipment_list_delete.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
         </template>
         
 		<table class="table">
@@ -78,22 +86,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</thead>
 			<tbody>
 				<template is="dom-repeat" items="{{persistedEquipment}}">
-                    <template is="dom-if" if="{{!editable}}">
-                        <tr>
-                            <th scope="row">[[item.count]]</th>
-                            <td>[[item.weight]] Ton</td>
-                            <td>[[item.name]]</td>
-                        </tr>
-                    </template>
-                    
-                    <template is="dom-if" if="{{editable}}">
-                        <tr>
-                            <th scope="row">[[item.count]]</th>
-                            <td>[[item.weight]] Ton</td>
-                            <td>[[item.name]]</td>
-                            <td><i class="fa fa-trash-o"></i></td>
-                        </tr>
-                    </template>
+                    <tr>
+                        <th scope="row">[[item.count]]</th>
+                        <td>[[item.weight]] Ton</td>
+                        <td>[[item.name]]</td>
+                        <template is="dom-if" if="{{editable}}">
+                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-weight$="[[weight]]" m-name$="[[name]]"></i></td>
+                        </template>
+                    </tr>
 				</template>
 			</tbody>
 		</table>
@@ -128,6 +128,28 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // add the machine
            var params = 'count=' + count + '&weight=' + weight + '&name=' + name;
            var xhr = this.shadowRoot.getElementById('add');
+           xhr.body = params;
+           xhr.generateRequest();
+
+           // update equipment list
+           var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+           equipmentAjax.generateRequest();
+        }
+        
+       /**
+        * Deletes a machine
+        *
+        * @param {Object} e - on-tap event, 'machine' attribute is the machine to delete.
+        */
+       _deleteMachine(e) {
+           // get machine to delete
+           var count = e.target.getAttribute('m-count');
+           var weight = e.target.getAttribute('m-weight');
+           var name = e.target.getAttribute('m-name');
+           
+           // delete the machine
+           var params = 'count=' + count + '&weight=' + weight + '&name=' + name;
+           var xhr = this.shadowRoot.getElementById('delete');
            xhr.body = params;
            xhr.generateRequest();
 
