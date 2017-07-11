@@ -67,7 +67,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         <!-- services -->
         <ul class="list-group">
             <template is="dom-repeat" items="{{persistedServices}}" as="service">
-                <li class="list-group-item">[[service.name]]</li>
+                <!-- iron ajax request to delete service -->
+                <iron-ajax
+                    id="delete"
+                    url="php/delete/tool_room_services_delete.php"
+                    handle-as="json"
+                    method="POST">
+                </iron-ajax>
+                
+                <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
             </template>
         </ul>
         
@@ -104,6 +112,26 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // update services list
            var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
            servicesAjax.generateRequest();
+        }
+        
+        /**
+         * Deletes a service
+         *
+         * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
+         */
+        _deleteService(e) {
+          // get service to delete
+          var service = e.target.getAttribute('service');
+          
+          // delete the service
+          var params = 'item=' + service;
+          var xhr = this.shadowRoot.getElementById('delete');
+          xhr.body = params;
+          xhr.generateRequest();
+          
+          // update services list
+          var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+          servicesAjax.generateRequest();
         }
     }
     window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
