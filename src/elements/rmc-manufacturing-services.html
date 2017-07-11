@@ -48,29 +48,23 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         
         <!-- editable state form to add a new service -->
         <template is="dom-if" if="{{editable}}">
+            <!-- iron ajax request to add service -->
+            <iron-ajax
+                id="add"
+                url="php/insert/manufacturing_services_insert.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
             
-            <!-- TODO: use iron-ajax instead of form -->
-            <form action="php/update/manufacturing_services_update.php" method="POST">
-                
-                <h5>Add a Manufacturing Service</h5>
-                
-                <div class="form-group">
-                    <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" name="ManufacturingService" placeholder="New service">
-                </div>
-                
-                <button name="submit" type="submit" class="btn btn-primary">Add</button>
-                
-            </form>
+            <h5>Add a Manufacturing Service</h5>
+            
+            <div class="form-group">
+                <label for="item">Item:</label>
+                <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+            </div>
+            
+            <button name="submit" type="submit" class="btn btn-primary" on-tap="_addService" service$="{{newService}}">Add</button>
         </template>
-        
-        <!-- iron ajax request to delete service -->
-        <iron-ajax
-            id="delete"
-            url="php/delete/manufacturing_services_delete.php"
-            handle-as="json"
-            method="POST">
-        </iron-ajax>
         
 		<ul class="list-group">
 			<template is="dom-repeat" items="{{persistedServices}}" as="service">
@@ -79,7 +73,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 </template>
                 
                 <template is="dom-if" if="{{editable}}">
-                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap='_deleteService' service$='[[service.name]]'></i></li>
+                    <!-- iron ajax request to delete service -->
+                    <iron-ajax
+                        id="delete"
+                        url="php/delete/manufacturing_services_delete.php"
+                        handle-as="json"
+                        method="POST">
+                    </iron-ajax>
+                    
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
                 </template>
 			</template>
 		</ul>
@@ -101,6 +103,26 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             };
         }
         
+       /**
+        * Adds a service
+        *
+        * @param {Object} e - on-tap event, 'service' attribute is the service to add.
+        */
+       _addService(e) {
+           // get service to add
+           var service = e.target.getAttribute('service');
+           
+           // add the service
+           var params = 'item=' + service;
+           var xhr = this.shadowRoot.getElementById('add');
+           xhr.body = params;
+           xhr.generateRequest();
+
+           // update services list
+           var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+           servicesAjax.generateRequest();
+        }
+       
       /**
        * Deletes a service
        *
@@ -111,7 +133,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         var service = e.target.getAttribute('service');
         
         // delete the service
-        var params = 'delete=' + service;
+        var params = 'item=' + service;
         var xhr = this.shadowRoot.getElementById('delete');
         xhr.body = params;
         xhr.generateRequest();

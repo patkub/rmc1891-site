@@ -1,6 +1,6 @@
 <?php
 /**
- * Update Manufacturing Services List
+ * Insert into Manufacturing Services List
  *
  * @author Patrick Kubiak
  */
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // successfully connected to MySQL server
         
         // validate & store input
-        $service = test_input($_POST['ManufacturingService']);
+        $service = test_input($_POST['item']);
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ManufacturingServices`(`name`) VALUES ('%s')",
