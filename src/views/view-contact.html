@@ -24,6 +24,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 method="POST">
             </iron-ajax>
             
+            <template is="dom-if" if="{{sent}}">
+                <div class="alert alert-success" role="alert">
+                  <strong>Email sent!</strong> Your message has been sent.
+                </div>
+            </template>
+            
             <form id="emailForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -55,6 +61,15 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         class ViewContact extends
               Polymer.GestureEventListeners(Polymer.Element) {
             static get is() {return 'view-contact';}
+            static get properties() {
+                return {
+                    sent: {
+                        type: Boolean,
+                        value: false,
+                        reflectToAttribute: true,
+                    },
+                };
+            }
             
             /**
              * Send email
@@ -72,6 +87,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                var xhr = this.shadowRoot.getElementById('email');
                xhr.body = params;
                xhr.generateRequest();
+               
+               // TODO: get response
+               this.sent = true;
                
                // reset the form
                this.shadowRoot.getElementById('emailForm').reset();
