@@ -75,7 +75,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             <!-- TODO: tab active class -->
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" href="#" role="tab" on-tap="changePage" data-args="home">Home</a>
+                <a class="nav-link active" href="#" role="tab" on-tap="changePage" data-args="home">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" role="tab" on-tap="changePage" data-args="about">About</a>
@@ -130,7 +130,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
   <script>
     /* eslint new-cap: ["error", { "capIsNew": false }] */
-    
     class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
         static get is() {return 'view-admin';}
         static get properties() {

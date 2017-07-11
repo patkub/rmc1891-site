@@ -77,12 +77,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       static get is() {return 'my-carousel';}
 
-      connectedCallback() {
-        super.connectedCallback();
-
-        requestAnimationFrame(this._installListeners.bind(this));
-      }
-
       _selectedChanged(selected, oldSelected) {
         super._selectedChanged(selected, oldSelected);
 
@@ -141,6 +135,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         elem.style.transform = 'translate3d(' + x + 'px, 0, 0)';
       }
 
+      ready() {
+        super.ready();
+        requestAnimationFrame(this._installListeners.bind(this));
+      }
+      
       _installListeners() {
         this.addEventListener('transitionend', this._resetChildrenStyles.bind(this));
         this.addEventListener('touchstart', this._touchstart.bind(this));

@@ -24,7 +24,7 @@
     ],
     "lint": {
         "rules": ["polymer-2"],
-        "ignoreWarnings": ["unknown-polymer-behavior", "unknown-superclass", "multiple-doc-comments"]
+        "ignoreWarnings": ["multiple-doc-comments"]
     },
     "builds": [
         {
