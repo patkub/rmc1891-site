@@ -2292,12 +2292,6 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
-decomment@^0.8.7:
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/decomment/-/decomment-0.8.8.tgz#83d112fd5a812dcecc0823c2532bb17a72995f62"
-  dependencies:
-    esprima "^4.0.0"
-
 decompress-tar@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/decompress-tar/-/decompress-tar-3.1.0.tgz#217c789f9b94450efaadc5c5e537978fc333c466"
@@ -3255,10 +3249,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fs@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.2.tgz#e1f244ef3933c1b2a64bd4799136060d0f5914f8"
-
 fsevents@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
@@ -3717,14 +3707,6 @@ gulp-sourcemaps@1.6.0:
     through2 "^2.0.0"
     vinyl "^1.0.0"
 
-gulp-strip-comments@^2.4.5:
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/gulp-strip-comments/-/gulp-strip-comments-2.4.5.tgz#76a5587078e6a03332925a452d2b744c1bb6cda5"
-  dependencies:
-    decomment "^0.8.7"
-    gulp-util "^3.0.8"
-    through2 "^2.0.1"
-
 gulp-strip-css-comments@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/gulp-strip-css-comments/-/gulp-strip-css-comments-1.2.0.tgz#fe79863ce32f50dd4cbe8d0db56f476c86cfb9b8"
@@ -3733,7 +3715,7 @@ gulp-strip-css-comments@^1.2.0:
     strip-css-comments "^3.0.0"
     through2 "^2.0.0"
 
-gulp-util@*, gulp-util@3.0.8, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.5, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@~3.0.0:
+gulp-util@*, gulp-util@3.0.8, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.5, gulp-util@^3.0.7, gulp-util@~3.0.0:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
