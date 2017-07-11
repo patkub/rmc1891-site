@@ -122,6 +122,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // update services list
            var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
            servicesAjax.generateRequest();
+           
+           // reset the form
+           this.shadowRoot.getElementById('serviceForm').reset();
         }
         
         /**
@@ -142,9 +145,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           // update services list
           var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
           servicesAjax.generateRequest();
-          
-          // reset the form
-          this.shadowRoot.getElementById('serviceForm').reset();
         }
     }
     window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
