@@ -82,7 +82,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
-    class RMCToolRoomServices extends Polymer.Element {
+    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    class RMCToolRoomServices extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {return 'rmc-tool-room-services';}
       static get properties() {
             return {
@@ -104,7 +106,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            var service = e.target.getAttribute('service');
            
            // add the service
-           var params = '&service=' + service;
+           var params = 'item=' + service;
            var xhr = this.shadowRoot.getElementById('add');
            xhr.body = params;
            xhr.generateRequest();

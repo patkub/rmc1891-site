@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // successfully connected to MySQL server
         
         // validate & store input
-        $service = test_input($_POST['service']);
+        $service = test_input($_POST['item']);
         
         // update query
         $UpdateQuery = sprintf("INSERT INTO `ToolRoomServices`(`name`) VALUES ('%s')",
