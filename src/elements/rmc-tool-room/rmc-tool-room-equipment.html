@@ -74,9 +74,17 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 			</thead>
 			<tbody>
 				<template is="dom-repeat" items="{{persistedEquipment}}">
+                    <!-- iron ajax request to delete service -->
+                    <iron-ajax
+                        id="delete"
+                        url="php/delete/tool_room_equipment_delete.php"
+                        handle-as="json"
+                        method="POST">
+                    </iron-ajax>
 					<tr>
 						<th scope="row">[[item.count]]</th>
 						<td>[[item.name]]</td>
+                        <td><i class="fa fa-trash-o" on-tap="_deleteMachine" service$="[[item.name]]"></i></td>
 					</tr>
 				</template>
 			</tbody>
@@ -117,6 +125,26 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
            // update equipment list
            var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
            equipmentAjax.generateRequest();
+        }
+        
+        /**
+         * Deletes a machine
+         *
+         * @param {Object} e - on-tap event, 'machine' attribute is the machine to delete.
+         */
+        _deleteMachine(e) {
+          // get machine to delete
+          var machine = e.target.getAttribute('machine');
+          
+          // delete the machine
+          var params = 'item=' + machine;
+          var xhr = this.shadowRoot.getElementById('delete');
+          xhr.body = params;
+          xhr.generateRequest();
+          
+          // update equipment list
+          var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+          equipmentAjax.generateRequest();
         }
     }
     window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);
