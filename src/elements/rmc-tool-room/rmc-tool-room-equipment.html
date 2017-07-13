@@ -24,6 +24,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="../rmc-shared-styles-paper-spinner.html">
 
+<!--
+`<rmc-tool-room-equipment>` displays a list of tool room equipment.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-tool-room-equipment></rmc-tool-room-equipment>
+
+Add the editable attribute to include features to edit the list:
+
+    <rmc-tool-room-equipment editable></rmc-tool-room-equipment>
+-->
 <dom-module id="rmc-tool-room-equipment">
     <template>
         <style include="rmc-shared-styles-paper-spinner"></style>
@@ -124,6 +136,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
       static get properties() {
             return {
+                /** Whether this element is editable. */
                 editable: {
                     type: Boolean,
                     value: false,

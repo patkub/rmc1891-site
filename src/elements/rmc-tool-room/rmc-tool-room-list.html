@@ -12,6 +12,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Tool Room Services -->
 <link rel="import" href="rmc-tool-room-services.html">
 
+<!--
+`<rmc-tool-room-list>` displays a list of tool room equipment & services.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-tool-room-list></rmc-tool-room-list>
+
+Add the editable attribute to include features to edit both lists:
+
+    <rmc-tool-room-list editable></rmc-tool-room-list>
+-->
 <dom-module id="rmc-tool-room-list">
     <template>
         <template is="dom-if" if="{{!editable}}">
@@ -38,6 +50,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
       static get properties() {
             return {
+                /** Whether this element is editable. */
                 editable: {
                     type: Boolean,
                     value: false,
