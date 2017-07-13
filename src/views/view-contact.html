@@ -91,13 +91,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
              */
             _sendEmail(e) {
                // get email
-               var email = e.target.getAttribute('email');
-               var subject = e.target.getAttribute('subject');
-               var message = e.target.getAttribute('message');
+               let email = e.target.getAttribute('email');
+               let subject = e.target.getAttribute('subject');
+               let message = e.target.getAttribute('message');
                
                // send the email
-               var params = 'email=' + email + '&subject=' + subject + '&message=' + message;
-               var xhr = this.shadowRoot.getElementById('email');
+               let params = 'email=' + email + '&subject=' + subject + '&message=' + message;
+               let xhr = this.shadowRoot.getElementById('email');
                xhr.body = params;
                xhr.generateRequest();
                
@@ -112,7 +112,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
              */
             _emailResponse(e) {
                 // Get response
-                var response = e.detail.response;
+                let response = e.detail.response;
                 
                 // Check response status
                 if (response.status === 'success') {

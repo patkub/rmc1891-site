@@ -14,7 +14,6 @@
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }],
     "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-    "no-var": "off",
     "require-jsdoc": "off"
   },
   "globals": {

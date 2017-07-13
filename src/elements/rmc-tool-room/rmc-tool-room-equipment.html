@@ -152,17 +152,17 @@ Add the editable attribute to include features to edit the list:
         */
        _addMachine(e) {
            // get count and machine to add
-           var count = e.target.getAttribute('count');
-           var machine = e.target.getAttribute('machine');
+           let count = e.target.getAttribute('count');
+           let machine = e.target.getAttribute('machine');
            
            // add the machine
-           var params = 'count=' + count + '&machine=' + machine;
-           var xhr = this.shadowRoot.getElementById('add');
+           let params = 'count=' + count + '&machine=' + machine;
+           let xhr = this.shadowRoot.getElementById('add');
            xhr.body = params;
            xhr.generateRequest();
 
            // update equipment list
-           var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+           let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
            equipmentAjax.generateRequest();
            
            // reset the form
@@ -176,17 +176,17 @@ Add the editable attribute to include features to edit the list:
          */
         _deleteMachine(e) {
           // get machine to delete
-          var count = e.target.getAttribute('count');
-          var machine = e.target.getAttribute('machine');
+          let count = e.target.getAttribute('count');
+          let machine = e.target.getAttribute('machine');
           
           // delete the machine
-          var params = 'count=' + count + '&machine=' + machine;
-          var xhr = this.shadowRoot.getElementById('delete');
+          let params = 'count=' + count + '&machine=' + machine;
+          let xhr = this.shadowRoot.getElementById('delete');
           xhr.body = params;
           xhr.generateRequest();
           
           // update equipment list
-          var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+          let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
           equipmentAjax.generateRequest();
         }
     }

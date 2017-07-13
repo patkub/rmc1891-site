@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     
     suite('view-404 tests', function() {
-        var view404;
+        let view404;
 
         setup(function() {
             view404 = fixture('View404');
@@ -46,12 +46,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('Location /404', function() {
             setLocation('/404');
-            var appLoction = view404.shadowRoot.querySelector('app-location');
+            let appLoction = view404.shadowRoot.querySelector('app-location');
             assert.equal(appLoction.route.path, '/404');
         });
 
         test('Go back home', function() {
-            var a = view404.shadowRoot.querySelector('a');
+            let a = view404.shadowRoot.querySelector('a');
             assert.equal(a.getAttribute('href'), '/');
         });
     });

@@ -139,16 +139,16 @@ Add the editable attribute to include features to edit the list:
         */
        _addService(e) {
            // get service to add
-           var service = e.target.getAttribute('service');
+           let service = e.target.getAttribute('service');
            
            // add the service
-           var params = 'item=' + service;
-           var xhr = this.shadowRoot.getElementById('add');
+           let params = 'item=' + service;
+           let xhr = this.shadowRoot.getElementById('add');
            xhr.body = params;
            xhr.generateRequest();
 
            // update services list
-           var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+           let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
            servicesAjax.generateRequest();
            
            // reset the form
@@ -162,16 +162,16 @@ Add the editable attribute to include features to edit the list:
        */
       _deleteService(e) {
         // get service to delete
-        var service = e.target.getAttribute('service');
+        let service = e.target.getAttribute('service');
         
         // delete the service
-        var params = 'item=' + service;
-        var xhr = this.shadowRoot.getElementById('delete');
+        let params = 'item=' + service;
+        let xhr = this.shadowRoot.getElementById('delete');
         xhr.body = params;
         xhr.generateRequest();
         
         // update services list
-        var servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+        let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
         servicesAjax.generateRequest();
       }
     }

@@ -31,14 +31,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <script>
       suite('view-contact tests', function() {
-        var contactView;
+        let contactView;
 
         setup(function() {
           contactView = fixture('ContactView');
         });
 
         test('Heading level 2 should be Contact', function() {
-          var heading = contactView.shadowRoot.querySelector('h2');
+          let heading = contactView.shadowRoot.querySelector('h2');
           assert.equal(heading.textContent, 'Contact');
         });
       });

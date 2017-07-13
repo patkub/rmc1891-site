@@ -101,7 +101,7 @@ gulp.task('fonts:local', function() {
 gulp.task('inline', function() {
   return gulp.src('build/es5-bundled/index.html')
     .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
-      var style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
+      let style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
       return '<style>' + style + '</style>';
     }))
     .pipe(header(banner, {pkg: pkg}))
@@ -110,7 +110,7 @@ gulp.task('inline', function() {
 
 // Generate precaching service worker
 gulp.task('generate-service-worker', function(callback) {
-  var rootDir = 'build/es5-bundled/';
+  let rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
   staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
@@ -160,7 +160,7 @@ gulp.task('serve:browsersync:build', () => {
 // Deploy website
 gulp.task('deploy', function() {
   /* global process */
-  var args = minimist(process.argv.slice(3));
+  let args = minimist(process.argv.slice(3));
   
   return gulp.src([
     'build/es5-bundled/**/*',

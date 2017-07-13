@@ -133,7 +133,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
     <script>
         // auto-binding template
-        var autobind = document.querySelector('dom-bind');
+        let autobind = document.querySelector('dom-bind');
 
         // set links property
         autobind.links = [
@@ -150,7 +150,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             autobind.links = autobind.links.slice();
         
             // change the active item
-            for (var i = 0; i < autobind.links.length; i++) {
+            for (let i = 0; i < autobind.links.length; i++) {
                 if (autobind.links[i].text.toLowerCase() === e.detail.active) {
                     autobind.links[i].active = 'active';
                 } else {

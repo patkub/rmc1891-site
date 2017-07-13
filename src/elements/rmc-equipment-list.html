@@ -143,18 +143,18 @@ Add the editable attribute to include features to edit the list:
         */
        _addMachine(e) {
            // get machine to add
-           var count = e.target.getAttribute('m-count');
-           var weight = e.target.getAttribute('m-weight');
-           var name = e.target.getAttribute('m-name');
+           let count = e.target.getAttribute('m-count');
+           let weight = e.target.getAttribute('m-weight');
+           let name = e.target.getAttribute('m-name');
            
            // add the machine
-           var params = 'count=' + count + '&weight=' + weight + '&name=' + name;
-           var xhr = this.shadowRoot.getElementById('add');
+           let params = 'count=' + count + '&weight=' + weight + '&name=' + name;
+           let xhr = this.shadowRoot.getElementById('add');
            xhr.body = params;
            xhr.generateRequest();
 
            // update equipment list
-           var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+           let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
            equipmentAjax.generateRequest();
            
            // reset the form
@@ -168,18 +168,18 @@ Add the editable attribute to include features to edit the list:
         */
        _deleteMachine(e) {
            // get machine to delete
-           var count = e.target.getAttribute('m-count');
-           var weight = e.target.getAttribute('m-weight');
-           var name = e.target.getAttribute('m-name');
+           let count = e.target.getAttribute('m-count');
+           let weight = e.target.getAttribute('m-weight');
+           let name = e.target.getAttribute('m-name');
            
            // delete the machine
-           var params = 'count=' + count + '&weight=' + weight + '&name=' + name;
-           var xhr = this.shadowRoot.getElementById('delete');
+           let params = 'count=' + count + '&weight=' + weight + '&name=' + name;
+           let xhr = this.shadowRoot.getElementById('delete');
            xhr.body = params;
            xhr.generateRequest();
 
            // update equipment list
-           var equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+           let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
            equipmentAjax.generateRequest();
         }
     }

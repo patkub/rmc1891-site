@@ -155,18 +155,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         }
         login(e) {
             // Get form login info
-            var user = this.shadowRoot.querySelector('#username').value;
-            var pass = this.shadowRoot.querySelector('#password').value;
+            let user = this.shadowRoot.querySelector('#username').value;
+            let pass = this.shadowRoot.querySelector('#password').value;
             
             // login
-            var params = 'username=' + user + '&password=' + pass;
-            var xhr = this.shadowRoot.getElementById('login');
+            let params = 'username=' + user + '&password=' + pass;
+            let xhr = this.shadowRoot.getElementById('login');
             xhr.body = params;
             xhr.generateRequest();
         }
         loginResponse(e) {
             // Get response
-            var response = e.detail.response;
+            let response = e.detail.response;
             
             // Check response status
             if (response.status === 'success') {
