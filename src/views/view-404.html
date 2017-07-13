@@ -6,6 +6,21 @@
 <!-- Shared Styles for Views -->
 <link rel="import" href="shared-styles-views.html">
 
+<!--
+`<view-404>` is the view for a 404 page not found error.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        fallback-selection="404"
+        role="main">
+        
+        ...
+        <view-404 id="404"></view-404>
+    </iron-pages>
+-->
 <dom-module id="view-404">
   <template>
 	<style include="shared-styles-views">

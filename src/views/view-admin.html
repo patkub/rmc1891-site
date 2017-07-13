@@ -30,6 +30,20 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Shared Styles for Views -->
 <link rel="import" href="shared-styles-views.html">
 
+<!--
+`<view-admin>` is the view for the admin page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-admin id="admin"></view-admin>
+        ...
+    </iron-pages>
+-->
 <dom-module id="view-admin">
   <template>
     <style include="shared-styles-views">
