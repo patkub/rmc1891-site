@@ -12,7 +12,6 @@
   ],
   "rules": {
     "require-jsdoc": "off",
-	"linebreak-style": 0,
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-var": "off",
