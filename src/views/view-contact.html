@@ -92,6 +92,8 @@ In typical use, add the element to an `<iron-pages>` element:
             
             static get properties() {
                 return {
+                    /** Initially undefined. True if email has been sent
+                        successfuly, false on error. */
                     sent: {
                         type: Boolean,
                         reflectToAttribute: true,
