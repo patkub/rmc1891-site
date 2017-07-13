@@ -18,9 +18,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner -->
 <link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
+<!-- Paper Spinner Styles -->
+<link rel="import" href="rmc-shared-styles-paper-spinner.html">
+
 <dom-module id="rmc-feature-cards">
     <template>
-        <style>
+        <style include="rmc-shared-styles-paper-spinner">
             .card {
                 width: 20rem;
                 margin-bottom: 2rem;
@@ -28,12 +31,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
             .card-title {
                 color: #0d47a1;
-            }
-            
-            /* center paper spinner */
-            paper-spinner {
-                display: block;
-                margin: 0 auto;
             }
         </style>
         
