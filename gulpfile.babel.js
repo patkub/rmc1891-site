@@ -9,6 +9,7 @@
 
 // include gulp & tools
 import gulp from 'gulp';
+import del from 'del';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
 import header from 'gulp-header';
@@ -109,7 +110,7 @@ gulp.task('inline', function() {
 });
 
 // Generate precaching service worker
-gulp.task('generate-service-worker', function(callback) {
+gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callback) {
   let rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
@@ -122,6 +123,13 @@ gulp.task('generate-service-worker', function(callback) {
 gulp.task('app-indexeddb', function() {
   return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
     .pipe(gulp.dest('build/es5-bundled/'));
+});
+
+// Delete unneccessary build files
+gulp.task('del', function() {
+  return del([
+    'build/es5-bundled/bower_components/',
+  ]);
 });
 
 // Watch resources for changes.
@@ -181,7 +189,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['sass', 'clean-css', 'webp']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'fonts', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'fonts', 'del', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
