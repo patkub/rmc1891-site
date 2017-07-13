@@ -37,7 +37,6 @@ Add the editable attribute to include features to edit card text content:
     <template>
         <style include="rmc-shared-styles-paper-spinner">
             .card {
-                width: 20rem;
                 margin-bottom: 2rem;
             }
 
@@ -47,6 +46,12 @@ Add the editable attribute to include features to edit card text content:
             
             .card-text {
                 font-size: 20px;
+            }
+            
+            @media (min-width: 576px) {
+                .card-deck .card:not(:last-child) {
+                    margin-right: inherit;
+                }
             }
         </style>
         
