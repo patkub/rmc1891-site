@@ -21,13 +21,22 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <dom-module id="rmc-feature-cards">
     <template>
         <style>
+            :host {
+                margin-bottom: 2rem;
+            }
+            
             .card {
                 width: 20rem;
-                margin-bottom: 2rem;
             }
 
             .card-title {
                 color: #0d47a1;
+            }
+            
+            /* center paper spinner */
+            paper-spinner {
+                display: block;
+                margin: 0 auto;
             }
         </style>
         
