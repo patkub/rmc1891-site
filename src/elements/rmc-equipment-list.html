@@ -45,6 +45,7 @@ Add the editable attribute to include features to edit the list:
         }
         </style>
         
+        <!-- load equipment list -->
         <iron-ajax
             auto
             id="equipmentAjax"
@@ -54,6 +55,7 @@ Add the editable attribute to include features to edit the list:
             loading="{{equipmentLoading}}">
         </iron-ajax>
         
+        <!-- offline mirror the equipment list -->
         <app-indexeddb-mirror
             key="equipment"
             data="{{equipment}}"
