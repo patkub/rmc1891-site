@@ -15,8 +15,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
+<!-- Paper Spinner -->
+<link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-editable.html">
+
+<!-- Paper Spinner Styles -->
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
 `<rmc-equipment-list>` displays a table listing of machines.
@@ -32,6 +38,7 @@ Add the editable attribute to include features to edit the list:
 -->
 <dom-module id="rmc-equipment-list">
     <template>
+        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable">
         .btn {
             margin-bottom: 1rem;
@@ -43,7 +50,8 @@ Add the editable attribute to include features to edit the list:
             id="equipmentAjax"
             url="php/json/equipment_list.php"
             handle-as="json"
-            last-response="{{equipment}}">
+            last-response="{{equipment}}"
+            loading="{{equipmentLoading}}">
         </iron-ajax>
         
         <app-indexeddb-mirror
@@ -52,6 +60,11 @@ Add the editable attribute to include features to edit the list:
             persisted-data="{{persistedEquipment}}"
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{equipmentLoading}}">
+            <paper-spinner active="{{equipmentLoading}}"></paper-spinner>
+        </template>
         
         <!-- editable state to add a new machine -->
         <template is="dom-if" if="{{editable}}">
