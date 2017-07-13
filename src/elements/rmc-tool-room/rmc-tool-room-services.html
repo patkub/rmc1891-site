@@ -15,31 +15,46 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
+<!-- Paper Spinner -->
+<link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="../rmc-shared-styles-editable.html">
 
+<!-- Paper Spinner Styles -->
+<link rel="import" href="../rmc-shared-styles-paper-spinner.html">
+
 <dom-module id="rmc-tool-room-services">
     <template>
+        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable">
         .btn {
             margin-bottom: 1rem;
         }
         </style>
         
+        <!-- load tool room services -->
         <iron-ajax
             auto
             id="servicesAjax"
             url="php/json/tool_room_services.php"
             handle-as="json"
-            last-response="{{services}}">
+            last-response="{{services}}"
+            loading="{{servicesLoading}}">
         </iron-ajax>
         
+        <!-- offline mirror -->
         <app-indexeddb-mirror
             key="feature"
             data="{{services}}"
             persisted-data="{{persistedServices}}"
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{servicesLoading}}">
+            <paper-spinner active="{{servicesLoading}}"></paper-spinner>
+        </template>
         
         <!-- editable state to add a new service -->
         <template is="dom-if" if="{{editable}}">

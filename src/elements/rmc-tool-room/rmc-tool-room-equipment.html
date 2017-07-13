@@ -15,31 +15,46 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
+<!-- Paper Spinner -->
+<link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="../rmc-shared-styles-editable.html">
 
+<!-- Paper Spinner Styles -->
+<link rel="import" href="../rmc-shared-styles-paper-spinner.html">
+
 <dom-module id="rmc-tool-room-equipment">
     <template>
+        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable">
         .btn {
             margin-bottom: 1rem;
         }
         </style>
         
+        <!-- load tool room equipment -->
         <iron-ajax
             auto
             id="equipmentAjax"
             url="php/json/tool_room_equipment.php"
             handle-as="json"
-            last-response="{{equipment}}">
+            last-response="{{equipment}}"
+            loading="{{equipmentLoading}}">
         </iron-ajax>
         
+        <!-- offline mirror -->
         <app-indexeddb-mirror
             key="feature"
             data="{{equipment}}"
             persisted-data="{{persistedEquipment}}"
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{equipmentLoading}}">
+            <paper-spinner active="{{equipmentLoading}}"></paper-spinner>
+        </template>
         
         <!-- editable state to add a new machine -->
         <template is="dom-if" if="{{editable}}">
@@ -67,7 +82,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
             </form>
             
-            <!-- iron ajax request to delete service -->
+            <!-- iron ajax request to delete machine -->
             <iron-ajax
                 id="delete"
                 url="php/delete/tool_room_equipment_delete.php"

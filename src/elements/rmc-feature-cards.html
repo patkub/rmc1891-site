@@ -32,8 +32,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             .card-title {
                 color: #0d47a1;
             }
+            
+            .card-text {
+                font-size: 20px;
+            }
         </style>
         
+        <!-- load feature cards -->
         <iron-ajax
             auto
             url="php/json/feature_cards.php"
@@ -42,6 +47,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             loading="{{featureCardsLoading}}">
         </iron-ajax>
         
+        <!-- offline mirror -->
         <app-indexeddb-mirror
             key="feature"
             data="{{featureCards}}"
