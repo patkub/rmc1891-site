@@ -35,7 +35,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             auto
             url="php/json/feature_cards.php"
             handle-as="json"
-            last-response="{{featureCards}}">
+            last-response="{{featureCards}}"
+            loading="{{featureCardsLoading}}">
         </iron-ajax>
         
         <app-indexeddb-mirror
@@ -45,10 +46,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- spinner works -->
-        <!-- <paper-spinner active="true"></paper-spinner> -->
-        
-        <paper-spinner active="{{loading}}"></paper-spinner>
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{featureCardsLoading}}">
+            <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
+        </template>
         
         <div class="card-deck">
             <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
@@ -81,17 +82,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                     value: false,
                     reflectToAttribute: true,
                 },
-                loading: {
-                    type: Boolean,
-                    value: true,
-                    reflectToAttribute: true,
-                },
             };
-        }
-        
-        dataLoaded() {
-            // data finished loading
-            this.loading = false;
         }
     }
 
