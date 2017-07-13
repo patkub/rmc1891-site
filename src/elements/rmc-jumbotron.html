@@ -6,6 +6,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer Library -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!--
+`<rmc-jumbotron>` displays a jumbotron to showcase information.
+
+In typical use, add the element to your body, and set the title, text, button,
+and link attributes:
+
+    <body>
+        <rmc-jumbotron title="Title"
+            text="Text"
+            button="Button text"
+            link="/path/"></rmc-jumbotron>
+-->
 <dom-module id="rmc-jumbotron">
     <template>
         <style>
@@ -59,9 +71,16 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
       static get properties() {
         return {
+            /** Jumbotron title */
             title: String,
+            
+            /** Jumbotron text */
             text: String,
+            
+            /** Jumbotron button text */
             button: String,
+            
+            /** Jumbotron button link */
             link: String,
         };
       }
