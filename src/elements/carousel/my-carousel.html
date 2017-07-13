@@ -75,7 +75,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     class MyCarousel extends MyMixin(Polymer.Element) {
       // Extend Polymer.Element with MyMixin  
       
-      static get is() {return 'my-carousel';}
+      static get is() {
+        return 'my-carousel';
+      }
 
       _selectedChanged(selected, oldSelected) {
         super._selectedChanged(selected, oldSelected);

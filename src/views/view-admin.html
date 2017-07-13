@@ -137,7 +137,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   <script>
     /* eslint new-cap: ["error", { "capIsNew": false }] */
     class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
-        static get is() {return 'view-admin';}
+        static get is() {
+            return 'view-admin';
+        }
         static get properties() {
             return {
                 loggedIn: {

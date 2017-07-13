@@ -105,7 +105,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
     class RMCToolRoomServices extends
           Polymer.GestureEventListeners(Polymer.Element) {
-      static get is() {return 'rmc-tool-room-services';}
+      static get is() {
+        return 'rmc-tool-room-services';
+      }
+      
       static get properties() {
             return {
                 editable: {

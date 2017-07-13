@@ -109,7 +109,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     
     class RMCEquipmentList extends
           Polymer.GestureEventListeners(Polymer.Element) {
-      static get is() {return 'rmc-equipment-list';}
+      static get is() {
+        return 'rmc-equipment-list';
+      }
+      
       static get properties() {
             return {
                 editable: {
