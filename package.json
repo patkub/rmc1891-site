@@ -8,7 +8,10 @@
   "author": "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)",
   "files": [
     "images/",
+    "php/",
+    "scripts/",
     "scss/",
+    "sql/",
     "src/",
     "test/",
     "index.html"

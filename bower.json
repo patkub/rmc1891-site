@@ -12,8 +12,9 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "build",
+    "css",
+    "fonts"
   ],
   "devDependencies": {
     "web-component-tester": "^6.0.0"
