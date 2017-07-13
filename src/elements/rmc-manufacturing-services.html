@@ -24,6 +24,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles-paper-spinner.html">
 
+<!--
+`<rmc-manufacturing-services>` displays a list of manufacturing services.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-manufacturing-services></rmc-manufacturing-services>
+
+Add the editable attribute to include features to edit the list:
+
+    <rmc-manufacturing-services editable></rmc-manufacturing-services>
+-->
 <dom-module id="rmc-manufacturing-services">
     <template>
         <style include="rmc-shared-styles-paper-spinner"></style>
@@ -111,6 +123,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
       static get properties() {
             return {
+                /** Whether this element is editable. */
                 editable: {
                     type: Boolean,
                     value: false,
