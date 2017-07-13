@@ -18,6 +18,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Editable State Styles -->
 <link rel="import" href="rmc-shared-styles-editable.html">
 
+<!--
+`<rmc-equipment-list>` displays a table listing of machines.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-equipment-list></rmc-equipment-list>
+
+Add the editable attribute to include features to edit the list:
+
+    <rmc-equipment-list editable></rmc-equipment-list>
+-->
 <dom-module id="rmc-equipment-list">
     <template>
         <style include="rmc-shared-styles-editable">
@@ -115,6 +127,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
       static get properties() {
             return {
+                /** Whether this element is editable. */
                 editable: {
                     type: Boolean,
                     value: false,

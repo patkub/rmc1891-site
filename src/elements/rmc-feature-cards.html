@@ -21,6 +21,18 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles-paper-spinner.html">
 
+<!--
+`<rmc-feature-cards>` displays a group of cards that highlight features.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-feature-cards></rmc-feature-cards>
+
+Add the editable attribute to include features to edit card text content:
+
+    <rmc-feature-cards editable></rmc-feature-cards>
+-->
 <dom-module id="rmc-feature-cards">
     <template>
         <style include="rmc-shared-styles-paper-spinner">
@@ -89,6 +101,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
       static get properties() {
             return {
+                /** Whether this element is editable. */
                 editable: {
                     type: Boolean,
                     value: false,
