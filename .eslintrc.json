@@ -11,11 +11,11 @@
     "html"
   ],
   "rules": {
-    "require-jsdoc": "off",
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }],
+    "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-var": "off",
-    "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }]
+    "require-jsdoc": "off"
   },
   "globals": {
     "Polymer": true
