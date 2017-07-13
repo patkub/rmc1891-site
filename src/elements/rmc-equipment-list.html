@@ -15,14 +15,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
+<!-- Editable State Styles -->
+<link rel="import" href="rmc-shared-styles-editable.html">
+
 <dom-module id="rmc-equipment-list">
     <template>
-        <style>
+        <style include="rmc-shared-styles-editable">
         .btn {
             margin-bottom: 1rem;
-        }
-        .fa-trash-o {
-            color: #c62828;
         }
         </style>
         

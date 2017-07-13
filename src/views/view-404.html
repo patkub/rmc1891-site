@@ -3,9 +3,12 @@
 <!-- App Location -->
 <link rel="import" href="../../node_modules/@npm-polymer/app-route/app-location.html">
 
+<!-- Shared Styles for Views -->
+<link rel="import" href="shared-styles-views.html">
+
 <dom-module id="view-404">
   <template>
-	<style>
+	<style include="shared-styles-views">
 		.container {
 			text-align: left;
 			margin-top: 100px;

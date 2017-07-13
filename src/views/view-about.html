@@ -6,8 +6,13 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- Shared Styles for Views -->
+<link rel="import" href="shared-styles-views.html">
+
 <dom-module id="view-about">
   <template>
+    <style include="shared-styles-views"></style>
+    
     <!-- container -->
     <div class="container">
     
@@ -18,7 +23,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
                 <source srcset="images/about.webp" type="image/webp">
                 <img src="images/about.png" class="img-fluid img-center" alt="Rogers Manufacturing Sign">
             </picture>
-            
         </p>
         
         <p>Since 1891 The Rogers Manufacturing Company has been providing quality crafted products for a wide variety of industries. With over 60 years’ experience in Plastic Injection Molding, we have developed an experienced team in all aspects of Plastics Manufacturing from product design down to shipping logistics, and everything in between.</p></p>
