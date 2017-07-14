@@ -5,6 +5,9 @@
  * @author Patrick Kubiak
  */
 
+// Start php session
+session_start();
+
 // Database info
 require_once('db.php');
 
@@ -25,6 +28,7 @@ if ($db->connect_errno == 0) {
     $row = $result->fetch_assoc();
     $admin_pass = $row["admin_pass"];
 }
+//&& isset($_SESSION['auth']) && $_SESSION['auth'] == true
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get login username and password
