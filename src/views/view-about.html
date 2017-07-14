@@ -6,6 +6,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- Marked Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/marked-element/marked-element.html">
+
+<!-- Autogrow Textarea -->
+<!-- <link rel="import" href="../../node_modules/@npm-polymer/marked-element/marked-element.html"> -->
+
 <!-- Shared Styles for Views -->
 <link rel="import" href="shared-styles-views.html">
 
@@ -32,6 +38,14 @@ In typical use, add the element to an `<iron-pages>` element:
     
         <h2>About</h2>
         
+        <textarea rows="10" value="{{text::input}}" style="min-width: 100%"></textarea>
+        
+        <h2>Preview:</h2>
+        <marked-element markdown="{{text}}">
+            <div slot="markdown-html"></div>
+        </marked-element>
+        
+        <!--
         <p>
             <picture>
                 <source srcset="images/about.webp" type="image/webp">
@@ -50,6 +64,7 @@ In typical use, add the element to an `<iron-pages>` element:
         <p>Through our commitment to satisfying customer’s needs and our competitive pricing we have become the leading Northeast Dairy Case Provider manufacturing and delivering millions of cases every year. We also have the room to store over 200,000 milk cases on site allowing for instant delivery. Continuing further into the food service industry, we at The Rogers Manufacturing Company also design and manufacture products for food service tableware solutions, food processing equipment, food storage solutions, and more. We also provide just-in-time manufacturing for the ever growing commercial storage needs.</p>
         
         <p>The Rogers Manufacturing Company is located in central Connecticut, equidistant from New York City and Boston close to Interstates 91 and 691 in a great position to service the entire Northeast region. If you are a company in the Northeast looking for a competent, local, low cost molder then we are it. We are a family owned and operated business dedicated to providing the best customer experience possible. If we go the “extra mile” to make our customers successful, then we will be successful. The quality and delivery we provide at a low cost is unparalleled. We are able to offer low prices because we have a small management team and we own our facility. If you would like more information please reach out through our <a href="/contact/">contact page</a>, or call us at <a href="tel:+18603468648">(860) 346-8648</a>.</p>
+        -->
         
     </div>
     <!-- /container -->
