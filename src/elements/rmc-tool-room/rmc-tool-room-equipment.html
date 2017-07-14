@@ -63,11 +63,6 @@ Add the editable attribute to include features to edit the list:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{equipmentLoading}}">
-            <paper-spinner active="{{equipmentLoading}}"></paper-spinner>
-        </template>
-        
         <!-- editable state to add a new machine -->
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add machine -->
@@ -123,6 +118,11 @@ Add the editable attribute to include features to edit the list:
 				</template>
 			</tbody>
 		</table>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{equipmentLoading}}">
+            <paper-spinner active="{{equipmentLoading}}"></paper-spinner>
+        </template>
     </template>
 
   <script>
