@@ -18,6 +18,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner -->
 <link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
+<!-- RMC Markdown Info -->
+<link rel="import" href="rmc-markdown-info.html">
+
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
@@ -74,6 +77,9 @@ In typical use, add the element to your body with the desired view:
         </template>
         
         <template is="dom-if" if="{{editable}}">
+            <!-- information about markdown syntax -->
+            <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"></rmc-markdown-info>
+            
             <textarea rows="10" value="{{persistedViewText::input}}" style="min-width: 100%"></textarea>
             <h2>Preview:</h2>
         </template>

@@ -1,0 +1,42 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!--
+`<rmc-markdown-info>` displays information about markdown syntax.
+
+In typical use, add the element to your body:
+
+    <body>
+        <rmc-markdown-info></rmc-markdown-info>
+-->
+<dom-module id="rmc-markdown-info">
+    <template>
+        <div class="alert alert-info" role="alert">
+          <a href="[[markdown]]"><strong>Edit pages</strong> with Markdown syntax.</a>
+        </div>
+    </template>
+
+  <script>
+    class RMCMarkdownInfo extends Polymer.Element {
+      static get is() {
+        return 'rmc-markdown-info';
+      }
+      
+      static get properties() {
+            return {
+                /** Markdown cheatsheet link */
+                markdown: {
+                    type: String,
+                },
+            };
+        }
+    }
+
+    window.customElements.define(RMCMarkdownInfo.is, RMCMarkdownInfo);
+  </script>
+</dom-module>
