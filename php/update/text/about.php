@@ -1,6 +1,6 @@
 <?php
 /**
- * Update Feature Cards
+ * Update About text
  *
  * @author Patrick Kubiak
  */
@@ -10,9 +10,6 @@ session_start();
  
 // Database info
 require_once('../../db.php');
- 
-// Validate user input
-require_once('../../util/test_input.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     isset($_SESSION['auth']) && $_SESSION['auth'] == true) {
@@ -22,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
         // successfully connected to MySQL server
         
         // validate & store input
-        $text = test_input($_POST['text']);
+        $text = $_POST['text'];
         
         // update queries
         $UpdateQuery = sprintf("UPDATE Text SET text='%s' WHERE `name` = 'about'",

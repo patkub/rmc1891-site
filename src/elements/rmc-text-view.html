@@ -21,89 +21,74 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
-<!-- Shared Styles for Views -->
-<link rel="import" href="../views/shared-styles-views.html">
-
 <!--
-`<rmc-about-text>` displays text for the about page.
+`<rmc-text-view>` displays text for a page.
 
-In typical use, just add the element to your body:
+In typical use, add the element to your body with the desired view:
 
     <body>
-      <rmc-about-text></rmc-about-text>
-
-Add the editable attribute to include features to edit text content:
-
-    <rmc-about-text editable></rmc-about-text>
+      <rmc-text-view view="about" title="About"></rmc-text-view>
 -->
-<dom-module id="rmc-about-text">
+<dom-module id="rmc-text-view">
     <template>
-        <style include="shared-styles-views"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
-        
-        <style>        
-        /* paragraphs */
-        .markdown-html p {
+        <style include="rmc-shared-styles-paper-spinner">
+          .h2, h2 {
+            color: #1565c0;
+            font-size: 3rem;
+            line-height: 6rem;
+            margin-bottom: 0px;
+          }
+          
+          p {
             font-size: 20px;
-        }
-        
-        /* center image */
-        .markdown-html img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+          }
+          
+          .container {
+            margin-top: 56px;
+          }
         </style>
         
-        <!-- load about text -->
+        <!-- load text -->
         <iron-ajax
             auto
-            id="aboutAjax"
-            url="php/json/text/about.php"
+            id="viewAjax"
+            url="php/json/text/[[view]].php"
             handle-as="json"
-            last-response="{{aboutText}}"
-            loading="{{aboutTextLoading}}">
+            last-response="{{viewText}}"
+            loading="{{viewTextLoading}}">
         </iron-ajax>
         
-        <!-- offline mirror the about text -->
+        <!-- offline mirror the text -->
         <app-indexeddb-mirror
             key="feature"
-            data="{{aboutText}}"
-            persisted-data="{{persistedAboutText}}"
+            data="{{viewText}}"
+            persisted-data="{{persistedViewText}}"
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
         <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{aboutTextLoading}}">
-            <paper-spinner active="{{aboutTextLoading}}"></paper-spinner>
+        <template is="dom-if" if="{{viewTextLoading}}">
+            <paper-spinner active="{{viewTextLoading}}"></paper-spinner>
         </template>
         
-        <h2>About</h2>
+        <h2>[[title]]</h2>
         
         <template is="dom-if" if="{{editable}}">
-            <textarea rows="10" value="{{persistedAboutText::input}}" style="min-width: 100%"></textarea>
+            <textarea rows="10" value="{{persistedViewText::input}}" style="min-width: 100%"></textarea>
             <h2>Preview:</h2>
         </template>
         
-        <marked-element markdown="{{persistedAboutText}}">
-            <div slot="markdown-html" class="markdown-html"></div>
-        </marked-element>
-        
-        <marked-element>
-          <div class="markdown-html"></div>
-          <script type="text/markdown">
-            [[persistedAboutText]]
-          </script>
+        <marked-element markdown="{{persistedViewText}}">
+          <div slot="markdown-html"></div>
         </marked-element>
         
         <template is="dom-if" if="{{editable}}">
-        
-            <button class="btn btn-primary" on-tap="_save" text$="{{persistedAboutText}}">Save</button>
+            <button class="btn btn-primary" on-tap="_save" text$="{{persistedViewText}}">Save</button>
             
             <!-- iron ajax request to update text -->
             <iron-ajax
                 id="update"
-                url="php/update/text/about.php"
+                url="php/update/text/[[view]].php"
                 handle-as="json"
                 method="POST">
             </iron-ajax>
@@ -114,10 +99,10 @@ Add the editable attribute to include features to edit text content:
   <script>
     /* eslint new-cap: ["error", { "capIsNew": false }] */
     
-    class RMCAboutText extends
+    class RMCTextView extends
           Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
-        return 'rmc-about-text';
+        return 'rmc-text-view';
       }
       
       static get properties() {
@@ -127,6 +112,14 @@ Add the editable attribute to include features to edit text content:
                     type: Boolean,
                     value: false,
                     reflectToAttribute: true,
+                },
+                /** The view that is being edited */
+                view: {
+                    type: String,
+                },
+                /** Page title */
+                title: {
+                    type: String,
                 },
             };
         }
@@ -146,15 +139,15 @@ Add the editable attribute to include features to edit text content:
            xhr.body = params;
            xhr.generateRequest();
 
-           // update about text
-           let aboutAjax = this.shadowRoot.getElementById('aboutAjax');
-           aboutAjax.generateRequest();
+           // update text
+           let viewAjax = this.shadowRoot.getElementById('viewAjax');
+           viewAjax.generateRequest();
            
            // reset the form
            this.shadowRoot.getElementById('serviceForm').reset();
         }
     }
 
-    window.customElements.define(RMCAboutText.is, RMCAboutText);
+    window.customElements.define(RMCTextView.is, RMCTextView);
   </script>
 </dom-module>
