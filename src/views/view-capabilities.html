@@ -15,8 +15,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Tool Room List -->
 <link rel="import" href="../elements/rmc-tool-room/rmc-tool-room-list.html">
 
-<!-- Shared Styles for Views -->
-<link rel="import" href="shared-styles-views.html">
+<!-- Text View -->
+<link rel="import" href="../elements/rmc-text-view.html">
 
 <!--
 `<view-capabilities>` is the view for the capabilities page.
@@ -38,13 +38,8 @@ In typical use, add the element to an `<iron-pages>` element:
     
     <!-- container -->
     <div class="container">
-        
-        <h2>Capabilities</h2>
-        
-        <p>With over 45 years of design expertise and 21 plastic molding machines, our seasoned manufacturing team provides consistent on-time delivery for critical product requirements.</p>
-        <p>We provide mold making either in house, or with our domestic and worldwide partners to ensure prompt and affordable service.</p>
-        <p>The Rogers Manufacturing Company is experienced in processing hundreds of resins and colors. We process commodity as well as “specialty” engineered resins. We have seven silos making room to store over 1 million pounds of resin on site for economical procurement capabilities.</p>
-        <p>For your convenience we operate 24 hours a day, 5 to 7 days a week.</p>
+        <!-- capabilities text -->
+        <rmc-text-view view="capabilities" title="Capabilities"></rmc-text-view>
         
         <h3>Manufacturing Services:</h3>
         
