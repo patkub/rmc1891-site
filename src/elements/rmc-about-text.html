@@ -38,7 +38,22 @@ Add the editable attribute to include features to edit text content:
 -->
 <dom-module id="rmc-about-text">
     <template>
+        <style include="shared-styles-views"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
+        
+        <style>        
+        /* paragraphs */
+        .markdown-html p {
+            font-size: 20px;
+        }
+        
+        /* center image */
+        .markdown-html img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        </style>
         
         <!-- load about text -->
         <iron-ajax
@@ -71,7 +86,14 @@ Add the editable attribute to include features to edit text content:
         </template>
         
         <marked-element markdown="{{persistedAboutText}}">
-            <div slot="markdown-html"></div>
+            <div slot="markdown-html" class="markdown-html"></div>
+        </marked-element>
+        
+        <marked-element>
+          <div class="markdown-html"></div>
+          <script type="text/markdown">
+            [[persistedAboutText]]
+          </script>
         </marked-element>
         
         <template is="dom-if" if="{{editable}}">
