@@ -66,12 +66,12 @@ In typical use, add the element to your body with the desired view:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
+        <h2>[[title]]</h2>
+        
         <!-- paper-spinner while loading -->
         <template is="dom-if" if="{{viewTextLoading}}">
             <paper-spinner active="{{viewTextLoading}}"></paper-spinner>
         </template>
-        
-        <h2>[[title]]</h2>
         
         <template is="dom-if" if="{{editable}}">
             <textarea rows="10" value="{{persistedViewText::input}}" style="min-width: 100%"></textarea>
