@@ -21,6 +21,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
+<!-- Shared Styles for Views -->
+<link rel="import" href="../views/shared-styles-views.html">
+
 <!--
 `<rmc-about-text>` displays text for the about page.
 
@@ -40,6 +43,7 @@ Add the editable attribute to include features to edit text content:
         <!-- load about text -->
         <iron-ajax
             auto
+            id="aboutAjax"
             url="php/json/text/about.php"
             handle-as="json"
             last-response="{{aboutText}}"
@@ -69,10 +73,27 @@ Add the editable attribute to include features to edit text content:
         <marked-element markdown="{{persistedAboutText}}">
             <div slot="markdown-html"></div>
         </marked-element>
+        
+        <template is="dom-if" if="{{editable}}">
+        
+            <button class="btn btn-primary" on-tap="_save" text$="{{persistedAboutText}}">Save</button>
+            
+            <!-- iron ajax request to update text -->
+            <iron-ajax
+                id="update"
+                url="php/update/text/about.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
+        </template>
+        
     </template>
 
   <script>
-    class RMCAboutText extends Polymer.Element {
+    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    
+    class RMCAboutText extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-about-text';
       }
@@ -86,6 +107,29 @@ Add the editable attribute to include features to edit text content:
                     reflectToAttribute: true,
                 },
             };
+        }
+        
+      /**
+       * Saves the text
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to add.
+       */
+       _save(e) {
+           // get new text
+           let text = e.target.getAttribute('text');
+           
+           // update the text
+           let params = 'text=' + text;
+           let xhr = this.shadowRoot.getElementById('update');
+           xhr.body = params;
+           xhr.generateRequest();
+
+           // update about text
+           let aboutAjax = this.shadowRoot.getElementById('aboutAjax');
+           aboutAjax.generateRequest();
+           
+           // reset the form
+           this.shadowRoot.getElementById('serviceForm').reset();
         }
     }
 
