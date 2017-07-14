@@ -1,0 +1,94 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- Marked Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/marked-element/marked-element.html">
+
+<!-- Paper Spinner -->
+<link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+
+<!-- Paper Spinner Styles -->
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+
+<!--
+`<rmc-feature-cards>` displays a group of cards that highlight features.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-feature-cards></rmc-feature-cards>
+
+Add the editable attribute to include features to edit card text content:
+
+    <rmc-feature-cards editable></rmc-feature-cards>
+-->
+<dom-module id="rmc-feature-cards">
+    <template>
+        <style include="rmc-shared-styles-paper-spinner"></style>
+        
+        <!-- load about text -->
+        <iron-ajax
+            auto
+            url="php/json/text/about.php"
+            handle-as="json"
+            last-response="{{aboutText}}"
+            loading="{{aboutTextLoading}}">
+        </iron-ajax>
+        
+        <!-- offline mirror the about text -->
+        <app-indexeddb-mirror
+            key="feature"
+            data="{{aboutText}}"
+            persisted-data="{{persistedAboutText}}"
+            worker-url="app-indexeddb-mirror-worker.js">
+        </app-indexeddb-mirror>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{aboutTextLoading}}">
+            <paper-spinner active="{{aboutTextLoading}}"></paper-spinner>
+        </template>
+        
+        <h2>About</h2>
+        
+        <template is="dom-if" if="{{editable}}">
+            <textarea rows="10" value="{{persistedAboutText::input}}" style="min-width: 100%"></textarea>
+            <h2>Preview:</h2>
+        </template>
+        
+        <marked-element markdown="{{persistedAboutText}}">
+            <div slot="markdown-html"></div>
+        </marked-element>
+    </template>
+
+  <script>
+    class RMCAboutText extends Polymer.Element {
+      static get is() {
+        return 'rmc-about-text';
+      }
+      
+      static get properties() {
+            return {
+                /** Whether this element is editable. */
+                editable: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true,
+                },
+            };
+        }
+    }
+
+    window.customElements.define(RMCAboutText.is, RMCAboutText);
+  </script>
+</dom-module>

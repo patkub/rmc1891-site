@@ -12,14 +12,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- Paper Spinner -->
-<link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
-
-<!-- Marked Library -->
-<link rel="import" href="../../node_modules/@npm-polymer/marked-element/marked-element.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+<!-- About Text -->
+<link rel="import" href="../elements/rmc-about-text.html">
 
 <!-- Shared Styles for Views -->
 <link rel="import" href="shared-styles-views.html">
@@ -45,37 +39,7 @@ In typical use, add the element to an `<iron-pages>` element:
     <!-- container -->
     <div class="container">
         
-        <!-- load about text -->
-        <iron-ajax
-            auto
-            url="php/json/text/about.php"
-            handle-as="json"
-            last-response="{{aboutText}}"
-            loading="{{aboutTextLoading}}">
-        </iron-ajax>
-        
-        <!-- offline mirror the about text -->
-        <app-indexeddb-mirror
-            key="feature"
-            data="{{aboutText}}"
-            persisted-data="{{persistedAboutText}}"
-            worker-url="app-indexeddb-mirror-worker.js">
-        </app-indexeddb-mirror>
-        
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{aboutTextLoading}}">
-            <paper-spinner active="{{aboutTextLoading}}"></paper-spinner>
-        </template>
-        
-        <h2>About</h2>
-        
-        <textarea rows="10" value="{{persistedAboutText::input}}" style="min-width: 100%"></textarea>
-        
-        <h2>Preview:</h2>
-        
-        <marked-element markdown="{{persistedAboutText}}">
-            <div slot="markdown-html"></div>
-        </marked-element>
+        <rmc-about-text></rmc-about-text>
         
         <!--
         <p>
