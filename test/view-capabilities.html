@@ -37,9 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           capabilitiesView = fixture('CapabilitiesView');
         });
 
-        test('Heading level 2 should be Capabilities', function() {
-          let heading = capabilitiesView.shadowRoot.querySelector('h2');
-          assert.equal(heading.textContent, 'Capabilities');
+        test('Text view should be Capabilities', function() {
+          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.view, 'capabilities');
         });
       });
     </script>
