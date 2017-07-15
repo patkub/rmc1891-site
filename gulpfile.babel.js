@@ -24,6 +24,7 @@ import swPrecache from 'sw-precache';
 import sftp from 'gulp-sftp';
 import minimist from 'minimist';
 import browserSync from 'browser-sync';
+import historyFallback from 'connect-history-api-fallback';
 import pkg from './package.json';
 
 const banner = ['<!--',
@@ -142,9 +143,13 @@ gulp.task('watch', function() {
  */
 gulp.task('serve:browsersync:local', () => {
   browserSync({
-  notify: false,
-  server: '.',
-  browser: 'chrome',
+      server: {
+        baseDir: '.',
+        middleware: [
+            historyFallback()
+        ]
+      },
+      browser: 'chrome',
   });
 
   watch();
@@ -155,11 +160,13 @@ gulp.task('serve:browsersync:local', () => {
  */
 gulp.task('serve:browsersync:build', () => {
   browserSync({
-  notify: false,
-  server: {
-    baseDir: ['build/es5-bundled/'],
-  },
-  browser: 'chrome',
+      server: {
+        baseDir: 'build/es5-bundled/',
+        middleware: [
+            historyFallback()
+        ]
+      },
+      browser: 'chrome',
   });
 
   watch();
