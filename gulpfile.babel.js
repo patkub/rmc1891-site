@@ -146,8 +146,8 @@ gulp.task('serve:browsersync:local', () => {
       server: {
         baseDir: '.',
         middleware: [
-            historyFallback()
-        ]
+            historyFallback(),
+        ],
       },
       browser: 'chrome',
   });
@@ -163,8 +163,8 @@ gulp.task('serve:browsersync:build', () => {
       server: {
         baseDir: 'build/es5-bundled/',
         middleware: [
-            historyFallback()
-        ]
+            historyFallback(),
+        ],
       },
       browser: 'chrome',
   });
