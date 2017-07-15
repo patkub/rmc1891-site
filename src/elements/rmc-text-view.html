@@ -24,6 +24,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
+<!-- Shared Styles for Views -->
+<link rel="import" href="../views/shared-styles-views.html">
+
 <!--
 `<rmc-text-view>` displays text for a page.
 
@@ -34,22 +37,8 @@ In typical use, add the element to your body with the desired view:
 -->
 <dom-module id="rmc-text-view">
     <template>
-        <style include="rmc-shared-styles-paper-spinner">
-          .h2, h2 {
-            color: #1565c0;
-            font-size: 3rem;
-            line-height: 6rem;
-            margin-bottom: 0px;
-          }
-          
-          p {
-            font-size: 20px;
-          }
-          
-          .container {
-            margin-top: 56px;
-          }
-        </style>
+        <style include="shared-styles-views"></style>
+        <style include="rmc-shared-styles-paper-spinner"></style>
         
         <!-- load text -->
         <iron-ajax

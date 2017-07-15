@@ -51,7 +51,7 @@ const IMAGES = [
 function watch() {
   gulp.watch(['scss/**/*.scss'], ['css', reload]);
   gulp.watch(IMAGES, ['webp', reload]);
-  gulp.watch(['src/**/*'], reload);
+  gulp.watch(['php/**/*', 'src/**/*'], reload);
   gulp.watch(['index.html'], reload);
 }
 
@@ -168,8 +168,6 @@ gulp.task('serve:browsersync:build', () => {
       },
       browser: 'chrome',
   });
-
-  watch();
 });
 
 // Deploy website
