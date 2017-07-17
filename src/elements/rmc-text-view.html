@@ -39,17 +39,13 @@ In typical use, add the element to your body with the desired view:
     <template>
         <style include="shared-styles-views"></style>
         <style include="rmc-shared-styles-paper-spinner">
-            .marked-element > p {
-                font-size:16pt;
+            
+            .markdown-html p {
+                font-size:30pt;
             }
-            .marked-element > .img-center {
-                display:block;
-                margin-left:auto;
-                margin-right:auto
-            }
-            .marked-element > img {
-                width:100%;
-                height:auto;
+            
+            textarea {
+                min-width: 100%;
             }
         </style>
         
@@ -65,7 +61,7 @@ In typical use, add the element to your body with the desired view:
         
         <!-- offline mirror the text -->
         <app-indexeddb-mirror
-            key="feature"
+            key="[[view]]Text"
             data="{{viewText}}"
             persisted-data="{{persistedViewText}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -82,12 +78,12 @@ In typical use, add the element to your body with the desired view:
             <!-- information about markdown syntax -->
             <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"></rmc-markdown-info>
             
-            <textarea rows="10" value="{{persistedViewText::input}}" style="min-width: 100%"></textarea>
+            <textarea rows="10" value="{{persistedViewText::input}}"></textarea>
             <h2>Preview:</h2>
         </template>
         
         <marked-element markdown="{{persistedViewText}}">
-          <div slot="markdown-html"></div>
+          <div class="markdown-html"></div>
         </marked-element>
         
         <template is="dom-if" if="{{editable}}">
