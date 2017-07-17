@@ -1,0 +1,56 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- Text View -->
+<link rel="import" href="../../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles-views.html">
+
+<!--
+`<view-admin-contact>` is the view for the admin contact page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-admin-contact id="contact"></view-contact>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-contact">
+    <template>
+        <style include="shared-styles-views"></style>
+        
+        <!-- container -->
+        <div class="container">
+            <!-- contact text -->
+            <rmc-text-view view="contact" title="Contact" editable></rmc-text-view>
+        </div>
+        <!-- /container -->
+        
+    </template>
+
+    <script>
+        /* eslint new-cap: ["error", { "capIsNew": false }] */
+        
+        class ViewAdminContact extends
+              Polymer.GestureEventListeners(Polymer.Element) {
+            static get is() {
+                return 'view-admin-contact';
+            }
+        }
+        window.customElements.define(ViewAdminContact.is, ViewAdminContact);
+    </script>
+</dom-module>

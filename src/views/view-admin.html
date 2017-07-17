@@ -6,6 +6,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- App Location -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-location.html">
+
+<!-- App Route -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-route.html">
+
 <!-- Template Repeater -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
 
@@ -27,11 +33,21 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Tool Room List -->
 <link rel="import" href="../elements/rmc-tool-room/rmc-tool-room-list.html">
 
+<!-- Admin Tabs -->
+<link rel="import" href="../elements/rmc-admin-tabs.html">
+
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
 
 <!-- Shared Styles for Views -->
 <link rel="import" href="shared-styles-views.html">
+
+<!-- Admin Views -->
+<link rel="lazy-import" href="admin/view-admin-home.html">
+<link rel="lazy-import" href="admin/view-admin-about.html">
+<link rel="lazy-import" href="admin/view-admin-capabilities.html">
+<link rel="lazy-import" href="admin/view-admin-contact.html">
+<link rel="lazy-import" href="admin/view-admin-404.html">
 
 <!--
 `<view-admin>` is the view for the admin page.
@@ -91,70 +107,23 @@ In typical use, add the element to an `<iron-pages>` element:
         <template is="dom-if" if="{{loggedIn}}">
             <button on-tap="logout" class="btn btn-primary">Logout</button>
             
-            <!-- TODO: tab active class -->
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" href="#" role="tab" on-tap="changePage" data-args="home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" role="tab" on-tap="changePage" data-args="about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" role="tab" on-tap="changePage" data-args="capabilities">Capabilities</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" role="tab" on-tap="changePage" data-args="contact">Contact</a>
-              </li>
-            </ul>
+            <app-location route="{{route}}"></app-location>
+            <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
+            
+            <!-- navigation tabs -->
+            <rmc-admin-tabs active="{{page}}"></rmc-admin-tabs>
             
             <iron-pages
-                selected="[[page]]"
+                selected="{{page}}"
                 attr-for-selected="id"
-                fallback-selection="home"
+                fallback-selection="404"
                 class="pages">
                 
-                <div id="home">
-                    <form action="php/update/feature_cards_update.php" method="POST">
-                        <!-- feature cards -->
-                        <rmc-feature-cards editable></rmc-feature-cards>
-                        
-                        <button name="submit" type="submit" class="btn btn-primary">Save</button>
-                    </form>
-                </div>
-                
-                <div id="about">
-                    <!-- about text -->
-                    <rmc-text-view view="about" title="About" editable></rmc-text-view>
-                </div>
-                
-                <div id="capabilities">
-                    <!-- capabilities text -->
-                    <rmc-text-view view="capabilities" title="Capabilities" editable></rmc-text-view>
-                    
-                    <h3>Manufacturing Services:</h3>
-                    
-                    <!-- manufacturing services -->
-                    <rmc-manufacturing-services editable></rmc-manufacturing-services>
-                    <br>
-                    
-                    <h3>Equipment List:</h3>
-                    
-                    <!-- equipment list -->
-                    <rmc-equipment-list editable></rmc-equipment-list>
-                    <br>
-                    
-                    <h3>Tool Room:</h3>
-                    
-                    <!-- tool room list -->
-                    <rmc-tool-room-list editable></rmc-tool-room-list>
-                    <br>
-                </div>
-                
-                <div id="contact">
-                    <!-- contact text -->
-                    <rmc-text-view view="contact" title="Contact" editable></rmc-text-view>
-                </div>
-                
+                <view-admin-home id="home"></view-admin-home>
+                <view-admin-about id="about"></view-admin-about>
+                <view-admin-capabilities id="capabilities"></view-admin-capabilities>
+                <view-admin-contact id="contact"></view-admin-contact>
+                <view-admin-404 id="404"></view-admin-404>
             </iron-pages>
         </template>
         
@@ -169,6 +138,7 @@ In typical use, add the element to an `<iron-pages>` element:
         static get is() {
             return 'view-admin';
         }
+        
         static get properties() {
             return {
                 loggedIn: {
@@ -180,8 +150,44 @@ In typical use, add the element to an `<iron-pages>` element:
                     type: String,
                     reflectToAttribute: true,
                 },
+                routeData: Object,
             };
         }
+        
+        static get observers() {
+            return [
+              '_routePageChanged(routeData.page)',
+            ];
+        }
+        
+        _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+              return;
+            }
+            // If no page was found in the route data, page will be an empty string.
+            // Default to 'home' in that case.
+            this.page = page || 'home';
+        
+            // Scroll to top of page
+            window.scrollTo(0, 0);
+        }
+        
+        _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            let resolvedPageUrl = this.resolveUrl('admin/view-admin-' + page + '.html');
+            Polymer.importHref(
+                resolvedPageUrl,
+                null,
+                this._showPage404.bind(this),
+                true);
+        }
+        
+        _showPage404() {
+            this.page = '404';
+        }
+      
         login(e) {
             // Get form login info
             let user = this.shadowRoot.querySelector('#username').value;

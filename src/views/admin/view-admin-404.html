@@ -4,16 +4,16 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 -->
 
 <!-- Polymer -->
-<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
 <!-- App Location -->
-<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-location.html">
+<link rel="import" href="../../../node_modules/@npm-polymer/app-route/app-location.html">
 
 <!-- Shared Styles for Views -->
-<link rel="import" href="shared-styles-views.html">
+<link rel="import" href="../shared-styles-views.html">
 
 <!--
-`<view-404>` is the view for a 404 page not found error.
+`<view-admin-404>` is the view for the admin 404 page not found error.
 
 In typical use, add the element to an `<iron-pages>` element:
 
@@ -24,10 +24,10 @@ In typical use, add the element to an `<iron-pages>` element:
         role="main">
         
         ...
-        <view-404 id="404"></view-404>
+        <view-admin-404 id="404"></view-admin-404>
     </iron-pages>
 -->
-<dom-module id="view-404">
+<dom-module id="view-admin-404">
   <template>
 	<style include="shared-styles-views">
 		.container {
@@ -45,17 +45,17 @@ In typical use, add the element to an `<iron-pages>` element:
 		<p>
 			<b>404.</b> <ins>That’s an error.</ins><br>
 			The requested URL {{route.path}} was not found on this server.<br>
-			<a href="/">Go back home</a>.
+			<a href="/admin/">Go back to admin</a>.
 		</p>
 	</div>
   </template>
 
   <script>
-    class View404 extends Polymer.Element {
+    class ViewAdmin404 extends Polymer.Element {
       static get is() {
-        return 'view-404';
+        return 'view-admin-404';
       }
     }
-    window.customElements.define(View404.is, View404);
+    window.customElements.define(ViewAdmin404.is, ViewAdmin404);
   </script>
 </dom-module>

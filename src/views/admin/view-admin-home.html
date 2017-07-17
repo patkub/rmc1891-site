@@ -1,0 +1,62 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Carousel -->
+<link rel="import" href="../../elements/carousel/my-carousel.html">
+
+<!-- Jumbotron -->
+<link rel="import" href="../../elements/rmc-jumbotron.html">
+
+<!-- Feature Cards -->
+<link rel="import" href="../../elements/rmc-feature-cards.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles-views.html">
+
+<!--
+`<view-admin-home>` is the view for the admin home page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-home id="home"></view-home>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-home">
+  <template>
+    <style include="shared-styles-views"></style>
+    
+    <!-- container -->
+    <div class="container">
+        <form action="php/update/feature_cards_update.php" method="POST">
+            <h2>Home</h2>
+            
+            <!-- feature cards -->
+            <rmc-feature-cards editable></rmc-feature-cards>
+            
+            <button name="submit" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    class ViewAdminHome extends Polymer.Element {
+        static get is() {
+          return 'view-admin-home';
+        }
+    }
+    window.customElements.define(ViewAdminHome.is, ViewAdminHome);
+  </script>
+</dom-module>

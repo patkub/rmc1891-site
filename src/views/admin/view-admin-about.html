@@ -1,0 +1,56 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- Text View -->
+<link rel="import" href="../../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles-views.html">
+
+<!--
+`<view-admin-about>` is the view for the admin about page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-about id="about"></view-about>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-about">
+  <template>
+    <style include="shared-styles-views"></style>
+    
+    <!-- container -->
+    <div class="container">
+        <!-- About Text -->
+        <rmc-text-view view="about" title="About"></rmc-text-view>
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    class ViewAdminAbout extends Polymer.Element {
+      static get is() {
+        return 'view-admin-about';
+      }
+    }
+    window.customElements.define(ViewAdminAbout.is, ViewAdminAbout);
+  </script>
+</dom-module>

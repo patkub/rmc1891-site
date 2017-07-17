@@ -1,0 +1,83 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- Manufacturing Services -->
+<link rel="import" href="../../elements/rmc-manufacturing-services.html">
+
+<!-- Equipment List -->
+<link rel="import" href="../../elements/rmc-equipment-list.html">
+
+<!-- Tool Room List -->
+<link rel="import" href="../../elements/rmc-tool-room/rmc-tool-room-list.html">
+
+<!-- Text View -->
+<link rel="import" href="../../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles-views.html">
+
+<!--
+`<view-admin-capabilities>` is the view for the admin capabilities page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-capabilities id="capabilities"></view-capabilities>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-capabilities">
+  <template>
+    <style include="shared-styles-views"></style>
+    
+    <!-- container -->
+    <div class="container">
+        <!-- capabilities text -->
+        <rmc-text-view view="capabilities" title="Capabilities" editable></rmc-text-view>
+        
+        <h3>Manufacturing Services:</h3>
+        
+        <!-- manufacturing services -->
+        <rmc-manufacturing-services editable></rmc-manufacturing-services>
+        <br>
+        
+        <h3>Equipment List:</h3>
+        
+        <!-- equipment list -->
+        <rmc-equipment-list editable></rmc-equipment-list>
+        <br>
+        
+        <h3>Tool Room:</h3>
+        
+        <!-- tool room list -->
+        <rmc-tool-room-list editable></rmc-tool-room-list>
+        <br>
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    class ViewAdminCapabilities extends Polymer.Element {
+      static get is() {
+        return 'view-admin-capabilities';
+      }
+    }
+    window.customElements.define(ViewAdminCapabilities.is, ViewAdminCapabilities);
+  </script>
+</dom-module>
