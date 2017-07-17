@@ -6,6 +6,7 @@
         "src/views/view-about.html",
         "src/views/view-capabilities.html",
         "src/views/view-contact.html",
+        "src/views/view-admin.html",
         "src/views/view-404.html"
     ],
     "sources": [
