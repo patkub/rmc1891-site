@@ -33,9 +33,6 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Tool Room List -->
 <link rel="import" href="../elements/rmc-tool-room/rmc-tool-room-list.html">
 
-<!-- Admin Tabs -->
-<link rel="import" href="../elements/rmc-admin-tabs.html">
-
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
 
@@ -43,11 +40,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <link rel="import" href="shared-styles-views.html">
 
 <!-- Admin Views -->
-<link rel="lazy-import" href="admin/view-admin-home.html">
-<link rel="lazy-import" href="admin/view-admin-about.html">
-<link rel="lazy-import" href="admin/view-admin-capabilities.html">
-<link rel="lazy-import" href="admin/view-admin-contact.html">
-<link rel="lazy-import" href="admin/view-admin-404.html">
+<link rel="import" href="admin/view-admin-home.html">
+<link rel="import" href="admin/view-admin-about.html">
+<link rel="import" href="admin/view-admin-capabilities.html">
+<link rel="import" href="admin/view-admin-contact.html">
 
 <!--
 `<view-admin>` is the view for the admin page.
@@ -107,23 +103,35 @@ In typical use, add the element to an `<iron-pages>` element:
         <template is="dom-if" if="{{loggedIn}}">
             <button on-tap="logout" class="btn btn-primary">Logout</button>
             
-            <app-location route="{{route}}"></app-location>
-            <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
-            
-            <!-- navigation tabs -->
-            <rmc-admin-tabs active="{{page}}"></rmc-admin-tabs>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a href="#" role="tab" class="nav-link active"
+                       on-tap="_changePage" page="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class="nav-link"
+                       on-tap="_changePage" page="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class="nav-link"
+                       on-tap="_changePage" page="capabilities">Capabilities</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class="nav-link"
+                       on-tap="_changePage" page="contact">Contact</a>
+                </li>
+            </ul>
             
             <iron-pages
                 selected="{{page}}"
                 attr-for-selected="id"
-                fallback-selection="404"
+                fallback-selection="home"
                 class="pages">
                 
                 <view-admin-home id="home"></view-admin-home>
                 <view-admin-about id="about"></view-admin-about>
                 <view-admin-capabilities id="capabilities"></view-admin-capabilities>
                 <view-admin-contact id="contact"></view-admin-contact>
-                <view-admin-404 id="404"></view-admin-404>
             </iron-pages>
         </template>
         
@@ -138,7 +146,6 @@ In typical use, add the element to an `<iron-pages>` element:
         static get is() {
             return 'view-admin';
         }
-        
         static get properties() {
             return {
                 loggedIn: {
@@ -148,46 +155,12 @@ In typical use, add the element to an `<iron-pages>` element:
                 },
                 page: {
                     type: String,
+                    value: 'home',
                     reflectToAttribute: true,
                 },
                 routeData: Object,
             };
         }
-        
-        static get observers() {
-            return [
-              '_routePageChanged(routeData.page)',
-            ];
-        }
-        
-        _routePageChanged(page) {
-            // Polymer 2.0 will call with `undefined` on initialization.
-            // Ignore until we are properly called with a string.
-            if (page === undefined) {
-              return;
-            }
-            // If no page was found in the route data, page will be an empty string.
-            // Default to 'home' in that case.
-            this.page = page || 'home';
-        
-            // Scroll to top of page
-            window.scrollTo(0, 0);
-        }
-        
-        _pageChanged(page) {
-            // Load page import on demand. Show 404 page if fails
-            let resolvedPageUrl = this.resolveUrl('admin/view-admin-' + page + '.html');
-            Polymer.importHref(
-                resolvedPageUrl,
-                null,
-                this._showPage404.bind(this),
-                true);
-        }
-        
-        _showPage404() {
-            this.page = '404';
-        }
-      
         login(e) {
             // Get form login info
             let user = this.shadowRoot.querySelector('#username').value;
@@ -215,9 +188,9 @@ In typical use, add the element to an `<iron-pages>` element:
         logout(e) {
             this.loggedIn = false;
         }
-        changePage(e) {
-            this.page = e.target.dataset.args;
+        _changePage(e) {
             e.preventDefault();
+            this.page = e.target.getAttribute('page');
         }
     }
     window.customElements.define(ViewAdmin.is, ViewAdmin);

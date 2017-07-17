@@ -34,12 +34,16 @@ In typical use, add the element to an `<iron-pages>` element:
 -->
 <dom-module id="view-admin-about">
   <template>
-    <style include="shared-styles-views"></style>
+    <style include="shared-styles-views">
+    .container {
+        margin-top: 0px;
+    }
+    </style>
     
     <!-- container -->
     <div class="container">
         <!-- About Text -->
-        <rmc-text-view view="about" title="About"></rmc-text-view>
+        <rmc-text-view view="about" title="About" editable></rmc-text-view>
     </div>
     <!-- /container -->
     
