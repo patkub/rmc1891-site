@@ -38,7 +38,20 @@ In typical use, add the element to your body with the desired view:
 <dom-module id="rmc-text-view">
     <template>
         <style include="shared-styles-views"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="rmc-shared-styles-paper-spinner">
+            .marked-element > p {
+                font-size:16pt;
+            }
+            .marked-element > .img-center {
+                display:block;
+                margin-left:auto;
+                margin-right:auto
+            }
+            .marked-element > img {
+                width:100%;
+                height:auto;
+            }
+        </style>
         
         <!-- load text -->
         <iron-ajax
