@@ -39,7 +39,6 @@ In typical use, add the element to your body with the desired view:
     <template>
         <style include="shared-styles-views"></style>
         <style include="rmc-shared-styles-paper-spinner">
-            
             textarea {
                 min-width: 100%;
             }
@@ -79,7 +78,7 @@ In typical use, add the element to your body with the desired view:
         </template>
         
         <marked-element markdown="{{persistedViewText}}">
-          <div class="markdown-html"></div>
+          <div slot="markdown-html"></div>
         </marked-element>
         
         <template is="dom-if" if="{{editable}}">
