@@ -42,6 +42,13 @@ In typical use, add the element to your body with the desired view:
             textarea {
                 min-width: 100%;
             }
+            #markdown {
+              font-size: 20px;
+            }
+            #markdown ::slotted(img) {
+                width:100%;
+                height:auto;
+            }
         </style>
         
         <!-- load text -->
@@ -77,7 +84,7 @@ In typical use, add the element to your body with the desired view:
             <h2>Preview:</h2>
         </template>
         
-        <marked-element markdown="{{persistedViewText}}">
+        <marked-element markdown="{{persistedViewText}}" id="markdown">
           <div slot="markdown-html"></div>
         </marked-element>
         
