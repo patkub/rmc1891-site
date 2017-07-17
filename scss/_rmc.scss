@@ -2,8 +2,6 @@
 // @author Patrick Kubiak
 //
 
-// .img-center      - center an image horizontally
-
 // Flexbox
 body {
     display: flex;
@@ -18,14 +16,13 @@ main {
     flex: 1;
 }
 
+// Image fill width
+img {
+    width:100%;
+    height:auto;
+}
+
 // Navbar on right
 .navbar-nav {
     padding-right: 20rem;
-}
-
-// Center image horizontally
-.img-center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
