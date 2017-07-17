@@ -36,11 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setup(function() {
           contactView = fixture('ContactView');
         });
-
-        test('Heading level 2 should be Contact', function() {
-          let heading = contactView.shadowRoot.querySelector('h2');
-          assert.equal(heading.textContent, 'Contact');
-        });
         
         test('Text view should be Contact', function() {
           let textView = contactView.shadowRoot.querySelector('rmc-text-view');
