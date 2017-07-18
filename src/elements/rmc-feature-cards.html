@@ -35,23 +35,24 @@ Add the editable attribute to include features to edit card text content:
 -->
 <dom-module id="rmc-feature-cards">
     <template>
-        <style include="rmc-shared-styles-paper-spinner">
+        <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="rmc-shared-styles-editable">
           .card {
-              margin-bottom: 2rem;
+            margin-bottom: 2rem;
           }
 
           .card-title {
-              color: #0d47a1;
+            color: #0d47a1;
           }
           
           .card-text {
-              font-size: 20px;
+            font-size: 20px;
           }
           
           @media (min-width: 576px) {
-              .card-deck .card:not(:last-child) {
-                  margin-right: inherit;
-              }
+            .card-deck .card:not(:last-child) {
+              margin-right: inherit;
+            }
           }
         </style>
         
