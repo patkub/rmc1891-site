@@ -146,55 +146,55 @@ In typical use, add the element to an `<iron-pages>` element:
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
-        static get is() {
-            return 'view-admin';
+      static get is() {
+        return 'view-admin';
+      }
+      static get properties() {
+        return {
+          loggedIn: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+          page: {
+            type: String,
+            value: 'home',
+            reflectToAttribute: true,
+          },
+          routeData: Object,
+        };
+      }
+      login(e) {
+        // Get form login info
+        let user = this.shadowRoot.querySelector('#username').value;
+        let pass = this.shadowRoot.querySelector('#password').value;
+        
+        // login
+        let params = 'username=' + user + '&password=' + pass;
+        let xhr = this.shadowRoot.getElementById('login');
+        xhr.body = params;
+        xhr.generateRequest();
+      }
+      loginResponse(e) {
+        // Get response
+        let response = e.detail.response;
+        
+        // Check response status
+        if (response.status === 'success') {
+          // Success!
+          this.loggedIn = true;
+        } else {
+          // Failure
+          this.loggedIn = false;
         }
-        static get properties() {
-            return {
-                loggedIn: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-                page: {
-                    type: String,
-                    value: 'home',
-                    reflectToAttribute: true,
-                },
-                routeData: Object,
-            };
-        }
-        login(e) {
-            // Get form login info
-            let user = this.shadowRoot.querySelector('#username').value;
-            let pass = this.shadowRoot.querySelector('#password').value;
-            
-            // login
-            let params = 'username=' + user + '&password=' + pass;
-            let xhr = this.shadowRoot.getElementById('login');
-            xhr.body = params;
-            xhr.generateRequest();
-        }
-        loginResponse(e) {
-            // Get response
-            let response = e.detail.response;
-            
-            // Check response status
-            if (response.status === 'success') {
-                // Success!
-                this.loggedIn = true;
-            } else {
-                // Failure
-                this.loggedIn = false;
-            }
-        }
-        logout(e) {
-            this.loggedIn = false;
-        }
-        _changePage(e) {
-            e.preventDefault();
-            this.page = e.target.getAttribute('page');
-        }
+      }
+      logout(e) {
+        this.loggedIn = false;
+      }
+      _changePage(e) {
+        e.preventDefault();
+        this.page = e.target.getAttribute('page');
+      }
     }
     window.customElements.define(ViewAdmin.is, ViewAdmin);
   </script>

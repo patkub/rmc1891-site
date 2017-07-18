@@ -125,66 +125,66 @@ Add the editable attribute to include features to edit the list:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
     class RMCToolRoomEquipment extends
-          Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-tool-room-equipment';
       }
       
       static get properties() {
-            return {
-                /** Whether this element is editable. */
-                editable: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-            };
-        }
+        return {
+          /** Whether this element is editable. */
+          editable: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+        };
+      }
         
-       /**
-        * Adds a machine
-        *
-        * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
-        */
-       _addMachine(e) {
-           // get count and machine to add
-           let count = e.target.getAttribute('count');
-           let machine = e.target.getAttribute('machine');
-           
-           // add the machine
-           let params = 'count=' + count + '&machine=' + machine;
-           let xhr = this.shadowRoot.getElementById('add');
-           xhr.body = params;
-           xhr.generateRequest();
+      /**
+       * Adds a machine
+       *
+       * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
+       */
+      _addMachine(e) {
+        // get count and machine to add
+        let count = e.target.getAttribute('count');
+        let machine = e.target.getAttribute('machine');
 
-           // update equipment list
-           let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-           equipmentAjax.generateRequest();
-           
-           // reset the form
-           this.shadowRoot.getElementById('machineForm').reset();
-        }
+        // add the machine
+        let params = 'count=' + count + '&machine=' + machine;
+        let xhr = this.shadowRoot.getElementById('add');
+        xhr.body = params;
+        xhr.generateRequest();
+
+        // update equipment list
+        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+        equipmentAjax.generateRequest();
+
+        // reset the form
+        this.shadowRoot.getElementById('machineForm').reset();
+      }
         
-        /**
-         * Deletes a machine
-         *
-         * @param {Object} e - on-tap event, 'machine' attribute is the machine to delete.
-         */
-        _deleteMachine(e) {
-          // get machine to delete
-          let count = e.target.getAttribute('count');
-          let machine = e.target.getAttribute('machine');
-          
-          // delete the machine
-          let params = 'count=' + count + '&machine=' + machine;
-          let xhr = this.shadowRoot.getElementById('delete');
-          xhr.body = params;
-          xhr.generateRequest();
-          
-          // update equipment list
-          let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-          equipmentAjax.generateRequest();
-        }
+      /**
+       * Deletes a machine
+       *
+       * @param {Object} e - on-tap event, 'machine' attribute is the machine to delete.
+       */
+      _deleteMachine(e) {
+        // get machine to delete
+        let count = e.target.getAttribute('count');
+        let machine = e.target.getAttribute('machine');
+
+        // delete the machine
+        let params = 'count=' + count + '&machine=' + machine;
+        let xhr = this.shadowRoot.getElementById('delete');
+        xhr.body = params;
+        xhr.generateRequest();
+
+        // update equipment list
+        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
+        equipmentAjax.generateRequest();
+      }
     }
     window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);
   </script>

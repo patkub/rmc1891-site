@@ -15,11 +15,11 @@ In typical use, add the element to your body:
         <rmc-markdown-info></rmc-markdown-info>
 -->
 <dom-module id="rmc-markdown-info">
-    <template>
-        <div class="alert alert-info" role="alert">
-          <a href="[[markdown]]" target="_blank"><strong>Edit pages</strong> with Markdown syntax.</a>
-        </div>
-    </template>
+  <template>
+    <div class="alert alert-info" role="alert">
+      <a href="[[markdown]]" target="_blank"><strong>Edit pages</strong> with Markdown syntax.</a>
+    </div>
+  </template>
 
   <script>
     class RMCMarkdownInfo extends Polymer.Element {
@@ -28,13 +28,13 @@ In typical use, add the element to your body:
       }
       
       static get properties() {
-            return {
-                /** Markdown cheatsheet link */
-                markdown: {
-                    type: String,
-                },
-            };
-        }
+        return {
+          /** Markdown cheatsheet link */
+          markdown: {
+            type: String,
+          },
+        };
+      }
     }
 
     window.customElements.define(RMCMarkdownInfo.is, RMCMarkdownInfo);

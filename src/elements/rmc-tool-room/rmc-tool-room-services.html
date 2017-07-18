@@ -112,64 +112,64 @@ Add the editable attribute to include features to edit the list:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
     class RMCToolRoomServices extends
-          Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-tool-room-services';
       }
       
       static get properties() {
-            return {
-                /** Whether this element is editable. */
-                editable: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-            };
-        }
+        return {
+          /** Whether this element is editable. */
+          editable: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+        };
+      }
         
-        /**
-         * Adds a service
-         *
-         * @param {Object} e - on-tap event, 'service' attribute is the service to add.
-         */
-        _addService(e) {
-           // get service to add
-           let service = e.target.getAttribute('service');
-           
-           // add the service
-           let params = 'item=' + service;
-           let xhr = this.shadowRoot.getElementById('add');
-           xhr.body = params;
-           xhr.generateRequest();
+      /**
+       * Adds a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to add.
+       */
+      _addService(e) {
+        // get service to add
+        let service = e.target.getAttribute('service');
 
-           // update services list
-           let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
-           servicesAjax.generateRequest();
-           
-           // reset the form
-           this.shadowRoot.getElementById('serviceForm').reset();
-        }
+        // add the service
+        let params = 'item=' + service;
+        let xhr = this.shadowRoot.getElementById('add');
+        xhr.body = params;
+        xhr.generateRequest();
+
+        // update services list
+        let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+        servicesAjax.generateRequest();
+
+        // reset the form
+        this.shadowRoot.getElementById('serviceForm').reset();
+      }
+      
+      /**
+       * Deletes a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
+       */
+      _deleteService(e) {
+        // get service to delete
+        let service = e.target.getAttribute('service');
         
-        /**
-         * Deletes a service
-         *
-         * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
-         */
-        _deleteService(e) {
-          // get service to delete
-          let service = e.target.getAttribute('service');
-          
-          // delete the service
-          let params = 'item=' + service;
-          let xhr = this.shadowRoot.getElementById('delete');
-          xhr.body = params;
-          xhr.generateRequest();
-          
-          // update services list
-          let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
-          servicesAjax.generateRequest();
-        }
+        // delete the service
+        let params = 'item=' + service;
+        let xhr = this.shadowRoot.getElementById('delete');
+        xhr.body = params;
+        xhr.generateRequest();
+        
+        // update services list
+        let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
+        servicesAjax.generateRequest();
+      }
     }
     window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
   </script>

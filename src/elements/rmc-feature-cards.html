@@ -36,23 +36,23 @@ Add the editable attribute to include features to edit card text content:
 <dom-module id="rmc-feature-cards">
     <template>
         <style include="rmc-shared-styles-paper-spinner">
-            .card {
-                margin-bottom: 2rem;
-            }
+          .card {
+              margin-bottom: 2rem;
+          }
 
-            .card-title {
-                color: #0d47a1;
-            }
-            
-            .card-text {
-                font-size: 20px;
-            }
-            
-            @media (min-width: 576px) {
-                .card-deck .card:not(:last-child) {
-                    margin-right: inherit;
-                }
-            }
+          .card-title {
+              color: #0d47a1;
+          }
+          
+          .card-text {
+              font-size: 20px;
+          }
+          
+          @media (min-width: 576px) {
+              .card-deck .card:not(:last-child) {
+                  margin-right: inherit;
+              }
+          }
         </style>
         
         <!-- load feature cards -->
@@ -104,15 +104,15 @@ Add the editable attribute to include features to edit card text content:
         </div>
         
         <template is="dom-if" if="{{editable}}">
-            <button class="btn btn-primary" on-tap="_save">Save</button>
-            
-            <!-- iron ajax request to update text -->
-            <iron-ajax
-                id="update"
-                url="php/update/feature_cards_update.php"
-                handle-as="json"
-                method="POST">
-            </iron-ajax>
+          <button class="btn btn-primary" on-tap="_save">Save</button>
+          
+          <!-- iron ajax request to update text -->
+          <iron-ajax
+              id="update"
+              url="php/update/feature_cards_update.php"
+              handle-as="json"
+              method="POST">
+          </iron-ajax>
         </template>
         
     </template>
@@ -121,21 +121,21 @@ Add the editable attribute to include features to edit card text content:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
     class RMCFeatureCards extends
-          Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-feature-cards';
       }
       
       static get properties() {
-            return {
-                /** Whether this element is editable. */
-                editable: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-            };
-        }
+        return {
+          /** Whether this element is editable. */
+          editable: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+        };
+      }
       
       /**
        * Save

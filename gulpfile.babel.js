@@ -58,8 +58,8 @@ function watch() {
 // Compile Stylesheets
 gulp.task('sass', function() {
   return gulp.src('scss/**/*.scss')
-  .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('css/'));
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('css/'));
 });
 
 // Minify CSS
@@ -115,8 +115,8 @@ gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callba
   let rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
-  staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
-  stripPrefix: rootDir,
+    staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
+    stripPrefix: rootDir,
   }, callback);
 });
 
@@ -143,13 +143,13 @@ gulp.task('watch', function() {
  */
 gulp.task('serve:browsersync:local', () => {
   browserSync({
-      server: {
-        baseDir: '.',
-        middleware: [
-            historyFallback(),
-        ],
-      },
-      browser: 'chrome',
+    server: {
+      baseDir: '.',
+      middleware: [
+        historyFallback(),
+      ],
+    },
+    browser: 'chrome',
   });
 
   watch();
@@ -160,13 +160,13 @@ gulp.task('serve:browsersync:local', () => {
  */
 gulp.task('serve:browsersync:build', () => {
   browserSync({
-      server: {
-        baseDir: 'build/es5-bundled/',
-        middleware: [
-            historyFallback(),
-        ],
-      },
-      browser: 'chrome',
+    server: {
+      baseDir: 'build/es5-bundled/',
+      middleware: [
+        historyFallback(),
+      ],
+    },
+    browser: 'chrome',
   });
 });
 
@@ -178,8 +178,7 @@ gulp.task('deploy', function() {
   return gulp.src([
     'build/es5-bundled/**/*',
     'build/es5-bundled/**/.*',
-  ])
-  .pipe(sftp({
+  ]).pipe(sftp({
     host: args.host,
     user: args.user,
     pass: args.pass,

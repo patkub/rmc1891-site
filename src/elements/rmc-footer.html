@@ -20,16 +20,16 @@ attributes:
 <dom-module id="rmc-footer">
     <template>
         <style>
-            .footer {
-                background-color: #eee;
-                padding: 10px;
-                text-align: center;
-            }
-            
-            .admin-link {
-                white-space: nowrap;
-                text-decoration:none;
-            }
+          .footer {
+              background-color: #eee;
+              padding: 10px;
+              text-align: center;
+          }
+          
+          .admin-link {
+              white-space: nowrap;
+              text-decoration:none;
+          }
         </style>
 
         <footer class="footer">
@@ -49,15 +49,15 @@ attributes:
 
       static get properties() {
         return {
-            /** Footer text */
-            text: String,
-            
-            /**
-             * Metadata describing the admin link.
-             *
-             * @type {{text: String, link: String, icon: String}}
-             */
-            admin: Object,
+          /** Footer text */
+          text: String,
+          
+          /**
+           * Metadata describing the admin link.
+           *
+           * @type {{text: String, link: String, icon: String}}
+           */
+          admin: Object,
         };
       }
     }

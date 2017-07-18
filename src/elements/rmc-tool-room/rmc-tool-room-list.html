@@ -49,17 +49,17 @@ Add the editable attribute to include features to edit both lists:
       }
       
       static get properties() {
-            return {
-                /** Whether this element is editable. */
-                editable: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true,
-                },
-            };
-        }
+        return {
+          /** Whether this element is editable. */
+          editable: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+        };
+      }
     }
-
+    
     window.customElements.define(RMCToolRoomList.is, RMCToolRoomList);
   </script>
 </dom-module>

@@ -54,12 +54,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
       static get properties() {
         return {
-            page: {
-                type: String,
-                reflectToAttribute: true,
-                observer: '_pageChanged',
-            },
-            routeData: Object,
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged',
+          },
+          routeData: Object,
         };
       }
 
@@ -81,10 +81,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
         // The active page has changed
         this.dispatchEvent(new CustomEvent('ActivePageChanged', {
-            detail: {
-                active: this.page,
-            },
-            composed: true,
+          detail: {
+            active: this.page,
+          },
+          composed: true,
         }));
     
         // Scroll to top of page
@@ -95,10 +95,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         // Load page import on demand. Show 404 page if fails
         let resolvedPageUrl = this.resolveUrl('views/view-' + page + '.html');
         Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
+          resolvedPageUrl,
+          null,
+          this._showPage404.bind(this),
+          true);
       }
 
       _showPage404() {

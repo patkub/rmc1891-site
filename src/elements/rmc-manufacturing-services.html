@@ -112,7 +112,7 @@ Add the editable attribute to include features to edit the list:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
     class RMCManufacturingServices extends
-          Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-manufacturing-services';
       }
@@ -156,7 +156,7 @@ Add the editable attribute to include features to edit the list:
        *
        * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
        */
-       _deleteService(e) {
+      _deleteService(e) {
         // get service to delete
         let service = e.target.getAttribute('service');
 
@@ -173,6 +173,6 @@ Add the editable attribute to include features to edit the list:
     }
 
     window.customElements.define(RMCManufacturingServices.is,
-                                 RMCManufacturingServices);
+      RMCManufacturingServices);
   </script>
 </dom-module>
