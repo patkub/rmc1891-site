@@ -114,7 +114,7 @@ gulp.task('inline', function() {
 gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callback) {
   let rootDir = 'build/es5-bundled/';
   
-  swPrecache.write(path.join(rootDir, 'sw.js'), {
+  return swPrecache.write(path.join(rootDir, 'sw.js'), {
     staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
     stripPrefix: rootDir,
   }, callback);
@@ -170,11 +170,14 @@ gulp.task('serve:browsersync:build', () => {
   });
 });
 
-// Deploy website
-gulp.task('deploy', function() {
+/**
+ * Deploys public files.
+ */
+gulp.task('deploy:public', function() {
   /* global process */
-  let args = minimist(process.argv.slice(3));
+  let args = minimist(process.argv.slice(4));
   
+  // public site
   return gulp.src([
     'build/es5-bundled/**/*',
     'build/es5-bundled/**/.*',
@@ -183,6 +186,31 @@ gulp.task('deploy', function() {
     user: args.user,
     pass: args.pass,
     remotePath: 'public_html/',
+  }));
+});
+
+/**
+ * Deploys private files.
+ */
+gulp.task('deploy:private', function() {
+  /* global process */
+  let args = minimist(process.argv.slice(4));
+  
+  // private files
+  return gulp.src([
+    'private/**/*',
+    'private/**/.*',
+  ])
+  // replace database connection info
+  .pipe(replace('{{host}}', args.dbhost))
+  .pipe(replace('{{name}}', args.dbname))
+  .pipe(replace('{{user}}', args.dbuser))
+  .pipe(replace('{{pass}}', args.dbpass))
+  .pipe(sftp({
+    host: args.host,
+    user: args.user,
+    pass: args.pass,
+    remotePath: 'private/',
   }));
 });
 
@@ -197,4 +225,6 @@ gulp.task('build:after', ['inline', 'fonts', 'del', 'generate-service-worker', '
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
+
+// Service production
 gulp.task('serve:build', ['serve:browsersync:build']);

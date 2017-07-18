@@ -4,9 +4,11 @@
  *
  * @author Patrick Kubiak
  */
+ 
+$ini = parse_ini_file("../../private/db.ini");
 
-$db_host = "db688129345.db.1and1.com";
-$db_name = "db688129345";
-$db_user = "dbo688129345";
-$db_pass = "Superpatryk123";
+$db_host = $ini['host'];
+$db_name = $ini['name'];
+$db_user = $ini['user'];
+$db_pass = $ini['pass'];
 ?>
