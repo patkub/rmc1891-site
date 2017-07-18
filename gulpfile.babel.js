@@ -174,6 +174,9 @@ gulp.task('serve:browsersync:build', () => {
  * MySQL database connection info
  */
 gulp.task('deploy:mysql', function() {
+  /* global process */
+  let args = minimist(process.argv.slice(4));
+  
   // replace private database connection info
   return gulp.src('private/db.ini')
     .pipe(replace('{{host}}', args.dbhost))
@@ -181,7 +184,7 @@ gulp.task('deploy:mysql', function() {
     .pipe(replace('{{user}}', args.dbuser))
     .pipe(replace('{{pass}}', args.dbpass))
     .pipe('build/es5-bundled/private/db.ini');
-}
+});
 
 /**
  * Deploys public files.
