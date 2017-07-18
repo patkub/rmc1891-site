@@ -144,9 +144,9 @@ Add the editable attribute to include features to edit card text content:
        */
       _save(e) {
         // get new text to save
-        let aboutText = this.shadowRoot.getElementById('About').textContent;
-        let capabilitiesText = this.shadowRoot.getElementById('Capabilities').textContent;
-        let contactText = this.shadowRoot.getElementById('Contact').textContent;
+        let aboutText = this.shadowRoot.getElementById('About').value;
+        let capabilitiesText = this.shadowRoot.getElementById('Capabilities').value;
+        let contactText = this.shadowRoot.getElementById('Contact').value;
         
         // save the text
         let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
