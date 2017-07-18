@@ -19,7 +19,6 @@ import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import stripCSSComments from 'gulp-strip-css-comments';
-import webp from 'gulp-webp';
 import swPrecache from 'sw-precache';
 import sftp from 'gulp-sftp';
 import minimist from 'minimist';
@@ -33,24 +32,18 @@ const banner = ['<!--',
   '@license <%= pkg.license %>',
   '@copyright 2017 The Rogers Manufacturing Company',
   '@link <%= pkg.homepage %>',
+  '@github <%= pkg.repository %>',
   '-->',
   ''].join('\n');
 
 const reload = browserSync.reload;
 const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
-const IMAGES = [
-  'images/**/*',
-  '!images/manifest/**/*',
-  '!images/favicon.ico',
-  '!images/**/*.webp',
-];
 
 /**
  * Defines the list of resources to watch for changes.
  */
 function watch() {
   gulp.watch(['scss/**/*.scss'], ['css', reload]);
-  gulp.watch(IMAGES, ['webp', reload]);
   gulp.watch(['php/**/*', 'src/**/*'], reload);
   gulp.watch(['index.html'], reload);
 }
@@ -80,26 +73,25 @@ gulp.task('clean-css', ['sass'], function() {
     .pipe(gulp.dest('css/'));
 });
 
-// WebP
-gulp.task('webp', function() {
-  return gulp.src(IMAGES)
-    .pipe(webp())
-    .pipe(gulp.dest('images/'));
-});
-
-// Copy fonts
+/**
+ * Copy fonts
+ */
 gulp.task('fonts', function() {
   return gulp.src(FONTS)
     .pipe(gulp.dest('build/es5-bundled/fonts/'));
 });
 
-// Copy fonts locally
+/**
+ * Copy fonts locally
+ */
 gulp.task('fonts:local', function() {
   return gulp.src(FONTS)
     .pipe(gulp.dest('fonts/'));
 });
 
-// Inline CSS & banner
+/**
+ * Inline CSS & banner
+ */
 gulp.task('inline', function() {
   return gulp.src('build/es5-bundled/index.html')
     .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
@@ -110,30 +102,38 @@ gulp.task('inline', function() {
     .pipe(gulp.dest('build/es5-bundled/'));
 });
 
-// Generate precaching service worker
+/**
+ * Generate precaching service worker
+ */
 gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callback) {
   let rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
-    staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
+    staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
     stripPrefix: rootDir,
   }, callback);
 });
 
-// Copy app indexeddb mirror worker
+/**
+ * Copy app indexeddb mirror worker
+ */
 gulp.task('app-indexeddb', function() {
   return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
     .pipe(gulp.dest('build/es5-bundled/'));
 });
 
-// Delete unneccessary build files
+/**
+ * Delete unneccessary build files
+ */
 gulp.task('del', function() {
   return del([
     'build/es5-bundled/bower_components/',
   ]);
 });
 
-// Watch resources for changes.
+/**
+ * Watch resources for changes.
+ */
 gulp.task('watch', function() {
   watch();
 });
@@ -175,7 +175,7 @@ gulp.task('serve:browsersync:build', () => {
  */
 gulp.task('deploy:mysql', function() {
   /* global process */
-  let args = minimist(process.argv.slice(3));
+  let args = minimist(process.argv.slice());
   
   // replace private database connection info
   return gulp.src('private/db.ini')
@@ -191,7 +191,7 @@ gulp.task('deploy:mysql', function() {
  */
 gulp.task('deploy:public', function() {
   /* global process */
-  let args = minimist(process.argv.slice(2));
+  let args = minimist(process.argv.slice());
   
   // public site
   return gulp.src([
@@ -212,7 +212,7 @@ gulp.task('deploy:public', function() {
  */
 gulp.task('deploy:private', function() {
   /* global process */
-  let args = minimist(process.argv.slice(6));
+  let args = minimist(process.argv.slice());
   
   // private files
   return gulp.src([
@@ -235,7 +235,7 @@ gulp.task('deploy:private', function() {
 gulp.task('css', ['sass', 'clean-css']);
 
 // Before polymer build
-gulp.task('build:before', ['sass', 'clean-css', 'webp']);
+gulp.task('build:before', ['sass', 'clean-css']);
 
 // After polymer build
 gulp.task('build:after', ['inline', 'fonts', 'del', 'generate-service-worker', 'app-indexeddb']);
