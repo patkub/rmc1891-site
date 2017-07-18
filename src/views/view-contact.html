@@ -75,11 +75,8 @@ In typical use, add the element to an `<iron-pages>` element:
                     <textarea class="form-control" name="message" rows="20" value="{{message::input}}"></textarea>
                 </div>
                 
-                <button name="submit" type="submit" class="btn btn-primary" on-tap="_sendEmail" email$="{{email}}" subject$="{{subject}}" message$="{{message}}">Submit</button>
+                <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_sendEmail" email$="{{email}}" subject$="{{subject}}" message$="{{message}}">Submit</button>
             </form>
-            
-            <br>
-
         </div>
         <!-- /container -->
     </template>

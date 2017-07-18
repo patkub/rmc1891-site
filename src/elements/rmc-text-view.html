@@ -39,10 +39,6 @@ In typical use, add the element to your body with the desired view:
     <template>
         <style include="shared-styles-views"></style>
         <style include="rmc-shared-styles-paper-spinner">
-            .btn {
-                /* TODO: remove this after converting feature cards to ajax */
-                margin-bottom: 2rem;
-            }
             textarea {
                 min-width: 100%;
             }
@@ -89,7 +85,7 @@ In typical use, add the element to your body with the desired view:
         </marked-element>
         
         <template is="dom-if" if="{{editable}}">
-            <button class="btn btn-primary" on-tap="_save" text$="{{persistedViewText}}">Save</button>
+            <button class="btn btn-primary btn-submit" on-tap="_save" text$="{{persistedViewText}}">Save</button>
             
             <!-- iron ajax request to update text -->
             <iron-ajax
