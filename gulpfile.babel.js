@@ -114,7 +114,7 @@ gulp.task('inline', function() {
 gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callback) {
   let rootDir = 'build/es5-bundled/';
   
-  return swPrecache.write(path.join(rootDir, 'sw.js'), {
+  swPrecache.write(path.join(rootDir, 'sw.js'), {
     staticFileGlobs: [rootDir + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,webp,ico}'],
     stripPrefix: rootDir,
   }, callback);
