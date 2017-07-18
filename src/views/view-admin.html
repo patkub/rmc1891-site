@@ -144,7 +144,7 @@ In typical use, add the element to an `<iron-pages>` element:
   </template>
 
   <script>
-    /* eslint new-cap: ["error", { "capIsNew": false }] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
         static get is() {
             return 'view-admin';

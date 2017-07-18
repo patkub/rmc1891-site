@@ -58,6 +58,7 @@ Add the editable attribute to include features to edit card text content:
         <!-- load feature cards -->
         <iron-ajax
             auto
+            id="featureCardsAjax"
             url="php/json/feature_cards.php"
             handle-as="json"
             last-response="{{featureCards}}"
@@ -87,7 +88,7 @@ Add the editable attribute to include features to edit card text content:
                             <p class="card-text">[[card.text]]</p>
                         </template>
                         <template is="dom-if" if="{{editable}}">
-                            <textarea class="form-control" name$="[[card.title]]Text" rows="10">[[card.text]]</textarea>
+                            <textarea class="form-control" id="[[card.title]]" rows="10">[[card.text]]</textarea>
                         </template>
                     </div>
                     <div class="card-footer">
@@ -101,10 +102,26 @@ Add the editable attribute to include features to edit card text content:
                 </div>
             </template>
         </div>
+        
+        <template is="dom-if" if="{{editable}}">
+            <button class="btn btn-primary" on-tap="_save">Save</button>
+            
+            <!-- iron ajax request to update text -->
+            <iron-ajax
+                id="update"
+                url="php/update/feature_cards_update.php"
+                handle-as="json"
+                method="POST">
+            </iron-ajax>
+        </template>
+        
     </template>
 
   <script>
-    class RMCFeatureCards extends Polymer.Element {
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    
+    class RMCFeatureCards extends
+          Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'rmc-feature-cards';
       }
@@ -119,6 +136,29 @@ Add the editable attribute to include features to edit card text content:
                 },
             };
         }
+      
+      /**
+       * Save
+       *
+       * @param {Object} e - on-tap event.
+       */
+      _save(e) {
+        // get new text to save
+        let aboutText = this.shadowRoot.getElementById('About');
+        let capabilitiesText = this.shadowRoot.getElementById('Capabilities');
+        let contactText = this.shadowRoot.getElementById('Contact');
+        
+        // save the text
+        let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
+            capabilitiesText + '&ContactText=' + contactText;
+        let xhr = this.shadowRoot.getElementById('update');
+        xhr.body = params;
+        xhr.generateRequest();
+        
+        // update feature cards
+        let featureCardsAjax = this.shadowRoot.getElementById('featureCardsAjax');
+        featureCardsAjax.generateRequest();
+      }
     }
 
     window.customElements.define(RMCFeatureCards.is, RMCFeatureCards);

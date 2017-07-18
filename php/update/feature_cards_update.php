@@ -38,9 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
         $db->query($AboutQuery) or die($db->error);
         $db->query($CapabilitiesQuery) or die($db->error);
         $db->query($ContactQuery) or die($db->error);
-        
-        // redirect user back to admin page
-        header("Location: https://therogersmanufacturingcompany.com/admin/");
     }
 }
 ?>
