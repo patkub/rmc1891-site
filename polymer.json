@@ -1,37 +1,41 @@
 {
-    "entrypoint": "index.html",
-    "shell": "src/rmc-shell.html",
-    "fragments": [
-        "src/views/view-home.html",
-        "src/views/view-about.html",
-        "src/views/view-capabilities.html",
-        "src/views/view-contact.html",
-        "src/views/view-admin.html",
-        "src/views/view-404.html"
-    ],
-    "sources": [
-        "src/**/*",
-        "images/**/*",
-        "php/**/*",
-        "package.json",
-        "manifest.json",
-        ".htaccess"
-    ],
-    "extraDependencies": [
-        "node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "node_modules/jquery/dist/jquery.slim.min.{js, map}",
-        "node_modules/tether/dist/js/tether.min.js",
-        "node_modules/@npm-polymer/webcomponentsjs/webcomponents*.{js, js.map}",
-        "node_modules/@npm-polymer/webcomponentsjs/custom-elements-es5-adapter*.{js, js.map}"
-    ],
-    "lint": {
-        "rules": ["polymer-2"],
-        "ignoreWarnings": ["multiple-doc-comments", "unknown-polymer-behavior", "unknown-superclass"]
-    },
-    "builds": [
-        {
-          "preset": "es5-bundled",
-          "addServiceWorker": false
-        }
+  "entrypoint": "index.html",
+  "shell": "src/rmc-shell.html",
+  "fragments": [
+    "src/views/view-home.html",
+    "src/views/view-about.html",
+    "src/views/view-capabilities.html",
+    "src/views/view-contact.html",
+    "src/views/view-admin.html",
+    "src/views/view-404.html"
+  ],
+  "sources": [
+    "src/**/*",
+    "images/**/*",
+    "php/**/*",
+    "package.json",
+    "manifest.json",
+    ".htaccess"
+  ],
+  "extraDependencies": [
+    "node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "node_modules/jquery/dist/jquery.slim.min.{js, map}",
+    "node_modules/tether/dist/js/tether.min.js",
+    "node_modules/@npm-polymer/webcomponentsjs/webcomponents*.{js, js.map}",
+    "node_modules/@npm-polymer/webcomponentsjs/custom-elements-es5-adapter*.{js, js.map}"
+  ],
+  "lint": {
+    "rules": ["polymer-2"],
+    "ignoreWarnings": [
+      "multiple-doc-comments",
+      "unknown-polymer-behavior",
+      "unknown-superclass"
     ]
+  },
+  "builds": [
+    {
+      "preset": "es5-bundled",
+      "addServiceWorker": false
+    }
+  ]
 }
