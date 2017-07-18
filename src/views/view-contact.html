@@ -85,65 +85,64 @@ In typical use, add the element to an `<iron-pages>` element:
     </template>
 
     <script>
-        /* eslint new-cap: ["error", { "capIsNew": false }] */
-        
-        class ViewContact extends
-              Polymer.GestureEventListeners(Polymer.Element) {
-            static get is() {
-                return 'view-contact';
-            }
-            
-            static get properties() {
-                return {
-                    /** Initially undefined. True if email has been sent
-                        successfuly, false on error. */
-                    sent: {
-                        type: Boolean,
-                        reflectToAttribute: true,
-                    },
-                };
-            }
-            
-            /**
-             * Send email
-             *
-             * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
-             */
-            _sendEmail(e) {
-               // get email
-               let email = e.target.getAttribute('email');
-               let subject = e.target.getAttribute('subject');
-               let message = e.target.getAttribute('message');
-               
-               // send the email
-               let params = 'email=' + email + '&subject=' + subject + '&message=' + message;
-               let xhr = this.shadowRoot.getElementById('email');
-               xhr.body = params;
-               xhr.generateRequest();
-               
-               // reset the form
-               this.shadowRoot.getElementById('emailForm').reset();
-            }
-            
-            /**
-             * Email response
-             *
-             * @param {Object} e - iron ajax response.
-             */
-            _emailResponse(e) {
-                // Get response
-                let response = e.detail.response;
-                
-                // Check response status
-                if (response.status === 'success') {
-                    // Success!
-                    this.sent = true;
-                } else {
-                    // Failure
-                    this.sent = false;
-                }
-            }
+      /* eslint new-cap: ["error", { "capIsNew": false }] */
+      
+      class ViewContact extends Polymer.GestureEventListeners(Polymer.Element) {
+        static get is() {
+          return 'view-contact';
         }
-        window.customElements.define(ViewContact.is, ViewContact);
+        
+        static get properties() {
+          return {
+            /** Initially undefined. True if email has been sent
+                successfuly, false on error. */
+            sent: {
+              type: Boolean,
+              reflectToAttribute: true,
+            },
+          };
+        }
+        
+        /**
+         * Send email
+         *
+         * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
+         */
+        _sendEmail(e) {
+          // get email
+          let email = e.target.getAttribute('email');
+          let subject = e.target.getAttribute('subject');
+          let message = e.target.getAttribute('message');
+
+          // send the email
+          let params = 'email=' + email + '&subject=' + subject + '&message=' + message;
+          let xhr = this.shadowRoot.getElementById('email');
+          xhr.body = params;
+          xhr.generateRequest();
+
+          // reset the form
+          this.shadowRoot.getElementById('emailForm').reset();
+        }
+        
+        /**
+         * Email response
+         *
+         * @param {Object} e - iron ajax response.
+         */
+        _emailResponse(e) {
+          // Get response
+          let response = e.detail.response;
+          
+          // Check response status
+          if (response.status === 'success') {
+            // Success!
+            this.sent = true;
+          } else {
+            // Failure
+            this.sent = false;
+          }
+        }
+      }
+      window.customElements.define(ViewContact.is, ViewContact);
     </script>
 </dom-module>

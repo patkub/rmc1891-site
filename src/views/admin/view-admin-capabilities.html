@@ -32,14 +32,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
 In typical use, add the element to an `<iron-pages>` element:
 
-    <iron-pages
-        selected="[[page]]"
-        attr-for-selected="id"
-        role="main">
-        
-        <view-capabilities id="capabilities"></view-capabilities>
-        ...
-    </iron-pages>
+  <iron-pages
+    selected="[[page]]"
+    attr-for-selected="id"
+    role="main">
+      
+    <view-capabilities id="capabilities"></view-capabilities>
+    ...
+  </iron-pages>
 -->
 <dom-module id="view-admin-capabilities">
   <template>
@@ -51,26 +51,26 @@ In typical use, add the element to an `<iron-pages>` element:
     
     <!-- container -->
     <div class="container">
-        <!-- capabilities text -->
-        <rmc-text-view view="capabilities" title="Capabilities" editable></rmc-text-view>
-        
-        <h3>Manufacturing Services:</h3>
-        
-        <!-- manufacturing services -->
-        <rmc-manufacturing-services editable></rmc-manufacturing-services>
-        <br>
-        
-        <h3>Equipment List:</h3>
-        
-        <!-- equipment list -->
-        <rmc-equipment-list editable></rmc-equipment-list>
-        <br>
-        
-        <h3>Tool Room:</h3>
-        
-        <!-- tool room list -->
-        <rmc-tool-room-list editable></rmc-tool-room-list>
-        <br>
+      <!-- capabilities text -->
+      <rmc-text-view view="capabilities" title="Capabilities" editable></rmc-text-view>
+      
+      <h3>Manufacturing Services:</h3>
+      
+      <!-- manufacturing services -->
+      <rmc-manufacturing-services editable></rmc-manufacturing-services>
+      <br>
+      
+      <h3>Equipment List:</h3>
+      
+      <!-- equipment list -->
+      <rmc-equipment-list editable></rmc-equipment-list>
+      <br>
+      
+      <h3>Tool Room:</h3>
+      
+      <!-- tool room list -->
+      <rmc-tool-room-list editable></rmc-tool-room-list>
+      <br>
     </div>
     <!-- /container -->
     

@@ -7,10 +7,12 @@
   "env": {
     "browser": true
   },
-  "plugins": [
-    "html"
-  ],
+  "plugins": ["html"],
+  "settings": {
+    "html/report-bad-indent": "error"
+  },
   "rules": {
+    "indent": ["error", 2],
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }],
     "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],

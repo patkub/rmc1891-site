@@ -38,27 +38,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {String} url - new path.
      */
     function setLocation(url) {
-        window.history.pushState({}, '', url);
-        Polymer.Base.fire('location-changed', {}, {node: window});
+      window.history.pushState({}, '', url);
+      Polymer.Base.fire('location-changed', {}, {node: window});
     }
     
     suite('view-404 tests', function() {
-        let view404;
+      let view404;
 
-        setup(function() {
-            view404 = fixture('View404');
-        });
+      setup(function() {
+        view404 = fixture('View404');
+      });
 
-        test('Location /404', function() {
-            setLocation('/404');
-            let appLoction = view404.shadowRoot.querySelector('app-location');
-            assert.equal(appLoction.route.path, '/404');
-        });
+      test('Location /404', function() {
+        setLocation('/404');
+        let appLoction = view404.shadowRoot.querySelector('app-location');
+        assert.equal(appLoction.route.path, '/404');
+      });
 
-        test('Go back home', function() {
-            let a = view404.shadowRoot.querySelector('a');
-            assert.equal(a.getAttribute('href'), '/');
-        });
+      test('Go back home', function() {
+        let a = view404.shadowRoot.querySelector('a');
+        assert.equal(a.getAttribute('href'), '/');
+      });
     });
     </script>
   </body>
