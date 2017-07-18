@@ -225,5 +225,5 @@ gulp.task('build:after', ['inline', 'fonts', 'del', 'generate-service-worker', '
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
 
-// Service production
+// Serve production
 gulp.task('serve:build', ['serve:browsersync:build']);
