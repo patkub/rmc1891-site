@@ -96,7 +96,7 @@ Add the editable attribute to include features to edit card text content:
                             <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
                         </template>
                         <template is="dom-if" if="{{editable}}">
-                            <span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]
+                            <span class="text-primary"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</span>
                         </template>
                     </div>
                 </div>
