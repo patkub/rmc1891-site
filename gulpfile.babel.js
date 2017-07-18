@@ -201,17 +201,16 @@ gulp.task('deploy:private', function() {
     'private/**/*',
     'private/**/.*',
   ])
-  // replace database connection info
-  .pipe(replace('{{host}}', args.dbhost))
-  .pipe(replace('{{name}}', args.dbname))
-  .pipe(replace('{{user}}', args.dbuser))
-  .pipe(replace('{{pass}}', args.dbpass))
-  .pipe(sftp({
-    host: args.host,
-    user: args.user,
-    pass: args.pass,
-    remotePath: 'private/',
-  }));
+    .pipe(replace('{{host}}', args.dbhost))
+    .pipe(replace('{{name}}', args.dbname))
+    .pipe(replace('{{user}}', args.dbuser))
+    .pipe(replace('{{pass}}', args.dbpass))
+    .pipe(sftp({
+      host: args.host,
+      user: args.user,
+      pass: args.pass,
+      remotePath: 'private/',
+    }));
 });
 
 // Compile Stylesheets
