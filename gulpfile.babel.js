@@ -171,6 +171,19 @@ gulp.task('serve:browsersync:build', () => {
 });
 
 /**
+ * MySQL database connection info
+ */
+gulp.task('deploy:mysql', function() {
+  // replace private database connection info
+  return gulp.src('private/db.ini')
+    .pipe(replace('{{host}}', args.dbhost))
+    .pipe(replace('{{name}}', args.dbname))
+    .pipe(replace('{{user}}', args.dbuser))
+    .pipe(replace('{{pass}}', args.dbpass))
+    .pipe('build/es5-bundled/private/db.ini');
+}
+
+/**
  * Deploys public files.
  */
 gulp.task('deploy:public', function() {
@@ -181,6 +194,8 @@ gulp.task('deploy:public', function() {
   return gulp.src([
     'build/es5-bundled/**/*',
     'build/es5-bundled/**/.*',
+    '!build/es5-bundled/private/*',
+    '!build/es5-bundled/private/.*',
   ]).pipe(sftp({
     host: args.host,
     user: args.user,
@@ -198,8 +213,8 @@ gulp.task('deploy:private', function() {
   
   // private files
   return gulp.src([
-    'private/**/*',
-    'private/**/.*',
+    'build/es5-bundled/private/**/*',
+    'build/es5-bundled/private/**/.*',
   ])
     .pipe(replace('{{host}}', args.dbhost))
     .pipe(replace('{{name}}', args.dbname))
