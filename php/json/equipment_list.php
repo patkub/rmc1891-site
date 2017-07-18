@@ -1,6 +1,6 @@
 <?php
 /*
- * Equipment list ordered by descending weight
+ * Equipment list ordered by descending clamping force
  * 
  */
 
@@ -13,7 +13,7 @@ $results = array();
 if ($db->connect_errno == 0) {
     // successfully connected to MySQL server
     
-    $myQuery = "SELECT * FROM `EquipmentList` ORDER BY `EquipmentList`.`weight` DESC";
+    $myQuery = "SELECT * FROM `EquipmentList` ORDER BY `EquipmentList`.`force` DESC";
     $result = $db->query($myQuery) or die($db->error);
     
     while ($row = $result->fetch_assoc()){

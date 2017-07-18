@@ -78,8 +78,8 @@ Add the editable attribute to include features to edit the list:
                 </div>
                 
                 <div class="form-group">
-                    <label for="item">Weight:</label>
-                    <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight" value="{{weight::input}}">
+                    <label for="item">Clamping Force:</label>
+                    <input type="text" class="form-control" id="force" name="force" placeholder="Clamping Force" value="{{force::input}}">
                 </div>
                 
                 <div class="form-group">
@@ -87,7 +87,7 @@ Add the editable attribute to include features to edit the list:
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{name::input}}">
                 </div>
                 
-                <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" m-count$="{{count}}" m-weight$="{{weight}}" m-name$="{{name}}">Add</button>
+                <button name="submit" type="submit" class="btn btn-primary" on-tap="_addMachine" m-count$="{{count}}" m-force$="{{force}}" m-name$="{{name}}">Add</button>
             </form>
             
             <!-- iron ajax request to delete machine -->
@@ -103,7 +103,7 @@ Add the editable attribute to include features to edit the list:
 			<thead class="thead-inverse">
 			<tr>
 			  <th>#</th>
-			  <th>Weight</th>
+			  <th>Clamping Force</th>
 			  <th>Name</th>
 			</tr>
 			</thead>
@@ -111,10 +111,10 @@ Add the editable attribute to include features to edit the list:
 				<template is="dom-repeat" items="{{persistedEquipment}}">
                     <tr>
                         <th scope="row">[[item.count]]</th>
-                        <td>[[item.weight]] Ton</td>
+                        <td>[[item.force]] Ton</td>
                         <td>[[item.name]]</td>
                         <template is="dom-if" if="{{editable}}">
-                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-weight$="[[item.weight]]" m-name$="[[item.name]]"></i></td>
+                            <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-force$="[[item.force]]" m-name$="[[item.name]]"></i></td>
                         </template>
                     </tr>
 				</template>
@@ -155,11 +155,11 @@ Add the editable attribute to include features to edit the list:
       _addMachine(e) {
         // get machine to add
         let count = e.target.getAttribute('m-count');
-        let weight = e.target.getAttribute('m-weight');
+        let force = e.target.getAttribute('m-force');
         let name = e.target.getAttribute('m-name');
 
         // add the machine
-        let params = 'count=' + count + '&weight=' + weight + '&name=' + name;
+        let params = 'count=' + count + '&force=' + force + '&name=' + name;
         let xhr = this.shadowRoot.getElementById('add');
         xhr.body = params;
         xhr.generateRequest();
@@ -180,11 +180,11 @@ Add the editable attribute to include features to edit the list:
       _deleteMachine(e) {
         // get machine to delete
         let count = e.target.getAttribute('m-count');
-        let weight = e.target.getAttribute('m-weight');
+        let force = e.target.getAttribute('m-force');
         let name = e.target.getAttribute('m-name');
 
         // delete the machine
-        let params = 'count=' + count + '&weight=' + weight + '&name=' + name;
+        let params = 'count=' + count + '&force=' + force + '&name=' + name;
         let xhr = this.shadowRoot.getElementById('delete');
         xhr.body = params;
         xhr.generateRequest();

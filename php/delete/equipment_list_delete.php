@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
         
         // validate & store input
         $count = test_input($_POST['count']);
-        $weight = test_input($_POST['weight']);
+        $force = test_input($_POST['force']);
         $name = test_input($_POST['name']);
         
         // update query
-        $UpdateQuery = sprintf("DELETE FROM `EquipmentList` WHERE (`count` = %d AND `weight` = %d AND `name` = '%s')",
-            intval($count), intval($weight), $db->real_escape_string($name));
+        $UpdateQuery = sprintf("DELETE FROM `EquipmentList` WHERE (`count` = %d AND `force` = %d AND `name` = '%s')",
+            intval($count), intval($force), $db->real_escape_string($name));
         
         // execute query
         $db->query($UpdateQuery) or die($db->error);
