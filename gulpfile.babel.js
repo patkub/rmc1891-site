@@ -175,7 +175,7 @@ gulp.task('serve:browsersync:build', () => {
  */
 gulp.task('deploy:mysql', function() {
   /* global process */
-  let args = minimist(process.argv.slice(4));
+  let args = minimist(process.argv.slice(3));
   
   // replace private database connection info
   return gulp.src('private/db.ini')
@@ -183,7 +183,7 @@ gulp.task('deploy:mysql', function() {
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
     .pipe(replace('{{pass}}', args.dbpass))
-    .pipe('build/es5-bundled/private/db.ini');
+    .pipe(gulp.dest('build/es5-bundled/private/'));
 });
 
 /**
@@ -191,7 +191,7 @@ gulp.task('deploy:mysql', function() {
  */
 gulp.task('deploy:public', function() {
   /* global process */
-  let args = minimist(process.argv.slice(3));
+  let args = minimist(process.argv.slice(2));
   
   // public site
   return gulp.src([
@@ -212,7 +212,7 @@ gulp.task('deploy:public', function() {
  */
 gulp.task('deploy:private', function() {
   /* global process */
-  let args = minimist(process.argv.slice(7));
+  let args = minimist(process.argv.slice(6));
   
   // private files
   return gulp.src([
