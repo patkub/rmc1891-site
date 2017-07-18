@@ -175,7 +175,7 @@ gulp.task('serve:browsersync:build', () => {
  */
 gulp.task('deploy:public', function() {
   /* global process */
-  let args = minimist(process.argv.slice(4));
+  let args = minimist(process.argv.slice(3));
   
   // public site
   return gulp.src([
@@ -194,7 +194,7 @@ gulp.task('deploy:public', function() {
  */
 gulp.task('deploy:private', function() {
   /* global process */
-  let args = minimist(process.argv.slice(4));
+  let args = minimist(process.argv.slice(7));
   
   // private files
   return gulp.src([
