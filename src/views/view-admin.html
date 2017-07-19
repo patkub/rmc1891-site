@@ -65,6 +65,9 @@ In typical use, add the element to an `<iron-pages>` element:
         .container {
             margin-top: 56px;
         }
+        .btn-submit {
+            margin-bottom: 1rem;
+        }
     </style>
     
     <!-- container -->
@@ -101,7 +104,7 @@ In typical use, add the element to an `<iron-pages>` element:
         </template>
         
         <template is="dom-if" if="{{loggedIn}}">
-            <button on-tap="logout" class="btn btn-primary">Logout</button>
+            <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
             
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
