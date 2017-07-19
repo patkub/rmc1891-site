@@ -15,8 +15,7 @@
     "indent": ["error", 2],
     "max-len": ["error", { "ignoreComments": true, "ignoreStrings": true }],
     "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
-    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-    "require-jsdoc": "error"
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }]
   },
   "globals": {
     "Polymer": true
