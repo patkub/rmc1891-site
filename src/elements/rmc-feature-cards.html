@@ -121,12 +121,15 @@ Add the editable attribute to include features to edit card text content:
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
+    /** Class representing feature cards. */
     class RMCFeatureCards extends
       Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
       static get is() {
         return 'rmc-feature-cards';
       }
       
+      /** Declared properties. */
       static get properties() {
         return {
           /** Whether this element is editable. */

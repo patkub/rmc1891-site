@@ -47,11 +47,14 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
     </template>
 
   <script>
+    /** Class application shell. */
     class RMCShell extends Polymer.Element {
+      /** HTML tag name. */
       static get is() {
         return 'rmc-shell';
       }
-
+      
+      /** Declared properties. */
       static get properties() {
         return {
           page: {
@@ -62,13 +65,19 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           routeData: Object,
         };
       }
-
+      
+      /** Observers. */
       static get observers() {
         return [
           '_routePageChanged(routeData.page)',
         ];
       }
-
+      
+      /**
+       * Route page changed observer.
+       *
+       * @param {String} page - new page.
+       */
       _routePageChanged(page) {
         // Polymer 2.0 will call with `undefined` on initialization.
         // Ignore until we are properly called with a string.
@@ -90,7 +99,12 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
         // Scroll to top of page
         window.scrollTo(0, 0);
       }
-
+      
+      /**
+       * Page attribute changed observer.
+       *
+       * @param {String} page - new page.
+       */
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         let resolvedPageUrl = this.resolveUrl('views/view-' + page + '.html');
@@ -100,7 +114,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
           this._showPage404.bind(this),
           true);
       }
-
+      
+      /**
+       * Dynamic import error page.
+       */
       _showPage404() {
         this.page = '404';
       }

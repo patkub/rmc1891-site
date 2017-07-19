@@ -111,12 +111,15 @@ Add the editable attribute to include features to edit the list:
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
+    /** Class representing list of tool room services. */
     class RMCToolRoomServices extends
       Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-services';
       }
       
+      /** Declared properties. */
       static get properties() {
         return {
           /** Whether this element is editable. */

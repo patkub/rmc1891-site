@@ -84,11 +84,14 @@ In typical use, add the element to an `<iron-pages>` element:
     <script>
       /* eslint new-cap: ["error", { "capIsNew": false }] */
       
+      /** Class representing contact view. */
       class ViewContact extends Polymer.GestureEventListeners(Polymer.Element) {
+        /** HTML tag name. */
         static get is() {
           return 'view-contact';
         }
         
+        /** Declared properties. */
         static get properties() {
           return {
             /** Initially undefined. True if email has been sent
@@ -103,7 +106,7 @@ In typical use, add the element to an `<iron-pages>` element:
         /**
          * Send email
          *
-         * @param {Object} e - on-tap event, 'machine' attribute is the machine to add.
+         * @param {Object} e - on-tap event.
          */
         _sendEmail(e) {
           // get email
@@ -124,7 +127,7 @@ In typical use, add the element to an `<iron-pages>` element:
         /**
          * Email response
          *
-         * @param {Object} e - iron ajax response.
+         * @param {Object} e - ajax response.
          */
         _emailResponse(e) {
           // Get response

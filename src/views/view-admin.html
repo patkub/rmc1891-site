@@ -145,10 +145,15 @@ In typical use, add the element to an `<iron-pages>` element:
 
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    
+    /** Class representing admin view. */
     class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
       static get is() {
         return 'view-admin';
       }
+      
+      /** Declared properties. */
       static get properties() {
         return {
           loggedIn: {
@@ -164,6 +169,12 @@ In typical use, add the element to an `<iron-pages>` element:
           routeData: Object,
         };
       }
+      
+      /**
+       * Login
+       *
+       * @param {Object} e - on-tap event.
+       */
       login(e) {
         // Get form login info
         let user = this.shadowRoot.querySelector('#username').value;
@@ -175,6 +186,12 @@ In typical use, add the element to an `<iron-pages>` element:
         xhr.body = params;
         xhr.generateRequest();
       }
+      
+      /**
+       * Login response.
+       *
+       * @param {Object} e - ajax response.
+       */
       loginResponse(e) {
         // Get response
         let response = e.detail.response;
@@ -188,9 +205,21 @@ In typical use, add the element to an `<iron-pages>` element:
           this.loggedIn = false;
         }
       }
+      
+      /**
+       * Logout
+       *
+       * @param {Object} e - on-tap event.
+       */
       logout(e) {
         this.loggedIn = false;
       }
+      
+      /**
+       * Change page
+       *
+       * @param {Object} e - on-tap event.
+       */
       _changePage(e) {
         e.preventDefault();
         this.page = e.target.getAttribute('page');

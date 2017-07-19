@@ -48,8 +48,10 @@ In typical use, add the element to an `<iron-pages>` element:
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
+    /** Class representing admin contact view. */
     class ViewAdminContact extends
       Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
       static get is() {
         return 'view-admin-contact';
       }

@@ -43,11 +43,14 @@ Add the editable attribute to include features to edit both lists:
     </template>
 
   <script>
+    /** Class representing list of tool room equipment & services. */
     class RMCToolRoomList extends Polymer.Element {
+      /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-list';
       }
       
+      /** Declared properties. */
       static get properties() {
         return {
           /** Whether this element is editable. */

@@ -105,12 +105,15 @@ In typical use, add the element to your body with the desired view:
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
+    /** Class representing text for a page. */
     class RMCTextView extends
       Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
       static get is() {
         return 'rmc-text-view';
       }
       
+      /** Declared properties. */
       static get properties() {
         return {
           /** Whether this element is editable. */
