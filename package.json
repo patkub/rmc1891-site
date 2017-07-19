@@ -55,13 +55,13 @@
     "web-component-tester": "^6.0.0"
   },
   "scripts": {
-    "lint": "gulp css && yarn run lint:javascript && yarn run lint:polymer",
+    "lint": "gulp build:before && yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
     "lint:polymer": "polymer lint",
     "test:local": "wct --plugin local --skip-plugin sauce",
     "test:sauce": "wct --plugin sauce --skip-plugin local",
-    "test:integration": "gulp build:before && polymer build && gulp build:after # test that rmc1891 builds without error with the CLI",
-    "build": "yarn run lint:javascript && yarn run lint:polymer && gulp build:before && polymer build && gulp build:after",
+    "test:integration": "yarn run lint && polymer build && gulp build:after",
+    "build": "yarn run lint && polymer build && gulp build:after",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build"
   },

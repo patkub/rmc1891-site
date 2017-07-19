@@ -105,7 +105,7 @@ gulp.task('inline', function() {
 /**
  * Generate precaching service worker
  */
-gulp.task('generate-service-worker', ['inline', 'fonts', 'del'], function(callback) {
+gulp.task('generate-service-worker', ['inline', 'fonts', 'del:after'], function(callback) {
   let rootDir = 'build/es5-bundled/';
   
   swPrecache.write(path.join(rootDir, 'sw.js'), {
@@ -123,9 +123,18 @@ gulp.task('app-indexeddb', function() {
 });
 
 /**
+ * Delete build directory
+ */
+gulp.task('del:before', function() {
+  return del([
+    'build/',
+  ]);
+});
+
+/**
  * Delete unneccessary build files
  */
-gulp.task('del', function() {
+gulp.task('del:after', function() {
   return del([
     'build/es5-bundled/bower_components/',
   ]);
@@ -235,10 +244,10 @@ gulp.task('deploy:private', function() {
 gulp.task('css', ['sass', 'clean-css']);
 
 // Before polymer build
-gulp.task('build:before', ['sass', 'clean-css']);
+gulp.task('build:before', ['del:before', 'css']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'fonts', 'del', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'fonts', 'del:after', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'fonts:local', 'serve:browsersync:local']);
