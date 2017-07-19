@@ -72,13 +72,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* eslint new-cap: ["error", { "capIsNew": false }],
               no-undef: 0 */
     
+    /** Class carousel. */
     class MyCarousel extends MyMixin(Polymer.Element) {
-      // Extend Polymer.Element with MyMixin  
+      // Extend Polymer.Element with MyMixin
       
+      /** HTML tag name. */
       static get is() {
         return 'my-carousel';
       }
-
+      
+      /**
+       * Selected property changed observer.
+       *
+       * @param {Object} selected - new selected object.
+       * @param {Object} oldSelected - old selected object.
+       */
       _selectedChanged(selected, oldSelected) {
         super._selectedChanged(selected, oldSelected);
 
@@ -94,7 +102,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.nextBtn.disabled = true;
         }
       }
-
+      
+      /** Transition to previous slide. */
       previous() {
         const elem = this.selected && this.selected.previousElementSibling;
         if (elem && !this._touchDir) {
@@ -109,7 +118,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this._translateX(elem, 0, true /* transition */);
         }
       }
-
+      
+      /** Transition to next slide. */
       next() {
         const elem = this.selected && this.selected.nextElementSibling;
         if (elem && !this._touchDir) {
@@ -124,31 +134,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this._translateX(elem, 0, true /* transition */);
         }
       }
-
+      
+      /**
+       * Load slide image.
+       * @param {String} img - image to load from 'data-src' attribute.
+       */
       _loadImage(img) {
         if (img && !img.src) {
           img.src = img.getAttribute('data-src');
         }
       }
-
+      
+      /**
+       * Load slide image.
+       * @param {Object} elem - element to transition.
+       * @param {Integer} x - amount of pixels.
+       * @param {Boolean} transition - apply transform transition.
+       */
       _translateX(elem, x, transition) {
         elem.style.display = 'block';
         elem.style.transition = transition ? 'transform 0.2s' : '';
         elem.style.transform = 'translate3d(' + x + 'px, 0, 0)';
       }
-
+      
+      /** Called after property values are set and local DOM is initialized. */
       ready() {
         super.ready();
         requestAnimationFrame(this._installListeners.bind(this));
       }
       
+      /** Install listeners. */
       _installListeners() {
         this.addEventListener('transitionend', this._resetChildrenStyles.bind(this));
         this.addEventListener('touchstart', this._touchstart.bind(this));
         this.addEventListener('touchmove', this._touchmove.bind(this));
         this.addEventListener('touchend', this._touchend.bind(this));
       }
-
+      
+      /** Reset child element styles. */
       _resetChildrenStyles() {
         let elem = this.firstElementChild;
         while (elem) {
@@ -158,7 +181,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           elem = elem.nextElementSibling;
         }
       }
-
+      
+      /**
+       * Touch start listener.
+       *
+       * @param {e} event - touchstart event.
+       */
       _touchstart(event) {
         // No transition if less than two images
         if (this.childElementCount < 2) {
@@ -171,7 +199,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this._startY = event.changedTouches[0].clientY;
         }
       }
-
+      
+      /**
+       * Touch move listener.
+       *
+       * @param {e} event - touchmove event.
+       */
       _touchmove(event) {
         // No transition if less than two images
         if (this.childElementCount < 2) {
@@ -207,7 +240,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-
+      
+      /**
+       * Touch end listener.
+       *
+       * @param {e} event - touch end event.
+       */
       _touchend(event) {
         // No transition if less than two images
         if (this.childElementCount < 2) {

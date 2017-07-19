@@ -9,7 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <script>
   /* eslint no-unused-vars: 0 */
+  
+  /* @polymerMixin */
   const MyMixin = (superclass) => class extends superclass {
+    /** Declared properties. */
     static get properties() {
       return {
         selected: {
@@ -18,19 +21,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
       };
     }
-
+    
+    /** Called after the element is attached to the document. */
     connectedCallback() {
       super.connectedCallback();
 
       this.shadowRoot.addEventListener('slotchange', this._resetSelected.bind(this));
       this._resetSelected();
     }
-
+    
+    /**
+     * Selected property changed observer.
+     *
+     * @param {Object} selected - new selected object.
+     * @param {Object} oldSelected - old selected object.
+     */
     _selectedChanged(selected, oldSelected) {
       if (oldSelected) oldSelected.removeAttribute('selected');
       if (selected) selected.setAttribute('selected', '');
     }
-
+    
+    /**
+     * Reset selected property.
+     */
     _resetSelected() {
       if (!this.selected || this.selected.parentElement !== this) {
         this.selected = this.firstElementChild;
