@@ -25,19 +25,10 @@ attributes:
               padding: 10px;
               text-align: center;
           }
-          
-          .admin-link {
-              white-space: nowrap;
-              text-decoration:none;
-          }
         </style>
 
         <footer class="footer">
 			<span class="text-muted">[[text]]</span>
-            
-            <a href$="{{admin.link}}" class="admin-link text-muted">
-                <span class$="fa fa-fw fa-{{admin.icon}}" aria-hidden="true"></span>{{admin.text}}
-            </a>
         </footer>
     </template>
 
@@ -51,13 +42,6 @@ attributes:
         return {
           /** Footer text */
           text: String,
-          
-          /**
-           * Metadata describing the admin link.
-           *
-           * @type {{text: String, link: String, icon: String}}
-           */
-          admin: Object,
         };
       }
     }
