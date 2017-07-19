@@ -24,6 +24,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
+<!-- Editable State Styles -->
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-editable.html">
+
 <!-- Shared Styles for Views -->
 <link rel="import" href="../views/shared-styles-views.html">
 
@@ -37,8 +40,9 @@ In typical use, add the element to your body with the desired view:
 -->
 <dom-module id="rmc-text-view">
     <template>
-        <style include="shared-styles-views"></style>
-        <style include="rmc-shared-styles-paper-spinner">
+        <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="rmc-shared-styles-editable"></style>
+        <style include="shared-styles-views">
             textarea {
                 min-width: 100%;
             }
