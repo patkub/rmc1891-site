@@ -4,5 +4,4 @@ node_modules/
 css/
 fonts/
 npm-debug*
-*.webp
 *.min.*
