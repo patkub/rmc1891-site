@@ -6,7 +6,7 @@
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
 [![Build Status](https://saucelabs.com/browser-matrix/patrykkub.svg)](https://saucelabs.com/u/patrykkub)
 
-Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
+[Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](http://getbootstrap.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
 
