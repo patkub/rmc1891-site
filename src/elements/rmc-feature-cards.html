@@ -85,8 +85,10 @@ Add the editable attribute to include features to edit card text content:
             <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
         </template>
         
-        <!-- information about markdown syntax -->
-        <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
+        <template is="dom-if" if="{{editable}}">
+          <!-- information about markdown syntax -->
+          <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
+        </template>
         
         <div class="card-deck">
             <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
@@ -97,6 +99,7 @@ Add the editable attribute to include features to edit card text content:
                         <p class="card-text">
                           <template is="dom-if" if="{{editable}}">
                             <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
+                            <h4>Preview:</h4>
                           </template>
                           <marked-element markdown="{{card.text}}" id="markdown">
                             <div slot="markdown-html"></div>
