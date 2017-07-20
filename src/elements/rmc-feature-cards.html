@@ -15,11 +15,17 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- App Storage -->
 <link rel="import" href="../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
+<!-- Marked Library -->
+<link rel="import" href="../../node_modules/@npm-polymer/marked-element/marked-element.html">
+
 <!-- Paper Spinner -->
 <link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+
+<!-- RMC Markdown Info -->
+<link rel="import" href="rmc-markdown-info.html">
 
 <!--
 `<rmc-feature-cards>` displays a group of cards that highlight features.
@@ -79,18 +85,23 @@ Add the editable attribute to include features to edit card text content:
             <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
         </template>
         
+        <!-- information about markdown syntax -->
+        <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
+        
         <div class="card-deck">
             <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
                 <div class="card">
                     <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
                     <div class="card-block">
                         <h4 class="card-title">[[card.title]]</h4>
-                        <template is="dom-if" if="{{!editable}}">
-                            <p class="card-text">[[card.text]]</p>
-                        </template>
-                        <template is="dom-if" if="{{editable}}">
-                            <textarea class="form-control" id="[[card.title]]" rows="10">[[card.text]]</textarea>
-                        </template>
+                        <p class="card-text">
+                          <template is="dom-if" if="{{editable}}">
+                            <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
+                          </template>
+                          <marked-element markdown="{{card.text}}" id="markdown">
+                            <div slot="markdown-html"></div>
+                          </marked-element>
+                        </p>
                     </div>
                     <div class="card-footer">
                         <template is="dom-if" if="{{!editable}}">
