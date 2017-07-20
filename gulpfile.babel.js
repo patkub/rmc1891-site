@@ -118,8 +118,10 @@ gulp.task('generate-service-worker', ['inline', 'fonts', 'del:after'], function(
  * Copy app indexeddb mirror worker
  */
 gulp.task('app-indexeddb', function() {
-  return gulp.src('node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js')
-    .pipe(gulp.dest('build/es5-bundled/'));
+  return gulp.src([
+    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
+    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/common-worker-scope.js',
+  ]).pipe(gulp.dest('build/es5-bundled/'));
 });
 
 /**
