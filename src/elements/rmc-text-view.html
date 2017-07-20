@@ -71,15 +71,17 @@ In typical use, add the element to your body with the desired view:
         
         <h2>[[title]]</h2>
         
+        <template is="dom-if" if="{{editable}}">
+            <!-- information about markdown syntax -->
+            <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="pages"></rmc-markdown-info>
+        </template>
+        
         <!-- paper-spinner while loading -->
         <template is="dom-if" if="{{viewTextLoading}}">
             <paper-spinner active="{{viewTextLoading}}"></paper-spinner>
         </template>
         
         <template is="dom-if" if="{{editable}}">
-            <!-- information about markdown syntax -->
-            <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="pages"></rmc-markdown-info>
-            
             <textarea rows="10" value="{{persistedViewText::input}}"></textarea>
             <h2>Preview:</h2>
         </template>
