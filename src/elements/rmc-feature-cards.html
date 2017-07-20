@@ -60,11 +60,6 @@ Add the editable attribute to include features to edit card text content:
               margin-right: inherit;
             }
           }
-          
-          h4 {
-            margin-top: .5rem;
-            color: #1565c0;
-          }
         </style>
         
         <!-- load feature cards -->
@@ -104,7 +99,7 @@ Add the editable attribute to include features to edit card text content:
                         <p class="card-text">
                           <template is="dom-if" if="{{editable}}">
                             <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
-                            <h4>Preview:</h4>
+                            <h4 class="card-editable">Preview:</h4>
                           </template>
                           <marked-element markdown="{{card.text}}" id="markdown">
                             <div slot="markdown-html"></div>
