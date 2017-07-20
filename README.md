@@ -32,7 +32,7 @@ bower install
 ### Build
 
 This command performs HTML, CSS, and JS minification on the application
-dependencies, and generates a service-worker.js file with code to pre-cache the
+dependencies, and generates a service worker `sw.js` file with code to pre-cache the
 dependencies based on the entrypoint and fragments specified in `polymer.json`.
 The minified files are output to the `build/bundled` folder,
 generated using fragment bundling.
