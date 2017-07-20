@@ -51,7 +51,11 @@ In typical use, add the element to an `<iron-pages>` element:
         my-carousel img {
           position: absolute;
           width: 100%;
-          height: 100%;
+          height: auto;
+        }
+        
+        my-carousel:first-child {
+          position: relative;
         }
 
         // Large devices (desktops, 992px and up)
@@ -60,11 +64,16 @@ In typical use, add the element to an `<iron-pages>` element:
                 margin-top: 56px;
             }
         }
+        
+        .container {
+          margin-top: 0px;
+        }
     </style>
     
     <my-carousel>
-      <img data-src="images/about.jpg">
-      <img data-src="images/capabilities.jpg">
+      <img data-src="images/carousel/home.jpg">
+      <img data-src="images/carousel/about.jpg">
+      <img data-src="images/carousel/capabilities.jpg">
     </my-carousel>
     
     <!-- container -->
