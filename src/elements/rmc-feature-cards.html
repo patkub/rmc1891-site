@@ -80,14 +80,14 @@ Add the editable attribute to include features to edit card text content:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{featureCardsLoading}}">
-            <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
-        </template>
-        
         <template is="dom-if" if="{{editable}}">
           <!-- information about markdown syntax -->
           <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
+        </template>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{featureCardsLoading}}">
+            <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
         </template>
         
         <div class="card-deck">
