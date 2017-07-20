@@ -17,6 +17,7 @@
     "fonts"
   ],
   "devDependencies": {
-    "web-component-tester": "^6.0.0"
+    "web-component-tester": "^6.0.0",
+    "iron-component-page": "^3.0.1"
   }
 }

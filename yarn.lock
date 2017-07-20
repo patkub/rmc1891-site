@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@npm-polymer/app-layout@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/app-layout/-/app-layout-2.0.0.tgz#710c0d667661998899faf7d4e5821bad05f788d6"
+  dependencies:
+    "@npm-polymer/iron-flex-layout" "1.3.7"
+    "@npm-polymer/iron-media-query" "1.0.8"
+    "@npm-polymer/iron-resizable-behavior" "1.0.6"
+    "@npm-polymer/iron-scroll-target-behavior" "2.0.0"
+    "@npm-polymer/polymer" "2.0.1"
+
 "@npm-polymer/app-route@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@npm-polymer/app-route/-/app-route-2.0.0.tgz#979fbf0ea4511009ed0b6774f1d09ca23700fd0b"
@@ -19,17 +29,95 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@npm-polymer/font-roboto/-/font-roboto-1.0.1.tgz#dd8f4a6a63c1e06876ab052fc042bdce17f400d4"
 
-"@npm-polymer/iron-ajax@^1.4.4":
+"@npm-polymer/hydrolysis@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/hydrolysis/-/hydrolysis-1.25.0.tgz#2753b5a6f0e24b9cca24464e5d094e7633fd4493"
+
+"@npm-polymer/iron-a11y-keys-behavior@1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-a11y-keys-behavior/-/iron-a11y-keys-behavior-1.1.9.tgz#e4bbed626ae53c6575a93c2f01824c5cb315ae02"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-ajax@1.4.4", "@npm-polymer/iron-ajax@^1.4.4":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-ajax/-/iron-ajax-1.4.4.tgz#d235588841432627c38a413a5f1e2e3f10e41348"
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
     "@npm-polymer/promise-polyfill" "2.0.1"
 
+"@npm-polymer/iron-behaviors@1.0.18":
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-behaviors/-/iron-behaviors-1.0.18.tgz#46ef6ed91180cd77615e111b242c5830311e6d53"
+  dependencies:
+    "@npm-polymer/iron-a11y-keys-behavior" "1.1.9"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-checked-element-behavior@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-checked-element-behavior/-/iron-checked-element-behavior-1.0.6.tgz#f9e4ff9010d8ba05cef53b97334a047d485c8a11"
+  dependencies:
+    "@npm-polymer/iron-form-element-behavior" "1.0.7"
+    "@npm-polymer/iron-validatable-behavior" "1.1.2"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-component-page@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-component-page/-/iron-component-page-2.0.0.tgz#01739740d027c7c420721002abf6f30cab4ba42f"
+  dependencies:
+    "@npm-polymer/app-layout" "2.0.0"
+    "@npm-polymer/hydrolysis" "1.25.0"
+    "@npm-polymer/iron-ajax" "1.4.4"
+    "@npm-polymer/iron-doc-viewer" "2.0.0"
+    "@npm-polymer/iron-flex-layout" "1.3.7"
+    "@npm-polymer/iron-icons" "1.2.1"
+    "@npm-polymer/iron-selector" "1.5.3"
+    "@npm-polymer/paper-styles" "1.3.1"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-doc-viewer@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-doc-viewer/-/iron-doc-viewer-2.0.0.tgz#bb3af136c30eb18244c969eb5ab40553e63c9fc4"
+  dependencies:
+    "@npm-polymer/marked-element" "1.4.2"
+    "@npm-polymer/paper-button" "2.0.0"
+    "@npm-polymer/paper-styles" "1.3.1"
+    "@npm-polymer/polymer" "2.0.1"
+    "@npm-polymer/prism-element" "1.2.0"
+
 "@npm-polymer/iron-flex-layout@1.3.7":
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-flex-layout/-/iron-flex-layout-1.3.7.tgz#e7389da5688b916b1654316678ef582fbe823c65"
   dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-form-element-behavior@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-form-element-behavior/-/iron-form-element-behavior-1.0.7.tgz#40c264f31c71f6e26cf4f2e3c3f0cbc645bcf271"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-icon@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-icon/-/iron-icon-1.0.13.tgz#56203ad41fc2d776ab229f14e2ea93a8f79cdc36"
+  dependencies:
+    "@npm-polymer/iron-flex-layout" "1.3.7"
+    "@npm-polymer/iron-meta" "1.1.3"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-icons@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-icons/-/iron-icons-1.2.1.tgz#a8dd764d10186171dc132b29b7763d1c6cc29286"
+  dependencies:
+    "@npm-polymer/iron-icon" "1.0.13"
+    "@npm-polymer/iron-iconset-svg" "1.1.1"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-iconset-svg@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-iconset-svg/-/iron-iconset-svg-1.1.1.tgz#218f0141de5069d122ffe43eeaa7712d8018f98b"
+  dependencies:
+    "@npm-polymer/iron-meta" "1.1.3"
     "@npm-polymer/polymer" "2.0.1"
 
 "@npm-polymer/iron-image@^2.1.1":
@@ -41,6 +129,18 @@
 "@npm-polymer/iron-location@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-location/-/iron-location-2.0.1.tgz#a11a5360ea8a2595f51bbec7610c317e1ded3999"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-media-query@1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-media-query/-/iron-media-query-1.0.8.tgz#d08855ba5566555f6ba8f622b558090c4898242e"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/iron-meta@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-meta/-/iron-meta-1.1.3.tgz#db4a2c1f922bfb4ed33b95196737d7e840528e7c"
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
 
@@ -58,13 +158,26 @@
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
 
+"@npm-polymer/iron-scroll-target-behavior@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-scroll-target-behavior/-/iron-scroll-target-behavior-2.0.0.tgz#3ac8c17d8a8526c55460c7a7f032095bd128e826"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
 "@npm-polymer/iron-selector@1.5.3":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@npm-polymer/iron-selector/-/iron-selector-1.5.3.tgz#a5d23a0200648fcaa9ad2e376fdcd4dcbac2b94f"
   dependencies:
     "@npm-polymer/polymer" "2.0.1"
 
-"@npm-polymer/marked-element@^1.4.2":
+"@npm-polymer/iron-validatable-behavior@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/iron-validatable-behavior/-/iron-validatable-behavior-1.1.2.tgz#7b3f11de6ba0b5176dc978631338f1c14d514bff"
+  dependencies:
+    "@npm-polymer/iron-meta" "1.1.3"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/marked-element@1.4.2", "@npm-polymer/marked-element@^1.4.2":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@npm-polymer/marked-element/-/marked-element-1.4.2.tgz#77ebb4f9c5605f5c047877d643bdd1b911ebc3f6"
   dependencies:
@@ -74,6 +187,26 @@
 "@npm-polymer/marked@0.3.6":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@npm-polymer/marked/-/marked-0.3.6.tgz#7194345f5464364d22f7f7015031b6881db4a97b"
+
+"@npm-polymer/paper-behaviors@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/paper-behaviors/-/paper-behaviors-1.0.13.tgz#2c0ed2dc2d2e2636d5d6f8c6d8f16097271cba38"
+  dependencies:
+    "@npm-polymer/iron-behaviors" "1.0.18"
+    "@npm-polymer/iron-checked-element-behavior" "1.0.6"
+    "@npm-polymer/paper-ripple" "1.0.9"
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/paper-button@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/paper-button/-/paper-button-2.0.0.tgz#d102e291a614194962996fd52647c98df6de4633"
+
+"@npm-polymer/paper-ripple@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/paper-ripple/-/paper-ripple-1.0.9.tgz#efca554a7489ebbdbbd2e34167e1f29b7df33e07"
+  dependencies:
+    "@npm-polymer/iron-a11y-keys-behavior" "1.1.9"
+    "@npm-polymer/polymer" "2.0.1"
 
 "@npm-polymer/paper-spinner@^2.0.0":
   version "2.0.0"
@@ -93,6 +226,18 @@
 "@npm-polymer/polymer@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@npm-polymer/polymer/-/polymer-2.0.1.tgz#6d0b8c9ad561c4f385412d442b6ef7d51bedda3b"
+
+"@npm-polymer/prism-element@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/prism-element/-/prism-element-1.2.0.tgz#9287ad5cab623765705b8985135851570dc6c90b"
+  dependencies:
+    "@npm-polymer/polymer" "2.0.1"
+
+"@npm-polymer/prism@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@npm-polymer/prism/-/prism-1.6.0.tgz#aded667ef12473d201da80766e7eceb01dfaac76"
+  optionalDependencies:
+    clipboard "^1.5.5"
 
 "@npm-polymer/promise-polyfill@2.0.1":
   version "2.0.1"
@@ -339,7 +484,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@4.0.30":
+"@types/node@*", "@types/node@4.0.30", "@types/node@^4.0.30":
   version "4.0.30"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.0.30.tgz#553f490ed3030311620f88003e7abfc0edcb301e"
 
@@ -347,7 +492,7 @@
   version "6.0.84"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.84.tgz#193ffe5a9f42864d425ffd9739d95b753c6a1eab"
 
-"@types/node@^4.0.30", "@types/node@^4.2.3":
+"@types/node@^4.2.3":
   version "4.2.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.2.15.tgz#4cc87981e1e3956d4db41b91bee7fb58d7336387"
 
@@ -1850,6 +1995,14 @@ cli-width@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a"
 
+clipboard@^1.5.5:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-1.7.1.tgz#360d6d6946e99a7a1fef395e42ba92b5e9b5a16b"
+  dependencies:
+    good-listener "^1.2.2"
+    select "^1.1.2"
+    tiny-emitter "^2.0.0"
+
 cliui@^3.0.3, cliui@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-3.2.0.tgz#120601537a916d29940f934da3b48d585a39213d"
@@ -2281,6 +2434,10 @@ del@^3.0.0:
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
+
+delegate@^3.1.2:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.1.3.tgz#9a8251a777d7025faa55737bc3b071742127a9fd"
 
 delegates@^1.0.0:
   version "1.0.0"
@@ -3372,6 +3529,12 @@ glogg@^1.0.0:
   resolved "https://registry.yarnpkg.com/glogg/-/glogg-1.0.0.tgz#7fe0f199f57ac906cf512feead8f90ee4a284fc5"
   dependencies:
     sparkles "^1.0.0"
+
+good-listener@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  dependencies:
+    delegate "^3.1.2"
 
 got@^5.0.0:
   version "5.7.1"
@@ -6189,6 +6352,10 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
 
+select@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
+
 selenium-standalone@^5.8.0:
   version "5.11.2"
   resolved "https://registry.yarnpkg.com/selenium-standalone/-/selenium-standalone-5.11.2.tgz#724ccaa72fb26f3711e0e20989e478c4133df844"
@@ -6850,9 +7017,9 @@ ternary-stream@^2.0.1:
     merge-stream "^1.0.0"
     through2 "^2.0.1"
 
-"test-fixture@github:polymerelements/test-fixture":
+test-fixture@PolymerElements/test-fixture:
   version "3.0.0-rc.1"
-  resolved "https://codeload.github.com/polymerelements/test-fixture/tar.gz/26118ef0467501c33c02316e7016a2837baba10f"
+  resolved "https://codeload.github.com/PolymerElements/test-fixture/tar.gz/26118ef0467501c33c02316e7016a2837baba10f"
 
 test-value@^2.1.0:
   version "2.1.0"
@@ -6941,6 +7108,10 @@ timed-out@^3.0.0:
 timed-out@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
+
+tiny-emitter@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.1.tgz#e65919d91e488e2a78f7ebe827a56c6b188d51af"
 
 tmp@^0.0.29:
   version "0.0.29"

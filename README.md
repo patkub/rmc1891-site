@@ -85,8 +85,17 @@ yarn run test:sauce
 
 ### Linting
 
-This command will run [ESLint](http://eslint.org/) on JavaScript and HTML files:
+This command will run [ESLint](http://eslint.org/) on JavaScript and HTML files,
+and `polymer lint`:
 
 ```sh
 yarn run lint
+```
+
+### Documentation
+
+This command will generate a documentation page for the elements:
+
+```sh
+yarn run docs
 ```

@@ -21,10 +21,13 @@
     "@npm-polymer/app-route": "^2.0.0",
     "@npm-polymer/app-storage": "^2.0.1",
     "@npm-polymer/iron-ajax": "^1.4.4",
+    "@npm-polymer/iron-component-page": "^2.0.0",
     "@npm-polymer/iron-image": "^2.1.1",
     "@npm-polymer/iron-pages": "^2.0.0",
     "@npm-polymer/marked-element": "^1.4.2",
+    "@npm-polymer/paper-behaviors": "^1.0.13",
     "@npm-polymer/paper-spinner": "^2.0.0",
+    "@npm-polymer/prism": "^1.6.0",
     "@npm-polymer/shadycss": "^1.0.1",
     "@npm-polymer/webcomponentsjs": "^1.0.1",
     "@polymer/polymer": "^2.0.1",
@@ -54,15 +57,16 @@
     "web-component-tester": "^6.0.0"
   },
   "scripts": {
+    "build": "yarn run lint && polymer build && gulp build:after",
+    "docs": "polymer analyze > docs/analysis.json",
     "lint": "gulp build:before && yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
     "lint:polymer": "polymer lint",
+    "serve:local": "gulp serve:local",
+    "serve:build": "gulp serve:build",
     "test:local": "wct --plugin local --skip-plugin sauce",
     "test:sauce": "wct --plugin sauce --skip-plugin local",
-    "test:integration": "yarn run lint && polymer build && gulp build:after",
-    "build": "yarn run lint && polymer build && gulp build:after",
-    "serve:local": "gulp serve:local",
-    "serve:build": "gulp serve:build"
+    "test:integration": "yarn run lint && polymer build && gulp build:after"
   },
   "babel": {
     "only": "gulpfile.babel.js",
