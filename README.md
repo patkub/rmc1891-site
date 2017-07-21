@@ -4,9 +4,9 @@
 [![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
 [![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
-[![Build Status](https://saucelabs.com/browser-matrix/patrykkub.svg)](https://saucelabs.com/u/patrykkub)
+[![Build Status](https://saucelabs.com/browser-matrix/rmc1891-site.svg)](https://saucelabs.com/u/rmc1891-site)
 
-Built with [Polymer 2](https://www.polymer-project.org/) and [Bootstrap 4](http://getbootstrap.com/)
+[Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](http://getbootstrap.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
 
