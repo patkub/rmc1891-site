@@ -40,6 +40,8 @@ In typical use, add the element to an `<iron-pages>` element:
           width: 100%;
           max-height: 400px;
           contain: content;
+          position: relative;
+          overflow: hidden;
         }
 
         my-carousel::after {
@@ -47,18 +49,18 @@ In typical use, add the element to an `<iron-pages>` element:
           content: '';
           padding-top: 50%; /* 2:1 = height is 50% of width */
         }
-
+        
+        /* center image inside carousel */
         my-carousel img {
           position: absolute;
-          width: 100%;
-          height: auto;
-        }
-        
-        my-carousel:first-child {
-          position: relative;
+          top: -9999px;
+          bottom: -9999px;
+          left: -9999px;
+          right: -9999px;
+          margin: auto;
         }
 
-        // Large devices (desktops, 992px and up)
+        /* Large devices (desktops, 992px and up) */
         @media (min-width: 992px) {
             my-carousel {
                 margin-top: 56px;
