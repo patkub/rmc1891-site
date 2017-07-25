@@ -33,6 +33,7 @@
     "@polymer/polymer": "^2.0.1",
     "bootstrap": "v4.0.0-alpha.6",
     "browser-sync": "^2.18.12",
+    "bs4-polymer": "^0.0.5-dev",
     "components-font-awesome": "^4.7.0",
     "connect-history-api-fallback": "^1.3.0",
     "del": "^3.0.0",

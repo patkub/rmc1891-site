@@ -6,11 +6,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- BS4 Jumbotron -->
+<link rel="import" href="../../node_modules/bs4-polymer/dist/bs4-jumbotron/bs4-jumbotron.html">
+
 <!-- Carousel -->
 <link rel="import" href="../elements/carousel/my-carousel.html">
-
-<!-- Jumbotron -->
-<link rel="import" href="../elements/rmc-jumbotron.html">
 
 <!-- Feature Cards -->
 <link rel="import" href="../elements/rmc-feature-cards.html">
@@ -70,6 +70,38 @@ In typical use, add the element to an `<iron-pages>` element:
         .container {
           margin-top: 0px;
         }
+        
+        /* match bootstrap bottom margin */
+        .jumbotron {
+            margin-top: 2rem;
+        }
+		
+        .display-4 {
+          font-weight: 600;
+          font-size: 2rem;
+        }
+        
+        .lead {
+          font-weight: 500;
+        }
+        
+        @media (min-width: 576px) {
+          .display-4 {
+            font-size: 2rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .display-4 {
+            font-size: 2.5rem;
+          }
+        }
+        
+        @media (min-width: 1200px) {
+          .display-4 {
+            font-size: 3.5rem;
+          }
+        }
     </style>
     
     <my-carousel>
@@ -81,10 +113,18 @@ In typical use, add the element to an `<iron-pages>` element:
     <div class="container">
     
         <!-- jumbotron -->
-        <rmc-jumbotron title="The Rogers Manufacturing Company"
+        <!-- <rmc-jumbotron title="The Rogers Manufacturing Company"
                        text="Manufacturing Company Established in 1891."
                        button="Learn more"
-                       link="/about/"></rmc-jumbotron>
+                       link="/about/"></rmc-jumbotron> -->
+                       
+        <bs4-jumbotron>
+            <h1 class="display-4">The Rogers Manufacturing Company</h1>
+            <p class="lead">Manufacturing Company Established in 1891.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/about/" role="button">Learn more</a>
+            </p>
+        </bs4-jumbotron>
 
         <!-- feature cards -->
         <rmc-feature-cards></rmc-feature-cards>
