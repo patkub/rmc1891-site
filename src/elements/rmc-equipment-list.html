@@ -99,16 +99,16 @@ Add the editable attribute to include features to edit the list:
             </iron-ajax>
         </template>
         
-		<table class="table">
-			<thead class="thead-inverse">
-			<tr>
-			  <th>#</th>
-			  <th>Clamping Force</th>
-			  <th>Name</th>
-			</tr>
-			</thead>
-			<tbody>
-				<template is="dom-repeat" items="{{persistedEquipment}}">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Clamping Force</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{persistedEquipment}}">
                     <tr>
                         <th scope="row">[[item.count]]</th>
                         <td>[[item.force]] Ton</td>
@@ -117,9 +117,9 @@ Add the editable attribute to include features to edit the list:
                             <td><i class="fa fa-trash-o" on-tap="_deleteMachine" m-count$="[[item.count]]" m-force$="[[item.force]]" m-name$="[[item.name]]"></i></td>
                         </template>
                     </tr>
-				</template>
-			</tbody>
-		</table>
+                </template>
+            </tbody>
+        </table>
         
         <!-- paper-spinner while loading -->
         <template is="dom-if" if="{{equipmentLoading}}">

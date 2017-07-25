@@ -18,6 +18,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner -->
 <link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
+<!-- BS4 List Group Styles -->
+<link rel="import" href="../../node_modules/bs4-polymer/dist/shared-styles/bs4-list-group/bs4-list-group.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="../rmc-shared-styles/rmc-shared-styles-editable.html">
 
@@ -40,6 +43,7 @@ Add the editable attribute to include features to edit the list:
     <template>
         <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
+        <style include="bs4-shared-styles-list-group"></style>
         
         <!-- load tool room services -->
         <iron-ajax
