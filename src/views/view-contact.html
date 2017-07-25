@@ -9,6 +9,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Iron Ajax -->
 <link rel="import" href="../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
 
+<!-- BS4 Alert -->
+<link rel="import" href="../../node_modules/bs4-polymer/dist/bs4-alert/bs4-alert.html">
+
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
 
@@ -52,15 +55,15 @@ In typical use, add the element to an `<iron-pages>` element:
             </iron-ajax>
             
             <template is="dom-if" if="{{sent}}">
-                <div class="alert alert-success" role="alert">
+                <bs4-alert context="success">
                   <strong>Email sent!</strong> Your message has been sent.
-                </div>
+                </bs4-alert>
             </template>
             
             <template is="dom-if" if="{{!sent}}">
-                <div class="alert alert-danger" role="alert">
+                <bs4-alert context="danger">
                   <strong>Email failed!</strong> Your message failed to sent.
-                </div>
+                </bs4-alert>
             </template>
             
             <form id="emailForm" action="javascript:void(0);">
