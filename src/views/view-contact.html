@@ -12,6 +12,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- BS4 Alert -->
 <link rel="import" href="../../node_modules/bs4-polymer/dist/bs4-alert/bs4-alert.html">
 
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
 
@@ -34,6 +37,7 @@ In typical use, add the element to an `<iron-pages>` element:
 -->
 <dom-module id="view-contact">
     <template>
+        <style include="bs4-shared-styles-grid"></style>
         <style include="shared-styles-views">
             .btn-submit {
                 margin-bottom: 1rem;
