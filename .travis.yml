@@ -17,6 +17,7 @@ cache:
     - node_modules
     - bower_components
 install:
+  - sudo rm -rf /home/travis/.cache/yarn
   - npm install -g bower web-component-tester
   - yarn global add gulp-cli
   - yarn install
