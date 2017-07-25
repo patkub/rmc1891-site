@@ -6,8 +6,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
-<!-- BS4 Jumbotron -->
-<link rel="import" href="../../node_modules/bs4-polymer/dist/bs4-jumbotron/bs4-jumbotron.html">
+<!-- Jumbotron -->
+<link rel="import" href="../elements/rmc-jumbotron.html">
 
 <!-- Carousel -->
 <link rel="import" href="../elements/carousel/my-carousel.html">
@@ -113,18 +113,10 @@ In typical use, add the element to an `<iron-pages>` element:
     <div class="container">
     
         <!-- jumbotron -->
-        <!-- <rmc-jumbotron title="The Rogers Manufacturing Company"
+        <rmc-jumbotron title="The Rogers Manufacturing Company"
                        text="Manufacturing Company Established in 1891."
                        button="Learn more"
-                       link="/about/"></rmc-jumbotron> -->
-                       
-        <bs4-jumbotron>
-            <h1 class="display-4">The Rogers Manufacturing Company</h1>
-            <p class="lead">Manufacturing Company Established in 1891.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/about/" role="button">Learn more</a>
-            </p>
-        </bs4-jumbotron>
+                       link="/about/"></rmc-jumbotron>
 
         <!-- feature cards -->
         <rmc-feature-cards></rmc-feature-cards>

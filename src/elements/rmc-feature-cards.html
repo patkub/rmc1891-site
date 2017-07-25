@@ -21,8 +21,8 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Paper Spinner -->
 <link rel="import" href="../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
-<!-- BS4 Card -->
-<link rel="import" href="../../node_modules/bs4-polymer/dist/bs4-card/bs4-card.html">
+<!-- BS4 Card Styles -->
+<link rel="import" href="../../node_modules/bs4-polymer/dist/shared-styles/bs4-card/bs4-card.html">
 
 <!-- Paper Spinner Styles -->
 <link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
@@ -45,6 +45,7 @@ Add the editable attribute to include features to edit card text content:
 <dom-module id="rmc-feature-cards">
     <template>
         <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="bs4-shared-styles-card"></style>
         <style include="rmc-shared-styles-editable">
           .card {
             margin-bottom: 1rem;
@@ -94,37 +95,35 @@ Add the editable attribute to include features to edit card text content:
             <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
         </template>
         
-        <bs4-card>
-          <div class="card-deck">
-              <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
-                  <div class="card">
-                      <div class="card-img-wrapper">
-                        <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
-                      </div>
-                      <div class="card-block">
-                          <h4 class="card-title">[[card.title]]</h4>
-                          <p class="card-text">
-                            <template is="dom-if" if="{{editable}}">
-                              <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
-                              <h4 class="card-editable">Preview:</h4>
-                            </template>
-                            <marked-element markdown="{{card.text}}" id="markdown">
-                              <div slot="markdown-html"></div>
-                            </marked-element>
-                          </p>
-                      </div>
-                      <div class="card-footer">
-                          <template is="dom-if" if="{{!editable}}">
-                              <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
-                          </template>
+        <div class="card-deck">
+            <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                      <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">[[card.title]]</h4>
+                        <p class="card-text">
                           <template is="dom-if" if="{{editable}}">
-                              <span class="text-primary"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</span>
+                            <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
+                            <h4 class="card-editable">Preview:</h4>
                           </template>
-                      </div>
-                  </div>
-              </template>
-          </div>
-        </bs4-card>
+                          <marked-element markdown="{{card.text}}" id="markdown">
+                            <div slot="markdown-html"></div>
+                          </marked-element>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <template is="dom-if" if="{{!editable}}">
+                            <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
+                        </template>
+                        <template is="dom-if" if="{{editable}}">
+                            <span class="text-primary"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
         
         <template is="dom-if" if="{{editable}}">
           <button class="btn btn-primary btn-submit" on-tap="_save">Save</button>
