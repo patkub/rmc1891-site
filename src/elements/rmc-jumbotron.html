@@ -59,6 +59,15 @@ and link attributes:
             font-size: 3.5rem;
           }
         }
+        
+        @media print {
+          .card-img-wrapper, .card-footer, .btn {
+            display: none;
+          }
+          .lead {
+            margin-bottom: 0px;
+          }
+        }
         </style>
     
         <div class="jumbotron">
