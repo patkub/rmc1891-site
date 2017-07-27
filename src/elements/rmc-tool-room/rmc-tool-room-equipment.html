@@ -21,6 +21,9 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
+<!-- BS4 Tables -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-tables/bs4-tables.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="../rmc-shared-styles/rmc-shared-styles-editable.html">
 
@@ -42,6 +45,7 @@ Add the editable attribute to include features to edit the list:
 <dom-module id="rmc-tool-room-equipment">
     <template>
         <style include="bs4-shared-styles-buttons"></style>
+        <style include="bs4-shared-styles-tables"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
@@ -98,26 +102,26 @@ Add the editable attribute to include features to edit the list:
             </iron-ajax>
         </template>
         
-		<!-- machines -->
-		<table class="table">
-			<thead class="thead-inverse">
-			<tr>
-			  <th>#</th>
-			  <th>Name</th>
-			</tr>
-			</thead>
-			<tbody>
-				<template is="dom-repeat" items="{{persistedEquipment}}">
-					<tr>
-						<th scope="row">[[item.count]]</th>
-						<td>[[item.name]]</td>
+        <!-- machines -->
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{persistedEquipment}}">
+                    <tr>
+                        <th scope="row">[[item.count]]</th>
+                        <td>[[item.name]]</td>
                         <template is="dom-if" if="{{editable}}">
                             <td><i class="fa fa-trash-o" on-tap="_deleteMachine" count$="[[item.count]]" machine$="[[item.name]]"></i></td>
                         </template>
-					</tr>
-				</template>
-			</tbody>
-		</table>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
         
         <!-- paper-spinner while loading -->
         <template is="dom-if" if="{{equipmentLoading}}">
