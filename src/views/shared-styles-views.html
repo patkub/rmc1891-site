@@ -32,6 +32,12 @@ In typical use, import the element, and include it's styles
       .container {
         margin-top: 56px;
       }
+      
+      @media print {
+        .container {
+          margin-top: 0px;
+        }
+      }
     </style>
   </template>
 </dom-module>
