@@ -26,3 +26,10 @@ img {
 .navbar-nav {
     padding-right: 20rem;
 }
+
+// Print styles
+@media print {
+  .navbar {
+    display: none;
+  }
+}

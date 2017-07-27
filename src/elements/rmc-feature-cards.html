@@ -73,6 +73,12 @@ Add the editable attribute to include features to edit card text content:
               margin-right: inherit;
             }
           }
+          
+          @media print {
+            .card-img-wrapper, .card-footer {
+              display: none;
+            }
+          }
         </style>
         
         <!-- load feature cards -->
