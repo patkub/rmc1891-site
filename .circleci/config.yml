@@ -9,6 +9,18 @@ jobs:
           keys:
             - cache-install
       - run:
+          name: node-version
+          command: 'node --version'
+      - run:
+          name: npm-version
+          command: 'npm --version'
+      - run:
+          name: nvm-version
+          command: 'nvm --version'
+      - run:
+          name: yarn-version
+          command: 'yarn --version'
+      - run:
           name: npm-install-global
           command: 'sudo npm install -g bower web-component-tester'
       - run:
@@ -35,6 +47,18 @@ jobs:
       - restore_cache:
           keys:
             - cache-install
+      - run:
+          name: node-version
+          command: 'node --version'
+      - run:
+          name: npm-version
+          command: 'npm --version'
+      - run:
+          name: nvm-version
+          command: 'nvm --version'
+      - run:
+          name: yarn-version
+          command: 'yarn --version'
       - run:
           name: npm-install-global
           command: 'sudo npm install -g bower web-component-tester'
