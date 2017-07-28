@@ -33,18 +33,8 @@ jobs:
       - run:
           name: lint-task
           command: 'yarn run lint'
-  test:
-    requires:
-      - install
-    steps:
-      - run:
-          name: build-task
-          command: 'yarn run test:integration'
-    - store_artifacts:
-        path: build
 workflows:
   version: 2
   build_and_test:
     jobs:
       - lint
-      - test
