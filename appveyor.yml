@@ -5,6 +5,7 @@ environment:
 # Cache.
 cache:
   - node_modules                        # local npm modules
+  - "%AppData%\npm\node_modules"        # global npm modules
   - "%APPDATA%\npm-cache"               # npm cache
   - "%LOCALAPPDATA%\\Yarn"              # yarn cache
 
