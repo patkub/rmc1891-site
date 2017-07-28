@@ -33,7 +33,7 @@ jobs:
       - run:
           name: lint-task
           command: 'yarn run lint'
-  build:
+  test:
     requires:
       - install
     steps:
@@ -47,4 +47,4 @@ workflows:
   build_and_test:
     jobs:
       - lint
-      - build
+      - test
