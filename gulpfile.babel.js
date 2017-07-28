@@ -37,7 +37,7 @@ const banner = ['<!--',
   ''].join('\n');
 
 const reload = browserSync.reload;
-const FONTS = ['node_modules/components-font-awesome/fonts/*.*'];
+const FONTS = ['node_modules/font-awesome/fonts/*.*'];
 
 /**
  * Defines the list of resources to watch for changes.
