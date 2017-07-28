@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  install:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-install
+      - run:
+          name: npm-install-global
+          command: 'npm install -g bower web-component-tester'
+      - run:
+          name: yarn-install-global
+          command: 'yarn global add gulp-cli'
+      - run:
+          name: yarn-install
+          command: 'yarn install'
+      - run:
+          name: bower-install
+          command: 'bower install'
+      - save_cache:
+          key: cache-install
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+  lint:
+    requires:
+      - install
+    steps:
+      - run:
+          name: lint
+          command: 'yarn run lint'
+  build:
+    requires:
+      - install
+    steps:
+      - run:
+          name: build
+          command: 'yarn run test:integration'
+    - store_artifacts:
+        path: build
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - lint
+      - build
