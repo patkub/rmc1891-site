@@ -25,7 +25,6 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - nvm --version
   - yarn --version
   # run tests
   - yarn run lint
