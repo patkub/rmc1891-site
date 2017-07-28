@@ -11,7 +11,7 @@ cache:
 # Install scripts. (runs after repo cloning)
 install:
   # Get firefox and chrome
-  #- choco install firefox googlechrome
+  - choco install firefox googlechrome
   # Get the latest stable version of Node.js
   - ps: Install-Product node $env:nodejs_version
   # install modules
@@ -28,7 +28,7 @@ test_script:
   - yarn --version
   # run tests
   - yarn run lint
-  #- yarn run test:local
+  - yarn run test:local
   #- yarn run test:sauce
   - yarn run test:integration
   
