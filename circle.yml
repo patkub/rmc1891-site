@@ -1,0 +1,23 @@
+machine:
+  node:
+    version: 6
+
+dependencies:
+  cache_directories:
+    - "~/.cache/yarn"
+    - "node_modules"
+    - "bower_components"
+
+  override:
+    - which node
+    - npm install -g bower web-component-tester
+    - yarn global add gulp-cli
+    - yarn install
+    - bower install
+
+test:
+  override:
+    - node --version
+    - yarn --version
+    - yarn run lint
+    - yarn run test:integration
