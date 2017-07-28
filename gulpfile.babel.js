@@ -53,6 +53,7 @@ function watch() {
 gulp.task('lint:css', function() {
   return gulp.src([
     'src/**/*.html',
+    'test/**/*.html',
     'index.html',
   ]).pipe(styleLint({
     reporters: [
