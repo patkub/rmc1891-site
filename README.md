@@ -1,7 +1,8 @@
 # Rogers Manufacturing Company Website
 
 [![GitHub version](https://badge.fury.io/gh/patkub%2Frmc1891-site.svg)](https://badge.fury.io/gh/patkub%2Frmc1891-site)
-[![Build Status](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+[![Travis CI](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+[![AppVeyor CI](https://ci.appveyor.com/api/projects/status/github/patkub/rmc1891-site?branch=master&svg=true)](https://ci.appveyor.com/project/patkub/rmc1891-site)
 [![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
 [![Build Status](https://saucelabs.com/browser-matrix/rmc1891-site.svg)](https://saucelabs.com/u/rmc1891-site)
