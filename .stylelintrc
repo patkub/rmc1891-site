@@ -3,6 +3,7 @@
   "processors": ["stylelint-processor-html"],
   "rules": {
     "indentation": 2,
-    "selector-type-no-unknown": [true, { ignore: ["custom-elements"] }]
+    "selector-type-no-unknown": [true, { ignore: ["custom-elements"] }],
+    "no-empty-source": false
   }
 }
