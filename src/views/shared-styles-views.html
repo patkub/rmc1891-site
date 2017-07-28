@@ -19,10 +19,11 @@ In typical use, import the element, and include it's styles
 <dom-module id="shared-styles-views">
   <template>
     <style>
-      .h2, h2 {
+      .h2,
+      h2 {
         font-size: 3rem;
         line-height: 6rem;
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
       
       p {
@@ -35,7 +36,7 @@ In typical use, import the element, and include it's styles
       
       @media print {
         .container {
-          margin-top: 0px;
+          margin-top: 0;
         }
       }
     </style>
