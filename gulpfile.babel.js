@@ -19,6 +19,7 @@ import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import stripCSSComments from 'gulp-strip-css-comments';
+import styleLint from 'gulp-stylelint';
 import swPrecache from 'sw-precache';
 import sftp from 'gulp-sftp';
 import minimist from 'minimist';
@@ -47,6 +48,18 @@ function watch() {
   gulp.watch(['php/**/*', 'src/**/*'], reload);
   gulp.watch(['index.html'], reload);
 }
+
+// Stylelint
+gulp.task('lint:css', function() {
+  return gulp.src([
+    'src/**/*.html',
+    'index.html',
+  ]).pipe(styleLint({
+    reporters: [
+      {formatter: 'string', console: true},
+    ],
+  }));
+});
 
 // Compile Stylesheets
 gulp.task('sass', function() {
