@@ -20,12 +20,6 @@ jobs:
       - run:
           name: bower-install
           command: 'bower install'
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - ~/.cache/yarn
-            - node_modules
-            - bower_components
       - save_cache:
           key: cache-install
           paths:
@@ -38,8 +32,9 @@ jobs:
     docker:
       - image: circleci/node:6
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
+      - restore_cache:
+          keys:
+            - cache-install
       - run: yarn run lint
   test:
     requires:
@@ -47,8 +42,9 @@ jobs:
     docker:
       - image: circleci/node:6
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
+      - restore_cache:
+          keys:
+            - cache-install
       - run: yarn run test:integration
 workflows:
   version: 2
