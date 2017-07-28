@@ -4,7 +4,9 @@ environment:
 
 # Install scripts. (runs after repo cloning)
 install:
-  # Get the latest stable version of Node.js or io.js
+  # Get firefox and chrome
+  - choco install firefox googlechrome
+  # Get the latest stable version of Node.js
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install -g bower web-component-tester
@@ -19,6 +21,8 @@ test_script:
   - yarn --version
   # run tests
   - yarn run lint
+  - yarn run test:local
+  - yarn run test:sauce
   - yarn run test:integration
   
 # Don't actually build.
