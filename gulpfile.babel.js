@@ -52,6 +52,7 @@ function watch() {
 // Stylelint
 gulp.task('lint:css', function() {
   return gulp.src([
+    'docs/**/*.html',
     'src/**/*.html',
     'test/**/*.html',
     'index.html',
