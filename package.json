@@ -54,6 +54,9 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.5.3",
     "polymer-cli": "^1.2.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-processor-html": "^1.0.0",
     "sw-precache": "^5.2.0",
     "tether": "^1.4.0",
     "web-component-tester": "^6.0.0"
@@ -63,6 +66,7 @@
     "docs": "polymer analyze > docs/analysis.json",
     "lint": "gulp build:before && yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
+    "lint:css": "stylelint src/**/*.html",
     "lint:polymer": "polymer lint",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build",

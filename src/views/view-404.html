@@ -34,20 +34,20 @@ In typical use, add the element to an `<iron-pages>` element:
   <template>
   <style include="bs4-shared-styles-grid"></style>
 	<style include="shared-styles-views">
-		.container {
-			text-align: left;
-			margin-top: 100px;
-		}
-		
-		ins {
-			text-decoration: none;
-		}
+  .container {
+    text-align: left;
+    margin-top: 100px;
+  }
+  
+  ins {
+    text-decoration: none;
+  }
 	</style>
 	
 	<div class="container">
 		<app-location route="{{route}}"></app-location>
 		<p>
-			<b>404.</b> <ins>That’s an error.</ins><br>
+      <b>404.</b> <ins>That’s an error.</ins><br>
 			The requested URL {{route.path}} was not found on this server.<br>
 			<a href="/">Go back home</a>.
 		</p>

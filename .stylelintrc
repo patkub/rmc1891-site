@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard",
+  "processors": ["stylelint-processor-html"],
+  "rules": {
+    "indentation": 2,
+    "selector-type-no-unknown": [ true, {
+      "ignoreAtRules": [
+        "custom-element"
+      ]
+    }],
+  }
+}
