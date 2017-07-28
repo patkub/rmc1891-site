@@ -4,18 +4,17 @@ environment:
 
 # Install scripts. (runs after repo cloning)
 install:
-  # Get the latest stable version of Node.js or io.js
-  - ps: Install-Product node $env:nodejs_version
-  # Get yarn
-  - npm install -g yarn
   # install modules
+  - npm install -g bower web-component-tester
+  - yarn global add gulp-cli
   - yarn install
+  - bower install
 
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
   - node --version
-  - npm --version
+  - yarn --version
   # run tests
   - yarn run lint
   - yarn run test:integration
