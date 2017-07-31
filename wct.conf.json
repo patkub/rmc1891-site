@@ -13,7 +13,7 @@
         "windows 10/firefox@beta",
         "windows 10/chrome@latest",
         "windows 10/chrome@beta",
-        "windows 10/chrome@dev",
+        "windows 10/chrome@dev"
       ]
     }
   }
