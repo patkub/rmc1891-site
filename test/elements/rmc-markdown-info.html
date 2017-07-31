@@ -1,0 +1,67 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMC Markdown Info</title>
+    
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../src/elements/rmc-markdown-info.html">
+  </head>
+  <body>
+    <test-fixture id="RMCMarkdownInfo">
+      <template>
+        <rmc-markdown-info markdown="/link/to/markdown/cheatsheet/" type="text"></rmc-markdown-info>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-markdown-info tests', function() {
+        let rmcMarkdownInfo, alertEl;
+
+        setup(function() {
+          rmcMarkdownInfo = fixture('RMCMarkdownInfo');
+        });
+        
+        test('defines the "markdown" property', function() {
+          assert.equal(rmcMarkdownInfo.markdown, '/link/to/markdown/cheatsheet/');
+        });
+        
+        test('defines the "type" property', function() {
+          assert.equal(rmcMarkdownInfo.type, 'text');
+        });
+        
+        test('it should have an info alert', function() {
+          let alertEl = rmcMarkdownInfo.shadowRoot.querySelector('bs4-alert');
+          assert.equal(alertEl.getAttribute('context'), 'info');
+        });
+        
+        test('it should have a markdown link', function() {
+          let alertEl = rmcMarkdownInfo.shadowRoot.querySelector('bs4-alert');
+          let link = alertEl.querySelector('a');
+          assert.equal(rmcMarkdownInfo.markdown, link.getAttribute('href'));
+        });
+        
+        test('markdown link should open on a new tab', function() {
+          let alertEl = rmcMarkdownInfo.shadowRoot.querySelector('bs4-alert');
+          let target = alertEl.querySelector('target');
+          assert.equal(target, '_blank');
+        });
+      });
+    </script>
+  </body>
+</html>
