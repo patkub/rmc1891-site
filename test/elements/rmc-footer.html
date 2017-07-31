@@ -38,6 +38,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           footerEl = rmcFooter.shadowRoot.querySelector('footer');
         });
         
+        test('defines the "text" property', function() {
+          assert.equal(rmcFooter.text, 'demo text');
+        });
+        
         test('it should have a text body', function() {
           let footerText = footerEl.querySelector('span.text-muted');
           assert.equal(rmcFooter.getAttribute('text'), footerText.textContent);
