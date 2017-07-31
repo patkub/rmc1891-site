@@ -1,0 +1,50 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMC Equipment List</title>
+    
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../src/elements/rmc-equipment-list.html">
+  </head>
+  <body>
+    <test-fixture id="RMCEquipmentList">
+      <template>
+        <rmc-equipment-list editable></rmc-equipment-list>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-equipment-list tests', function() {
+        let rmcEquipmentList;
+
+        setup(function() {
+          rmcEquipmentList = fixture('RMCEquipmentList');
+        });
+        
+        test('defines the "editable" property', function() {
+          assert.equal(rmcEquipmentList.hasAttribute("editable"), true);
+        });
+        
+        test('has a form to add a machine', function() {
+          let machineForm = rmcEquipmentList.shadowRoot.querySelector('#machineForm');
+        });
+      });
+    </script>
+  </body>
+</html>
