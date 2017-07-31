@@ -72,9 +72,64 @@ jobs:
             - node_modules
             - bower_components
       - run: yarn run test:integration
+  sauce:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-install
+      - run:
+          name: node-version
+          command: 'node --version'
+      - run:
+          name: npm-version
+          command: 'npm --version'
+      - run:
+          name: yarn-version
+          command: 'yarn --version'
+      - run:
+          name: npm-install-global
+          command: 'sudo npm install -g bower web-component-tester'
+      - run:
+          name: yarn-install-global
+          command: 'sudo yarn global add gulp-cli'
+      - run:
+          name: yarn-install
+          command: 'yarn install'
+      - run:
+          name: bower-install
+          command: 'bower install'
+      - run:
+          name: sauce-download
+          command: 'wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz'
+      - run:
+          name: sauce-install
+          command: 'tar -xzf sc-latest-linux.tar.gz'
+      - run:
+          name: sauce
+          command: cd sc-latest-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready:
+            background: true
+      - run:
+          name: sauce-wait-until-ready
+          command: 'while [ ! -e ~/sauce_is_ready ]; do sleep 1; done'
+      - run:
+          name: sauce-test
+          command: 'yarn run test:sauce'
+      - run:
+          name: sauce-kill
+          command: 'killall --wait sc'
+      - save_cache:
+          key: cache-install
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
 workflows:
   version: 2
   build_and_test:
     jobs:
       - lint
       - test
+      - sauce
