@@ -38,11 +38,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
         
         test('defines the "editable" property', function() {
-          assert.equal(rmcManufacturingServices.hasAttribute("editable"), true);
+          assert.equal(rmcManufacturingServices.hasAttribute('editable'), true);
         });
         
         test('has a form to add a service', function() {
-          let serviceForm = rmcManufacturingServices.shadowRoot.querySelector('#serviceForm');
+          rmcManufacturingServices.shadowRoot.querySelector('#serviceForm');
         });
       });
     </script>
