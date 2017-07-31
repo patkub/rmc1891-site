@@ -43,12 +43,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
         
         test('it should have a jumbotron', function() {
-          let jumbotron = homeView.shadowRoot.querySelector('rmc-jumbotron');
+          let container = homeView.shadowRoot.querySelector('.container');
+          let jumbotron = container.querySelector('rmc-jumbotron');
           assert.equal(jumbotron, 'RMC-JUMBOTRON');
         });
         
         test('it should have feature cards', function() {
-          let featureCards = homeView.shadowRoot.querySelector('rmc-feature-cards');
+          let container = homeView.shadowRoot.querySelector('.container');
+          let featureCards = container.querySelector('rmc-feature-cards');
           assert.equal(featureCards, 'RMC-FEATURE-CARDS');
         });
       });
