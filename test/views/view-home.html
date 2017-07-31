@@ -45,13 +45,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('it should have a jumbotron', function() {
           let container = homeView.shadowRoot.querySelector('.container');
           let jumbotron = container.querySelector('rmc-jumbotron');
-          assert.equal(jumbotron, 'RMC-JUMBOTRON');
+          assert.equal(jumbotron.tagName, 'RMC-JUMBOTRON');
         });
         
         test('it should have feature cards', function() {
           let container = homeView.shadowRoot.querySelector('.container');
           let featureCards = container.querySelector('rmc-feature-cards');
-          assert.equal(featureCards, 'RMC-FEATURE-CARDS');
+          assert.equal(featureCards.tagName, 'RMC-FEATURE-CARDS');
         });
       });
     </script>
