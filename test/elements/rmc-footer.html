@@ -30,18 +30,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </test-fixture>
 
     <script>
-      suite('rmc-jumbotron tests', function() {
-        let rmcFooter;
+      suite('rmc-footer tests', function() {
+        let rmcFooter, footerEl;
 
         setup(function() {
           rmcFooter = fixture('RMCFooter');
+          footerEl = rmcFooter.shadowRoot.querySelector('footer');
         });
         
         test('it should have a text body', function() {
-          let footer = rmcFooter.shadowRoot.querySelector('rmc-footer');
-          let text = footer.getAttribute('text');
-          let footerText = rmcFooter.shadowRoot.querySelector('.footer.text-muted');
-          assert.equal(text, footerText);
+          let footerText = footerEl.querySelector('span.text-muted');
+          assert.equal(rmcFooter.getAttribute('text'), footerText.textContent);
         });
       });
     </script>

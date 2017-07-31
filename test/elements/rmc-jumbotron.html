@@ -32,36 +32,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('rmc-jumbotron tests', function() {
         let rmcJumbotron;
-        let jumbotron = rmcJumbotron.shadowRoot.querySelector('rmc-jumbotron');
 
         setup(function() {
           rmcJumbotron = fixture('RMCJumbotron');
         });
 
-        test('it should have a title', function() {
-          assert.equal(jumbotron.getAttribute('title'), 'demo title');
+        test('defines the "title" property', function() {
+          assert.equal(rmcJumbotron.title, 'demo title');
         });
         
-        test('it should have a text body', function() {
-          assert.equal(jumbotron.getAttribute('text'), 'demo text');
+        test('defines the "text" property', function() {
+          assert.equal(rmcJumbotron.text, 'demo text');
         });
         
-        test('it should have a button text', function() {
-          assert.equal(jumbotron.getAttribute('button'), 'demo button');
+        test('defines the "button" property', function() {
+          assert.equal(rmcJumbotron.button, 'demo button');
         });
         
-        test('it should have a button link', function() {
-          assert.equal(jumbotron.getAttribute('link'), '/demo/path-example/');
-        });
-        
-        test('button should have a role', function() {
-          let btn = jumbotron.querySelector('btn');
-          assert.equal(btn.getAttribute('role'), 'button');
-        });
-        
-        test('button link should match link attribute', function() {
-          let btn = jumbotron.querySelector('btn');
-          assert.equal(btn.getAttribute('href'), btn.getAttribute('link'));
+        test('defines the "link" property', function() {
+          assert.equal(rmcJumbotron.link, '/demo/path-example/');
         });
       });
     </script>
