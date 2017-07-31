@@ -39,7 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         test('it should have a text body', function() {
           let footer = rmcFooter.shadowRoot.querySelector('rmc-footer');
-          assert.equal(jumbotron.getAttribute('text'), 'demo text');
+          let text = footer.getAttribute('text');
+          let footerText = rmcFooter.shadowRoot.querySelector('.footer.text-muted');
+          assert.equal(text, footerText);
         });
       });
     </script>
