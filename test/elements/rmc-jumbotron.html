@@ -56,12 +56,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         test('button should have a role', function() {
           let btn = jumbotron.querySelector('btn');
-          assert.equal(jumbotron.getAttribute('role'), 'button');
+          assert.equal(btn.getAttribute('role'), 'button');
         });
         
         test('button link should match link attribute', function() {
           let btn = jumbotron.querySelector('btn');
-          assert.equal(jumbotron.getAttribute('href'), jumbotron.getAttribute('link'));
+          assert.equal(btn.getAttribute('href'), btn.getAttribute('link'));
         });
       });
     </script>
