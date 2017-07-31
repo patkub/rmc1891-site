@@ -36,10 +36,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setup(function() {
           capabilitiesView = fixture('CapabilitiesView');
         });
-
-        test('Text view should be Capabilities', function() {
+        
+        test('it should have a text view', function() {
+          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        });
+        
+        test('text view should be capabilities', function() {
           let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
           assert.equal(textView.view, 'capabilities');
+        });
+        
+        test('text view title should be Capabilities', function() {
+          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.title, 'Capabilities');
+        });
+        
+        test('it should have a list of manufacturing services', function() {
+          let manufacturingServices = capabilitiesView.shadowRoot.querySelector('rmc-manufacturing-services');
+          assert.equal(manufacturingServices.tagName, 'RMC-MANUFACTURING-SERVICES');
+        });
+        
+        test('it should have a list of equipment', function() {
+          let equipmentList = capabilitiesView.shadowRoot.querySelector('rmc-equipment-list');
+          assert.equal(equipmentList.tagName, 'RMC-EQUIPMENT-LIST');
+        });
+        
+        test('it should have a tool room list', function() {
+          let toolRoomList = capabilitiesView.shadowRoot.querySelector('rmc-tool-room-list');
+          assert.equal(toolRoomList.tagName, 'RMC-TOOL-ROOM-LIST');
         });
       });
     </script>

@@ -36,10 +36,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setup(function() {
           homeView = fixture('HomeView');
         });
-
-        test('Jumbotron title should be The Rogers Manufacturing Company', function() {
+        
+        test('it should have a carousel', function() {
+          let carousel = homeView.shadowRoot.querySelector('my-carousel');
+          assert.equal(carousel.tagName, 'MY-CAROUSEL');
+        });
+        
+        test('it should have a jumbotron', function() {
           let jumbotron = homeView.shadowRoot.querySelector('rmc-jumbotron');
-          assert.equal(jumbotron.getAttribute('title'), 'The Rogers Manufacturing Company');
+          assert.equal(carousel, 'RMC-JUMBOTRON');
+        });
+        
+        test('it should have feature cards', function() {
+          let featureCards = homeView.shadowRoot.querySelector('rmc-feature-cards');
+          assert.equal(carousel, 'RMC-FEATURE-CARDS');
         });
       });
     </script>

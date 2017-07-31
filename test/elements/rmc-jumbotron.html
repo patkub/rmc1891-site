@@ -1,0 +1,69 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMCJumbotron</title>
+    
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../src/elements/rmc-jumbotron.html">
+  </head>
+  <body>
+    <test-fixture id="RMCJumbotron">
+      <template>
+        <rmc-jumbotron title="demo title" text="demo text" button="demo button" link="/demo/path-example/"></rmc-jumbotron>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-jumbotron tests', function() {
+        let rmcJumbotron;
+        let jumbotron = rmcJumbotron.shadowRoot.querySelector('rmc-jumbotron');
+
+        setup(function() {
+          rmcJumbotron = fixture('RMCJumbotron');
+        });
+
+        test('it should have a title', function() {
+          assert.equal(jumbotron.getAttribute('title'), 'demo title');
+        });
+        
+        test('it should have a text body', function() {
+          assert.equal(jumbotron.getAttribute('text'), 'demo text');
+        });
+        
+        test('it should have a button text', function() {
+          assert.equal(jumbotron.getAttribute('button'), 'demo button');
+        });
+        
+        test('it should have a button link', function() {
+          assert.equal(jumbotron.getAttribute('link'), '/demo/path-example/');
+        });
+        
+        test('button should have a role', function() {
+          let btn = jumbotron.querySelector('btn');
+          assert.equal(jumbotron.getAttribute('role'), 'button');
+        });
+        
+        test('button link should match link attribute', function() {
+          let btn = jumbotron.querySelector('btn');
+          assert.equal(jumbotron.getAttribute('href'), jumbotron.getAttribute('link'));
+        });
+      });
+    </script>
+  </body>
+</html>

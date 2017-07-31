@@ -37,9 +37,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           contactView = fixture('ContactView');
         });
         
-        test('Text view should be Contact', function() {
+        test('it should have a text view', function() {
+          let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        });
+        
+        test('text view should be contact', function() {
           let textView = contactView.shadowRoot.querySelector('rmc-text-view');
           assert.equal(textView.view, 'contact');
+        });
+        
+        test('it should have an email form', function() {
+          let emailForm = contactView.shadowRoot.querySelector('#emailForm');
+          assert.equal(emailForm.id, 'emailForm');
         });
       });
     </script>

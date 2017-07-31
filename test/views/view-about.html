@@ -36,10 +36,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setup(function() {
           aboutView = fixture('AboutView');
         });
+        
+        test('it should have a text view', function() {
+          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        });
 
-        test('Text view should be About', function() {
+        test('text view should be about', function() {
           let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
           assert.equal(textView.view, 'about');
+        });
+        
+        test('text view title should be About', function() {
+          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.title, 'About');
         });
       });
     </script>
