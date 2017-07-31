@@ -109,7 +109,7 @@ jobs:
           command: 'tar -xzf sc-latest-linux.tar.gz'
       - run:
           name: sauce
-          command: 'cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready'
+          command: 'cd sc-*-linux && ./bin/sc --user ${SAUCE_USERNAME} --api-key ${SAUCE_ACCESS_KEY} --readyfile ~/sauce_is_ready'
           background: true
       - run:
           name: sauce-wait-until-ready
