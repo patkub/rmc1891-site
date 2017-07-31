@@ -175,12 +175,12 @@ workflows:
             - lint
             - test
             - sauce
-          branches:
-            only:
-              - deploy
+          filters:
+            branches:
+              only: deploy
       - deploy:
           requires:
             - approve-production
-          branches:
-            only:
-              - deploy
+          filters:
+            branches:
+              only: deploy
