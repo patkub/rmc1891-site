@@ -8,7 +8,6 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
-  sauce_connect: true
 node_js:
   - "node"
 cache:
@@ -19,15 +18,9 @@ cache:
 install:
   - yarn --version
   - npm install -g bower web-component-tester
-  - yarn global add gulp-cli
   - yarn install
   - bower install
 before_script:
   - yarn run lint
 script:
   - xvfb-run yarn run test:local
-  #- xvfb-run yarn run test:sauce
-  - xvfb-run yarn run test:integration
-#after_success:
-  #- chmod +x scripts/deploy_travis.sh
-  #- ./scripts/deploy_travis.sh

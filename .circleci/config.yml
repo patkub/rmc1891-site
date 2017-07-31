@@ -152,10 +152,10 @@ jobs:
           command: 'yarn run build'
       - run:
           name: chmod-deploy
-          command: 'chmod +x scripts/deploy_circle.sh'
+          command: 'chmod +x scripts/deploy.sh'
       - run:
           name: deploy
-          command: './scripts/deploy_circle.sh'
+          command: './scripts/deploy.sh'
       - save_cache:
           key: cache-deploy
           paths:
@@ -169,10 +169,12 @@ workflows:
       - lint
       - test
       - sauce
-      - deploy:
+      - approve-production:
           type: approval
           requires:
             - lint
             - test
             - sauce
-      
+      - deploy:
+          requires:
+            - approve-production
