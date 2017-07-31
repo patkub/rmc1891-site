@@ -1,0 +1,46 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMC Feature Cards</title>
+    
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../src/elements/rmc-feature-cards.html">
+  </head>
+  <body>
+    <test-fixture id="RMCFeatureCards">
+      <template>
+        <rmc-feature-cards editable></rmc-feature-cards>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-feature-cards tests', function() {
+        let rmcFeatureCards;
+
+        setup(function() {
+          rmcFeatureCards = fixture('RMCFeatureCards');
+        });
+        
+        test('defines the "editable" property', function() {
+          assert.equal(rmcFeatureCards.hasAttribute("editable"), true);
+        });
+      });
+    </script>
+  </body>
+</html>

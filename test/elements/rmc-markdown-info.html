@@ -58,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         test('markdown link should open on a new tab', function() {
           let alertEl = rmcMarkdownInfo.shadowRoot.querySelector('bs4-alert');
-          let target = alertEl.querySelector('target');
+          let target = alertEl.querySelector('a[target]').getAttribute('target');
           assert.equal(target, '_blank');
         });
       });
