@@ -43,7 +43,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-install
+            - cache-test
       - run:
           name: node-version
           command: 'node --version'
@@ -66,12 +66,14 @@ jobs:
           name: bower-install
           command: 'bower install'
       - save_cache:
-          key: cache-install
+          key: cache-test
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
-      - run: yarn run test:integration
+      - run:
+          name: test-integration
+          command: 'yarn run test:integration'
   sauce:
     docker:
       - image: circleci/node:6
@@ -79,7 +81,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-install
+            - cache-sauce
       - run:
           name: node-version
           command: 'node --version'
@@ -110,11 +112,52 @@ jobs:
       - run:
           name: sauce-test
           command: 'yarn run test:sauce'
-      - run:
-          name: sauce-kill
-          command: 'killall --wait sc'
       - save_cache:
-          key: cache-install
+          key: cache-sauce
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+  deploy:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-deploy
+      - run:
+          name: node-version
+          command: 'node --version'
+      - run:
+          name: npm-version
+          command: 'npm --version'
+      - run:
+          name: yarn-version
+          command: 'yarn --version'
+      - run:
+          name: npm-install-global
+          command: 'sudo npm install -g bower'
+      - run:
+          name: yarn-install-global
+          command: 'sudo yarn global add gulp-cli'
+      - run:
+          name: yarn-install
+          command: 'yarn install'
+      - run:
+          name: bower-install
+          command: 'bower install'
+      - run:
+          name: build
+          command: 'yarn run build'
+      - run:
+          name: chmod-deploy
+          command: 'chmod +x scripts/deploy_circle.sh'
+      - run:
+          name: deploy
+          command: './scripts/deploy_circle.sh'
+      - save_cache:
+          key: cache-deploy
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -126,3 +169,10 @@ workflows:
       - lint
       - test
       - sauce
+      - deploy:
+          type: approval
+          requires:
+            - lint
+            - test
+            - sauce
+      

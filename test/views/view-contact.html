@@ -14,32 +14,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>HomeView</title>
+    <title>ContactView</title>
     
-    <script src="../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../src/views/view-home.html">
+    <link rel="import" href="../../src/views/view-contact.html">
   </head>
   <body>
-    <test-fixture id="HomeView">
+    <test-fixture id="ContactView">
       <template>
-        <view-home></view-home>
+        <view-contact></view-contact>
       </template>
     </test-fixture>
-
+    
     <script>
-      suite('view-home tests', function() {
-        let homeView;
+      suite('view-contact tests', function() {
+        let contactView;
 
         setup(function() {
-          homeView = fixture('HomeView');
+          contactView = fixture('ContactView');
         });
-
-        test('Jumbotron title should be The Rogers Manufacturing Company', function() {
-          let jumbotron = homeView.shadowRoot.querySelector('rmc-jumbotron');
-          assert.equal(jumbotron.getAttribute('title'), 'The Rogers Manufacturing Company');
+        
+        test('Text view should be Contact', function() {
+          let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.view, 'contact');
         });
       });
     </script>

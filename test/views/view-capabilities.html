@@ -14,32 +14,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>AboutView</title>
+    <title>CapabilitiesView</title>
     
-    <script src="../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../src/views/view-about.html">
+    <link rel="import" href="../../src/views/view-capabilities.html">
   </head>
   <body>
-    <test-fixture id="AboutView">
+    <test-fixture id="CapabilitiesView">
       <template>
-        <view-about></view-about>
+        <view-capabilities></view-capabilities>
       </template>
     </test-fixture>
     
     <script>
-      suite('view-about tests', function() {
-        let aboutView;
+      suite('view-capabilities tests', function() {
+        let capabilitiesView;
 
         setup(function() {
-          aboutView = fixture('AboutView');
+          capabilitiesView = fixture('CapabilitiesView');
         });
 
-        test('Text view should be About', function() {
-          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.view, 'about');
+        test('Text view should be Capabilities', function() {
+          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+          assert.equal(textView.view, 'capabilities');
         });
       });
     </script>

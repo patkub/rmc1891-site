@@ -81,5 +81,8 @@
       "es2015"
     ]
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "wd": "^1.4.0"
+  }
 }
