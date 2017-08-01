@@ -40,10 +40,12 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
-    $results = array();
+    // query all feature cards
     $myQuery = "SELECT * FROM `FeatureCards`";
     $result = $db->query($myQuery) or die($db->error);
     
+    // store each feature card
+    $results = array();
     while ($row = $result->fetch_assoc()){
         $results[] = $row;
     }
