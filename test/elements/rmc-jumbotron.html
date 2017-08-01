@@ -52,6 +52,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('defines the "link" property', function() {
           assert.equal(rmcJumbotron.link, '/demo/path-example/');
         });
+        
+        test('button should navigate to link', function() {
+          let btn = rmcJumbotron.shadowRoot.querySelector('.jumbotron > p:nth-child(3) > a');
+          assert.equal(btn.getAttribute('href'), rmcJumbotron.link);
+        });
       });
     </script>
   </body>

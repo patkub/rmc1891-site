@@ -59,8 +59,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Learn more button should navigate to About page', function() {
           let container = homeView.shadowRoot.querySelector('.container');
           let jumbotron = container.querySelector('rmc-jumbotron');
-          let a = jumbotron.querySelector('a');
-          assert.equal(a.getAttribute('href'), '/about/');
+          let btn = jumbotron.shadowRoot.querySelector('.jumbotron > p:nth-child(3) > a');
+          assert.equal(btn.getAttribute('href'), '/about/');
         });
       });
     </script>
