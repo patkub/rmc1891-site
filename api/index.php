@@ -3,8 +3,7 @@ require '../vendor/autoload.php';
 require 'fetch.php';
 
 // Database configuration
-const DB_INI_PATH = "db.ini";
-//const DB_INI_PATH = "/../../../private/db.ini";
+const DB_INI_PATH = "../private/db.ini";
 
 // Create and configure Slim app
 $container = new \Slim\Container;

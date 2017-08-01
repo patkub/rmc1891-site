@@ -12,6 +12,7 @@
   "sources": [
     "src/**/*",
     "images/**/*",
+    "api/**/*",
     "php/**/*",
     "package.json",
     "manifest.json",
