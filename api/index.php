@@ -19,7 +19,7 @@ $container['myDb'] = function ($container) {
 
 // Text route
 // {text} - 'about', 'capabilities', or 'contact'
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/text/about
+// http://beta.therogersmanufacturingcompany.com/api/get/text/about
 $app->get('/get/text/{text}', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -35,7 +35,7 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
 });
 
 // Feature cards route
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/feature-cards
+// http://beta.therogersmanufacturingcompany.com/api/get/feature-cards
 $app->get('/get/feature-cards', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -49,7 +49,7 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
 });
 
 // Equipment list route
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/equipment-list
+// http://beta.therogersmanufacturingcompany.com/api/get/equipment-list
 $app->get('/get/equipment-list', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -63,7 +63,7 @@ $app->get('/get/equipment-list', function ($request, $response, $args) {
 });
 
 // Manufacturing services route
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/manufacturing-services
+// http://beta.therogersmanufacturingcompany.com/api/get/manufacturing-services
 $app->get('/get/manufacturing-services', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -77,7 +77,7 @@ $app->get('/get/manufacturing-services', function ($request, $response, $args) {
 });
 
 // Tool room equipment route
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/tool-room/equipment
+// http://beta.therogersmanufacturingcompany.com/api/get/tool-room/equipment
 $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -91,7 +91,7 @@ $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
 });
 
 // Tool room services route
-// http://beta.therogersmanufacturingcompany.com/api/index.php/get/tool-room/services
+// http://beta.therogersmanufacturingcompany.com/api/get/tool-room/services
 $app->get('/get/tool-room/services', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
