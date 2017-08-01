@@ -1,5 +1,6 @@
 <?php
 require '../vendor/autoload.php';
+require 'fetch.php';
 
 // Database configuration
 const DB_INI_PATH = "db.ini";
@@ -26,8 +27,7 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
     // Get text
     $txtQuery = sprintf("SELECT `text` FROM `Text` WHERE `name` = '%s'",
         $db->real_escape_string($args['text']));
-    $result = $db->query($txtQuery) or die($db->error);
-    $row = $result->fetch_assoc();
+    $row = queryAndFetch($db, $txtQuery);
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
@@ -40,15 +40,64 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
-    // query all feature cards
-    $myQuery = "SELECT * FROM `FeatureCards`";
-    $result = $db->query($myQuery) or die($db->error);
+    // Get feature cards
+    $results = queryAndFetchAll($db, "SELECT * FROM `FeatureCards`");
     
-    // store each feature card
-    $results = array();
-    while ($row = $result->fetch_assoc()){
-        $results[] = $row;
-    }
+    // Return JSON
+    header('Access-Control-Allow-Origin: *');
+    return $response->withJson($results);
+});
+
+// Equipment list route
+// http://beta.therogersmanufacturingcompany.com/api/index.php/get/equipment-list
+$app->get('/get/equipment-list', function ($request, $response, $args) {
+    // Connect to MySQL database
+    $db = $this->get('myDb');
+    
+    // Get equipment ordered by descending clamping force
+    $results = queryAndFetchAll($db, "SELECT * FROM `EquipmentList` ORDER BY `EquipmentList`.`force` DESC");
+    
+    // Return JSON
+    header('Access-Control-Allow-Origin: *');
+    return $response->withJson($results);
+});
+
+// Manufacturing services route
+// http://beta.therogersmanufacturingcompany.com/api/index.php/get/manufacturing-services
+$app->get('/get/manufacturing-services', function ($request, $response, $args) {
+    // Connect to MySQL database
+    $db = $this->get('myDb');
+    
+    // Get manufacturing services in alphabetical order
+    $results = queryAndFetchAll($db, "SELECT * FROM `ManufacturingServices` ORDER BY `ManufacturingServices`.`name` ASC");
+    
+    // Return JSON
+    header('Access-Control-Allow-Origin: *');
+    return $response->withJson($results);
+});
+
+// Tool room equipment route
+// http://beta.therogersmanufacturingcompany.com/api/index.php/get/tool-room/equipment
+$app->get('/get/tool-room/equipment', function ($request, $response, $args) {
+    // Connect to MySQL database
+    $db = $this->get('myDb');
+    
+    // Get tool room equipment list ordered by descending weight
+    $results = queryAndFetchAll($db, "SELECT * FROM `ToolRoomEquipment` ORDER BY `ToolRoomEquipment`.`count` DESC");
+    
+    // Return JSON
+    header('Access-Control-Allow-Origin: *');
+    return $response->withJson($results);
+});
+
+// Tool room services route
+// http://beta.therogersmanufacturingcompany.com/api/index.php/get/tool-room/services
+$app->get('/get/tool-room/services', function ($request, $response, $args) {
+    // Connect to MySQL database
+    $db = $this->get('myDb');
+    
+    // Get tool room services list in alphabetical order
+    $results = queryAndFetchAll($db, "SELECT * FROM `ToolRoomServices` ORDER BY `ToolRoomServices`.`name` ASC");
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
