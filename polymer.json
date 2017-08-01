@@ -12,6 +12,7 @@
   "sources": [
     "src/**/*",
     "api/**/*",
+    "api/**/.*",
     "php/**/*",
     "images/**/*",
     "vendor/**/*",
