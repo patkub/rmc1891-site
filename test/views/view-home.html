@@ -30,6 +30,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </test-fixture>
 
     <script>
+      'use strict';
+      
+      /**
+       * Set location
+       *
+       * @param {String} url - new path.
+       */
+      function setLocation(url) {
+        window.history.pushState({}, '', url);
+        Polymer.Base.fire('location-changed', {}, {node: window});
+      }
+      
       suite('view-home tests', function() {
         let homeView;
 
@@ -52,6 +64,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           let container = homeView.shadowRoot.querySelector('.container');
           let featureCards = container.querySelector('rmc-feature-cards');
           assert.equal(featureCards.tagName, 'RMC-FEATURE-CARDS');
+        });
+        
+        test('Learn more button should navigate to About page', function() {
+          let container = homeView.shadowRoot.querySelector('.container');
+          let jumbotron = container.querySelector('rmc-jumbotron');
+          let a = jumbotron.querySelector('a');
+          assert.equal(a.getAttribute('href'), '/about/');
         });
       });
     </script>
