@@ -32,16 +32,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       'use strict';
       
-      /**
-       * Set location
-       *
-       * @param {String} url - new path.
-       */
-      function setLocation(url) {
-        window.history.pushState({}, '', url);
-        Polymer.Base.fire('location-changed', {}, {node: window});
-      }
-      
       suite('view-home tests', function() {
         let homeView;
 
