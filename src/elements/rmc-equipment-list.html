@@ -57,7 +57,7 @@ Add the editable attribute to include features to edit the list:
         <iron-ajax
             auto
             id="equipmentAjax"
-            url="php/json/equipment_list.php"
+            url="api/get/equipment-list"
             handle-as="json"
             last-response="{{equipment}}"
             loading="{{equipmentLoading}}">

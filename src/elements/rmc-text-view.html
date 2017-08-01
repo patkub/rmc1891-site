@@ -60,7 +60,7 @@ In typical use, add the element to your body with the desired view:
         <iron-ajax
             auto
             id="viewAjax"
-            url="php/json/text/[[view]].php"
+            url="api/get/text/[[view]]"
             handle-as="json"
             last-response="{{viewText}}"
             loading="{{viewTextLoading}}">

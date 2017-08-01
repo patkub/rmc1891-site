@@ -86,7 +86,7 @@ Add the editable attribute to include features to edit card text content:
         <iron-ajax
             auto
             id="featureCardsAjax"
-            url="php/json/feature_cards.php"
+            url="api/get/feature-cards"
             handle-as="json"
             last-response="{{featureCards}}"
             loading="{{featureCardsLoading}}">
