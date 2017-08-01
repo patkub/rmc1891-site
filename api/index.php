@@ -13,6 +13,7 @@ $app = new \Slim\App($container);
  * Connects to the MySQL database.
  *
  * @param \Slim\Container $container slim dependency container
+ * @return mysqli database connection
  */
 $container['myDb'] = function ($container) {
     $db_ini = parse_ini_file(DB_INI_PATH);
@@ -21,14 +22,13 @@ $container['myDb'] = function ($container) {
 };
 
 /**
- * Text GET route
+ * Text GET route.
  * 
- *
  * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
  * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
  * @param  array                                    $args Route parameters
  * args['text'] array Defines the text to get, 'about', 'capabilities', or 'contact' text.
- *
+ * 
  * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/text/{text}', function ($request, $response, $args) {
@@ -46,7 +46,13 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
 });
 
 /**
- * Feature cards route
+ * Feature cards GET route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/feature-cards', function ($request, $response, $args) {
     // Connect to MySQL database
@@ -61,7 +67,13 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
 });
 
 /**
- * Equipment list route
+ * Equipment list GET route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/equipment-list', function ($request, $response, $args) {
     // Connect to MySQL database
@@ -76,7 +88,13 @@ $app->get('/get/equipment-list', function ($request, $response, $args) {
 });
 
 /**
- * Manufacturing services route
+ * Manufacturing services GET route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/manufacturing-services', function ($request, $response, $args) {
     // Connect to MySQL database
@@ -91,7 +109,13 @@ $app->get('/get/manufacturing-services', function ($request, $response, $args) {
 });
 
 /**
- * Tool room equipment route
+ * Tool room equipment GET route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
     // Connect to MySQL database
@@ -106,7 +130,13 @@ $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
 });
 
 /**
- * Tool room services route
+ * Tool room services GET route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
  */
 $app->get('/get/tool-room/services', function ($request, $response, $args) {
     // Connect to MySQL database
