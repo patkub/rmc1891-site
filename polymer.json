@@ -11,9 +11,10 @@
   ],
   "sources": [
     "src/**/*",
-    "images/**/*",
     "api/**/*",
     "php/**/*",
+    "images/**/*",
+    "vendor/**/*",
     "package.json",
     "manifest.json",
     ".htaccess"
