@@ -9,16 +9,28 @@ const DB_INI_PATH = "../../private/db.ini";
 $container = new \Slim\Container;
 $app = new \Slim\App($container);
 
-// Connect to MySQL database
+/**
+ * Connects to the MySQL database.
+ *
+ * @param \Slim\Container $container slim dependency container
+ */
 $container['myDb'] = function ($container) {
     $db_ini = parse_ini_file(DB_INI_PATH);
     $db = new mysqli($db_ini['host'], $db_ini['user'], $db_ini['pass'], $db_ini['name']);
     return $db;
 };
 
-// Text route
-// {text} - 'about', 'capabilities', or 'contact'
-// http://beta.therogersmanufacturingcompany.com/api/get/text/about
+/**
+ * Text GET route
+ * 
+ *
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * args['text'] array Defines the text to get, 'about', 'capabilities', or 'contact' text.
+ *
+ * @return \Psr\Http\Message\ResponseInterface
+ */
 $app->get('/get/text/{text}', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -33,8 +45,9 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
     return $response->withJson($row['text']);
 });
 
-// Feature cards route
-// http://beta.therogersmanufacturingcompany.com/api/get/feature-cards
+/**
+ * Feature cards route
+ */
 $app->get('/get/feature-cards', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -47,8 +60,9 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
     return $response->withJson($results);
 });
 
-// Equipment list route
-// http://beta.therogersmanufacturingcompany.com/api/get/equipment-list
+/**
+ * Equipment list route
+ */
 $app->get('/get/equipment-list', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -61,8 +75,9 @@ $app->get('/get/equipment-list', function ($request, $response, $args) {
     return $response->withJson($results);
 });
 
-// Manufacturing services route
-// http://beta.therogersmanufacturingcompany.com/api/get/manufacturing-services
+/**
+ * Manufacturing services route
+ */
 $app->get('/get/manufacturing-services', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -75,8 +90,9 @@ $app->get('/get/manufacturing-services', function ($request, $response, $args) {
     return $response->withJson($results);
 });
 
-// Tool room equipment route
-// http://beta.therogersmanufacturingcompany.com/api/get/tool-room/equipment
+/**
+ * Tool room equipment route
+ */
 $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
@@ -89,8 +105,9 @@ $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
     return $response->withJson($results);
 });
 
-// Tool room services route
-// http://beta.therogersmanufacturingcompany.com/api/get/tool-room/services
+/**
+ * Tool room services route
+ */
 $app->get('/get/tool-room/services', function ($request, $response, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
