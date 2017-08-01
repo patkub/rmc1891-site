@@ -5,7 +5,6 @@
 [![Travis CI](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
 [![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
-[![Build Status](https://saucelabs.com/browser-matrix/rmc1891-site.svg)](https://saucelabs.com/u/rmc1891-site)
 
 [Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](http://getbootstrap.com/)
 
@@ -60,8 +59,7 @@ yarn run serve:build
 
 ### Run tests
 
-Firefox and Chrome are tested in headless mode on Travis CI. Firefox latest and
-beta, and Chrome latest, beta, and dev are tested on Sauce Labs using CircleCI.
+Firefox and Chrome are tested in headless mode on Travis CI and on Sauce Labs using CircleCI.
 
 This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
 against the firefox and chrome browsers currently installed on your machine:
