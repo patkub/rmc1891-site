@@ -99,7 +99,30 @@ gulp.task('copy:api', function() {
   return gulp.src([
     'api/**/*',
     'api/**/.*',
-  ]).pipe(gulp.dest('build/'));
+    '!api/public_html/**/*',
+    '!api/public_html/**/.*',
+    '!api/public_html',
+  ]).pipe(gulp.dest('build/api/'));
+});
+
+/**
+ * Copy public api
+ */
+gulp.task('copy:api:public', function() {
+  return gulp.src([
+    'api/public_html/**/*',
+    'api/public_html/**/.*',
+  ]).pipe(gulp.dest(BUILD_PATH + 'api/'));
+});
+
+/**
+ * Copy vendor
+ */
+gulp.task('copy:vendor', function() {
+  return gulp.src([
+    'vendor/**/*',
+    'vendor/**/.*',
+  ]).pipe(gulp.dest('build/vendor/'));
 });
 
 /**
@@ -274,7 +297,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['del:before', 'css']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'copy:fonts', 'copy:api', 'del:after', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'copy:fonts', 'del:after', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'copy:fonts:local', 'serve:browsersync:local']);

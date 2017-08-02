@@ -1,13 +1,16 @@
 <?php
+// Root path
+const ROOT_PATH = '../../';
+
 // Composer autoload
-require '../vendor/autoload.php';
+require ROOT_PATH . 'vendor/autoload.php';
 
 // Custom libraries
-require_once 'lib/auth.php';
-require_once 'lib/fetch.php';
+require_once ROOT_PATH . 'api/lib/auth.php';
+require_once ROOT_PATH . 'api/lib/fetch.php';
 
 // Database configuration
-const DB_INI_PATH = "../../private/db.ini";
+const DB_INI_PATH = ROOT_PATH . 'api/db.ini';
 
 // Create and configure Slim app
 $container = new \Slim\Container;
@@ -26,12 +29,12 @@ $container['myDb'] = function ($container) {
 };
 
 // App routes
-require 'routes/text.php';
-require 'routes/feature-cards.php';
-require 'routes/equipment-list.php';
-require 'routes/manufacturing-services.php';
-require 'routes/tool-room/tool-room-equipment.php';
-require 'routes/tool-room/tool-room-services.php';
+require ROOT_PATH . 'api/routes/text.php';
+require ROOT_PATH . 'api/routes/feature-cards.php';
+require ROOT_PATH . 'api/routes/equipment-list.php';
+require ROOT_PATH . 'api/routes/manufacturing-services.php';
+require ROOT_PATH . 'api/routes/tool-room/tool-room-equipment.php';
+require ROOT_PATH . 'api/routes/tool-room/tool-room-services.php';
 
 // Start php session
 session_start();
