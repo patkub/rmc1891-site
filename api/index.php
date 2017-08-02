@@ -31,7 +31,7 @@ $container['myDb'] = function ($container) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/text/{text}', function ($request, $response, $args) {
+$app->get('/get/text/{text}', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -42,7 +42,7 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($row['text']);
+    return $res->withJson($row['text']);
 });
 
 /**
@@ -54,7 +54,7 @@ $app->get('/get/text/{text}', function ($request, $response, $args) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/feature-cards', function ($request, $response, $args) {
+$app->get('/get/feature-cards', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -63,7 +63,7 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($results);
+    return $res->withJson($results);
 });
 
 /**
@@ -75,7 +75,7 @@ $app->get('/get/feature-cards', function ($request, $response, $args) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/equipment-list', function ($request, $response, $args) {
+$app->get('/get/equipment-list', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -84,7 +84,7 @@ $app->get('/get/equipment-list', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($results);
+    return $res->withJson($results);
 });
 
 /**
@@ -96,7 +96,7 @@ $app->get('/get/equipment-list', function ($request, $response, $args) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/manufacturing-services', function ($request, $response, $args) {
+$app->get('/get/manufacturing-services', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -105,7 +105,7 @@ $app->get('/get/manufacturing-services', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($results);
+    return $res->withJson($results);
 });
 
 /**
@@ -117,7 +117,7 @@ $app->get('/get/manufacturing-services', function ($request, $response, $args) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/tool-room/equipment', function ($request, $response, $args) {
+$app->get('/get/tool-room/equipment', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -126,7 +126,7 @@ $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($results);
+    return $res->withJson($results);
 });
 
 /**
@@ -138,7 +138,7 @@ $app->get('/get/tool-room/equipment', function ($request, $response, $args) {
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->get('/get/tool-room/services', function ($request, $response, $args) {
+$app->get('/get/tool-room/services', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -147,7 +147,7 @@ $app->get('/get/tool-room/services', function ($request, $response, $args) {
     
     // Return JSON
     header('Access-Control-Allow-Origin: *');
-    return $response->withJson($results);
+    return $res->withJson($results);
 });
 
 /**
@@ -157,7 +157,7 @@ $app->get('/get/tool-room/services', function ($request, $response, $args) {
  * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
  * @param  array                                    $args Route parameters
  */
-$app->put('/put/feature-cards', function ($request, $response, $args) {
+$app->put('/put/feature-cards', function ($req, $res, $args) {
     // Connect to MySQL database
     $db = $this->get('myDb');
     
