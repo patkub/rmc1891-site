@@ -47,7 +47,7 @@ $app->put('/put/text/{text}', function ($req, $res, $args) {
     $body = $req->getParsedBody();
     
     // Format update query
-    $updateQuery = sprintf("UPDATE FeatureCards SET text='%s' WHERE title='%s'",
+    $updateQuery = sprintf("UPDATE `Text` SET text='%s' WHERE `name`='%s'",
         $db->real_escape_string($body['text']), $db->real_escape_string($args['text']));
     
     // Execute query
