@@ -1,7 +1,4 @@
 <?php
-// Validate user input
-require_once '../lib/test_input.php';
-
 /**
  * Mail POST route.
  * 

@@ -8,6 +8,7 @@ require ROOT_PATH . 'vendor/autoload.php';
 // Custom libraries
 require_once ROOT_PATH . 'api/lib/auth.php';
 require_once ROOT_PATH . 'api/lib/fetch.php';
+require_once ROOT_PATH . 'api/lib/test_input.php';
 
 // Database configuration
 const DB_INI_PATH = ROOT_PATH . 'api/db.ini';
