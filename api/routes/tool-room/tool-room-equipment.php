@@ -70,7 +70,7 @@ $app->delete('/delete/tool-room/equipment', function ($req, $res, $args) {
     
     // Format delete query
     $deleteQuery = sprintf("DELETE FROM `ToolRoomEquipment` WHERE `count` = %d AND `name` = '%s'",
-        intval($body['count'], $db->real_escape_string($body['machine']));
+        intval($body['count']), $db->real_escape_string($body['machine']));
     
     // Execute query
     $db->query($deleteQuery) or die($db->error);
