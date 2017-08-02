@@ -11,8 +11,6 @@
   ],
   "sources": [
     "src/**/*",
-    "api/**/*",
-    "api/**/.*",
     "php/**/*",
     "images/**/*",
     "vendor/**/*",
@@ -36,6 +34,7 @@
   "builds": [
     {
       "preset": "es5-bundled",
+      "name": "public_html",
       "addServiceWorker": false
     }
   ]
