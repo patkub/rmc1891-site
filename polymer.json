@@ -1,18 +1,18 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/rmc-shell.html",
+  "shell": "app/src/rmc-shell.html",
   "fragments": [
-    "src/views/view-home.html",
-    "src/views/view-about.html",
-    "src/views/view-capabilities.html",
-    "src/views/view-contact.html",
-    "src/views/view-admin.html",
-    "src/views/view-404.html"
+    "app/src/views/view-home.html",
+    "app/src/views/view-about.html",
+    "app/src/views/view-capabilities.html",
+    "app/src/views/view-contact.html",
+    "app/src/views/view-admin.html",
+    "app/src/views/view-404.html"
   ],
   "sources": [
-    "src/**/*",
-    "php/**/*",
-    "images/**/*",
+    "app/src/**/*",
+    "app/php/**/*",
+    "app/images/**/*",
     "package.json",
     "manifest.json",
     ".htaccess"

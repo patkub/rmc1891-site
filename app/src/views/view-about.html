@@ -6,20 +6,23 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <!-- Polymer -->
 <link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
 
-<!-- Carousel -->
-<link rel="import" href="../../elements/carousel/my-carousel.html">
-
-<!-- Feature Cards -->
-<link rel="import" href="../../elements/rmc-feature-cards.html">
+<!-- Text View -->
+<link rel="import" href="../elements/rmc-text-view.html">
 
 <!-- Shared Styles for Views -->
-<link rel="import" href="../shared-styles-views.html">
+<link rel="import" href="shared-styles-views.html">
 
 <!--
-`<view-admin-home>` is the view for the admin home page.
+`<view-about>` is the view for the about page.
 
 In typical use, add the element to an `<iron-pages>` element:
 
@@ -28,38 +31,31 @@ In typical use, add the element to an `<iron-pages>` element:
         attr-for-selected="id"
         role="main">
         
-        <view-admin-home id="home"></view-admin-home>
+        <view-about id="about"></view-about>
         ...
     </iron-pages>
 -->
-<dom-module id="view-admin-home">
+<dom-module id="view-about">
   <template>
     <style include="bs4-shared-styles-grid"></style>
-    <style include="shared-styles-views">
-    .container {
-      margin-top: 0;
-    }
-    </style>
+    <style include="shared-styles-views"></style>
     
     <!-- container -->
     <div class="container">
-        <h2>Home</h2>
-        
-        <!-- feature cards -->
-        <rmc-feature-cards editable></rmc-feature-cards>
+        <!-- About Text -->
+        <rmc-text-view view="about" title="About"></rmc-text-view>
     </div>
     <!-- /container -->
-    
   </template>
 
   <script>
-    /** Class representing admin home view. */
-    class ViewAdminHome extends Polymer.Element {
+    /** Class representing about view. */
+    class ViewAbout extends Polymer.Element {
       /** HTML tag name. */
       static get is() {
-        return 'view-admin-home';
+        return 'view-about';
       }
     }
-    window.customElements.define(ViewAdminHome.is, ViewAdminHome);
+    window.customElements.define(ViewAbout.is, ViewAbout);
   </script>
 </dom-module>

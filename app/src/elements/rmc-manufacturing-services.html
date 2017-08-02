@@ -28,24 +28,24 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
 <!-- Editable State Styles -->
-<link rel="import" href="../rmc-shared-styles/rmc-shared-styles-editable.html">
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-editable.html">
 
 <!-- Paper Spinner Styles -->
-<link rel="import" href="../rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
-`<rmc-tool-room-services>` displays a list of tool room services.
+`<rmc-manufacturing-services>` displays a list of manufacturing services.
 
 In typical use, just add the element to your body:
 
     <body>
-      <rmc-tool-room-services></rmc-tool-room-services>
+      <rmc-manufacturing-services></rmc-manufacturing-services>
 
 Add the editable attribute to include features to edit the list:
 
-    <rmc-tool-room-services editable></rmc-tool-room-services>
+    <rmc-manufacturing-services editable></rmc-manufacturing-services>
 -->
-<dom-module id="rmc-tool-room-services">
+<dom-module id="rmc-manufacturing-services">
     <template>
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-list-group"></style>
@@ -53,19 +53,19 @@ Add the editable attribute to include features to edit the list:
         <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
-        <!-- load tool room services -->
+        <!-- load manufacturing services -->
         <iron-ajax
             auto
             id="servicesAjax"
-            url="api/get/tool-room/services"
+            url="api/get/manufacturing-services"
             handle-as="json"
             last-response="{{services}}"
             loading="{{servicesLoading}}">
         </iron-ajax>
         
-        <!-- offline mirror the tool room services -->
+        <!-- offline mirror the manufacturing services -->
         <app-indexeddb-mirror
-            key="toolRoomServices"
+            key="manufacturingServices"
             data="{{services}}"
             persisted-data="{{persistedServices}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -81,17 +81,17 @@ Add the editable attribute to include features to edit the list:
             <!-- iron ajax request to add service -->
             <iron-ajax
                 id="add"
-                url="api/put/tool-room/services"
+                url="api/put/manufacturing-services"
                 handle-as="json"
                 method="PUT">
             </iron-ajax>
             
-            <h5>Add a Service</h5>
+            <h5>Add a Manufacturing Service</h5>
             
             <form id="serviceForm" action="javascript:void(0);">
                 <div class="form-group">
-                    <label for="item">Service:</label>
-                    <input type="text" class="form-control" placeholder="New service" value="{{newService::input}}">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
@@ -100,35 +100,35 @@ Add the editable attribute to include features to edit the list:
             <!-- iron ajax request to delete service -->
             <iron-ajax
                 id="delete"
-                url="api/delete/tool-room/services"
+                url="api/delete/manufacturing-services"
                 handle-as="json"
                 method="DELETE">
             </iron-ajax>
         </template>
         
-        <!-- services -->
-        <ul class="list-group">
-            <template is="dom-repeat" items="{{persistedServices}}" as="service">
-                <template is="dom-if" if="{{!editable}}">
-                    <li class="list-group-item">[[service.name]]</li>
-                </template>
-                <template is="dom-if" if="{{editable}}">
-                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
-                </template>
+		<ul class="list-group">
+        <template is="dom-repeat" items="{{persistedServices}}" as="service">
+            <template is="dom-if" if="{{!editable}}">
+                <li class="list-group-item">[[service.name]]</li>
             </template>
-        </ul>
+            
+            <template is="dom-if" if="{{editable}}">
+                <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
+            </template>
+        </template>
+		</ul>
         
     </template>
 
   <script>
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
     
-    /** Class representing list of tool room services. */
-    class RMCToolRoomServices extends
+    /** Class representing manufacturing services. */
+    class RMCManufacturingServices extends
       Polymer.GestureEventListeners(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
-        return 'rmc-tool-room-services';
+        return 'rmc-manufacturing-services';
       }
       
       /** Declared properties. */
@@ -174,18 +174,20 @@ Add the editable attribute to include features to edit the list:
       _deleteService(e) {
         // get service to delete
         let service = e.target.getAttribute('service');
-        
+
         // delete the service
         let params = 'item=' + service;
         let xhr = this.shadowRoot.getElementById('delete');
         xhr.body = params;
         xhr.generateRequest();
-        
+
         // update services list
         let servicesAjax = this.shadowRoot.getElementById('servicesAjax');
         servicesAjax.generateRequest();
       }
     }
-    window.customElements.define(RMCToolRoomServices.is, RMCToolRoomServices);
+
+    window.customElements.define(RMCManufacturingServices.is,
+      RMCManufacturingServices);
   </script>
 </dom-module>

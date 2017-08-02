@@ -48,8 +48,8 @@ const FONTS = ['node_modules/font-awesome/fonts/*.*'];
  * Defines the list of resources to watch for changes.
  */
 function watch() {
-  gulp.watch(['scss/**/*.scss'], ['css', reload]);
-  gulp.watch(['php/**/*', 'src/**/*'], reload);
+  gulp.watch(['app/scss/**/*.scss'], ['css', reload]);
+  gulp.watch(['app/php/**/*', 'src/**/*'], reload);
   gulp.watch(['index.html'], reload);
 }
 
@@ -57,7 +57,7 @@ function watch() {
 gulp.task('lint:css', function() {
   return gulp.src([
     'docs/**/*.html',
-    'src/**/*.html',
+    'app/src/**/*.html',
     'test/**/*.html',
     'index.html',
   ]).pipe(styleLint({
@@ -69,17 +69,17 @@ gulp.task('lint:css', function() {
 
 // Compile Stylesheets
 gulp.task('sass', function() {
-  return gulp.src('scss/**/*.scss')
+  return gulp.src('app/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('css/'));
+    .pipe(gulp.dest('app/css/'));
 });
 
 // Minify CSS
 gulp.task('clean-css', ['sass'], function() {
-  return gulp.src('css/rmc-theme.css')
+  return gulp.src('app/css/rmc-theme.css')
     .pipe(purifyCSS([
       'node_modules/bootstrap/dist/js/bootstrap.min.js',
-      'src/**/*.html',
+      'app/src/**/*.html',
       'index.html',
     ]))
     .pipe(stripCSSComments({
@@ -89,7 +89,7 @@ gulp.task('clean-css', ['sass'], function() {
       level: 2,
     }))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('css/'));
+    .pipe(gulp.dest('app/css/'));
 });
 
 /**
@@ -146,8 +146,8 @@ gulp.task('copy:fonts:local', function() {
  */
 gulp.task('inline', function() {
   return gulp.src(BUILD_PATH + 'index.html')
-    .pipe(replace('<link rel="stylesheet" href="css/rmc-theme.min.css">', function(s) {
-      let style = fs.readFileSync('css/rmc-theme.min.css', 'utf8');
+    .pipe(replace('<link rel="stylesheet" href="app/css/rmc-theme.min.css">', function(s) {
+      let style = fs.readFileSync('app/css/rmc-theme.min.css', 'utf8');
       return '<style>' + style + '</style>';
     }))
     .pipe(header(banner, {pkg: pkg}))
