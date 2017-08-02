@@ -19,4 +19,32 @@ $app->get('/get/tool-room/services', function ($req, $res, $args) {
     header('Access-Control-Allow-Origin: *');
     return $res->withJson($results);
 });
+
+/**
+ * Tool room services PUT route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ */
+$app->put('/put/tool-room/services', function ($req, $res, $args) {
+    // Check authentication
+    if (!isset($_SESSION['auth']) || $_SESSION['auth'] != true) {
+      // Unauthorized HTTP 401
+      return adminAuthError($res);
+    }
+    
+    // Connect to MySQL database
+    $db = $this->get('myDb');
+    
+    // Get request body
+    $body = $req->getParsedBody();
+    
+    // Format update query
+    $updateQuery = sprintf("INSERT INTO `ToolRoomServices`(`name`) VALUES ('%s')",
+        $db->real_escape_string($body['item']));
+    
+    // Execute query
+    $db->query($updateQuery) or die($db->error);
+});
 ?>

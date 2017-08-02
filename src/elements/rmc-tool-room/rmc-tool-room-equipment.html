@@ -167,7 +167,7 @@ Add the editable attribute to include features to edit the list:
         let machine = e.target.getAttribute('machine');
 
         // add the machine
-        let params = 'count=' + count + '&machine=' + machine;
+        let params = 'count=' + count + '&item=' + machine;
         let xhr = this.shadowRoot.getElementById('add');
         xhr.body = params;
         xhr.generateRequest();

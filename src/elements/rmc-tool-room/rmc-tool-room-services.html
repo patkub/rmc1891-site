@@ -81,9 +81,9 @@ Add the editable attribute to include features to edit the list:
             <!-- iron ajax request to add service -->
             <iron-ajax
                 id="add"
-                url="php/insert/tool_room_services_insert.php"
+                url="api/put/tool-room/services"
                 handle-as="json"
-                method="POST">
+                method="PUT">
             </iron-ajax>
             
             <h5>Add a Service</h5>

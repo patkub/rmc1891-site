@@ -42,7 +42,7 @@ $app->put('/put/tool-room/equipment', function ($req, $res, $args) {
     
     // Format update query
     $updateQuery = sprintf("INSERT INTO `ToolRoomEquipment`(`count`, `name`) VALUES (%d, '%s')",
-        intval($body['count']), $db->real_escape_string($body['machine']));
+        intval($body['count']), $db->real_escape_string($body['item']));
     
     // Execute query
     $db->query($updateQuery) or die($db->error);
