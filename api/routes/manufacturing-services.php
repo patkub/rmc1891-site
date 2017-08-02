@@ -55,7 +55,7 @@ $app->put('/put/manufacturing-services', function ($req, $res, $args) {
  * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
  * @param  array                                    $args Route parameters
  */
-$app->put('/delete/manufacturing-services', function ($req, $res, $args) {
+$app->delete('/delete/manufacturing-services', function ($req, $res, $args) {
     // Check authentication
     if (!isset($_SESSION['auth']) || $_SESSION['auth'] != true) {
       // Unauthorized HTTP 401
