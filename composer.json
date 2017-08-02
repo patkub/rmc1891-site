@@ -1,0 +1,15 @@
+{
+    "name": "patkub/rmc1891-site",
+    "description": "The Rogers Manufacturing Company website",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.8"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patrick Kubiak",
+            "email": "patrick@antuple.net"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- BS4 Alert -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-alert/bs4-alert.html">
+
+<!--
+`<rmc-markdown-info>` displays information about markdown syntax.
+
+In typical use, add the element to your body:
+
+    <body>
+        <rmc-markdown-info></rmc-markdown-info>
+-->
+<dom-module id="rmc-markdown-info">
+  <template>
+    <bs4-alert context="info">
+      <a href="[[markdown]]" target="_blank"><strong>Edit [[type]]</strong> with Markdown syntax.</a>
+    </bs4-alert>
+  </template>
+
+  <script>
+    /** Class representing information about markdown syntax. */
+    class RMCMarkdownInfo extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-markdown-info';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          /** Markdown cheatsheet link */
+          markdown: {
+            type: String,
+          },
+          /** Type of content */
+          type: {
+            type: String,
+          },
+        };
+      }
+    }
+
+    window.customElements.define(RMCMarkdownInfo.is, RMCMarkdownInfo);
+  </script>
+</dom-module>

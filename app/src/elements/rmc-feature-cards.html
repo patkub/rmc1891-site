@@ -1,0 +1,206 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- Marked Library -->
+<link rel="import" href="../../../node_modules/@npm-polymer/marked-element/marked-element.html">
+
+<!-- Paper Spinner -->
+<link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+
+<!-- BS4 Buttons -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+
+<!-- BS4 Card Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-card/bs4-card.html">
+
+<!-- BS4 Forms -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
+
+<!-- Paper Spinner Styles -->
+<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+
+<!-- RMC Markdown Info -->
+<link rel="import" href="rmc-markdown-info.html">
+
+<!--
+`<rmc-feature-cards>` displays a group of cards that highlight features.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-feature-cards></rmc-feature-cards>
+
+Add the editable attribute to include features to edit card text content:
+
+    <rmc-feature-cards editable></rmc-feature-cards>
+-->
+<dom-module id="rmc-feature-cards">
+    <template>
+        <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="bs4-shared-styles-buttons"></style>
+        <style include="bs4-shared-styles-card"></style>
+        <style include="bs4-shared-styles-forms"></style>
+        <style include="rmc-shared-styles-editable">
+          .card {
+            margin-bottom: 1rem;
+          }
+          
+          .card-text {
+            font-size: 20px;
+          }
+          
+          .card-img-wrapper {
+            max-height: 250px;
+            overflow: hidden;
+          }
+          
+          @media (min-width: 576px) {
+            .card-deck .card:not(:last-child) {
+              margin-right: inherit;
+            }
+          }
+          
+          @media print {
+            .card-img-wrapper,
+            .card-footer {
+              display: none;
+            }
+          }
+        </style>
+        
+        <!-- load feature cards -->
+        <iron-ajax
+            auto
+            id="featureCardsAjax"
+            url="api/get/feature-cards"
+            handle-as="json"
+            last-response="{{featureCards}}"
+            loading="{{featureCardsLoading}}">
+        </iron-ajax>
+        
+        <!-- offline mirror the feature cards -->
+        <app-indexeddb-mirror
+            key="featureCards"
+            data="{{featureCards}}"
+            persisted-data="{{persistedFeatureCards}}"
+            worker-url="app-indexeddb-mirror-worker.js">
+        </app-indexeddb-mirror>
+        
+        <template is="dom-if" if="{{editable}}">
+          <!-- information about markdown syntax -->
+          <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
+        </template>
+        
+        <!-- paper-spinner while loading -->
+        <template is="dom-if" if="{{featureCardsLoading}}">
+            <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
+        </template>
+        
+        <div class="card-deck">
+            <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                      <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">[[card.title]]</h4>
+                        <p class="card-text">
+                          <template is="dom-if" if="{{editable}}">
+                            <textarea class="form-control" id="[[card.title]]" rows="10" value="{{card.text::input}}"></textarea>
+                            <h4 class="card-editable">Preview:</h4>
+                          </template>
+                          <marked-element markdown="{{card.text}}" id="markdown">
+                            <div slot="markdown-html"></div>
+                          </marked-element>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <template is="dom-if" if="{{!editable}}">
+                            <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
+                        </template>
+                        <template is="dom-if" if="{{editable}}">
+                            <span class="text-primary"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+        
+        <template is="dom-if" if="{{editable}}">
+          <button class="btn btn-primary btn-submit" on-tap="_save">Save</button>
+          
+          <!-- iron ajax request to update text -->
+          <iron-ajax
+              id="update"
+              url="api/put/feature-cards"
+              handle-as="json"
+              method="PUT">
+          </iron-ajax>
+        </template>
+        
+    </template>
+
+  <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    
+    /** Class representing feature cards. */
+    class RMCFeatureCards extends
+      Polymer.GestureEventListeners(Polymer.Element) {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-feature-cards';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          /** Whether this element is editable. */
+          editable: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+          },
+        };
+      }
+      
+      /**
+       * Save
+       *
+       * @param {Object} e - on-tap event.
+       */
+      _save(e) {
+        // get new text to save
+        let aboutText = this.shadowRoot.getElementById('About').value;
+        let capabilitiesText = this.shadowRoot.getElementById('Capabilities').value;
+        let contactText = this.shadowRoot.getElementById('Contact').value;
+        
+        // save the text
+        let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
+            capabilitiesText + '&ContactText=' + contactText;
+        let xhr = this.shadowRoot.getElementById('update');
+        xhr.body = params;
+        xhr.generateRequest();
+        
+        // update feature cards
+        let featureCardsAjax = this.shadowRoot.getElementById('featureCardsAjax');
+        featureCardsAjax.generateRequest();
+      }
+    }
+
+    window.customElements.define(RMCFeatureCards.is, RMCFeatureCards);
+  </script>
+</dom-module>

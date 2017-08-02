@@ -1,0 +1,66 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Text View -->
+<link rel="import" href="../../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles-views.html">
+
+<!--
+`<view-admin-about>` is the view for the admin about page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-admin-about id="about"></view-admin-about>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-about">
+  <template>
+    <style include="bs4-shared-styles-grid"></style>
+    <style include="shared-styles-views">
+    .container {
+      margin-top: 0;
+    }
+    </style>
+    
+    <!-- container -->
+    <div class="container">
+        <!-- About Text -->
+        <rmc-text-view view="about" title="About" editable></rmc-text-view>
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    /** Class representing admin about view. */
+    class ViewAdminAbout extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'view-admin-about';
+      }
+    }
+    window.customElements.define(ViewAdminAbout.is, ViewAdminAbout);
+  </script>
+</dom-module>

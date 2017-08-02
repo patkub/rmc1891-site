@@ -5,3 +5,5 @@ css/
 fonts/
 npm-debug*
 *.min.*
+
+/vendor/
