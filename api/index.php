@@ -1,6 +1,7 @@
 <?php
 require '../vendor/autoload.php';
-require 'fetch.php';
+require_once 'lib/auth.php';
+require_once 'lib/fetch.php';
 
 // Database configuration
 const DB_INI_PATH = "../../private/db.ini";
@@ -158,6 +159,11 @@ $app->get('/get/tool-room/services', function ($req, $res, $args) {
  * @param  array                                    $args Route parameters
  */
 $app->put('/put/feature-cards', function ($req, $res, $args) {
+    if (!isset($_SESSION['auth']) || $_SESSION['auth'] != true) {
+      // Unauthorized HTTP 401
+      return adminAuthError($res);
+    }
+    
     // Connect to MySQL database
     $db = $this->get('myDb');
     
@@ -180,6 +186,9 @@ $app->put('/put/feature-cards', function ($req, $res, $args) {
     $db->query($capabilitiesQuery) or die($db->error);
     $db->query($contactQuery) or die($db->error);
 });
+
+// Start php session
+session_start();
 
 // Run app
 $app->run();
