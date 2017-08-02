@@ -76,9 +76,9 @@ Add the editable attribute to include features to edit the list:
             <!-- iron ajax request to add machine -->
             <iron-ajax
                 id="add"
-                url="php/insert/equipment_list_insert.php"
+                url="api/put/equipment-list"
                 handle-as="json"
-                method="POST">
+                method="PUT">
             </iron-ajax>
             
             <h5>Add a Machine</h5>
