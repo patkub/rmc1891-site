@@ -1,0 +1,128 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- App Location -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-location.html">
+
+<!-- App Route -->
+<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-route.html">
+
+<!-- Iron Pages -->
+<link rel="import" href="../../node_modules/@npm-polymer/iron-pages/iron-pages.html">
+
+<!-- RMC Footer -->
+<link rel="import" href="elements/rmc-footer.html">
+
+<!-- Views -->
+<link rel="lazy-import" href="views/view-home.html">
+<link rel="lazy-import" href="views/view-about.html">
+<link rel="lazy-import" href="views/view-capabilities.html">
+<link rel="lazy-import" href="views/view-contact.html">
+<link rel="lazy-import" href="views/view-admin.html">
+<link rel="lazy-import" href="views/view-404.html">
+
+<dom-module id="rmc-shell">
+    <template>
+        <app-location route="{{route}}"></app-location>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
+
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="id"
+            fallback-selection="404"
+            role="main">
+            
+            <view-home id="home"></view-home>
+            <view-about id="about"></view-about>
+            <view-capabilities id="capabilities"></view-capabilities>
+            <view-contact id="contact"></view-contact>
+            <view-admin id="admin"></view-admin>
+            <view-404 id="404"></view-404>
+        </iron-pages>
+    </template>
+
+  <script>
+    /** Class application shell. */
+    class RMCShell extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-shell';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged',
+          },
+          routeData: Object,
+        };
+      }
+      
+      /** Observers. */
+      static get observers() {
+        return [
+          '_routePageChanged(routeData.page)',
+        ];
+      }
+      
+      /**
+       * Route page changed observer.
+       *
+       * @param {String} page - new page.
+       */
+      _routePageChanged(page) {
+        // Polymer 2.0 will call with `undefined` on initialization.
+        // Ignore until we are properly called with a string.
+        if (page === undefined) {
+          return;
+        }
+        // If no page was found in the route data, page will be an empty string.
+        // Default to 'home' in that case.
+        this.page = page || 'home';
+
+        // The active page has changed
+        this.dispatchEvent(new CustomEvent('ActivePageChanged', {
+          detail: {
+            active: this.page,
+          },
+          composed: true,
+        }));
+    
+        // Scroll to top of page
+        window.scrollTo(0, 0);
+      }
+      
+      /**
+       * Page attribute changed observer.
+       *
+       * @param {String} page - new page.
+       */
+      _pageChanged(page) {
+        // Load page import on demand. Show 404 page if fails
+        let resolvedPageUrl = this.resolveUrl('views/view-' + page + '.html');
+        Polymer.importHref(
+          resolvedPageUrl,
+          null,
+          this._showPage404.bind(this),
+          true);
+      }
+      
+      /**
+       * Dynamic import error page.
+       */
+      _showPage404() {
+        this.page = '404';
+      }
+    }
+
+    window.customElements.define(RMCShell.is, RMCShell);
+  </script>
+</dom-module>

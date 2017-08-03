@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer Library -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- BS4 Buttons -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+
+<!-- BS4 Jumbotron -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-jumbotron/bs4-jumbotron.html">
+
+<!--
+`<rmc-jumbotron>` displays a jumbotron to showcase information.
+
+In typical use, add the element to your body, and set the title, text, button,
+and link attributes:
+
+    <body>
+        <rmc-jumbotron title="Title"
+            text="Text"
+            button="Button text"
+            link="/path/"></rmc-jumbotron>
+-->
+<dom-module id="rmc-jumbotron">
+    <template>
+        <style include="bs4-shared-styles-buttons"></style>
+        <style include="bs4-shared-styles-jumbotron">
+        /* match bootstrap bottom margin */
+        .jumbotron {
+          margin-top: 2rem;
+        }
+        
+        .display-4 {
+          font-weight: 600;
+          font-size: 2rem;
+        }
+        
+        .lead {
+          font-weight: 500;
+        }
+        
+        @media (min-width: 576px) {
+          .display-4 {
+            font-size: 2rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .display-4 {
+            font-size: 2.5rem;
+          }
+        }
+        
+        @media (min-width: 1200px) {
+          .display-4 {
+            font-size: 3.5rem;
+          }
+        }
+        
+        @media print {
+          .card-img-wrapper,
+          .card-footer,
+          .btn {
+            display: none;
+          }
+
+          .lead {
+            margin-bottom: 0;
+          }
+        }
+        </style>
+        
+        <div class="jumbotron">
+            <h1 class="display-4">[[title]]</h1>
+            <p class="lead">[[text]]</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="[[link]]" role="button">[[button]]</a>
+            </p>
+        </div>
+    </template>
+
+  <script>
+    /** Class representing showcase. */
+    class RMCJumbotron extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-jumbotron';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          /** Jumbotron title */
+          title: String,
+          
+          /** Jumbotron text */
+          text: String,
+          
+          /** Jumbotron button text */
+          button: String,
+          
+          /** Jumbotron button link */
+          link: String,
+        };
+      }
+    }
+
+    window.customElements.define(RMCJumbotron.is, RMCJumbotron);
+  </script>
+</dom-module>

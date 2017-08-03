@@ -1,0 +1,167 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+
+<!-- BS4 Alert -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-alert/bs4-alert.html">
+
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- BS4 Buttons -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+
+<!-- BS4 Forms -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
+
+<!-- Text View -->
+<link rel="import" href="../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="shared-styles-views.html">
+
+<!--
+`<view-contact>` is the view for the contact page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-contact id="contact"></view-contact>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-contact">
+    <template>
+        <style include="bs4-shared-styles-grid"></style>
+        <style include="bs4-shared-styles-buttons"></style>
+        <style include="bs4-shared-styles-forms"></style>
+        <style include="shared-styles-views">
+          .btn-submit {
+            margin-bottom: 1rem;
+          }
+        </style>
+        
+        <!-- container -->
+        <div class="container">
+            <!-- contact text -->
+            <rmc-text-view view="contact" title="Contact"></rmc-text-view>
+            
+            <!-- iron ajax request to send email -->
+            <iron-ajax
+                id="email"
+                url="api/post/mail/"
+                handle-as="json"
+                method="POST"
+                on-response="_emailResponse">
+            </iron-ajax>
+            
+            <template is="dom-if" if="{{sent}}">
+                <bs4-alert context="success">
+                  <strong>Email sent!</strong> Your message has been sent.
+                </bs4-alert>
+            </template>
+            
+            <template is="dom-if" if="{{!sent}}">
+                <bs4-alert context="danger">
+                  <strong>Email failed!</strong> Your message failed to sent.
+                </bs4-alert>
+            </template>
+            
+            <form id="emailForm" action="javascript:void(0);">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" aria-describedby="email" placeholder="Your email" value="{{email::input}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input name="subject" type="text" class="form-control" aria-describedby="subject" placeholder="Subject" value="{{subject::input}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" rows="20" value="{{message::input}}"></textarea>
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_sendEmail" email$="{{email}}" subject$="{{subject}}" message$="{{message}}">Submit</button>
+            </form>
+        </div>
+        <!-- /container -->
+    </template>
+
+    <script>
+      /* eslint new-cap: ["error", { "capIsNew": false }] */
+      
+      /** Class representing contact view. */
+      class ViewContact extends Polymer.GestureEventListeners(Polymer.Element) {
+        /** HTML tag name. */
+        static get is() {
+          return 'view-contact';
+        }
+        
+        /** Declared properties. */
+        static get properties() {
+          return {
+            /** Initially undefined. True if email has been sent
+                successfuly, false on error. */
+            sent: {
+              type: Boolean,
+              reflectToAttribute: true,
+            },
+          };
+        }
+        
+        /**
+         * Send email
+         *
+         * @param {Object} e - on-tap event.
+         */
+        _sendEmail(e) {
+          // get email
+          let email = e.target.getAttribute('email');
+          let subject = e.target.getAttribute('subject');
+          let message = e.target.getAttribute('message');
+
+          // send the email
+          let params = 'email=' + email + '&subject=' + subject + '&message=' + message;
+          let xhr = this.shadowRoot.getElementById('email');
+          xhr.body = params;
+          xhr.generateRequest();
+
+          // reset the form
+          this.shadowRoot.getElementById('emailForm').reset();
+        }
+        
+        /**
+         * Email response
+         *
+         * @param {Object} e - ajax response.
+         */
+        _emailResponse(e) {
+          // Get response
+          let response = e.detail.response;
+          
+          // Check response status
+          if (response.status === 'success') {
+            // Success!
+            this.sent = true;
+          } else {
+            // Failure
+            this.sent = false;
+          }
+        }
+      }
+      window.customElements.define(ViewContact.is, ViewContact);
+    </script>
+</dom-module>

@@ -7,12 +7,10 @@
   "repository": "https://github.com/patkub/rmc1891-site",
   "author": "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)",
   "files": [
-    "images/",
-    "php/",
+    "app/",
+    "docs/",
     "scripts/",
-    "scss/",
     "sql/",
-    "src/",
     "test/",
     "index.html"
   ],

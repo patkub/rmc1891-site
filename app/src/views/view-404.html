@@ -1,0 +1,67 @@
+<!--
+@license
+Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+-->
+
+<!-- Polymer -->
+<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+
+<!-- App Location -->
+<link rel="import" href="../../../node_modules/@npm-polymer/app-route/app-location.html">
+
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="shared-styles-views.html">
+
+<!--
+`<view-404>` is the view for a 404 page not found error.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        fallback-selection="404"
+        role="main">
+        
+        ...
+        <view-404 id="404"></view-404>
+    </iron-pages>
+-->
+<dom-module id="view-404">
+  <template>
+  <style include="bs4-shared-styles-grid"></style>
+	<style include="shared-styles-views">
+  .container {
+    text-align: left;
+    margin-top: 100px;
+  }
+  
+  ins {
+    text-decoration: none;
+  }
+	</style>
+	
+	<div class="container">
+		<app-location route="{{route}}"></app-location>
+		<p>
+      <b>404.</b> <ins>That’s an error.</ins><br>
+			The requested URL {{route.path}} was not found on this server.<br>
+			<a href="/">Go back home</a>.
+		</p>
+	</div>
+  </template>
+
+  <script>
+    /** Class representing 404 page not found view. */
+    class View404 extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'view-404';
+      }
+    }
+    window.customElements.define(View404.is, View404);
+  </script>
+</dom-module>
