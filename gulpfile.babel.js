@@ -99,9 +99,6 @@ gulp.task('copy:api', function() {
   return gulp.src([
     'api/**/*',
     'api/**/.*',
-    '!api/public_html/**/*',
-    '!api/public_html/**/.*',
-    '!api/public_html',
   ]).pipe(gulp.dest('build/api/'));
 });
 
@@ -110,8 +107,8 @@ gulp.task('copy:api', function() {
  */
 gulp.task('copy:api:public', function() {
   return gulp.src([
-    'api/public_html/**/*',
-    'api/public_html/**/.*',
+    'api_public/**/*',
+    'api_public/**/.*',
   ]).pipe(gulp.dest(BUILD_PATH + 'api/'));
 });
 
