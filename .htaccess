@@ -1,29 +1,32 @@
 # Duration of cache
 Header set Cache-Control "max-age=2592000, public"
 
+# 404
+ErrorDocument 404 https://%{SERVER_NAME}%/404/
+
+# Add content types for fonts
+AddType application/x-font-opentype .otf
+AddType application/x-font-ttf .ttf
+AddType application/x-font-woff .woff
+AddType application/vnd.ms-fontobject .eot
+AddType image/svg+xml .svg
+
 # Compression
 <IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE document
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/html
   AddOutputFilterByType DEFLATE text/css
   AddOutputFilterByType DEFLATE text/javascript
   AddOutputFilterByType DEFLATE text/xml
-  AddOutputFilterByType DEFLATE font/opentype
-  AddOutputFilterByType DEFLATE font/otf
-  AddOutputFilterByType DEFLATE font/ttf
-  AddOutputFilterByType DEFLATE image/svg+xml
-  AddOutputFilterByType DEFLATE image/x-icon
   AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE application/javascript
-  AddOutputFilterByType DEFLATE application/x-font
   AddOutputFilterByType DEFLATE application/x-font-opentype
-  AddOutputFilterByType DEFLATE application/x-font-otf
-  AddOutputFilterByType DEFLATE application/x-font-truetype
   AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-font-woff
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
-
-# 404
-ErrorDocument 404 https://%{SERVER_NAME}%/404/
 
 # Rewrite
 <IfModule mod_rewrite.c>

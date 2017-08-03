@@ -1,6 +1,8 @@
 # Rewrite
 <IfModule mod_rewrite.c>
 RewriteEngine on
+
+# Rewrite api requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ /api/index.php/request=$1
 </IfModule>
