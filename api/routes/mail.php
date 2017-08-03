@@ -10,9 +10,10 @@
  */
 $app->post('/post/mail', function ($req, $res, $args) {
     // Get input
-    $email = test_input($_POST['email']);
-    $subject = test_input($_POST['subject']);
-    $message = test_input($_POST['message']);
+    $body = $req->getParsedBody();
+    $email = test_input($body['email']);
+    $subject = test_input($body['subject']);
+    $message = test_input($body['message']);
 
     // Email headers
     $headers = "From: " . $email . PHP_EOL;
