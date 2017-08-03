@@ -252,7 +252,7 @@ gulp.task('deploy:files', function() {
   /* global process */
   let args = minimist(process.argv.slice());
   
-  // public site
+  // copy files
   return gulp.src([
     BUILD_ROOT + '**/*',
     BUILD_ROOT + '**/.*',
