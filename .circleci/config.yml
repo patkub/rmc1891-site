@@ -167,8 +167,20 @@ workflows:
   build_and_test:
     jobs:
       - lint
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - test
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - sauce
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - approve-production:
           type: approval
           requires:
