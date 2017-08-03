@@ -29,7 +29,8 @@ import pkg from './package.json';
 import poly from './polymer.json';
 
 // build path based on build name in polymer.json
-const BUILD_PATH = 'build/' + poly.builds[0].name + '/';
+const BUILD_ROOT = 'build/';
+const BUILD_PATH = BUILD_ROOT + poly.builds[0].name + '/';
 
 const banner = ['<!--',
   '<%= pkg.name %> - <%= pkg.description %>',
@@ -49,7 +50,7 @@ const FONTS = ['node_modules/font-awesome/fonts/*.*'];
  */
 function watch() {
   gulp.watch(['app/scss/**/*.scss'], ['css', reload]);
-  gulp.watch(['app/php/**/*', 'src/**/*'], reload);
+  gulp.watch(['app/images/**/*', 'app/php/**/*', 'app/src/**/*'], reload);
   gulp.watch(['index.html'], reload);
 }
 
@@ -99,7 +100,7 @@ gulp.task('copy:api', function() {
   return gulp.src([
     'api/**/*',
     'api/**/.*',
-  ]).pipe(gulp.dest('build/api/'));
+  ]).pipe(gulp.dest(BUILD_ROOT + 'api/'));
 });
 
 /**
@@ -119,7 +120,7 @@ gulp.task('copy:vendor', function() {
   return gulp.src([
     'vendor/**/*',
     'vendor/**/.*',
-  ]).pipe(gulp.dest('build/vendor/'));
+  ]).pipe(gulp.dest(BUILD_ROOT + 'vendor/'));
 });
 
 /**
@@ -176,7 +177,7 @@ gulp.task('app-indexeddb', function() {
  */
 gulp.task('del:before', function() {
   return del([
-    'build/',
+    BUILD_ROOT,
   ]);
 });
 
@@ -236,12 +237,12 @@ gulp.task('deploy:db', function() {
   let args = minimist(process.argv.slice());
   
   // replace database connection info
-  return gulp.src(BUILD_PATH + 'api/db.ini')
+  return gulp.src('build/api/db.ini')
     .pipe(replace('{{host}}', args.dbhost))
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
     .pipe(replace('{{pass}}', args.dbpass))
-    .pipe(gulp.dest(BUILD_PATH + 'api/'));
+    .pipe(gulp.dest('build/api/'));
 });
 
 /**
@@ -253,13 +254,13 @@ gulp.task('deploy:files', function() {
   
   // public site
   return gulp.src([
-    BUILD_PATH + '**/*',
-    BUILD_PATH + '**/.*',
+    BUILD_ROOT + '**/*',
+    BUILD_ROOT + '**/.*',
   ]).pipe(sftp({
     host: args.host,
     user: args.user,
     pass: args.pass,
-    remotePath: 'public_html/',
+    remotePath: '/',
   }));
 });
 
