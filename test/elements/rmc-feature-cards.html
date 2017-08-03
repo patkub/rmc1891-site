@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         let request;
         let server;
         let responseHeaders = {
-          json: { 'Content-Type': 'application/json' }
+          json: {'Content-Type': 'application/json'},
         };
         
         setup(function() {
@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             'api/get/feature-cards', [
               200,
               responseHeaders.json,
-              '{"title":"Title", "image":"image.jpg", "caption":"caption", "text":"text", "button":"button", "link":"card/link/", "icon":"icon"}'
+              '{"title":"Title", "image":"image.jpg", "caption":"caption", "text":"text", "button":"button", "link":"card/link/", "icon":"icon"}',
             ]
           );
         });
@@ -65,17 +65,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         suite('when loading feature cards JSON', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector("#featureCardsAjax");
+            featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsAjax');
           });
           test('has sane defaults that love you', function() {
             request = featureCardsAjax.generateRequest();
             
-            featureCardsAjax.addEventListener('response', function (e) {
-                let response = e.target.lastResponse;
-                expect(response).to.be.ok;
-                expect(response).to.be.an('object');
-                expect(response.status).to.be.equal(200);
-                done();
+            featureCardsAjax.addEventListener('response', function(e) {
+              let response = e.target.lastResponse;
+              expect(response).to.be.ok;
+              expect(response).to.be.an('object');
+              expect(response.status).to.be.equal(200);
+              done();
             });
             
             server.respond();
@@ -88,8 +88,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
-              let cardTitle = card.querySelector(".card-block > .card-title");
-              assert.equal(cardTitle.textContent, "Title");
+              let cardTitle = card.querySelector('.card-block > .card-title');
+              assert.equal(cardTitle.textContent, 'Title');
               done();
             });
           });
@@ -97,9 +97,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
-              let cardImg = card.querySelector(".card-img-wrapper > img");
-              assert.equal(cardImg.src, "image.jpg");
-              assert.equal(cardImg.alt, "caption");
+              let cardImg = card.querySelector('.card-img-wrapper > img');
+              assert.equal(cardImg.src, 'image.jpg');
+              assert.equal(cardImg.alt, 'caption');
               done();
             });
           });
@@ -107,8 +107,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
-              let cardLink = card.querySelector(".card-footer > a");
-              assert.equal(cardLink.href, "card/link/");
+              let cardLink = card.querySelector('.card-footer > a');
+              assert.equal(cardLink.href, 'card/link/');
               done();
             });
           });

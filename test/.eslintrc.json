@@ -4,8 +4,11 @@
   },
   "globals": {
     "assert": false,
+    "expect": false,
     "fixture": false,
     "flush": false,
+    "done": false,
+    "sinon": false,
     "WCT": false
   }
 }
