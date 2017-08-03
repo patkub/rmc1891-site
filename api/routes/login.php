@@ -12,7 +12,7 @@ $admin_user = "admin";
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->post('/post/login/', function ($req, $res, $args) {
+$app->post('/post/login', function ($req, $res, $args) {
   // Connect to MySQL database
   $db = $this->get('myDb');
 	
