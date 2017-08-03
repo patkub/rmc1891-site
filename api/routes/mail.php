@@ -8,10 +8,7 @@
  * 
  * @return \Psr\Http\Message\ResponseInterface
  */
-$app->post('/post/mail/', function ($req, $res, $args) {
-    // Get request body text
-    $body = $req->getParsedBody();
-
+$app->post('/post/mail', function ($req, $res, $args) {
     // Get input
     $email = test_input($_POST['email']);
     $subject = test_input($_POST['subject']);

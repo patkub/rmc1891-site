@@ -1,8 +1,4 @@
 <?php
-
-// Admin username
-$admin_user = "admin";
-
 /**
  * Login POST route.
  * 
@@ -16,18 +12,19 @@ $app->post('/post/login', function ($req, $res, $args) {
   // Connect to MySQL database
   $db = $this->get('myDb');
 	
+  // Get admin username
+  $admin_user = $this->get('admin_user');
+  
 	// Get admin password
   $query = sprintf("SELECT `admin_pass` FROM `Admin` WHERE `admin_user` = '%s'",
       $db->real_escape_string($admin_user));
 	$row = queryAndFetch($db, $query);
   $admin_pass = $row["admin_pass"];
-	
-	// Get request body
-  $body = $req->getParsedBody();
-	
+  
 	// Get attempted username and password
-	$user = $db->real_escape_string($body['username']);
-	$pass = $db->real_escape_string($body['password']);
+  $body = $req->getParsedBody();
+	$user = $body['username'];
+	$pass = $body['password'];
 	
 	// Check username and password
   if ($user === $admin_user && hash_equals($admin_pass, crypt($pass, $admin_pass))) {

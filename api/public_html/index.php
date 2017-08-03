@@ -29,6 +29,11 @@ $container['myDb'] = function ($container) {
     return $db;
 };
 
+$container['admin_user'] = function ($container) {
+    $db_ini = parse_ini_file(DB_INI_PATH);
+    return $db_ini['admin_user'];
+};
+
 // App routes
 require ROOT_PATH . 'api/routes/text.php';
 require ROOT_PATH . 'api/routes/feature-cards.php';
