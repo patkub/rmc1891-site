@@ -235,19 +235,19 @@ gulp.task('deploy:db', function() {
   /* global process */
   let args = minimist(process.argv.slice());
   
-  // replace private database connection info
-  return gulp.src('private/db.ini')
+  // replace database connection info
+  return gulp.src(BUILD_PATH + 'api/db.ini')
     .pipe(replace('{{host}}', args.dbhost))
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
     .pipe(replace('{{pass}}', args.dbpass))
-    .pipe(gulp.dest(BUILD_PATH + 'private/'));
+    .pipe(gulp.dest(BUILD_PATH + 'api/'));
 });
 
 /**
- * Deploys public files.
+ * Deploys files.
  */
-gulp.task('deploy:public', function() {
+gulp.task('deploy:files', function() {
   /* global process */
   let args = minimist(process.argv.slice());
   
@@ -261,30 +261,6 @@ gulp.task('deploy:public', function() {
     pass: args.pass,
     remotePath: 'public_html/',
   }));
-});
-
-/**
- * Deploys private files.
- */
-gulp.task('deploy:private', function() {
-  /* global process */
-  let args = minimist(process.argv.slice());
-  
-  // private files
-  return gulp.src([
-    'private/**/*',
-    'private/**/.*',
-  ])
-    .pipe(replace('{{host}}', args.dbhost))
-    .pipe(replace('{{name}}', args.dbname))
-    .pipe(replace('{{user}}', args.dbuser))
-    .pipe(replace('{{pass}}', args.dbpass))
-    .pipe(sftp({
-      host: args.host,
-      user: args.user,
-      pass: args.pass,
-      remotePath: 'private/',
-    }));
 });
 
 // Compile Stylesheets
