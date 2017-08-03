@@ -37,6 +37,7 @@ require ROOT_PATH . 'api/routes/manufacturing-services.php';
 require ROOT_PATH . 'api/routes/tool-room/tool-room-equipment.php';
 require ROOT_PATH . 'api/routes/tool-room/tool-room-services.php';
 require ROOT_PATH . 'api/routes/mail.php';
+require ROOT_PATH . 'api/routes/login.php';
 
 // Start php session
 session_start();
