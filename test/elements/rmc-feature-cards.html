@@ -32,13 +32,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('rmc-feature-cards tests', function() {
         let rmcFeatureCards;
-
+        
+        let featureCardsAjax;
+        let request;
+        let server;
+        let responseHeaders = {
+          json: { 'Content-Type': 'application/json' }
+        };
+        
         setup(function() {
           rmcFeatureCards = fixture('RMCFeatureCards');
+          
+          server = sinon.fakeServer.create();
+          server.respondWith(
+            'GET',
+            'api/get/feature-cards', [
+              200,
+              responseHeaders.json,
+              '{"title":"Title", "image":"image.jpg", "caption":"caption", "text":"text", "button":"button", "link":"link", "icon":"info"}'
+            ]
+          );
+        });
+        
+        teardown(function() {
+          server.restore();
         });
         
         test('defines the "editable" property', function() {
           assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
+        });
+        
+        suite('when making simple GET requests for JSON', function() {
+          setup(function() {
+            // get fresh instance of iron-ajax before every test
+            featureCardsAjax = fixture('RMCFeatureCards').shadowRoot.querySelector("#featureCardsAjax");
+          });
+          test('has sane defaults that love you', function() {
+            request = featureCardsAjax.generateRequest();
+            server.respond();
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('object');
+            expect(request.response.success).to.be.equal(true);
+          });
+          test('has the correct xhr method', function() {
+            request = featureCardsAjax.generateRequest();
+            expect(request.xhr.method).to.be.equal('GET');
+          });
+          test('gets card image path', function() {
+            request = featureCardsAjax.generateRequest();
+            let card = fixture('RMCFeatureCards').shadowRoot.querySelector(".card");
+            let cardImg = card.querySelector(".card-img-wrapper > img");
+            assert.equal(cardImg.src, "image.jpg");
+          });
         });
       });
     </script>

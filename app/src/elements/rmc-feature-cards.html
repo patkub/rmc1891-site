@@ -89,7 +89,8 @@ Add the editable attribute to include features to edit card text content:
             url="api/get/feature-cards"
             handle-as="json"
             last-response="{{featureCards}}"
-            loading="{{featureCardsLoading}}">
+            loading="{{featureCardsLoading}}"
+            method="GET">
         </iron-ajax>
         
         <!-- offline mirror the feature cards -->
