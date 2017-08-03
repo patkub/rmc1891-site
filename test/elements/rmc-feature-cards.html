@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             'api/get/feature-cards', [
               200,
               responseHeaders.json,
-              '{"title":"Title", "image":"image.jpg", "caption":"caption", "text":"text", "button":"button", "link":"link", "icon":"info"}'
+              '{"title":"Title", "image":"image.jpg", "caption":"caption", "text":"text", "button":"button", "link":"card/link/", "icon":"icon"}'
             ]
           );
         });
@@ -62,27 +62,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
         });
         
-        suite('when making simple GET requests for JSON', function() {
+        suite('when loading feature cards JSON', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            featureCardsAjax = fixture('RMCFeatureCards').shadowRoot.querySelector("#featureCardsAjax");
+            featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector("#featureCardsAjax");
           });
           test('has sane defaults that love you', function() {
             request = featureCardsAjax.generateRequest();
+            
+            featureCardsAjax.addEventListener('response', function (e) {
+                let response = e.target.lastResponse;
+                expect(response).to.be.ok;
+                expect(response).to.be.an('object');
+                expect(response.status).to.be.equal(200);
+                done();
+            });
+            
             server.respond();
-            expect(request.response).to.be.ok;
-            expect(request.response).to.be.an('object');
-            expect(request.response.success).to.be.equal(true);
           });
           test('has the correct xhr method', function() {
             request = featureCardsAjax.generateRequest();
             expect(request.xhr.method).to.be.equal('GET');
           });
-          test('gets card image path', function() {
+          test('gets card title', function() {
             request = featureCardsAjax.generateRequest();
-            let card = fixture('RMCFeatureCards').shadowRoot.querySelector(".card");
-            let cardImg = card.querySelector(".card-img-wrapper > img");
-            assert.equal(cardImg.src, "image.jpg");
+            flush(function() {
+              let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
+              let cardTitle = card.querySelector(".card-block > .card-title");
+              assert.equal(cardTitle.textContent, "Title");
+              done();
+            });
+          });
+          test('gets card image', function() {
+            request = featureCardsAjax.generateRequest();
+            flush(function() {
+              let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
+              let cardImg = card.querySelector(".card-img-wrapper > img");
+              assert.equal(cardImg.src, "image.jpg");
+              assert.equal(cardImg.alt, "caption");
+              done();
+            });
+          });
+          test('gets card link', function() {
+            request = featureCardsAjax.generateRequest();
+            flush(function() {
+              let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
+              let cardLink = card.querySelector(".card-footer > a");
+              assert.equal(cardLink.href, "card/link/");
+              done();
+            });
           });
         });
       });
