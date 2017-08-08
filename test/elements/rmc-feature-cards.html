@@ -72,9 +72,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             featureCardsAjax.addEventListener('response', function(e) {
               let response = e.target.lastResponse;
-              expect(response).to.be.ok;
-              expect(response).to.be.an('object');
-              expect(response.status).to.be.equal(200);
+              if (response) {
+                expect(response).to.be.ok;
+                expect(response).to.be.an('object');
+                expect(response.status).to.be.equal(200);
+              }
               done();
             });
             
@@ -82,7 +84,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           });
           test('has the correct xhr method', function() {
             request = featureCardsAjax.generateRequest();
-            expect(request.xhr.method).to.be.equal('GET');
+            if (request) {
+              expect(request.xhr.method).to.be.equal('GET');
+            }
           });
           test('gets card title', function() {
             request = featureCardsAjax.generateRequest();
