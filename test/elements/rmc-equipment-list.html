@@ -40,6 +40,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           json: {'Content-Type': 'application/json'},
         };
         
+        /**
+         * Mirror <iron-ajax> data to persisted attribute in <app-indexeddb-mirror>
+         */
         function mirrorData() {
           // set persistedEquipment to ajax response
           rmcEquipmentList.persistedEquipment = request.response;
@@ -101,7 +104,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               done();
             });
           });
-          
         });
       });
     </script>
