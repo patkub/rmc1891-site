@@ -1,6 +1,21 @@
 engines:
+  eslint:
+    enabled: true
+  scss-lint:
+    enabled: true
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript:
+      - php:
   phpmd:
     enabled: true
     checks:
       Naming/ShortVariable:
         enabled: false
+ratings:
+    paths:
+      - "app/scss/**.scss""

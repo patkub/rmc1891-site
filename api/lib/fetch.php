@@ -1,7 +1,7 @@
 <?php
 // Query and fetch a single row
 function queryAndFetch($db, $query) {
-    $result = $db->query($query) or die($db->error);
+    $result = $db->query($query);
     return $result->fetch_assoc();
 }
 
@@ -16,7 +16,7 @@ function fetchAll($result) {
 
 // Query and fetch all mysqli results
 function queryAndFetchAll($db, $query) {
-    $result = $db->query($query) or die($db->error);
+    $result = $db->query($query);
     return fetchAll($result);
 }
 ?>

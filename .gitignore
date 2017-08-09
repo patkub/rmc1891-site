@@ -7,3 +7,4 @@ fonts/
 docs/analysis.json
 npm-debug*
 *.min.*
+yarn-error.log
