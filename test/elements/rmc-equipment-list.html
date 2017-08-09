@@ -94,9 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             expect(request.xhr.method).to.be.equal('GET');
           });
           
-          /*eslint quotes: 0*/
-          /*eslint spaced-comment: 0*/
-          /*test('item lengths should be equalled', function(done) {
+          test('item lengths should be equalled', function(done) {
             request = equipmentAjax.generateRequest();
             server.respond();
             mirrorData();
@@ -106,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               assert.equal(tableRows.length, 1);
               done();
             });
-          });*/
+          });
           
           test('gets item count', function(done) {
             request = equipmentAjax.generateRequest();
