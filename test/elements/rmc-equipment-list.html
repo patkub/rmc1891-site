@@ -93,7 +93,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             expect(request.xhr.method).to.be.equal('GET');
           });
-          test('item lengths should be equalled', function(done) {
+          
+          /*eslint quotes: 0*/
+          /*eslint spaced-comment: 0*/
+          /*test('item lengths should be equalled', function(done) {
             request = equipmentAjax.generateRequest();
             server.respond();
             mirrorData();
@@ -101,6 +104,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             flush(function() {
               let tableRows = rmcEquipmentList.shadowRoot.querySelectorAll('.table > tbody > tr');
               assert.equal(tableRows.length, 1);
+              done();
+            });
+          });*/
+          
+          test('gets item count', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let count = rmcEquipmentList.shadowRoot.querySelector('.table > tbody > tr > th');
+              assert.equal(count.textContent, "1");
+              done();
+            });
+          });
+          
+          test('gets item force', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let force = rmcEquipmentList.shadowRoot.querySelectorAll('.table > tbody > tr > td');
+              assert.equal(force[0].textContent, "100 Ton");
+              done();
+            });
+          });
+          
+          test('gets item name', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let name = rmcEquipmentList.shadowRoot.querySelectorAll('.table > tbody > tr > td');
+              assert.equal(name[1].textContent, "Machine 1");
               done();
             });
           });
