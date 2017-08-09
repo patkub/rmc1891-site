@@ -3,6 +3,7 @@
 [![GitHub version](https://badge.fury.io/gh/patkub%2Frmc1891-site.svg)](https://badge.fury.io/gh/patkub%2Frmc1891-site)
 [![Circle CI](https://circleci.com/gh/patkub/rmc1891-site.svg?style=shield&circle-token=de28773432748e5c69215e589d0d1f18eb46491a)](https://circleci.com/gh/patkub/rmc1891-site)
 [![Travis CI](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
+[![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 [![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
 
