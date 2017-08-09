@@ -67,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // get fresh instance of iron-ajax before every test
             featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsAjax');
           });
-          test('has sane defaults that love you', function() {
+          test('has sane defaults that love you', function(done) {
             request = featureCardsAjax.generateRequest();
             
             featureCardsAjax.addEventListener('response', function(e) {
@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               expect(request.xhr.method).to.be.equal('GET');
             }
           });
-          test('gets card title', function() {
+          test('gets card title', function(done) {
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               done();
             });
           });
-          test('gets card image', function() {
+          test('gets card image', function(done) {
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               done();
             });
           });
-          test('gets card link', function() {
+          test('gets card link', function(done) {
             request = featureCardsAjax.generateRequest();
             flush(function() {
               let card = rmcFeatureCards.shadowRoot.querySelector('.card-deck > .card');
