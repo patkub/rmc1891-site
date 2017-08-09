@@ -32,9 +32,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('rmc-equipment-list tests', function() {
         let rmcEquipmentList;
-
+        
+        let equipmentAjax;
+        let request;
+        let server;
+        let responseHeaders = {
+          json: {'Content-Type': 'application/json'},
+        };
+        
+        function mirrorData() {
+          // set persistedEquipment to ajax response
+          rmcEquipmentList.persistedEquipment = request.response;
+        }
+        
         setup(function() {
           rmcEquipmentList = fixture('RMCEquipmentList');
+          
+          server = sinon.fakeServer.create();
+          server.respondWith(
+            'GET',
+            'api/get/equipment-list', [
+              200,
+              responseHeaders.json,
+              '[{"count":"1", "force":"100", "name":"Machine 1"}]',
+            ]
+          );
+        });
+        
+        teardown(function() {
+          server.restore();
         });
         
         test('defines the "editable" property', function() {
@@ -43,6 +69,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         test('has a form to add a machine', function() {
           rmcEquipmentList.shadowRoot.querySelector('#machineForm');
+        });
+        
+        suite('when loading equipment list JSON', function() {
+          setup(function() {
+            // get fresh instance of iron-ajax before every test
+            equipmentAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentAjax');
+          });
+          test('has sane defaults that love you', function() {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('Array');
+            expect(request.status).to.be.equal(200);
+          });
+          test('has the correct xhr method', function() {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            
+            expect(request.xhr.method).to.be.equal('GET');
+          });
+          test('item lengths should be equalled', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let tableRows = rmcEquipmentList.shadowRoot.querySelectorAll('.table > tbody > tr');
+              assert.equal(tableRows.length, 1);
+              done();
+            });
+          });
+          
         });
       });
     </script>
