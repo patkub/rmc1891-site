@@ -1,15 +1,17 @@
-// RMC Custom CSS
-// @author Patrick Kubiak
-//
+/**
+ * RMC Custom CSS
+ *
+ * @author Patrick Kubiak
+ */
 
 $body-background: #f5f5f5;
 
 // Flexbox
 body {
+  background-color: $body-background;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: $body-background;
 }
 
 main {
