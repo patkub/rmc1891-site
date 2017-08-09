@@ -113,7 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             flush(function() {
               let count = rmcEquipmentList.shadowRoot.querySelector('.table > tbody > tr > th');
-              assert.equal(count.textContent, "1");
+              assert.equal(count.textContent, '1');
               done();
             });
           });
@@ -125,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             flush(function() {
               let force = rmcEquipmentList.shadowRoot.querySelector('.table > tbody > tr > td:nth-child(2)');
-              assert.equal(force.textContent, "100 Ton");
+              assert.equal(force.textContent, '100 Ton');
               done();
             });
           });
@@ -137,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             flush(function() {
               let name = rmcEquipmentList.shadowRoot.querySelector('.table > tbody > tr > td:nth-child(3)');
-              assert.equal(name.textContent, "Machine 1");
+              assert.equal(name.textContent, 'Machine 1');
               done();
             });
           });
