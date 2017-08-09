@@ -2,24 +2,26 @@
 // @author Patrick Kubiak
 //
 
+$body-background: #f5f5f5;
+
 // Flexbox
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: $body-background;
 }
 
 main {
-  -webkit-flex: 1;
   -ms-flex: 1;
+  -webkit-flex: 1;
   flex: 1;
 }
 
 // Image fill width
 img {
-  width:100%;
-  height:auto;
+  height: auto;
+  width: 100%;
 }
 
 // Print styles

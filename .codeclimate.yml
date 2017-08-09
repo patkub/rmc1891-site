@@ -3,6 +3,11 @@ engines:
     enabled: true
   scss-lint:
     enabled: true
+    checks:
+      StringQuotes:
+        enabled: false
+      VendorPrefix:
+        enabled: false
   fixme:
     enabled: true
   duplication:
@@ -19,3 +24,5 @@ engines:
 ratings:
   paths:
     - "app/scss/**.scss"
+exclude_paths:
+    - "gulpfile.babel.js"
