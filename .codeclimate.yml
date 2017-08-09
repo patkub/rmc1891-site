@@ -17,5 +17,5 @@ engines:
       Naming/ShortVariable:
         enabled: false
 ratings:
-    paths:
-      - "app/scss/**.scss""
+  paths:
+    - "app/scss/**.scss"
