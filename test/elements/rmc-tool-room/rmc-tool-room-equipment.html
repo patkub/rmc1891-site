@@ -32,13 +32,101 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('rmc-tool-room-equipment tests', function() {
         let rmcToolRoomEquipment;
-
+        
+        let equipmentAjax;
+        let request;
+        let server;
+        let responseHeaders = {
+          json: {'Content-Type': 'application/json'},
+        };
+        
+        /**
+         * Mirror <iron-ajax> data to persisted attribute in <app-indexeddb-mirror>
+         */
+        function mirrorData() {
+          // set persistedEquipment to ajax response
+          rmcToolRoomEquipment.persistedEquipment = request.response;
+        }
+        
         setup(function() {
           rmcToolRoomEquipment = fixture('RMCToolRoomEquipment');
+          
+          server = sinon.fakeServer.create();
+          server.respondWith(
+            'GET',
+            'api/get/tool-room/equipment', [
+              200,
+              responseHeaders.json,
+              '[{"count":"1", "name":"Machine 1"}]',
+            ]
+          );
+        });
+        
+        teardown(function() {
+          server.restore();
         });
         
         test('defines the "editable" property', function() {
           assert.equal(rmcToolRoomEquipment.hasAttribute('editable'), true);
+        });
+        
+        suite('when loading tool room equipment JSON', function() {
+          setup(function() {
+            // get fresh instance of iron-ajax before every test
+            equipmentAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#equipmentAjax');
+          });
+          
+          test('has sane defaults that love you', function() {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('Array');
+            expect(request.status).to.be.equal(200);
+          });
+          
+          test('has the correct xhr method', function() {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            
+            expect(request.xhr.method).to.be.equal('GET');
+          });
+          
+          test('item lengths should be equalled', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let tableRows = rmcToolRoomEquipment.shadowRoot.querySelectorAll('.table > tbody > tr');
+              assert.equal(tableRows.length, 1);
+              done();
+            });
+          });
+          
+          test('gets item count', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let name = rmcToolRoomEquipment.shadowRoot.querySelector('.table > tbody > tr > th');
+              assert.equal(name.textContent, '1');
+              done();
+            });
+          });
+          
+          test('gets item name', function(done) {
+            request = equipmentAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let name = rmcToolRoomEquipment.shadowRoot.querySelector('.table > tbody > tr > td');
+              assert.equal(name.textContent, 'Machine 1');
+              done();
+            });
+          });
         });
       });
     </script>
