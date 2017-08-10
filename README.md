@@ -7,11 +7,23 @@
 [![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
 
+> The Rogers Manufacturing Company website.
+
 [Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](http://getbootstrap.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
 
 [Bootstrap 4](http://getbootstrap.com/) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+### Table of Contents
+* [Setup](#setup)
+* [Fetch dependencies](#fetch-dependencies)
+* [Build](#build)
+* [Start the development server](#start-the-development-server)
+* [Run tests](#run-tests)
+* [Linting](#linting)
+* [Documentation](#documentation)
+
 
 ### Setup
 
