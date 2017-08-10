@@ -1,24 +1,31 @@
 {
   "name": "rmc1891",
   "description": "The Rogers Manufacturing Company website",
-  "main": "index.html",
   "authors": [
     "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)"
   ],
-  "license": "ISC",
-  "homepage": "https://github.com/patkub/rmc1891-site",
-  "private": true,
+  "license": "MIT",
+  "main": "index.html",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
+    "vendor",
     "build",
     "css",
-    "fonts"
+    "fonts",
+    "docs/analysis.json",
+    "npm-debug*",
+    "*.min.*",
+    "yarn-error.log"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patkub/rmc1891-site.git"
+  },
   "devDependencies": {
     "web-component-tester": "^6.0.0",
     "iron-component-page": "^3.0.1",
     "webcomponentsjs": "^1.0.3"
-  }
+  },
+  "private": true
 }
