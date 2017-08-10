@@ -97,8 +97,8 @@ gulp.task('clean-css', ['sass'], function() {
  */
 gulp.task('copy:api', function() {
   return gulp.src([
-    'api/**/*',
-    'api/**/.*',
+    'api/api_lib/**/*',
+    'api/api_lib/**/.*',
   ]).pipe(gulp.dest(BUILD_ROOT + 'api/'));
 });
 
@@ -107,8 +107,8 @@ gulp.task('copy:api', function() {
  */
 gulp.task('copy:api:public', function() {
   return gulp.src([
-    'api_public/**/*',
-    'api_public/**/.*',
+    'api/api_public/**/*',
+    'api/api_public/**/.*',
   ]).pipe(gulp.dest(BUILD_PATH + 'api/'));
 });
 
