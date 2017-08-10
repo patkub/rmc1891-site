@@ -23,6 +23,7 @@
 * [Run tests](#run-tests)
 * [Linting](#linting)
 * [Documentation](#documentation)
+* [Publish](#publish)
 
 ### Setup
 
