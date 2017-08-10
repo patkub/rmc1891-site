@@ -7,7 +7,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-install
+            - cache-lint-{{ checksum "package.json" }}
+            - cache-lint
       - run:
           name: node-version
           command: 'node --version'
@@ -30,7 +31,13 @@ jobs:
           name: bower-install
           command: 'bower install'
       - save_cache:
-          key: cache-install
+          key: cache-lint-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+      - save_cache:
+          key: cache-lint
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -43,6 +50,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            - cache-test-{{ checksum "package.json" }}
             - cache-test
       - run:
           name: node-version
@@ -66,6 +74,12 @@ jobs:
           name: bower-install
           command: 'bower install'
       - save_cache:
+          key: cache-test-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+      - save_cache:
           key: cache-test
           paths:
             - ~/.cache/yarn
@@ -81,6 +95,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            - cache-sauce-{{ checksum "package.json" }}
             - cache-sauce
       - run:
           name: node-version
@@ -113,6 +128,12 @@ jobs:
           name: sauce-test
           command: 'yarn run test:sauce'
       - save_cache:
+          key: cache-sauce-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+      - save_cache:
           key: cache-sauce
           paths:
             - ~/.cache/yarn
@@ -125,6 +146,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            - cache-deploy-{{ checksum "package.json" }}
             - cache-deploy
       - run:
           name: node-version
@@ -157,6 +179,12 @@ jobs:
           name: deploy
           command: './scripts/deploy.sh'
       - save_cache:
+          key: cache-deploy-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            - bower_components
+      - save_cache:
           key: cache-deploy
           paths:
             - ~/.cache/yarn
@@ -169,6 +197,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            - cache-lockfile-{{ checksum "package.json" }}
             - cache-lockfile
       - run:
           name: node-version
@@ -186,10 +215,13 @@ jobs:
           name: greenkeeper-lockfile-upload
           command: 'greenkeeper-lockfile-upload'
       - save_cache:
+          key: cache-lockfile-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
           key: cache-lockfile
           paths:
             - ~/.cache/yarn
-            - node_modules
 workflows:
   version: 2
   build_and_test:
