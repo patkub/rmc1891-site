@@ -43,7 +43,6 @@ const banner = ['<!--',
   ''].join('\n');
 
 const reload = browserSync.reload;
-const FONTS = ['node_modules/font-awesome/fonts/*.*'];
 
 /**
  * Defines the list of resources to watch for changes.
@@ -124,22 +123,6 @@ gulp.task('copy:vendor', function() {
 });
 
 /**
- * Copy fonts
- */
-gulp.task('copy:fonts', function() {
-  return gulp.src(FONTS)
-    .pipe(gulp.dest(BUILD_PATH + 'fonts/'));
-});
-
-/**
- * Copy fonts locally
- */
-gulp.task('copy:fonts:local', function() {
-  return gulp.src(FONTS)
-    .pipe(gulp.dest('fonts/'));
-});
-
-/**
  * Inline CSS & banner
  */
 gulp.task('inline', function() {
@@ -155,7 +138,7 @@ gulp.task('inline', function() {
 /**
  * Generate precaching service worker
  */
-gulp.task('generate-service-worker', ['inline', 'copy:fonts', 'del:after'], function(callback) {
+gulp.task('generate-service-worker', ['inline', 'del:after'], function(callback) {
   swPrecache.write(path.join(BUILD_PATH, 'sw.js'), {
     staticFileGlobs: [BUILD_PATH + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
     stripPrefix: BUILD_PATH,
@@ -271,10 +254,10 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['del:before', 'css']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'copy:fonts', 'del:after', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'del:after', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
-gulp.task('serve:local', ['build:before', 'copy:fonts:local', 'serve:browsersync:local']);
+gulp.task('serve:local', ['build:before', 'serve:browsersync:local']);
 
 // Serve production
 gulp.task('serve:build', ['serve:browsersync:build']);
