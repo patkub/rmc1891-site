@@ -27,7 +27,7 @@
 
 ### Setup
 
-First, install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
+First, install [Node.js](https://nodejs.org/en/download), [Yarn](https://yarnpkg.com/lang/en/docs/install), and [Composer](https://getcomposer.org/)
 
 Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
 
@@ -40,6 +40,7 @@ npm install -g bower
 ```sh
 yarn install
 bower install
+composer install
 ```
 
 ### Build
