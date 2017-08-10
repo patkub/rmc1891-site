@@ -38,7 +38,7 @@ const banner = ['<!--',
   '@license <%= pkg.license %>',
   '@copyright 2017 The Rogers Manufacturing Company',
   '@link <%= pkg.homepage %>',
-  '@github <%= pkg.repository %>',
+  '@github <%= pkg.repository.url %>',
   '-->',
   ''].join('\n');
 

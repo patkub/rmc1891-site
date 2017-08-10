@@ -24,7 +24,6 @@
 * [Linting](#linting)
 * [Documentation](#documentation)
 
-
 ### Setup
 
 First, install [Node.js](https://nodejs.org/en/download), [Yarn](https://yarnpkg.com/lang/en/docs/install), and [Composer](https://getcomposer.org/)
@@ -48,7 +47,7 @@ composer install
 This command performs HTML, CSS, and JS minification on the application
 dependencies, and generates a service worker `sw.js` file with code to pre-cache the
 dependencies based on the entrypoint and fragments specified in `polymer.json`.
-The minified files are output to the `build/bundled` folder,
+The minified files are output to the `build/public_html` folder,
 generated using fragment bundling.
 
 ```sh
