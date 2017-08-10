@@ -79,6 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // get fresh instance of iron-ajax before every test
             equipmentAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentAjax');
           });
+          
           test('has sane defaults that love you', function() {
             request = equipmentAjax.generateRequest();
             server.respond();
@@ -87,6 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             expect(request.response).to.be.an('Array');
             expect(request.status).to.be.equal(200);
           });
+          
           test('has the correct xhr method', function() {
             request = equipmentAjax.generateRequest();
             server.respond();

@@ -106,17 +106,17 @@ Add the editable attribute to include features to edit the list:
             </iron-ajax>
         </template>
         
-		<ul class="list-group">
-        <template is="dom-repeat" items="{{persistedServices}}" as="service">
-            <template is="dom-if" if="{{!editable}}">
-                <li class="list-group-item">[[service.name]]</li>
+        <ul class="list-group">
+            <template is="dom-repeat" items="{{persistedServices}}" as="service">
+                <template is="dom-if" if="{{!editable}}">
+                    <li class="list-group-item">[[service.name]]</li>
+                </template>
+                
+                <template is="dom-if" if="{{editable}}">
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
+                </template>
             </template>
-            
-            <template is="dom-if" if="{{editable}}">
-                <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
-            </template>
-        </template>
-		</ul>
+        </ul>
         
     </template>
 

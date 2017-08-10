@@ -32,9 +32,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('rmc-manufacturing-services tests', function() {
         let rmcManufacturingServices;
-
+        
+        let servicesAjax;
+        let request;
+        let server;
+        let responseHeaders = {
+          json: {'Content-Type': 'application/json'},
+        };
+        
+        /**
+         * Mirror <iron-ajax> data to persisted attribute in <app-indexeddb-mirror>
+         */
+        function mirrorData() {
+          // set persistedServices to ajax response
+          rmcManufacturingServices.persistedServices = request.response;
+        }
+        
         setup(function() {
           rmcManufacturingServices = fixture('RMCManufacturingServices');
+          
+          server = sinon.fakeServer.create();
+          server.respondWith(
+            'GET',
+            'api/get/manufacturing-services', [
+              200,
+              responseHeaders.json,
+              '[{"name":"Service 1"}]',
+            ]
+          );
         });
         
         test('defines the "editable" property', function() {
@@ -43,6 +68,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         test('has a form to add a service', function() {
           rmcManufacturingServices.shadowRoot.querySelector('#serviceForm');
+        });
+        
+        suite('when loading manufacturing services JSON', function() {
+          setup(function() {
+            // get fresh instance of iron-ajax before every test
+            servicesAjax = rmcManufacturingServices.shadowRoot.querySelector('#servicesAjax');
+          });
+          
+          test('has sane defaults that love you', function() {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('Array');
+            expect(request.status).to.be.equal(200);
+          });
+          
+          test('has the correct xhr method', function() {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            
+            expect(request.xhr.method).to.be.equal('GET');
+          });
+          
+          test('item lengths should be equalled', function(done) {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let listRows = rmcManufacturingServices.shadowRoot.querySelectorAll('.list-group > li');
+              assert.equal(listRows.length, 1);
+              done();
+            });
+          });
+          
+          test('gets item name', function(done) {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let name = rmcManufacturingServices.shadowRoot.querySelector('.list-group > li');
+              assert.equal(name.textContent, 'Service 1');
+              done();
+            });
+          });
         });
       });
     </script>
