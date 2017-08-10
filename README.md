@@ -111,3 +111,12 @@ This command will generate a documentation page for the elements:
 ```sh
 yarn run docs
 ```
+
+### Publish
+
+This script will publish a new version on Github based on the `version` field
+in the `package.json` file. It will create a new branch and tag for the release.
+
+```sh
+sh scripts/publish.sh
+```
