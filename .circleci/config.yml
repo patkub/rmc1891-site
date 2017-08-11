@@ -73,6 +73,9 @@ jobs:
       - run:
           name: bower-install
           command: 'bower install'
+      - run:
+          name: test-integration
+          command: 'yarn run test:integration'
       - save_cache:
           key: cache-test-{{ checksum "package.json" }}
           paths:
@@ -85,9 +88,6 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
-      - run:
-          name: test-integration
-          command: 'yarn run test:integration'
   sauce:
     docker:
       - image: circleci/node:6
