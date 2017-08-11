@@ -260,4 +260,4 @@ workflows:
           filters:
             branches:
               only:
-                - /greenkeeper-.*/
+                - /greenkeeper.*/
