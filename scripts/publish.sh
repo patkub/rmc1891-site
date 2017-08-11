@@ -53,4 +53,6 @@ git push -u origin refs/tags/$VERSION
 echo "${yellow}[6/$st]${green} git checkout master${reset}"
 git checkout master
 
+echo "${green}Done! ${reset}"
+
 exit
