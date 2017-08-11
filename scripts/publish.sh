@@ -47,8 +47,8 @@ git push -u origin v$VERSION
 echo "${yellow}[4/$st]${green} git tag $VERSION${reset}"
 git tag $VERSION
 
-echo "${yellow}[5/$st]${green} git push -u origin --tags${reset}"
-git push -u origin --tags
+echo "${yellow}[5/$st]${green} git push -u origin refs/tags/$VERSION${reset}"
+git push -u origin refs/tags/$VERSION
 
 echo "${yellow}[6/$st]${green} git checkout master${reset}"
 git checkout master
