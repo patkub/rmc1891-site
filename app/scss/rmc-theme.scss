@@ -1,22 +1,19 @@
 /**
  * RMC Minimal bootstrap
  *
- * bootstrap/scss v4.0.0-alpha.6 (https://getbootstrap/scss.com)
+ * bootstrap/scss v4.0.0-beta (https://getbootstrap/scss.com)
  * Copyright 2011-2017 The bootstrap/scss Authors
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/scss/blob/master/LICENSE)
  */
 
-// Core variables and mixins
+// Core functions, variables and mixins
+@import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/custom";
-
-// Reset and dependencies
-@import "../../node_modules/bootstrap/scss/normalize";
-@import "../../node_modules/bootstrap/scss/print";
 
 // Core CSS
+@import "../../node_modules/bootstrap/scss/print";
 @import "../../node_modules/bootstrap/scss/reboot";
 @import "../../node_modules/bootstrap/scss/type";
 @import "../../node_modules/bootstrap/scss/images";
@@ -43,7 +40,6 @@
 //@import "../../node_modules/bootstrap/scss/progress";
 //@import "../../node_modules/bootstrap/scss/media";
 //@import "../../node_modules/bootstrap/scss/list-group";
-//@import "../../node_modules/bootstrap/scss/responsive-embed";
 //@import "../../node_modules/bootstrap/scss/close";
 
 // Components w/ JavaScript
