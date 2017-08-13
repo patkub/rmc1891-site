@@ -1702,12 +1702,16 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@4.0.0-alpha.6, bootstrap@v4.0.0-alpha.6:
+bootstrap@4.0.0-alpha.6:
   version "4.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.6.tgz#4f54dd33ac0deac3b28407bc2df7ec608869c9c8"
   dependencies:
     jquery ">=1.9.1"
     tether "^1.4.0"
+
+bootstrap@4.0.0-beta:
+  version "4.0.0-beta"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.tgz#dc5928175d2e71310bc668cf9e05a907211b72a6"
 
 bower-json@^0.8.1:
   version "0.8.1"
@@ -1831,9 +1835,9 @@ bs-recipes@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
 
-bs4-polymer@0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.1.8.tgz#01e6fba112ba30f68edd29df0fec617d6c453adc"
+bs4-polymer@0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.1.12.tgz#ab36b0f2fe6bf7e8b47700b5329378607a4224b7"
   dependencies:
     "@npm-polymer/polymer" "^2.0.1"
     "@npm-polymer/webcomponentsjs" "^1.0.1"
@@ -5905,6 +5909,10 @@ polyserve@^0.19.0:
     send "^0.14.1"
     spdy "^3.3.3"
     ua-parser-js "^0.7.12"
+
+popper.js@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.11.1.tgz#f5aca9a73bca1ce1fdbd9be8b1ba68677cbdd8e0"
 
 portscanner@2.1.1:
   version "2.1.1"
