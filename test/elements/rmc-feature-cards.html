@@ -96,7 +96,7 @@
             mirrorData();
             
             flush(function() {
-              let cardTitle = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-block > .card-title');
+              let cardTitle = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-body > .card-title');
               assert.equal(cardTitle[0].textContent, 'Title1');
               assert.equal(cardTitle[1].textContent, 'Title2');
               done();
