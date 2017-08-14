@@ -19,6 +19,9 @@
 <!-- BS4 Button -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
+<!-- BS4 Buttons Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+
 <!-- BS4 Card Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-card/bs4-card.html">
 
@@ -51,6 +54,7 @@ Add the editable attribute to include features to edit card text content:
 -->
 <dom-module id="rmc-feature-cards">
     <template>
+        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-card"></style>
         <style include="bs4-shared-styles-forms"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
