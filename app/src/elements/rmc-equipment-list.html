@@ -45,11 +45,15 @@ Add the editable attribute to include features to edit the list:
 -->
 <dom-module id="rmc-equipment-list">
     <template>
-        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-tables"></style>
         <style include="bs4-shared-styles-forms"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
+        <style>
+        bs4-button > a {
+          color: #fff !important;
+        }
+        </style>
         
         <!-- load equipment list -->
         <iron-ajax
@@ -97,10 +101,8 @@ Add the editable attribute to include features to edit the list:
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{name::input}}">
                 </div>
                 
-                <bs4-button name="submit" type="submit" class="btn-submit" context="primary" text="Add" size="lg"
+                <bs4-button name="submit" type="submit" class="btn-submit" context="primary" text="Add"
                   on-tap="_addMachine" m-count$="{{count}}" m-force$="{{force}}" m-name$="{{name}}"></bs4-button>
-                
-                <!-- <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addMachine" m-count$="{{count}}" m-force$="{{force}}" m-name$="{{name}}">Add</button> -->
             </form>
             
             <!-- iron ajax request to delete machine -->
