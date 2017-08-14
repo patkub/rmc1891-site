@@ -1,6 +1,9 @@
 <!-- Polymer Library -->
 <link rel="import" href="../../../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
+<!-- Editable Mixin -->
+<link rel="import" href="../../mixins/rmc-editable-mixin.html">
+
 <!-- Tool Room Equipment -->
 <link rel="import" href="rmc-tool-room-equipment.html">
 
@@ -38,26 +41,16 @@ Add the editable attribute to include features to edit both lists:
     </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCEditableMixin"]}] */
+    /* global RMCEditableMixin */
+    
     /** Class representing list of tool room equipment & services. */
-    class RMCToolRoomList extends Polymer.Element {
+    class RMCToolRoomList extends RMCEditableMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-list';
       }
-      
-      /** Declared properties. */
-      static get properties() {
-        return {
-          /** Whether this element is editable. */
-          editable: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true,
-          },
-        };
-      }
     }
-    
     window.customElements.define(RMCToolRoomList.is, RMCToolRoomList);
   </script>
 </dom-module>

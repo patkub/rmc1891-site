@@ -19,14 +19,17 @@
 <!-- RMC Markdown Info -->
 <link rel="import" href="rmc-markdown-info.html">
 
+<!-- Editable Mixin -->
+<link rel="import" href="../mixins/rmc-editable-mixin.html">
+
 <!-- Paper Spinner Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!-- Editable State Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-editable.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
 
 <!-- Shared Styles for Views -->
-<link rel="import" href="../views/shared-styles-views.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
 
 <!--
 `<rmc-text-view>` displays text for a page.
@@ -41,7 +44,7 @@ In typical use, add the element to your body with the desired view:
         <style include="bs4-shared-styles-buttons"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
-        <style include="shared-styles-views">
+        <style include="rmc-shared-styles-views">
             textarea {
               min-width: 100%;
             }
@@ -105,11 +108,12 @@ In typical use, add the element to your body with the desired view:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
+    /* global RMCEditableMixin */
     
     /** Class representing text for a page. */
     class RMCTextView extends
-      Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-text-view';
@@ -118,12 +122,6 @@ In typical use, add the element to your body with the desired view:
       /** Declared properties. */
       static get properties() {
         return {
-          /** Whether this element is editable. */
-          editable: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true,
-          },
           /** The view that is being edited */
           view: {
             type: String,

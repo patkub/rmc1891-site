@@ -22,11 +22,14 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Editable Mixin -->
+<link rel="import" href="../mixins/rmc-editable-mixin.html">
+
 <!-- Editable State Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-editable.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
 
 <!-- Paper Spinner Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
 `<rmc-manufacturing-services>` displays a list of manufacturing services.
@@ -116,26 +119,15 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
+    /* global RMCEditableMixin */
     
     /** Class representing manufacturing services. */
     class RMCManufacturingServices extends
-      Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-manufacturing-services';
-      }
-      
-      /** Declared properties. */
-      static get properties() {
-        return {
-          /** Whether this element is editable. */
-          editable: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true,
-          },
-        };
       }
         
       /**

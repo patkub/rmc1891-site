@@ -25,8 +25,11 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Editable Mixin -->
+<link rel="import" href="../mixins/rmc-editable-mixin.html">
+
 <!-- Paper Spinner Styles -->
-<link rel="import" href="rmc-shared-styles/rmc-shared-styles-paper-spinner.html">
+<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!-- RMC Markdown Info -->
 <link rel="import" href="rmc-markdown-info.html">
@@ -45,11 +48,11 @@ Add the editable attribute to include features to edit card text content:
 -->
 <dom-module id="rmc-feature-cards">
     <template>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-card"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-editable">
+        <style include="rmc-shared-styles-paper-spinner"></style>
+        <style include="shared-styles-editable">
           .card {
             margin-bottom: 1rem;
           }
@@ -145,26 +148,15 @@ Add the editable attribute to include features to edit card text content:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
+    /* global RMCEditableMixin */
     
     /** Class representing feature cards. */
     class RMCFeatureCards extends
-      Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-feature-cards';
-      }
-      
-      /** Declared properties. */
-      static get properties() {
-        return {
-          /** Whether this element is editable. */
-          editable: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true,
-          },
-        };
       }
       
       /**
