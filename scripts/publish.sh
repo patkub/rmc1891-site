@@ -18,12 +18,7 @@ red=`tput setaf 1`
 reset=`tput sgr0`
 
 # get version from package.json
-VERSION=$(cat package.json \
-  | grep version \
-  | head -1 \
-  | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g' \
-  | tr -d '[[:space:]]')
+VERSION=$(node -p "require('./package.json').version")
 
 # check arguments
 if [ $# -ne 0 ]; then
