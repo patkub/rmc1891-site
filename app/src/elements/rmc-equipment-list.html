@@ -25,6 +25,9 @@
 <!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
+<!-- Services Mixin -->
+<link rel="import" href="../mixins/rmc-services-mixin.html">
+
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
 
@@ -138,12 +141,12 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}]
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCServicesMixin"]}]
        no-undef: 0 */
     
     /** Class representing equipment list. */
-    class RMCEquipmentList extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    class RMCEquipmentList extends Polymer.GestureEventListeners(
+      RMCServicesMixin(RMCEditableMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-equipment-list';
@@ -162,13 +165,8 @@ Add the editable attribute to include features to edit the list:
 
         // add the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        let xhr = this.shadowRoot.getElementById('add');
-        xhr.body = params;
-        xhr.generateRequest();
-
-        // update equipment list
-        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-        equipmentAjax.generateRequest();
+        super.doRequest('add', params);
+        super.updateList('equipmentAjax');
 
         // reset the form
         this.shadowRoot.getElementById('machineForm').reset();
@@ -187,13 +185,8 @@ Add the editable attribute to include features to edit the list:
 
         // delete the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        let xhr = this.shadowRoot.getElementById('delete');
-        xhr.body = params;
-        xhr.generateRequest();
-
-        // update equipment list
-        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-        equipmentAjax.generateRequest();
+        super.doRequest('delete', params);
+        super.updateList('equipmentAjax');
       }
     }
 

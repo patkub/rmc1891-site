@@ -1,0 +1,29 @@
+<script>
+  /* eslint no-unused-vars: 0 */
+  
+  /* @polymerMixin */
+  const RMCServicesMixin = (superclass) => class extends superclass {
+    /**
+     * Update list.
+     *
+     * @param {String} id - <iron-ajax> element id
+     */
+    updateList(id) {
+      // update list ajax
+      let ajax = this.shadowRoot.getElementById(id);
+      ajax.generateRequest();
+    }
+    
+    /**
+     * Ajax request with parameters.
+     *
+     * @param {String} id - <iron-ajax> element id
+     * @param {String} params - ajax request body parameters
+     */
+    doRequest(id, params) {
+      let xhr = this.shadowRoot.getElementById(id);
+      xhr.body = params;
+      xhr.generateRequest();
+    }
+  };
+</script>
