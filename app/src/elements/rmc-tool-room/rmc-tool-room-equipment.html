@@ -110,6 +110,9 @@ Add the editable attribute to include features to edit the list:
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <template is="dom-if" if="{{editable}}">
+                    <th>Delete</th>
+                </template>
             </tr>
             </thead>
             <tbody>
