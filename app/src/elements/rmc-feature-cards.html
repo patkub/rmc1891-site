@@ -16,8 +16,8 @@
 <!-- Paper Spinner -->
 <link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
 
-<!-- BS4 Buttons -->
-<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
 <!-- BS4 Card Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-card/bs4-card.html">
@@ -51,7 +51,6 @@ Add the editable attribute to include features to edit card text content:
 -->
 <dom-module id="rmc-feature-cards">
     <template>
-        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-card"></style>
         <style include="bs4-shared-styles-forms"></style>
         <style include="rmc-shared-styles-paper-spinner"></style>
@@ -137,7 +136,7 @@ Add the editable attribute to include features to edit card text content:
         </div>
         
         <template is="dom-if" if="{{editable}}">
-          <button class="btn btn-primary btn-submit" on-tap="_save">Save</button>
+          <bs4-button class="btn-submit" context="primary" text="Save" on-tap="_save"></bs4-button>
           
           <!-- iron ajax request to update text -->
           <iron-ajax
