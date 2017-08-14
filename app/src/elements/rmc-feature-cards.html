@@ -140,7 +140,7 @@ Add the editable attribute to include features to edit card text content:
         </div>
         
         <template is="dom-if" if="{{editable}}">
-          <bs4-button class="btn-submit" context="primary" text="Save" on-tap="_save"></bs4-button>
+          <bs4-button context="primary" text="Save" on-tap="_save"></bs4-button>
           
           <!-- iron ajax request to update text -->
           <iron-ajax
