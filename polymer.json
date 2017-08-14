@@ -21,7 +21,7 @@
     "node_modules/bootstrap/dist/js/bootstrap.min.js",
     "node_modules/jquery/dist/jquery.slim.min.{js, map}",
     "node_modules/tether/dist/js/tether.min.js",
-    "node_modules/popper.js/dist/popper.min.js",
+    "node_modules/popper.js/dist/umd/popper.min.js",
     "node_modules/font-awesome/fonts/*",
     "node_modules/@npm-polymer/webcomponentsjs/webcomponents*.{js, js.map}",
     "node_modules/@npm-polymer/webcomponentsjs/custom-elements-es5-adapter*.{js, js.map}"
