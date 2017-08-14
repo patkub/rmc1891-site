@@ -10,11 +10,12 @@
 readonly st=6
 
 # colors
+red=`tput setaf 1`
 green=`tput setaf 2`
 yellow=`tput setaf 3`
+blue=`tput setaf 4`
 magenta=`tput setaf 5`
 cyan=`tput setaf 6`
-red=`tput setaf 1`
 reset=`tput sgr0`
 
 # get version from package.json
