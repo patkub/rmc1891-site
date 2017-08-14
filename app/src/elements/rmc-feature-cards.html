@@ -173,13 +173,10 @@ Add the editable attribute to include features to edit card text content:
         // save the text
         let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
             capabilitiesText + '&ContactText=' + contactText;
-        let xhr = this.shadowRoot.getElementById('update');
-        xhr.body = params;
-        xhr.generateRequest();
+        super.doRequestBody('update', params);
         
         // update feature cards
-        let featureCardsAjax = this.shadowRoot.getElementById('featureCardsAjax');
-        featureCardsAjax.generateRequest();
+        super.doRequest('featureCardsAjax');
       }
     }
 

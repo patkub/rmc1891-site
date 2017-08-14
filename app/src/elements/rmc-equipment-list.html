@@ -145,8 +145,7 @@ Add the editable attribute to include features to edit the list:
        no-undef: 0 */
     
     /** Class representing equipment list. */
-    class RMCEquipmentList extends Polymer.GestureEventListeners(
-      RMCServicesMixin(RMCEditableMixin(Polymer.Element))) {
+    class RMCEquipmentList extends Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-equipment-list';
@@ -165,10 +164,10 @@ Add the editable attribute to include features to edit the list:
 
         // add the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        super.doRequest('add', params);
-        super.updateList('equipmentAjax');
-
-        // reset the form
+        super.doRequestBody('add', params);
+        
+        // update equipment list and reset form
+        super.doRequest('equipmentAjax');
         this.shadowRoot.getElementById('machineForm').reset();
       }
         
@@ -185,8 +184,10 @@ Add the editable attribute to include features to edit the list:
 
         // delete the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        super.doRequest('delete', params);
-        super.updateList('equipmentAjax');
+        super.doRequestBody('delete', params);
+        
+        // update equipment list
+        super.doRequest('equipmentAjax');
       }
     }
 

@@ -14,5 +14,28 @@
         },
       };
     }
+    
+    /**
+     * Generate ajax request.
+     *
+     * @param {String} id - <iron-ajax> element id.
+     */
+    doRequest(id) {
+      // update list ajax
+      let ajax = this.shadowRoot.getElementById(id);
+      ajax.generateRequest();
+    }
+    
+    /**
+     * Generate ajax request with body parameters.
+     *
+     * @param {String} id - <iron-ajax> element id.
+     * @param {String} params - ajax request body parameters.
+     */
+    doRequestBody(id, params) {
+      let xhr = this.shadowRoot.getElementById(id);
+      xhr.body = params;
+      xhr.generateRequest();
+    }
   };
 </script>

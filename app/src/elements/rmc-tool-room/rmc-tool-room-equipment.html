@@ -155,13 +155,10 @@ Add the editable attribute to include features to edit the list:
 
         // add the machine
         let params = 'count=' + count + '&item=' + machine;
-        let xhr = this.shadowRoot.getElementById('add');
-        xhr.body = params;
-        xhr.generateRequest();
+        super.doRequestBody('add', params);
 
         // update equipment list
-        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-        equipmentAjax.generateRequest();
+        super.doRequest('equipmentAjax');
 
         // reset the form
         this.shadowRoot.getElementById('machineForm').reset();
@@ -184,8 +181,7 @@ Add the editable attribute to include features to edit the list:
         xhr.generateRequest();
 
         // update equipment list
-        let equipmentAjax = this.shadowRoot.getElementById('equipmentAjax');
-        equipmentAjax.generateRequest();
+        super.doRequest('equipmentAjax');
       }
     }
     window.customElements.define(RMCToolRoomEquipment.is, RMCToolRoomEquipment);

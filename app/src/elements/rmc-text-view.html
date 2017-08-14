@@ -144,13 +144,10 @@ In typical use, add the element to your body with the desired view:
 
         // update the text
         let params = 'text=' + text;
-        let xhr = this.shadowRoot.getElementById('update');
-        xhr.body = params;
-        xhr.generateRequest();
+        super.doRequestBody('update', params);
 
         // update text
-        let viewAjax = this.shadowRoot.getElementById('viewAjax');
-        viewAjax.generateRequest();
+        super.doRequest('viewAjax');
       }
     }
 
