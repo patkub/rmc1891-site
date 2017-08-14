@@ -29,6 +29,12 @@ $container['myDb'] = function ($container) {
     return $db;
 };
 
+/**
+ * Parses the admin username from the database configuration.
+ *
+ * @param \Slim\Container $container slim dependency container
+ * @return string admin username
+ */
 $container['admin_user'] = function ($container) {
     $db_ini = parse_ini_file(DB_INI_PATH);
     return $db_ini['admin_user'];
