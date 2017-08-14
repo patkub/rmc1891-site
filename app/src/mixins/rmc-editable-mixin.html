@@ -1,0 +1,18 @@
+<script>
+  /* eslint no-unused-vars: 0 */
+  
+  /* @polymerMixin */
+  const RMCEditableMixin = (superclass) => class extends superclass {
+    /** Declared properties. */
+    static get properties() {
+      return {
+        /** Whether this element is editable. */
+        editable: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+        },
+      };
+    }
+  };
+</script>
