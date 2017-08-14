@@ -63,12 +63,6 @@ Add the editable attribute to include features to edit card text content:
             overflow: hidden;
           }
           
-          @media (min-width: 576px) {
-            .card-deck .card:not(:last-child) {
-              margin-right: inherit;
-            }
-          }
-          
           @media print {
             .card-img-wrapper,
             .card-footer {
@@ -112,7 +106,7 @@ Add the editable attribute to include features to edit card text content:
                     <div class="card-img-wrapper">
                       <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <h4 class="card-title">[[card.title]]</h4>
                         <p class="card-text">
                           <template is="dom-if" if="{{editable}}">
