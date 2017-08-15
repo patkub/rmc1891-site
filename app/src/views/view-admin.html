@@ -181,10 +181,11 @@ In typical use, add the element to an `<iron-pages>` element:
        * @param {String} oldPage - old page.
        */
       _pageChanged(newPage, oldPage) {
-        this._tabChanged(newPage, 'home');
-        this._tabChanged(newPage, 'about');
-        this._tabChanged(newPage, 'capabilities');
-        this._tabChanged(newPage, 'contact');
+        // set new page to active
+        this._tabChanged(this.page, newPage);
+        
+        // reset old page
+        this._tabChanged(this.page, oldPage);
       }
       
       /**
@@ -200,6 +201,16 @@ In typical use, add the element to an `<iron-pages>` element:
           classes += 'active';
         }
         return classes;
+      }
+      
+      /**
+       * Change page
+       *
+       * @param {Object} e - on-tap event.
+       */
+      _changePage(e) {
+        e.preventDefault();
+        this.page = e.target.getAttribute('page');
       }
       
       /**
@@ -245,16 +256,6 @@ In typical use, add the element to an `<iron-pages>` element:
        */
       logout(e) {
         this.loggedIn = false;
-      }
-      
-      /**
-       * Change page
-       *
-       * @param {Object} e - on-tap event.
-       */
-      _changePage(e) {
-        e.preventDefault();
-        this.page = e.target.getAttribute('page');
       }
     }
     window.customElements.define(ViewAdmin.is, ViewAdmin);
