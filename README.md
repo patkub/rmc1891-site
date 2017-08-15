@@ -4,7 +4,8 @@
 [![Circle CI](https://circleci.com/gh/patkub/rmc1891-site.svg?style=shield&circle-token=de28773432748e5c69215e589d0d1f18eb46491a)](https://circleci.com/gh/patkub/rmc1891-site)
 [![Travis CI](https://travis-ci.org/patkub/rmc1891-site.svg?branch=master)](https://travis-ci.org/patkub/rmc1891-site)
 [![Test Coverage](https://codeclimate.com/github/patkub/rmc1891-site.svg)](https://codeclimate.com/github/patkub/rmc1891-site)
-[![Dependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
+[![Dependency Status](https://david-dm.org/patkub/rmc1891-site/status.svg)](https://david-dm.org/patkub/rmc1891-site)
+[![devDependency Status](https://david-dm.org/patkub/rmc1891-site/dev-status.svg)](https://david-dm.org/patkub/rmc1891-site?type=dev)
 ![Greenkeeper](https://badges.greenkeeper.io/patkub/rmc1891-site.svg)  
 
 > The Rogers Manufacturing Company website.
