@@ -44,8 +44,8 @@
         });
         
         test('button should navigate to link', function() {
-          let btn = rmcJumbotron.shadowRoot.querySelector('.jumbotron > p:nth-child(3) > a');
-          assert.equal(btn.getAttribute('href'), rmcJumbotron.link);
+          let btn = rmcJumbotron.shadowRoot.querySelector('.jumbotron > p:nth-child(3) > bs4-button');
+          assert.equal(btn.link, rmcJumbotron.link);
         });
       });
     </script>
