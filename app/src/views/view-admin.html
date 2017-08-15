@@ -111,19 +111,19 @@ In typical use, add the element to an `<iron-pages>` element:
             
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChangedHome(page)}}"
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'home')}}"
                        on-tap="_changePage" page="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChangedAbout(page)}}"
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'about')}}"
                        on-tap="_changePage" page="about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChangedCapabilities(page)}}"
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'capabilities')}}"
                        on-tap="_changePage" page="capabilities">Capabilities</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChangedContact(page)}}"
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'contact')}}"
                        on-tap="_changePage" page="contact">Contact</a>
                 </li>
             </ul>
@@ -181,63 +181,22 @@ In typical use, add the element to an `<iron-pages>` element:
        * @param {String} oldPage - old page.
        */
       _pageChanged(newPage, oldPage) {
-        this._tabChangedHome(newPage);
-        this._tabChangedAbout(newPage);
-        this._tabChangedCapabilities(newPage);
-        this._tabChangedContact(newPage);
+        this._tabChanged(newPage, 'home');
+        this._tabChanged(newPage, 'about');
+        this._tabChanged(newPage, 'capabilities');
+        this._tabChanged(newPage, 'contact');
       }
       
       /**
-       * Home page changed.
+       * Tab page changed.
        *
        * @param {String} page - page.
+       * @param {String} tab - tab.
        * @return {String} classes.
        */
-      _tabChangedHome(page) {
+      _tabChanged(page, tab) {
         let classes = '';
-        if (page === 'home') {
-          classes += 'active';
-        }
-        return classes;
-      }
-      
-      /**
-       * About page changed.
-       *
-       * @param {String} page - page.
-       * @return {String} classes.
-       */
-      _tabChangedAbout(page) {
-        let classes = '';
-        if (page === 'about') {
-          classes += 'active';
-        }
-        return classes;
-      }
-      
-      /**
-       * Capabilities page changed.
-       *
-       * @param {String} page - page.
-       * @return {String} classes.
-       */
-      _tabChangedCapabilities(page) {
-        let classes = '';
-        if (page === 'capabilities') {
-          classes += 'active';
-        }
-        return classes;
-      }
-      
-      /**
-       * Contact page changed.
-       *
-       * @param {String} page - page.
-       * @return {String} classes.
-       */
-      _tabChangedContact(page) {
-        let classes = '';
-        if (page === 'contact') {
+        if (page === tab) {
           classes += 'active';
         }
         return classes;
