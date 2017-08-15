@@ -109,17 +109,25 @@ In typical use, add the element to an `<iron-pages>` element:
         <template is="dom-if" if="{{loggedIn}}">
             <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
             
-            <!-- navigation tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <template is="dom-repeat" items="{{tabs}}" as="tab">
-                    <li class="nav-item">
-                        <a href="#" role="tab" class$="nav-link {{_tabChanged(page, tab.page)}}"
-                           on-tap="_changePage" page="home">[[tab.title]]</a>
-                    </li>
-                </template>
+                <li class="nav-item">
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'home')}}"
+                       on-tap="_changePage" page="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'about')}}"
+                       on-tap="_changePage" page="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'capabilities')}}"
+                       on-tap="_changePage" page="capabilities">Capabilities</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'contact')}}"
+                       on-tap="_changePage" page="contact">Contact</a>
+                </li>
             </ul>
             
-            <!-- admin pages selected by tabs -->
             <iron-pages
                 selected="{{page}}"
                 attr-for-selected="id"
@@ -161,29 +169,6 @@ In typical use, add the element to an `<iron-pages>` element:
             value: 'home',
             reflectToAttribute: true,
             observer: '_pageChanged',
-          },
-          tabs: {
-            type: Object,
-            value: function() {
-              return [
-                {
-                  title: 'Home',
-                  page: 'home',
-                },
-                {
-                  title: 'About',
-                  page: 'about',
-                },
-                {
-                  title: 'Capabilities',
-                  page: 'capabilities',
-                },
-                {
-                  title: 'Contact',
-                  page: 'contact',
-                },
-              ];
-            },
           },
         };
       }
