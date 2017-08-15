@@ -101,6 +101,12 @@ In typical use, add the element to an `<iron-pages>` element:
             font-size: 3.5rem;
           }
         }
+        
+        @media print {
+          my-carousel {
+            display: none;
+          }
+        }
     </style>
     
     <my-carousel>
