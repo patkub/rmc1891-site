@@ -1,8 +1,8 @@
 <!-- Polymer Library -->
 <link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
 
-<!-- BS4 Buttons -->
-<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
 <!-- BS4 Jumbotron -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-jumbotron/bs4-jumbotron.html">
@@ -21,7 +21,6 @@ and link attributes:
 -->
 <dom-module id="rmc-jumbotron">
     <template>
-        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-jumbotron">
         /* match bootstrap bottom margin */
         .jumbotron {
@@ -58,7 +57,7 @@ and link attributes:
         @media print {
           .card-img-wrapper,
           .card-footer,
-          .btn {
+          bs4-button {
             display: none;
           }
 
@@ -72,7 +71,7 @@ and link attributes:
             <h1 class="display-4">[[title]]</h1>
             <p class="lead">[[text]]</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="[[link]]" role="button">[[button]]</a>
+                <bs4-button context="primary" text="[[button]]" link="[[link]]" size="lg"></bs4-button>
             </p>
         </div>
     </template>
