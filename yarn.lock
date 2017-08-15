@@ -6889,11 +6889,7 @@ specificity@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/specificity/-/specificity-0.3.1.tgz#f1b068424ce317ae07478d95de3c21cf85e8d567"
 
-sprintf-js@^1.0.3:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
-
-sprintf-js@~1.0.2:
+sprintf-js@^1.0.3, sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
@@ -7748,7 +7744,7 @@ wct-sauce@^2.0.0-pre.1:
     temp "^0.8.1"
     uuid "^2.0.1"
 
-wd@^1.2.0, wd@^1.4.0:
+wd@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/wd/-/wd-1.4.0.tgz#85958787abc32f048d4b3927b2ab3c5fc8c9c9fa"
   dependencies:
