@@ -107,6 +107,15 @@ In typical use, add the element to an `<iron-pages>` element:
         </template>
         
         <template is="dom-if" if="{{loggedIn}}">
+            <!-- iron ajax request to logout -->
+            <iron-ajax
+                id="logout"
+                url="api/post/logout"
+                handle-as="json"
+                method="POST"
+                on-response="logoutResponse">
+            </iron-ajax>
+            
             <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
             
             <ul class="nav nav-tabs" role="tablist">
@@ -222,7 +231,7 @@ In typical use, add the element to an `<iron-pages>` element:
         let user = this.shadowRoot.querySelector('#username').value;
         let pass = this.shadowRoot.querySelector('#password').value;
         
-        // login
+        // Login
         let params = 'username=' + user + '&password=' + pass;
         let xhr = this.shadowRoot.getElementById('login');
         xhr.body = params;
@@ -254,6 +263,18 @@ In typical use, add the element to an `<iron-pages>` element:
        * @param {Object} e - on-tap event.
        */
       logout(e) {
+        // Logout request
+        let xhr = this.shadowRoot.getElementById('logout');
+        xhr.generateRequest();
+      }
+      
+      /**
+       * Logout response.
+       *
+       * @param {Object} e - ajax response.
+       */
+      logoutResponse(e) {
+        // Logout
         this.loggedIn = false;
       }
     }

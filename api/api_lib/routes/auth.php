@@ -41,4 +41,18 @@ $app->post('/post/login', function ($req, $res, $args) {
   header('Access-Control-Allow-Origin: *');
   return $res->withJson($response_array);
 });
+
+/**
+ * Logout POST route.
+ * 
+ * @param  \Psr\Http\Message\ServerRequestInterface $req  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $res  PSR7 response
+ * @param  array                                    $args Route parameters
+ * 
+ * @return \Psr\Http\Message\ResponseInterface
+ */
+$app->post('/post/logout', function ($req, $res, $args) {
+  // Logout the user
+  $_SESSION['auth'] = false;
+});
 ?>
