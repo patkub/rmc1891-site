@@ -12,13 +12,17 @@ $app->post('/post/mail', function ($req, $res, $args) {
     // Get input
     $body = $req->getParsedBody();
     $email = test_input($body['email']);
-    $subject = test_input($body['subject']);
+    $subject = "[rmc1891.com] " . test_input($body['subject']);
     $message = test_input($body['message']);
-
+    
+    // Get site email address
+    $site_email = $this->get('email');
+    
     // Email headers
     $headers = "From: " . $email . PHP_EOL;
     
-    if (mail('pk9948@g.rit.edu', $subject, $message, $headers)) {
+    // Send email
+    if (mail($site_email, $subject, $message, $headers)) {
         // Email sent successfully
         $response_array['status'] = 'success';
     } else {

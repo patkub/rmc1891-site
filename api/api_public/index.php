@@ -40,6 +40,17 @@ $container['admin_user'] = function ($container) {
     return $db_ini['admin_user'];
 };
 
+/**
+ * Parses the site email from the database configuration.
+ *
+ * @param \Slim\Container $container slim dependency container
+ * @return string email
+ */
+$container['email'] = function ($container) {
+    $db_ini = parse_ini_file(DB_INI_PATH);
+    return $db_ini['email'];
+};
+
 // App routes
 require ROOT_PATH . 'api/routes/text.php';
 require ROOT_PATH . 'api/routes/feature-cards.php';
