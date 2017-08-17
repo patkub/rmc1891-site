@@ -275,7 +275,7 @@ jobs:
           name: yarn-install-gulp
           command: 'sudo yarn global add gulp-cli'
       
-      # Get build directory from workspace
+      # Attach build directory from workspace
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: build
@@ -330,7 +330,7 @@ workflows:
               ignore:
                 - gh-pages
       
-      # Saucelabs
+      # Sauce Labs
       - sauce:
           filters:
             branches:
