@@ -4,6 +4,7 @@ defaults: &defaults
   working_directory: ~/rmc1891-site
 
 jobs:
+  # Lockfile
   lockfile:
     docker:
       - image: circleci/node:6
@@ -54,6 +55,7 @@ jobs:
           key: cache-lockfile
           paths:
             - ~/.cache/yarn
+  # Linting
   lint:
     docker:
       - image: circleci/node:6
@@ -95,7 +97,7 @@ jobs:
           name: bower-install
           command: 'bower install'
       
-      # Lint
+      # Linting
       - run:
           name: lint
           command: 'yarn run lint'
@@ -115,6 +117,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+  # Test build
   test:
     docker:
       - image: circleci/node:6
@@ -184,6 +187,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+  # Sauce Labs
   sauce:
     docker:
       - image: circleci/node:6
@@ -247,6 +251,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+  # Deploy site
   deploy:
     docker:
       - image: circleci/node:6
@@ -316,7 +321,7 @@ workflows:
               only:
                 - /greenkeeper.*/
       
-      # Linting job
+      # Linting
       - lint:
           filters:
             branches:
