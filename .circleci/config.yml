@@ -4,31 +4,49 @@ jobs:
     docker:
       - image: circleci/node:6
     steps:
+      # Checkout source code
       - checkout
+      
+      # Restore cache
       - restore_cache:
           keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
             - cache-lockfile-{{ checksum "package.json" }}
+            # Fallback cache
             - cache-lockfile
+      
+      # Print versions
       - run:
           name: node-version
           command: 'node --version'
       - run:
           name: yarn-version
           command: 'yarn --version'
+      
+      # Install dependencies
       - run:
           name: yarn-install-global
           command: 'sudo yarn global add greenkeeper-lockfile@1'
+      
+      # Update lockfile
       - run:
           name: greenkeeper-lockfile-update
           command: 'greenkeeper-lockfile-update'
+      
+      # Upload lockfile
       - run:
           name: greenkeeper-lockfile-upload
           command: 'greenkeeper-lockfile-upload'
+      
+      # Save cache
       - save_cache:
+          # package.json cache
           key: cache-lockfile-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
       - save_cache:
+          # Fallback cache
           key: cache-lockfile
           paths:
             - ~/.cache/yarn
@@ -36,11 +54,19 @@ jobs:
     docker:
       - image: circleci/node:6
     steps:
+      # Checkout source code
       - checkout
+      
+      # Restore cache
       - restore_cache:
           keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
             - cache-lint-{{ checksum "package.json" }}
+            # Fallback cache
             - cache-lint
+      
+      # Print versions
       - run:
           name: node-version
           command: 'node --version'
@@ -50,6 +76,8 @@ jobs:
       - run:
           name: yarn-version
           command: 'yarn --version'
+      
+      # Install dependencies
       - run:
           name: npm-install-global
           command: 'sudo npm install -g bower web-component-tester'
@@ -62,28 +90,44 @@ jobs:
       - run:
           name: bower-install
           command: 'bower install'
+      
+      # Lint
+      - run:
+          name: lint
+          command: 'yarn run lint'
+      
+      # Save cache
       - save_cache:
+          # package.json cache
           key: cache-lint-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
+          # Fallback cache
           key: cache-lint
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
-      - run: yarn run lint
   test:
     docker:
       - image: circleci/node:6
     steps:
+      # Checkout source code
       - checkout
+      
+      # Restore cache
       - restore_cache:
           keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
             - cache-test-{{ checksum "package.json" }}
+            # Fallback cache
             - cache-test
+      
+      # Print versions
       - run:
           name: node-version
           command: 'node --version'
@@ -93,6 +137,8 @@ jobs:
       - run:
           name: yarn-version
           command: 'yarn --version'
+      
+      # Install dependencies
       - run:
           name: npm-install-global
           command: 'sudo npm install -g bower web-component-tester'
@@ -105,16 +151,22 @@ jobs:
       - run:
           name: bower-install
           command: 'bower install'
+      
+      # Test
       - run:
           name: test-integration
           command: 'yarn run test:integration'
+      
+      # Save cache
       - save_cache:
+          # package.json cache
           key: cache-test-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
+          # Fallback cache
           key: cache-test
           paths:
             - ~/.cache/yarn
@@ -127,8 +179,12 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
             - cache-sauce-{{ checksum "package.json" }}
+            # Fallback cache
             - cache-sauce
+      # Print versions
       - run:
           name: node-version
           command: 'node --version'
@@ -138,6 +194,8 @@ jobs:
       - run:
           name: yarn-version
           command: 'yarn --version'
+      
+      # Install dependencies
       - run:
           name: npm-install-global
           command: 'sudo npm install -g bower web-component-tester'
@@ -156,16 +214,22 @@ jobs:
       - run:
           name: sauce-install
           command: 'tar -xzf sc-latest-linux.tar.gz'
+      
+      # Test
       - run:
           name: sauce-test
           command: 'yarn run test:sauce'
+      
+      # Save cache
       - save_cache:
+          # package.json cache
           key: cache-sauce-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
+          # Fallback cache
           key: cache-sauce
           paths:
             - ~/.cache/yarn
@@ -178,8 +242,12 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
             - cache-deploy-{{ checksum "package.json" }}
+            # Fallback cache
             - cache-deploy
+      # Print versions
       - run:
           name: node-version
           command: 'node --version'
@@ -189,6 +257,8 @@ jobs:
       - run:
           name: yarn-version
           command: 'yarn --version'
+      
+      # Install dependencies
       - run:
           name: npm-install-global
           command: 'sudo npm install -g bower'
@@ -201,22 +271,30 @@ jobs:
       - run:
           name: bower-install
           command: 'bower install'
+      
+      # Build
       - run:
           name: build
           command: 'yarn run build'
+      
+      # Deploy
       - run:
           name: chmod-deploy
           command: 'chmod +x scripts/deploy.sh'
       - run:
           name: deploy
           command: './scripts/deploy.sh'
+      
+      # Save cache
       - save_cache:
+          # package.json cache
           key: cache-deploy-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
+          # Fallback cache
           key: cache-deploy
           paths:
             - ~/.cache/yarn
@@ -227,28 +305,36 @@ workflows:
   build_and_test:
     jobs:
       # greenkeeper-lockfile checks that CIRCLE_PREVIOUS_BUILD_NUM does not exist.
-      # greenkeeper-lockfile must be the first job in the workflow since, subsequent
+      # greenkeeper-lockfile must be the first job in the workflow, since subsequent
       # workflows will add CIRCLE_PREVIOUS_BUILD_NUM.
       - lockfile:
           filters:
             branches:
               only:
                 - /greenkeeper.*/
+      
+      # Linting job
       - lint:
           filters:
             branches:
               ignore:
                 - gh-pages
+      
+      # Test
       - test:
           filters:
             branches:
               ignore:
                 - gh-pages
+      
+      # Saucelabs
       - sauce:
           filters:
             branches:
               ignore:
                 - gh-pages
+      
+      # Require approval before deploying site
       - approve-production:
           type: approval
           requires:
@@ -258,6 +344,8 @@ workflows:
           filters:
             branches:
               only: deploy
+      
+      # Deploy site from deploy branch
       - deploy:
           requires:
             - approve-production
