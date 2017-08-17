@@ -163,10 +163,10 @@ jobs:
       # Persist build to workspace
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory
-          root: build
+          root: /
           # Must be relative path from root
           paths:
-            - /
+            - build
       
       # Save cache
       - save_cache:
