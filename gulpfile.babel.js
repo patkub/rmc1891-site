@@ -220,7 +220,7 @@ gulp.task('deploy:db', function() {
   let args = minimist(process.argv.slice());
   
   // replace database connection info
-  return gulp.src('build/api/db.ini')
+  return gulp.src('build/api/config.ini')
     .pipe(replace('{{host}}', args.dbhost))
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
