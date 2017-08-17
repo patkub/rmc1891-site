@@ -1,3 +1,6 @@
+defaults: &defaults
+  working_directory: /site
+
 version: 2
 jobs:
   lockfile:
@@ -152,10 +155,18 @@ jobs:
           name: bower-install
           command: 'bower install'
       
-      # Test
+      # Test build
       - run:
           name: test-integration
           command: 'yarn run test:integration'
+      
+      # Persist build to workspace
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory
+          root: build
+          # Must be relative path from root
+          paths:
+            - /
       
       # Save cache
       - save_cache:
@@ -260,22 +271,13 @@ jobs:
       
       # Install dependencies
       - run:
-          name: npm-install-global
-          command: 'sudo npm install -g bower'
-      - run:
-          name: yarn-install-global
+          name: yarn-install-gulp
           command: 'sudo yarn global add gulp-cli'
-      - run:
-          name: yarn-install
-          command: 'yarn install'
-      - run:
-          name: bower-install
-          command: 'bower install'
       
-      # Build
-      - run:
-          name: build
-          command: 'yarn run build'
+      # Get build from workspace
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /site/build
       
       # Deploy
       - run:
@@ -320,7 +322,7 @@ workflows:
               ignore:
                 - gh-pages
       
-      # Test
+      # Test build
       - test:
           filters:
             branches:
