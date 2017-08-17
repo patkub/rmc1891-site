@@ -1,7 +1,8 @@
-defaults: &defaults
-  working_directory: /site
-
 version: 2
+
+defaults: &defaults
+  working_directory: ~/rmc1891-site
+
 jobs:
   lockfile:
     docker:
@@ -160,10 +161,10 @@ jobs:
           name: test-integration
           command: 'yarn run test:integration'
       
-      # Persist build to workspace
+      # Persist build directory to workspace
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory
-          root: /
+          root: .
           # Must be relative path from root
           paths:
             - build
@@ -274,10 +275,10 @@ jobs:
           name: yarn-install-gulp
           command: 'sudo yarn global add gulp-cli'
       
-      # Get build from workspace
+      # Get build directory from workspace
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /site/build
+          at: ~/rmc1891-site/build
       
       # Deploy
       - run:
