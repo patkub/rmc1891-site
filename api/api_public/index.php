@@ -11,7 +11,7 @@ require_once ROOT_PATH . 'api/lib/fetch.php';
 require_once ROOT_PATH . 'api/lib/test_input.php';
 
 // Database configuration
-const DB_INI_PATH = ROOT_PATH . 'api/db.ini';
+const CONFIG_INI_PATH = ROOT_PATH . 'api/config.ini';
 
 // Create and configure Slim app
 $container = new \Slim\Container;
@@ -24,7 +24,7 @@ $app = new \Slim\App($container);
  * @return mysqli database connection
  */
 $container['myDb'] = function ($container) {
-    $db_ini = parse_ini_file(DB_INI_PATH);
+    $db_ini = parse_ini_file(CONFIG_INI_PATH);
     $db = new mysqli($db_ini['host'], $db_ini['user'], $db_ini['pass'], $db_ini['name']);
     return $db;
 };
@@ -36,7 +36,7 @@ $container['myDb'] = function ($container) {
  * @return string admin username
  */
 $container['admin_user'] = function ($container) {
-    $db_ini = parse_ini_file(DB_INI_PATH);
+    $db_ini = parse_ini_file(CONFIG_INI_PATH);
     return $db_ini['admin_user'];
 };
 
@@ -47,7 +47,7 @@ $container['admin_user'] = function ($container) {
  * @return string email
  */
 $container['email'] = function ($container) {
-    $db_ini = parse_ini_file(DB_INI_PATH);
+    $db_ini = parse_ini_file(CONFIG_INI_PATH);
     return $db_ini['email'];
 };
 
