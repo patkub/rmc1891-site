@@ -163,16 +163,13 @@ jobs:
       - run:
           name: test-integration
           command: 'yarn run test:integration'
-      
-      # Persist build directory to workspace
-      - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory
-          root: .
-          # Must be relative path from root
+     
+      # Save cache
+      - save_cache:
+          # build directory
+          key: cache-production-{{ checksum "package.json" }}
           paths:
             - build
-      
-      # Save cache
       - save_cache:
           # package.json cache
           key: cache-test-{{ checksum "package.json" }}
@@ -192,7 +189,10 @@ jobs:
     docker:
       - image: circleci/node:6
     steps:
+      # Checkout source code
       - checkout
+      
+      # Restore cache
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package.json checksum
@@ -200,6 +200,7 @@ jobs:
             - cache-sauce-{{ checksum "package.json" }}
             # Fallback cache
             - cache-sauce
+      
       # Print versions
       - run:
           name: node-version
@@ -264,6 +265,12 @@ jobs:
             - cache-deploy-{{ checksum "package.json" }}
             # Fallback cache
             - cache-deploy
+            
+      # Restore build directory cache
+      - restore_cache:
+          keys:
+            - cache-production-{{ checksum "package.json" }}
+            
       # Print versions
       - run:
           name: node-version
@@ -279,11 +286,6 @@ jobs:
       - run:
           name: yarn-install-gulp
           command: 'sudo yarn global add gulp-cli'
-      
-      # Attach build directory from workspace
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: build
       
       # Deploy
       - run:
