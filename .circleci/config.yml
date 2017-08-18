@@ -283,7 +283,7 @@ jobs:
       # Attach build directory from workspace
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /rmc1891-site/build
+          at: build
       
       # Deploy
       - run:
