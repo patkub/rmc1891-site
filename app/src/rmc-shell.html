@@ -13,15 +13,15 @@
 <!-- RMC Footer -->
 <link rel="import" href="elements/rmc-footer.html">
 
-<!-- Views -->
-<link rel="lazy-import" href="views/view-home.html">
-<link rel="lazy-import" href="views/view-about.html">
-<link rel="lazy-import" href="views/view-capabilities.html">
-<link rel="lazy-import" href="views/view-contact.html">
-<link rel="lazy-import" href="views/view-admin.html">
-<link rel="lazy-import" href="views/view-404.html">
-
 <dom-module id="rmc-shell">
+    <!-- Views -->
+    <link rel="lazy-import" href="views/view-home.html">
+    <link rel="lazy-import" href="views/view-about.html">
+    <link rel="lazy-import" href="views/view-capabilities.html">
+    <link rel="lazy-import" href="views/view-contact.html">
+    <link rel="lazy-import" href="views/view-admin.html">
+    <link rel="lazy-import" href="views/view-404.html">
+    
     <template>
         <app-location route="{{route}}"></app-location>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
