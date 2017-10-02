@@ -10,11 +10,13 @@
 
 > The Rogers Manufacturing Company website.
 
-[Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](http://getbootstrap.com/)
+[Docs](https://patkub.github.io/rmc1891-site/) | [Polymer 2](https://www.polymer-project.org/) | [Bootstrap 4](https://getbootstrap.com/) | [Slim 3](https://www.slimframework.com/)
 
 [Polymer 2](https://www.polymer-project.org/) is a JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps.
 
 [Bootstrap 4](http://getbootstrap.com/) is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+[Slim 3](https://www.slimframework.com/) is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs.
 
 ### Table of Contents
 * [Setup](#setup)
