@@ -227,10 +227,10 @@ jobs:
           command: 'bower install'
       - run:
           name: sauce-download
-          command: 'wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz'
+          command: 'wget https://saucelabs.com/downloads/sc-4.4.9-linux.tar.gz'
       - run:
           name: sauce-install
-          command: 'tar -xzf sc-latest-linux.tar.gz'
+          command: 'tar -xzf sc-*-linux.tar.gz'
       
       # Test
       - run:
