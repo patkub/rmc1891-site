@@ -1770,13 +1770,16 @@ bs-recipes@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
 
-bs4-polymer@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.2.0.tgz#b11f8f735d57c9d56a7acc6a452b9f36aa2fb0ec"
+bs4-polymer@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.2.3.tgz#8f6d7673e59fc68743ad8737c3ec090bc57e87a8"
   dependencies:
     "@npm-polymer/polymer" "^2.0.1"
     "@npm-polymer/webcomponentsjs" "^1.0.1"
     bootstrap "4.0.0-beta"
+    jquery "^3.2.1"
+    popper.js "^1.12.1"
+    tether "^1.4.0"
 
 buffer-crc32@^0.2.1, buffer-crc32@~0.2.3:
   version "0.2.13"
@@ -3726,15 +3729,16 @@ gulp-strip-css-comments@^1.2.0:
     strip-css-comments "^3.0.0"
     through2 "^2.0.0"
 
-gulp-stylelint@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-4.0.0.tgz#440fa7e6c447e92644700e1e2a06a73e6e457750"
+gulp-stylelint@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-5.0.0.tgz#c507f5e314602e7122eff599f2880eb0b62657b0"
   dependencies:
     chalk "^2.0.1"
     deep-extend "^0.5.0"
     gulp-util "^3.0.8"
     mkdirp "^0.5.1"
     promise "^8.0.1"
+    source-map "^0.5.6"
     strip-ansi "^4.0.0"
     stylelint "^8.0.0"
     through2 "^2.0.3"
