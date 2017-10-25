@@ -1770,9 +1770,9 @@ bs-recipes@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
 
-bs4-polymer@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.2.3.tgz#8f6d7673e59fc68743ad8737c3ec090bc57e87a8"
+bs4-polymer@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.2.4.tgz#21699bb784bee466a40b2ee416260473b652dad5"
   dependencies:
     "@npm-polymer/polymer" "^2.0.1"
     "@npm-polymer/webcomponentsjs" "^1.0.1"
