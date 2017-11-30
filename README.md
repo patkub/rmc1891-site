@@ -35,6 +35,7 @@ First, install [Node.js](https://nodejs.org/en/download), [Yarn](https://yarnpkg
 Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
 
 ```sh
+yarn global add stylelint
 npm install -g bower
 ```
 

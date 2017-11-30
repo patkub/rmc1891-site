@@ -89,7 +89,7 @@ jobs:
           command: 'sudo npm install -g bower web-component-tester'
       - run:
           name: yarn-install-global
-          command: 'sudo yarn global add gulp-cli'
+          command: 'sudo yarn global add gulp-cli stylelint'
       - run:
           name: yarn-install
           command: 'yarn install'
