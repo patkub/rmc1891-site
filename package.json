@@ -67,7 +67,7 @@
     "web-component-tester": "^6.0.0"
   },
   "scripts": {
-    "build": "yarn run lint && polymer build && gulp build:after",
+    "build": "gulp build:before && polymer build && gulp build:after",
     "docs": "polymer analyze > docs/analysis.json",
     "lint": "gulp build:before && yarn run lint:javascript && yarn run lint:css && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
@@ -77,7 +77,7 @@
     "serve:build": "gulp serve:build",
     "test:local": "wct --plugin local --skip-plugin sauce",
     "test:sauce": "wct --plugin sauce --skip-plugin local",
-    "test:integration": "yarn run lint && polymer build && gulp build:after"
+    "test:integration": "gulp build:before && polymer build && gulp build:after"
   },
   "babel": {
     "only": "gulpfile.babel.js",
