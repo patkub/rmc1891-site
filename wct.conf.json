@@ -3,13 +3,11 @@
   "plugins": {
     "local": {
       "browsers": [
-        "firefox",
         "chrome"
       ]
     },
     "sauce": {
       "browsers": [
-        "windows 10/firefox@latest",
         "windows 10/chrome@latest"
       ]
     }

@@ -76,10 +76,10 @@ yarn run serve:build
 
 ### Run tests
 
-Firefox and Chrome are tested in headless mode on Travis CI and on Sauce Labs using CircleCI.
+Tests are run on Chrome in headless mode on Travis CI and Sauce Labs using CircleCI.
 
 This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
-against the firefox and chrome browsers currently installed on your machine:
+against the chrome browser currently installed on your machine:
 
 ```sh
 yarn run test:local
@@ -93,7 +93,7 @@ If running Windows you will need to set the following environment variables:
 Read More here [daffl/launchpad](https://github.com/daffl/launchpad#environment-variables-impacting-local-browsers-detection)
 
 This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
-against the firefox and chrome browsers on Sauce Labs:
+against the chrome browser on Sauce Labs:
 
 ```sh
 yarn run test:sauce
