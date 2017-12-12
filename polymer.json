@@ -13,6 +13,7 @@
     "app/src/**/*",
     "app/php/**/*",
     "app/images/**/*",
+    "bower.json",
     "package.json",
     "manifest.json",
     ".htaccess"
@@ -25,9 +26,7 @@
     "node_modules/popper.js/dist/umd/popper.min.js",
     "node_modules/popper.js/dist/umd/popper.min.js.map",
     "node_modules/font-awesome/fonts/*",
-    "node_modules/@npm-polymer/webcomponentsjs/webcomponents*.js",
-    "node_modules/@npm-polymer/webcomponentsjs/webcomponents*.js.map",
-    "node_modules/@npm-polymer/webcomponentsjs/custom-elements-es5-adapter*.{js, js.map}"
+    "bower_components/webcomponentsjs/*"
   ],
   "lint": {
     "rules": ["polymer-2"],

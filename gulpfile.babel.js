@@ -138,20 +138,20 @@ gulp.task('inline', function() {
 /**
  * Generate precaching service worker
  */
-gulp.task('generate-service-worker', ['inline', 'del:after'], function(callback) {
+gulp.task('generate-service-worker', ['inline'], function(callback) {
   swPrecache.write(path.join(BUILD_PATH, 'sw.js'), {
     staticFileGlobs: [BUILD_PATH + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
     stripPrefix: BUILD_PATH,
   }, callback);
 });
-
+ 
 /**
  * Copy app indexeddb mirror worker
  */
 gulp.task('app-indexeddb', function() {
   return gulp.src([
-    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
-    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/common-worker-scope.js',
+    'bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
+    'bower_components/app-storage/app-indexeddb-mirror/common-worker-scope.js',
   ]).pipe(gulp.dest(BUILD_PATH));
 });
 
@@ -161,15 +161,6 @@ gulp.task('app-indexeddb', function() {
 gulp.task('del:before', function() {
   return del([
     BUILD_ROOT,
-  ]);
-});
-
-/**
- * Delete unneccessary build files
- */
-gulp.task('del:after', function() {
-  return del([
-    BUILD_PATH + 'bower_components/',
   ]);
 });
 
@@ -254,7 +245,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['del:before', 'css']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'del:after', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'serve:browsersync:local']);
