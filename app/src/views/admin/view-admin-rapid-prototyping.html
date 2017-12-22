@@ -1,0 +1,61 @@
+<!-- Polymer -->
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../../bower_components/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Text View -->
+<link rel="import" href="../../elements/rmc-text-view.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../../shared-styles/rmc-shared-styles-views.html">
+
+<!--
+`<view-admin-rapid-prototyping>` is the view for the admin rapid prototyping page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-admin-rapid-prototyping id="rapid-prototyping"></view-admin-rapid-prototyping>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-admin-rapid-prototyping">
+  <template>
+    <style include="bs4-shared-styles-grid"></style>
+    <style include="rmc-shared-styles-views">
+    .container {
+      margin-top: 0;
+    }
+    </style>
+    
+    <!-- container -->
+    <div class="container">
+      <!-- rapid prototyping text -->
+      <rmc-text-view view="rapid-prototyping" title="Rapid Prototyping" editable></rmc-text-view>
+    </div>
+    <!-- /container -->
+    
+  </template>
+
+  <script>
+    /** Class representing admin rapid prototyping view. */
+    class ViewAdminRapidPrototyping extends Polymer.Element {
+      /** HTML tag name. */
+      static get is() {
+        return 'view-admin-rapid-prototyping';
+      }
+    }
+    window.customElements.define(ViewAdminRapidPrototyping.is, ViewAdminRapidPrototyping);
+  </script>
+</dom-module>

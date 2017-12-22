@@ -47,6 +47,7 @@
 <link rel="import" href="admin/view-admin-home.html">
 <link rel="import" href="admin/view-admin-about.html">
 <link rel="import" href="admin/view-admin-capabilities.html">
+<link rel="import" href="admin/view-admin-rapid-prototyping.html">
 <link rel="import" href="admin/view-admin-contact.html">
 
 <!--
@@ -132,6 +133,10 @@ In typical use, add the element to an `<iron-pages>` element:
                        on-tap="_changePage" page="capabilities">Capabilities</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'rapid-prototyping')}}"
+                       on-tap="_changePage" page="rapid-prototyping">Rapid Prototyping</a>
+                </li>
+                <li class="nav-item">
                     <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'contact')}}"
                        on-tap="_changePage" page="contact">Contact</a>
                 </li>
@@ -146,6 +151,7 @@ In typical use, add the element to an `<iron-pages>` element:
                 <view-admin-home id="home"></view-admin-home>
                 <view-admin-about id="about"></view-admin-about>
                 <view-admin-capabilities id="capabilities"></view-admin-capabilities>
+                <view-admin-rapid-prototyping id="rapid-prototyping"></view-admin-rapid-prototyping>
                 <view-admin-contact id="contact"></view-admin-contact>
             </iron-pages>
         </template>
