@@ -328,6 +328,7 @@ workflows:
               ignore:
                 - gh-pages
           requires:
+            # make sure greenkeeper-lockfile runs first in workflow
             - lockfile
       
       # Test build
