@@ -1462,9 +1462,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@4.0.0-beta:
-  version "4.0.0-beta"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.tgz#dc5928175d2e71310bc668cf9e05a907211b72a6"
+bootstrap@4.0.0-beta.2:
+  version "4.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.2.tgz#4d67d2aa2219f062cd90bc1247e6747b9e8fd051"
 
 bower-json@^0.8.1:
   version "0.8.1"
@@ -1607,11 +1607,11 @@ bs-recipes@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
 
-bs4-polymer@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.4.2.tgz#7076f935569689a41ccf953ef8c2baf674ff6892"
+bs4-polymer@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.5.0.tgz#c540313d482b792b156dbd15be061ed100aeb7b3"
   dependencies:
-    bootstrap "4.0.0-beta"
+    bootstrap "4.0.0-beta.2"
     jquery "^3.2.1"
     popper.js "^1.12.1"
     tether "^1.4.0"
