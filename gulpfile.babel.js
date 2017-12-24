@@ -14,7 +14,6 @@ import rename from 'gulp-rename';
 import replace from 'gulp-replace';
 import inlineSource from 'gulp-inline-source';
 import header from 'gulp-header';
-import fs from 'fs';
 import path from 'path';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
