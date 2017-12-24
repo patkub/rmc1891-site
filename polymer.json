@@ -5,6 +5,7 @@
     "app/src/views/view-home.html",
     "app/src/views/view-about.html",
     "app/src/views/view-capabilities.html",
+    "app/src/views/view-rapid-prototyping.html",
     "app/src/views/view-contact.html",
     "app/src/views/view-admin.html",
     "app/src/views/view-404.html"
