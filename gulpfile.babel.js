@@ -12,6 +12,7 @@ import gulp from 'gulp';
 import del from 'del';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
+import inlineSource from 'gulp-inline-source';
 import header from 'gulp-header';
 import fs from 'fs';
 import path from 'path';
@@ -127,9 +128,9 @@ gulp.task('copy:vendor', function() {
  */
 gulp.task('inline', function() {
   return gulp.src(BUILD_PATH + 'index.html')
-    .pipe(replace('<link rel="stylesheet" href="app/css/rmc-theme.min.css">', function(s) {
-      let style = fs.readFileSync('app/css/rmc-theme.min.css', 'utf8');
-      return '<style>' + style + '</style>';
+    .pipe(inlineSource({
+      rootpath: './',
+      attribute: 'inline=""',
     }))
     .pipe(header(banner, {pkg: pkg}))
     .pipe(gulp.dest(BUILD_PATH));
