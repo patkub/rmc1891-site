@@ -48,9 +48,18 @@ const reload = browserSync.reload;
  * Defines the list of resources to watch for changes.
  */
 function watch() {
-  gulp.watch(['app/scss/**/*.scss'], ['css', reload]);
-  gulp.watch(['app/images/**/*', 'app/php/**/*', 'app/src/**/*'], reload);
-  gulp.watch(['index.html'], reload);
+  gulp.watch([
+    'app/scss/**/*.scss',
+  ], [
+    'css',
+    reload,
+  ]);
+  
+  gulp.watch([
+    'app/images/**/*',
+    'app/src/**/*',
+    'index.html',
+  ], reload);
 }
 
 // Stylelint
