@@ -140,7 +140,7 @@ gulp.task('inline', function() {
  */
 gulp.task('generate-service-worker', ['inline'], function(callback) {
   swPrecache.write(path.join(BUILD_PATH, 'sw.js'), {
-    staticFileGlobs: [BUILD_PATH + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
+    staticFileGlobs: [BUILD_PATH + '**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
     stripPrefix: BUILD_PATH,
   }, callback);
 });
