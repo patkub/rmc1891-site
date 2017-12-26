@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMC Text View</title>
+    
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../app/src/elements/rmc-admin-tabs.html">
+  </head>
+  <body>
+    <test-fixture id="RMCAdminTabs">
+      <template>
+        <rmc-admin-tabs active="home"></rmc-admin-tabs>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-admin-tabs tests', function() {
+        let rmcAdminTabs;
+
+        setup(function() {
+          rmcAdminTabs = fixture('RMCAdminTabs');
+        });
+        
+        test('defines the "active" property', function() {
+          assert.equal(rmcAdminTabs.active, 'home');
+        });
+      });
+    </script>
+  </body>
+</html>
