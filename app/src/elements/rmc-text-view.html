@@ -72,7 +72,12 @@ In typical use, add the element to your body with the desired view:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <h2>[[title]]</h2>
+        <template is="dom-if" if="[[small]]">
+          <h3>[[title]]</h3>
+        </template>
+        <template is="dom-if" if="[[!small]]">
+          <h2>[[title]]</h2>
+        </template>
         
         <template is="dom-if" if="{{editable}}">
             <!-- information about markdown syntax -->
@@ -129,6 +134,11 @@ In typical use, add the element to your body with the desired view:
           /** Page title */
           title: {
             type: String,
+          },
+          /** Heading size */
+          small: {
+            type: Boolean,
+            value: false,
           },
         };
       }
