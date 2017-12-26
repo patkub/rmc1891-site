@@ -25,6 +25,9 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Admin Tabs -->
+<link rel="import" href="../elements/rmc-admin-tabs.html">
+
 <!-- Feature Cards -->
 <link rel="import" href="../elements/rmc-feature-cards.html">
 
@@ -119,28 +122,8 @@ In typical use, add the element to an `<iron-pages>` element:
             
             <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
             
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'home')}}"
-                       on-tap="_changePage" page="home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'about')}}"
-                       on-tap="_changePage" page="about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'capabilities')}}"
-                       on-tap="_changePage" page="capabilities">Capabilities</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'rapid-prototyping')}}"
-                       on-tap="_changePage" page="rapid-prototyping">Rapid Prototyping</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" role="tab" class$="nav-link {{_tabChanged(page, 'contact')}}"
-                       on-tap="_changePage" page="contact">Contact</a>
-                </li>
-            </ul>
+            <!-- admin page naviagtion tabs -->
+            <rmc-admin-tabs active="{{page}}"></rmc-admin-tabs>
             
             <iron-pages
                 selected="{{page}}"
@@ -183,48 +166,8 @@ In typical use, add the element to an `<iron-pages>` element:
             type: String,
             value: 'home',
             reflectToAttribute: true,
-            observer: '_pageChanged',
           },
         };
-      }
-      
-      /**
-       * Page changed.
-       *
-       * @param {String} newPage - new page.
-       * @param {String} oldPage - old page.
-       */
-      _pageChanged(newPage, oldPage) {
-        // set new page to active
-        this._tabChanged(this.page, newPage);
-        
-        // reset old page
-        this._tabChanged(this.page, oldPage);
-      }
-      
-      /**
-       * Tab page changed.
-       *
-       * @param {String} page - page.
-       * @param {String} tab - tab.
-       * @return {String} classes.
-       */
-      _tabChanged(page, tab) {
-        let classes = '';
-        if (page === tab) {
-          classes += 'active';
-        }
-        return classes;
-      }
-      
-      /**
-       * Change page
-       *
-       * @param {Object} e - on-tap event.
-       */
-      _changePage(e) {
-        e.preventDefault();
-        this.page = e.target.getAttribute('page');
       }
       
       /**
