@@ -17,7 +17,7 @@
 <link rel="import" href="../../elements/rmc-text-view.html">
 
 <!-- Design Manufacture List -->
-<link rel="import" href="../../elements/rmc-design-manufacture-list.html">
+<link rel="import" href="../../elements/rmc-services-list.html">
 
 <!-- Shared Styles for Views -->
 <link rel="import" href="../../shared-styles/rmc-shared-styles-views.html">
@@ -55,7 +55,7 @@ In typical use, add the element to an `<iron-pages>` element:
       <rmc-text-view view="design-manufacture" title="Design for Manufacture" loading="{{loading}}" small editable></rmc-text-view>
       
       <!-- design for manufacture list -->
-      <rmc-design-manufacture-list loading="{{loading}}" editable></rmc-design-manufacture-list>
+      <rmc-services-list name="designManufacturing" api="design-manufacture" title="Design Consideration" loading="{{loading}}" editable></rmc-services-list>
       
       <rmc-text-view view="prototypes" title="Prototypes" loading="{{loading}}" small editable></rmc-text-view>
     </div>
