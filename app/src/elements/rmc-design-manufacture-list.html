@@ -50,7 +50,7 @@ Add the editable attribute to include features to edit the list:
         <!-- load list of design considerations -->
         <iron-ajax
             auto
-            id="servicesAjax"
+            id="designManufactureListAjax"
             url="api/get/design-manufacture"
             handle-as="json"
             last-response="{{services}}"
@@ -69,7 +69,7 @@ Add the editable attribute to include features to edit the list:
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
             <iron-ajax
-                id="add"
+                id="addDesignManufactureListAjax"
                 url="api/put/design-manufacture"
                 handle-as="json"
                 method="PUT"
@@ -78,10 +78,10 @@ Add the editable attribute to include features to edit the list:
             
             <h5>Add a Design Consideration</h5>
             
-            <form id="serviceForm" action="javascript:void(0);">
+            <form id="addDesignConsiderationForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+                    <input type="text" class="form-control" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
@@ -89,7 +89,7 @@ Add the editable attribute to include features to edit the list:
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
-                id="delete"
+                id="deleteDesignManufactureListAjax"
                 url="api/delete/design-manufacture"
                 handle-as="json"
                 method="DELETE"
@@ -134,11 +134,11 @@ Add the editable attribute to include features to edit the list:
 
         // add the service
         let params = 'item=' + service;
-        super.doRequestBody('add', params);
+        super.doRequestBody('addDesignManufactureListAjax', params);
 
         // update services list and reset form
-        super.doRequest('servicesAjax');
-        this.shadowRoot.getElementById('serviceForm').reset();
+        super.doRequest('designManufactureListAjax');
+        this.shadowRoot.getElementById('addDesignConsiderationForm').reset();
       }
       
       /**
@@ -152,10 +152,10 @@ Add the editable attribute to include features to edit the list:
 
         // delete the service
         let params = 'item=' + service;
-        super.doRequestBody('delete', params);
+        super.doRequestBody('deleteDesignManufactureListAjax', params);
 
         // update services list
-        super.doRequest('servicesAjax');
+        super.doRequest('designManufactureListAjax');
       }
     }
 

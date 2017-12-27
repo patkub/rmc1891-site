@@ -52,7 +52,7 @@ Add the editable attribute to include features to edit the list:
         <!-- load equipment list -->
         <iron-ajax
             auto
-            id="equipmentAjax"
+            id="equipmentListAjax"
             url="api/get/equipment-list"
             handle-as="json"
             last-response="{{equipment}}"
@@ -71,7 +71,7 @@ Add the editable attribute to include features to edit the list:
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add machine -->
             <iron-ajax
-                id="add"
+                id="addEquipmentListAjax"
                 url="api/put/equipment-list"
                 handle-as="json"
                 method="PUT"
@@ -80,20 +80,20 @@ Add the editable attribute to include features to edit the list:
             
             <h5>Add a Machine</h5>
             
-            <form id="machineForm" action="javascript:void(0);">
+            <form id="addEquipmentMachineForm" action="javascript:void(0);">
                 <div class="form-group">
-                    <label for="item">Count:</label>
-                    <input type="text" class="form-control" id="count" name="count" placeholder="Count" value="{{count::input}}">
+                    <label for="count">Count:</label>
+                    <input type="text" class="form-control" name="count" placeholder="Count" value="{{count::input}}">
                 </div>
                 
                 <div class="form-group">
-                    <label for="item">Clamping Force:</label>
-                    <input type="text" class="form-control" id="force" name="force" placeholder="Clamping Force" value="{{force::input}}">
+                    <label for="force">Clamping Force:</label>
+                    <input type="text" class="form-control" name="force" placeholder="Clamping Force" value="{{force::input}}">
                 </div>
                 
                 <div class="form-group">
-                    <label for="item">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{name::input}}">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{name::input}}">
                 </div>
                 
                 <bs4-button name="submit" type="submit" class="btn-submit" context="primary" text="Add"
@@ -102,7 +102,7 @@ Add the editable attribute to include features to edit the list:
             
             <!-- iron ajax request to delete machine -->
             <iron-ajax
-                id="delete"
+                id="deleteEquipmentListAjax"
                 url="api/delete/equipment-list"
                 handle-as="json"
                 method="DELETE"
@@ -161,11 +161,11 @@ Add the editable attribute to include features to edit the list:
 
         // add the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        super.doRequestBody('add', params);
+        super.doRequestBody('addEquipmentListAjax', params);
         
         // update equipment list and reset form
-        super.doRequest('equipmentAjax');
-        this.shadowRoot.getElementById('machineForm').reset();
+        super.doRequest('equipmentListAjax');
+        this.shadowRoot.getElementById('addEquipmentMachineForm').reset();
       }
         
       /**
@@ -181,10 +181,10 @@ Add the editable attribute to include features to edit the list:
 
         // delete the machine
         let params = 'count=' + count + '&force=' + force + '&name=' + name;
-        super.doRequestBody('delete', params);
+        super.doRequestBody('deleteEquipmentListAjax', params);
         
         // update equipment list
-        super.doRequest('equipmentAjax');
+        super.doRequest('equipmentListAjax');
       }
     }
 

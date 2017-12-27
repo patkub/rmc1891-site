@@ -50,7 +50,7 @@ Add the editable attribute to include features to edit the list:
         <!-- load manufacturing services -->
         <iron-ajax
             auto
-            id="servicesAjax"
+            id="manufacturingServicesAjax"
             url="api/get/manufacturing-services"
             handle-as="json"
             last-response="{{services}}"
@@ -69,7 +69,7 @@ Add the editable attribute to include features to edit the list:
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
             <iron-ajax
-                id="add"
+                id="addManufacturingServicesAjax"
                 url="api/put/manufacturing-services"
                 handle-as="json"
                 method="PUT"
@@ -78,7 +78,7 @@ Add the editable attribute to include features to edit the list:
             
             <h5>Add a Manufacturing Service</h5>
             
-            <form id="serviceForm" action="javascript:void(0);">
+            <form id="manufacturingServicesForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="item">Item:</label>
                     <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
@@ -89,7 +89,7 @@ Add the editable attribute to include features to edit the list:
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
-                id="delete"
+                id="deleteManufacturingServicesAjax"
                 url="api/delete/manufacturing-services"
                 handle-as="json"
                 method="DELETE"
@@ -134,11 +134,11 @@ Add the editable attribute to include features to edit the list:
 
         // add the service
         let params = 'item=' + service;
-        super.doRequestBody('add', params);
+        super.doRequestBody('addManufacturingServicesAjax', params);
 
         // update services list and reset form
-        super.doRequest('servicesAjax');
-        this.shadowRoot.getElementById('serviceForm').reset();
+        super.doRequest('manufacturingServicesAjax');
+        this.shadowRoot.getElementById('manufacturingServicesForm').reset();
       }
       
       /**
@@ -152,10 +152,10 @@ Add the editable attribute to include features to edit the list:
 
         // delete the service
         let params = 'item=' + service;
-        super.doRequestBody('delete', params);
+        super.doRequestBody('deleteManufacturingServicesAjax', params);
 
         // update services list
-        super.doRequest('servicesAjax');
+        super.doRequest('manufacturingServicesAjax');
       }
     }
 
