@@ -1,0 +1,165 @@
+<!-- Polymer Library -->
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<!-- Polymer Gesture Events -->
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+
+<!-- Template Repeater -->
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- BS4 Buttons -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+
+<!-- BS4 List Group Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-list-group/bs4-list-group.html">
+
+<!-- BS4 Forms -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
+
+<!-- Editable Mixin -->
+<link rel="import" href="../mixins/rmc-editable-mixin.html">
+
+<!-- Editable State Styles -->
+<link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
+
+<!--
+`<rmc-design-manufacture-list>` displays a list of design considerations.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-design-manufacture-list></rmc-design-manufacture-list>
+
+Add the editable attribute to include features to edit the list:
+
+    <rmc-design-manufacture-list editable></rmc-design-manufacture-list>
+-->
+<dom-module id="rmc-design-manufacture-list">
+    <template>
+        <style include="bs4-shared-styles-buttons"></style>
+        <style include="bs4-shared-styles-list-group"></style>
+        <style include="bs4-shared-styles-forms"></style>
+        <style include="rmc-shared-styles-editable"></style>
+        
+        <!-- load list of design considerations -->
+        <iron-ajax
+            auto
+            id="servicesAjax"
+            url="api/get/design-manufacture"
+            handle-as="json"
+            last-response="{{services}}"
+            loading="{{loading}}">
+        </iron-ajax>
+        
+        <!-- offline mirror the list of design considerations -->
+        <app-indexeddb-mirror
+            key="designManufactureList"
+            data="{{services}}"
+            persisted-data="{{persistedServices}}"
+            worker-url="app-indexeddb-mirror-worker.js">
+        </app-indexeddb-mirror>
+        
+        <!-- editable state to add a new service -->
+        <template is="dom-if" if="{{editable}}">
+            <!-- iron ajax request to add service -->
+            <iron-ajax
+                id="add"
+                url="api/put/design-manufacture"
+                handle-as="json"
+                method="PUT"
+                loading="{{loading}}">
+            </iron-ajax>
+            
+            <h5>Add a Design Consideration</h5>
+            
+            <form id="serviceForm" action="javascript:void(0);">
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+                </div>
+                
+                <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
+            </form>
+            
+            <!-- iron ajax request to delete service -->
+            <iron-ajax
+                id="delete"
+                url="api/delete/design-manufacture"
+                handle-as="json"
+                method="DELETE"
+                loading="{{loading}}">
+            </iron-ajax>
+        </template>
+        
+        <ul class="list-group">
+            <template is="dom-repeat" items="{{persistedServices}}" as="service">
+                <template is="dom-if" if="{{!editable}}">
+                    <li class="list-group-item">[[service.name]]</li>
+                </template>
+                
+                <template is="dom-if" if="{{editable}}">
+                    <li class="list-group-item">[[service.name]]<i class="fa fa-trash-o float-right" aria-hidden="true" on-tap="_deleteService" service$="[[service.name]]"></i></li>
+                </template>
+            </template>
+        </ul>
+        
+    </template>
+
+  <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
+    
+    /** Class representing list of design considerations. */
+    class RMCDesignManufactureList extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-design-manufacture-list';
+      }
+        
+      /**
+       * Adds a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to add.
+       */
+      _addService(e) {
+        // get service to add
+        let service = e.target.getAttribute('service');
+
+        // add the service
+        let params = 'item=' + service;
+        super.doRequestBody('add', params);
+
+        // update services list and reset form
+        super.doRequest('servicesAjax');
+        this.shadowRoot.getElementById('serviceForm').reset();
+      }
+      
+      /**
+       * Deletes a service
+       *
+       * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
+       */
+      _deleteService(e) {
+        // get service to delete
+        let service = e.target.getAttribute('service');
+
+        // delete the service
+        let params = 'item=' + service;
+        super.doRequestBody('delete', params);
+
+        // update services list
+        super.doRequest('servicesAjax');
+      }
+    }
+
+    window.customElements.define(RMCDesignManufactureList.is,
+      RMCDesignManufactureList);
+  </script>
+</dom-module>
