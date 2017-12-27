@@ -13,9 +13,6 @@
 <!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- Paper Spinner -->
-<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
-
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
@@ -30,9 +27,6 @@
 
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
 `<rmc-manufacturing-services>` displays a list of manufacturing services.
@@ -51,7 +45,6 @@ Add the editable attribute to include features to edit the list:
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-list-group"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
         <!-- load manufacturing services -->
@@ -61,7 +54,7 @@ Add the editable attribute to include features to edit the list:
             url="api/get/manufacturing-services"
             handle-as="json"
             last-response="{{services}}"
-            loading="{{servicesLoading}}">
+            loading="{{loading}}">
         </iron-ajax>
         
         <!-- offline mirror the manufacturing services -->
@@ -72,11 +65,6 @@ Add the editable attribute to include features to edit the list:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{servicesLoading}}">
-            <paper-spinner active="{{servicesLoading}}"></paper-spinner>
-        </template>
-        
         <!-- editable state to add a new service -->
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
@@ -84,7 +72,8 @@ Add the editable attribute to include features to edit the list:
                 id="add"
                 url="api/put/manufacturing-services"
                 handle-as="json"
-                method="PUT">
+                method="PUT"
+                loading="{{loading}}">
             </iron-ajax>
             
             <h5>Add a Manufacturing Service</h5>
@@ -103,7 +92,8 @@ Add the editable attribute to include features to edit the list:
                 id="delete"
                 url="api/delete/manufacturing-services"
                 handle-as="json"
-                method="DELETE">
+                method="DELETE"
+                loading="{{loading}}">
             </iron-ajax>
         </template>
         
@@ -122,12 +112,12 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
     /** Class representing manufacturing services. */
-    class RMCManufacturingServices extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    class RMCManufacturingServices extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-manufacturing-services';

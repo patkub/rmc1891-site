@@ -1,0 +1,18 @@
+<script>
+  /* eslint no-unused-vars: 0 */
+  
+  /* @polymerMixin */
+  const RMCLoadingMixin = (superclass) => class extends superclass {
+    /** Declared properties. */
+    static get properties() {
+      return {
+        /** Whether the element is currently loading data. */
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true,
+        },
+      };
+    }
+  };
+</script>

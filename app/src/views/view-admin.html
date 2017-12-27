@@ -28,6 +28,9 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Admin Tabs -->
 <link rel="import" href="../elements/rmc-admin-tabs.html">
 
@@ -94,7 +97,8 @@ In typical use, add the element to an `<iron-pages>` element:
                 url="api/post/login"
                 handle-as="json"
                 method="POST"
-                on-response="loginResponse">
+                on-response="loginResponse"
+                loading="{{loading}}">
             </iron-ajax>
             
             <form action="javascript:void(0);">
@@ -120,7 +124,8 @@ In typical use, add the element to an `<iron-pages>` element:
                 url="api/post/logout"
                 handle-as="json"
                 method="POST"
-                on-response="logoutResponse">
+                on-response="logoutResponse"
+                loading="{{loading}}">
             </iron-ajax>
             
             <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
@@ -148,10 +153,12 @@ In typical use, add the element to an `<iron-pages>` element:
   </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
     
     /** Class representing admin view. */
-    class ViewAdmin extends Polymer.GestureEventListeners(Polymer.Element) {
+    class ViewAdmin extends Polymer.GestureEventListeners(
+      RMCLoadingMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'view-admin';

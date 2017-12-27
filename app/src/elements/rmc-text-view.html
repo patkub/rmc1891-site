@@ -13,23 +13,20 @@
 <!-- Marked Library -->
 <link rel="import" href="../../../bower_components/marked-element/marked-element.html">
 
-<!-- Paper Spinner -->
-<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
-
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
 <!-- RMC Markdown Info -->
 <link rel="import" href="rmc-markdown-info.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!-- Shared Styles for Views -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
@@ -45,7 +42,6 @@ In typical use, add the element to your body with the desired view:
 <dom-module id="rmc-text-view">
     <template>
         <style include="bs4-shared-styles-buttons"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         <style include="rmc-shared-styles-views">
             textarea {
@@ -64,7 +60,7 @@ In typical use, add the element to your body with the desired view:
             url="api/get/text/[[view]]"
             handle-as="json"
             last-response="{{viewText}}"
-            loading="{{viewTextLoading}}">
+            loading="{{loading}}">
         </iron-ajax>
         
         <!-- offline mirror the text -->
@@ -85,11 +81,6 @@ In typical use, add the element to your body with the desired view:
         <template is="dom-if" if="{{editable}}">
             <!-- information about markdown syntax -->
             <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="pages"></rmc-markdown-info>
-        </template>
-        
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{viewTextLoading}}">
-            <paper-spinner active="{{viewTextLoading}}"></paper-spinner>
         </template>
         
         <template is="dom-if" if="{{editable}}">
@@ -114,19 +105,20 @@ In typical use, add the element to your body with the desired view:
                 id="update"
                 url="api/put/text/[[view]]"
                 handle-as="json"
-                method="PUT">
+                method="PUT"
+                loading="{{loading}}">
             </iron-ajax>
         </template>
         
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
     /** Class representing text for a page. */
-    class RMCTextView extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    class RMCTextView extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-text-view';

@@ -1,6 +1,9 @@
 <!-- Polymer Library -->
 <link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../../mixins/rmc-editable-mixin.html">
 
@@ -26,26 +29,27 @@ Add the editable attribute to include features to edit both lists:
     <template>
         <template is="dom-if" if="{{!editable}}">
             <!-- equipment -->
-            <rmc-tool-room-equipment></rmc-tool-room-equipment>
+            <rmc-tool-room-equipment loading="{{loading}}"></rmc-tool-room-equipment>
             
             <!-- services -->
-            <rmc-tool-room-services></rmc-tool-room-services>
+            <rmc-tool-room-services loading="{{loading}}"></rmc-tool-room-services>
         </template>
         <template is="dom-if" if="{{editable}}">
             <!-- equipment -->
-            <rmc-tool-room-equipment editable></rmc-tool-room-equipment>
+            <rmc-tool-room-equipment loading="{{loading}}" editable></rmc-tool-room-equipment>
             
             <!-- services -->
-            <rmc-tool-room-services editable></rmc-tool-room-services>
+            <rmc-tool-room-services loading="{{loading}}" editable></rmc-tool-room-services>
         </template>
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
     /** Class representing list of tool room equipment & services. */
-    class RMCToolRoomList extends RMCEditableMixin(Polymer.Element) {
+    class RMCToolRoomList extends RMCEditableMixin(
+      RMCLoadingMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-list';

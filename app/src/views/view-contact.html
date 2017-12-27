@@ -50,7 +50,7 @@ In typical use, add the element to an `<iron-pages>` element:
         <!-- container -->
         <div class="container">
             <!-- contact text -->
-            <rmc-text-view view="contact" title="Contact"></rmc-text-view>
+            <rmc-text-view view="contact" title="Contact" loading="{{loading}}"></rmc-text-view>
             
             <!-- iron ajax request to send email -->
             <iron-ajax
@@ -58,7 +58,8 @@ In typical use, add the element to an `<iron-pages>` element:
                 url="api/post/mail"
                 handle-as="json"
                 method="POST"
-                on-response="_emailResponse">
+                on-response="_emailResponse"
+                loading="{{loading}}">
             </iron-ajax>
             
             <template is="dom-if" if="{{sent}}">
@@ -96,10 +97,12 @@ In typical use, add the element to an `<iron-pages>` element:
     </template>
 
     <script>
-      /* eslint new-cap: ["error", { "capIsNew": false }] */
+      /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCLoadingMixin"]}] */
+      /* global RMCLoadingMixin */
       
       /** Class representing contact view. */
-      class ViewContact extends Polymer.GestureEventListeners(Polymer.Element) {
+      class ViewContact extends Polymer.GestureEventListeners(
+        RMCLoadingMixin(Polymer.Element)) {
         /** HTML tag name. */
         static get is() {
           return 'view-contact';

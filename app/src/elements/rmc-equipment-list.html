@@ -13,9 +13,6 @@
 <!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- Paper Spinner -->
-<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
-
 <!-- BS4 Button -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
@@ -25,14 +22,14 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
 `<rmc-equipment-list>` displays a table listing of machines.
@@ -50,7 +47,6 @@ Add the editable attribute to include features to edit the list:
     <template>
         <style include="bs4-shared-styles-tables"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
         <!-- load equipment list -->
@@ -60,7 +56,7 @@ Add the editable attribute to include features to edit the list:
             url="api/get/equipment-list"
             handle-as="json"
             last-response="{{equipment}}"
-            loading="{{equipmentLoading}}">
+            loading="{{loading}}">
         </iron-ajax>
         
         <!-- offline mirror the equipment list -->
@@ -78,7 +74,8 @@ Add the editable attribute to include features to edit the list:
                 id="add"
                 url="api/put/equipment-list"
                 handle-as="json"
-                method="PUT">
+                method="PUT"
+                loading="{{loading}}">
             </iron-ajax>
             
             <h5>Add a Machine</h5>
@@ -108,7 +105,8 @@ Add the editable attribute to include features to edit the list:
                 id="delete"
                 url="api/delete/equipment-list"
                 handle-as="json"
-                method="DELETE">
+                method="DELETE"
+                loading="{{loading}}">
             </iron-ajax>
         </template>
         
@@ -136,20 +134,15 @@ Add the editable attribute to include features to edit the list:
                 </template>
             </tbody>
         </table>
-        
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{equipmentLoading}}">
-            <paper-spinner active="{{equipmentLoading}}"></paper-spinner>
-        </template>
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCServicesMixin"]}]
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}]
        no-undef: 0 */
     
     /** Class representing equipment list. */
     class RMCEquipmentList extends Polymer.GestureEventListeners(
-      RMCEditableMixin(Polymer.Element)) {
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-equipment-list';

@@ -22,6 +22,9 @@
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Shared Styles for Views -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
 
@@ -44,35 +47,37 @@ In typical use, add the element to an `<iron-pages>` element:
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views"></style>
     
-    <!-- container -->
-    <div class="container">
-
+    <template is="dom-if" if="{{!loading}}">
+      <div class="container">
+    
         <!-- capabilities text -->
-        <rmc-text-view view="capabilities" title="Capabilities"></rmc-text-view>
+        <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}"></rmc-text-view>
         
         <h3>Manufacturing Services:</h3>
         
         <!-- manufacturing services -->
-        <rmc-manufacturing-services></rmc-manufacturing-services>
-        <br>
+        <rmc-manufacturing-services loading="{{loading}}"></rmc-manufacturing-services>
         
         <h3>Equipment List:</h3>
         
         <!-- equipment list -->
-        <rmc-equipment-list></rmc-equipment-list>
+        <rmc-equipment-list loading="{{loading}}"></rmc-equipment-list>
         
         <h3>Tool Room:</h3>
         
-        <rmc-tool-room-list></rmc-tool-room-list>
-        <br>
-
-    </div>
-    <!-- /container -->
+        <!-- tool room list -->
+        <rmc-tool-room-list loading="{{loading}}"></rmc-tool-room-list>
+        
+      </div>
+    </template>
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing capabilities view. */
-    class ViewCapabilities extends Polymer.Element {
+    class ViewCapabilities extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-capabilities';

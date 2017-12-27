@@ -13,6 +13,9 @@
 <!-- Feature Cards -->
 <link rel="import" href="../elements/rmc-feature-cards.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Shared Styles for Views -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
 
@@ -35,7 +38,6 @@ In typical use, add the element to an `<iron-pages>` element:
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views">
         my-carousel {
-          margin-top: 45px;
           width: 100%;
           max-height: 400px;
           contain: content;
@@ -57,13 +59,6 @@ In typical use, add the element to an `<iron-pages>` element:
           left: -9999px;
           right: -9999px;
           margin: auto;
-        }
-
-        /* Large devices (desktops, 992px and up) */
-        @media (min-width: 992px) {
-          my-carousel {
-            margin-top: 56px;
-          }
         }
         
         .container {
@@ -125,7 +120,7 @@ In typical use, add the element to an `<iron-pages>` element:
                        link="/about/"></rmc-jumbotron>
 
         <!-- feature cards -->
-        <rmc-feature-cards></rmc-feature-cards>
+        <rmc-feature-cards loading="{{loading}}"></rmc-feature-cards>
         
     </div>
     <!-- /container -->
@@ -133,8 +128,11 @@ In typical use, add the element to an `<iron-pages>` element:
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing home view. */
-    class ViewHome extends Polymer.Element {
+    class ViewHome extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-home';

@@ -13,9 +13,6 @@
 <!-- App Storage -->
 <link rel="import" href="../../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- Paper Spinner -->
-<link rel="import" href="../../../../bower_components/paper-spinner/paper-spinner.html">
-
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
@@ -25,14 +22,14 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../../mixins/rmc-editable-mixin.html">
 
 <!-- Editable State Styles -->
 <link rel="import" href="../../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!--
 `<rmc-tool-room-services>` displays a list of tool room services.
@@ -51,7 +48,6 @@ Add the editable attribute to include features to edit the list:
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-list-group"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
         <!-- load tool room services -->
@@ -61,7 +57,7 @@ Add the editable attribute to include features to edit the list:
             url="api/get/tool-room/services"
             handle-as="json"
             last-response="{{services}}"
-            loading="{{servicesLoading}}">
+            loading="{{loading}}">
         </iron-ajax>
         
         <!-- offline mirror the tool room services -->
@@ -72,11 +68,6 @@ Add the editable attribute to include features to edit the list:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{servicesLoading}}">
-            <paper-spinner active="{{servicesLoading}}"></paper-spinner>
-        </template>
-        
         <!-- editable state to add a new service -->
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
@@ -84,7 +75,8 @@ Add the editable attribute to include features to edit the list:
                 id="add"
                 url="api/put/tool-room/services"
                 handle-as="json"
-                method="PUT">
+                method="PUT"
+                loading="{{loading}}">
             </iron-ajax>
             
             <h5>Add a Service</h5>
@@ -103,7 +95,8 @@ Add the editable attribute to include features to edit the list:
                 id="delete"
                 url="api/delete/tool-room/services"
                 handle-as="json"
-                method="DELETE">
+                method="DELETE"
+                loading="{{loading}}">
             </iron-ajax>
         </template>
         
@@ -122,12 +115,12 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
     /** Class representing list of tool room services. */
-    class RMCToolRoomServices extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    class RMCToolRoomServices extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-services';
