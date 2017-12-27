@@ -19,8 +19,8 @@
 <!-- Equipment List -->
 <link rel="import" href="../../elements/rmc-equipment-list.html">
 
-<!-- Tool Room List -->
-<link rel="import" href="../../elements/rmc-tool-room/rmc-tool-room-list.html">
+<!-- Tool Room Equipment -->
+<link rel="import" href="../../elements/rmc-tool-room-equipment.html">
 
 <!-- Text View -->
 <link rel="import" href="../../elements/rmc-text-view.html">
@@ -70,9 +70,11 @@ In typical use, add the element to an `<iron-pages>` element:
       
       <h3>Tool Room:</h3>
       
-      <!-- tool room list -->
-      <rmc-tool-room-list loading="{{loading}}" editable></rmc-tool-room-list>
-      <br>
+      <!-- tool room equipment -->
+      <rmc-tool-room-equipment loading="{{loading}}" editable></rmc-tool-room-equipment>
+      
+      <!-- tool room services -->
+      <rmc-services-list name="toolRoom" api="tool-room/services" title="Tool Room" loading="{{loading}}" editable></rmc-services-list>
     </div>
     <!-- /container -->
     
