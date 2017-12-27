@@ -13,8 +13,8 @@
 <!-- Loading Mixin -->
 <link rel="import" href="../../mixins/rmc-loading-mixin.html">
 
-<!-- Manufacturing Services -->
-<link rel="import" href="../../elements/rmc-manufacturing-services.html">
+<!-- Services List -->
+<link rel="import" href="../../elements/rmc-services-list.html">
 
 <!-- Equipment List -->
 <link rel="import" href="../../elements/rmc-equipment-list.html">
@@ -59,7 +59,7 @@ In typical use, add the element to an `<iron-pages>` element:
       <h3>Manufacturing Services:</h3>
       
       <!-- manufacturing services -->
-      <rmc-manufacturing-services loading="{{loading}}" editable></rmc-manufacturing-services>
+      <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}" editable></rmc-services-list>
       <br>
       
       <h3>Equipment List:</h3>

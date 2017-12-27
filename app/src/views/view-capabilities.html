@@ -10,8 +10,8 @@
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
 
-<!-- Manufacturing Services -->
-<link rel="import" href="../elements/rmc-manufacturing-services.html">
+<!-- Services List -->
+<link rel="import" href="../elements/rmc-services-list.html">
 
 <!-- Equipment List -->
 <link rel="import" href="../elements/rmc-equipment-list.html">
@@ -56,7 +56,7 @@ In typical use, add the element to an `<iron-pages>` element:
         <h3>Manufacturing Services:</h3>
         
         <!-- manufacturing services -->
-        <rmc-manufacturing-services loading="{{loading}}"></rmc-manufacturing-services>
+        <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}"></rmc-services-list>
         
         <h3>Equipment List:</h3>
         
