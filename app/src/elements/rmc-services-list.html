@@ -80,8 +80,8 @@ Add the editable attribute to include features to edit the list:
             
             <form id="[[name]]Form" action="javascript:void(0);">
                 <div class="form-group">
-                    <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+                    <label for="[[name]]Item">Item:</label>
+                    <input type="text" class="form-control" id="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
