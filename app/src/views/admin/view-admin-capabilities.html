@@ -10,6 +10,9 @@
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../../mixins/rmc-loading-mixin.html">
+
 <!-- Manufacturing Services -->
 <link rel="import" href="../../elements/rmc-manufacturing-services.html">
 
@@ -51,24 +54,24 @@ In typical use, add the element to an `<iron-pages>` element:
     <!-- container -->
     <div class="container">
       <!-- capabilities text -->
-      <rmc-text-view view="capabilities" title="Capabilities" editable></rmc-text-view>
+      <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}" editable></rmc-text-view>
       
       <h3>Manufacturing Services:</h3>
       
       <!-- manufacturing services -->
-      <rmc-manufacturing-services editable></rmc-manufacturing-services>
+      <rmc-manufacturing-services loading="{{loading}}" editable></rmc-manufacturing-services>
       <br>
       
       <h3>Equipment List:</h3>
       
       <!-- equipment list -->
-      <rmc-equipment-list editable></rmc-equipment-list>
+      <rmc-equipment-list loading="{{loading}}" editable></rmc-equipment-list>
       <br>
       
       <h3>Tool Room:</h3>
       
       <!-- tool room list -->
-      <rmc-tool-room-list editable></rmc-tool-room-list>
+      <rmc-tool-room-list loading="{{loading}}" editable></rmc-tool-room-list>
       <br>
     </div>
     <!-- /container -->
@@ -76,8 +79,11 @@ In typical use, add the element to an `<iron-pages>` element:
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing admin capabilities view. */
-    class ViewAdminCapabilities extends Polymer.Element {
+    class ViewAdminCapabilities extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-admin-capabilities';

@@ -10,6 +10,9 @@
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../../mixins/rmc-loading-mixin.html">
+
 <!-- Text View -->
 <link rel="import" href="../../elements/rmc-text-view.html">
 
@@ -42,21 +45,24 @@ In typical use, add the element to an `<iron-pages>` element:
     <!-- container -->
     <div class="container">
       <!-- rapid prototyping text -->
-      <rmc-text-view view="rapid-prototyping" title="Rapid Prototyping" editable></rmc-text-view>
+      <rmc-text-view view="rapid-prototyping" title="Rapid Prototyping" loading="{{loading}}" editable></rmc-text-view>
       
       <!-- small headings text -->
-      <rmc-text-view view="3d-scanning" title="3D Scanning" small editable></rmc-text-view>
-      <rmc-text-view view="3d-printing" title="3D Printing" small editable></rmc-text-view>
-      <rmc-text-view view="mold-making" title="Mold Making" small editable></rmc-text-view>
-      <rmc-text-view view="design-evaluation" title="Design Evaluation" small editable></rmc-text-view>
+      <rmc-text-view view="3d-scanning" title="3D Scanning" loading="{{loading}}" small editable></rmc-text-view>
+      <rmc-text-view view="3d-printing" title="3D Printing" loading="{{loading}}" small editable></rmc-text-view>
+      <rmc-text-view view="mold-making" title="Mold Making" loading="{{loading}}" small editable></rmc-text-view>
+      <rmc-text-view view="design-evaluation" title="Design Evaluation" loading="{{loading}}" small editable></rmc-text-view>
     </div>
     <!-- /container -->
     
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing admin rapid prototyping view. */
-    class ViewAdminRapidPrototyping extends Polymer.Element {
+    class ViewAdminRapidPrototyping extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-admin-rapid-prototyping';
