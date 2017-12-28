@@ -135,7 +135,7 @@ Add the editable attribute to include features to edit card text content:
           
           <!-- iron ajax request to update text -->
           <iron-ajax
-              id="update"
+              id="updateFeatureCardsAjax"
               url="api/put/feature-cards"
               handle-as="json"
               loading="{{loading}}"
@@ -171,7 +171,7 @@ Add the editable attribute to include features to edit card text content:
         // save the text
         let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
             capabilitiesText + '&ContactText=' + contactText;
-        super.doRequestBody('update', params);
+        super.doRequestBody('updateFeatureCardsAjax', params);
         
         // update feature cards
         super.doRequest('featureCardsAjax');

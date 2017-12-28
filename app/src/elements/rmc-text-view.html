@@ -56,7 +56,7 @@ In typical use, add the element to your body with the desired view:
         <!-- load text -->
         <iron-ajax
             auto
-            id="viewAjax"
+            id="[[view]]textViewAjax"
             url="api/get/text/[[view]]"
             handle-as="json"
             last-response="{{viewText}}"
@@ -102,7 +102,7 @@ In typical use, add the element to your body with the desired view:
             
             <!-- iron ajax request to update text -->
             <iron-ajax
-                id="update"
+                id="[[view]]updateTextViewAjax"
                 url="api/put/text/[[view]]"
                 handle-as="json"
                 method="PUT"
@@ -153,11 +153,10 @@ In typical use, add the element to your body with the desired view:
         let text = e.target.getAttribute('text');
 
         // update the text
-        let params = 'text=' + text;
-        super.doRequestBody('update', params);
+        super.doRequestBody(this.view + 'updateTextViewAjax', 'text=' + text);
 
         // update text
-        super.doRequest('viewAjax');
+        super.doRequest(this.view + 'textViewAjax');
       }
     }
 
