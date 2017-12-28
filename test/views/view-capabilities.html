@@ -15,7 +15,7 @@
   <body>
     <test-fixture id="CapabilitiesView">
       <template>
-        <view-capabilities loading="false"></view-capabilities>
+        <view-capabilities></view-capabilities>
       </template>
     </test-fixture>
     
@@ -27,34 +27,60 @@
           capabilitiesView = fixture('CapabilitiesView');
         });
         
-        test('it should have a text view', function() {
-          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        test('it should have a text view', function(done) {
+          flush(function() {
+            let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+            done();
+          });
         });
         
-        test('text view should be capabilities', function() {
-          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.view, 'capabilities');
+        test('text view should be capabilities', function(done) {
+          flush(function() {
+            let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.view, 'capabilities');
+            done();
+          });
         });
         
-        test('text view title should be Capabilities', function() {
-          let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.title, 'Capabilities');
+        test('text view title should be Capabilities', function(done) {
+          flush(function() {
+            let textView = capabilitiesView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.title, 'Capabilities');
+            done();
+          });
         });
         
-        test('it should have a list of manufacturing services', function() {
-          let manufacturingServices = capabilitiesView.shadowRoot.querySelector('rmc-manufacturing-services');
-          assert.equal(manufacturingServices.tagName, 'RMC-MANUFACTURING-SERVICES');
+        test('it should have a list of manufacturing services', function(done) {
+          flush(function() {
+            let manufacturingServices = capabilitiesView.shadowRoot.querySelector('rmc-services-list[name="manufacturing"]');
+            assert.equal(manufacturingServices.name, 'manufacturing');
+            done();
+          });
         });
         
-        test('it should have a list of equipment', function() {
-          let equipmentList = capabilitiesView.shadowRoot.querySelector('rmc-equipment-list');
-          assert.equal(equipmentList.tagName, 'RMC-EQUIPMENT-LIST');
+        test('it should have a list of equipment', function(done) {
+          flush(function() {
+            let equipmentList = capabilitiesView.shadowRoot.querySelector('rmc-equipment-list');
+            assert.equal(equipmentList.tagName, 'RMC-EQUIPMENT-LIST');
+            done();
+          });
         });
         
-        test('it should have a tool room list', function() {
-          let toolRoomList = capabilitiesView.shadowRoot.querySelector('rmc-tool-room-list');
-          assert.equal(toolRoomList.tagName, 'RMC-TOOL-ROOM-LIST');
+        test('it should have a list of tool room equipment', function(done) {
+          flush(function() {
+            let toolRoomList = capabilitiesView.shadowRoot.querySelector('rmc-tool-room-equipment');
+            assert.equal(toolRoomList.tagName, 'RMC-TOOL-ROOM-EQUIPMENT');
+            done();
+          });
+        });
+        
+        test('it should have a list of tool room services', function(done) {
+          flush(function() {
+            let manufacturingServices = capabilitiesView.shadowRoot.querySelector('rmc-services-list[name="toolRoom"]');
+            assert.equal(manufacturingServices.name, 'toolRoom');
+            done();
+          });
         });
       });
     </script>

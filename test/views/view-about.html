@@ -15,7 +15,7 @@
   <body>
     <test-fixture id="AboutView">
       <template>
-        <view-about loading="false"></view-about>
+        <view-about></view-about>
       </template>
     </test-fixture>
     
@@ -27,19 +27,32 @@
           aboutView = fixture('AboutView');
         });
         
-        test('it should have a text view', function() {
-          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        test('it should not be loading', function() {
+          assert.equal(aboutView.loading, false);
+        });
+        
+        test('it should have a text view', function(done) {
+          flush(function() {
+            let textView = aboutView.shadowRoot.querySelector('.container > rmc-text-view');
+            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+            done();
+          });
         });
 
-        test('text view should be about', function() {
-          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.view, 'about');
+        test('text view should be about', function(done) {
+          flush(function() {
+            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.view, 'about');
+            done();
+          });
         });
         
         test('text view title should be About', function() {
-          let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.title, 'About');
+          flush(function() {
+            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.title, 'About');
+            done();
+          });
         });
       });
     </script>

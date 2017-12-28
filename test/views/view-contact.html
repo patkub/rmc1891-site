@@ -15,7 +15,7 @@
   <body>
     <test-fixture id="ContactView">
       <template>
-        <view-contact loading="false"></view-contact>
+        <view-contact></view-contact>
       </template>
     </test-fixture>
     
@@ -27,19 +27,28 @@
           contactView = fixture('ContactView');
         });
         
-        test('it should have a text view', function() {
-          let textView = contactView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        test('it should have a text view', function(done) {
+          flush(function() {
+            let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+            done();
+          });
         });
         
-        test('text view should be contact', function() {
-          let textView = contactView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.view, 'contact');
+        test('text view should be contact', function(done) {
+          flush(function() {
+            let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.view, 'contact');
+            done();
+          });
         });
         
-        test('it should have an email form', function() {
-          let emailForm = contactView.shadowRoot.querySelector('#emailForm');
-          assert.equal(emailForm.id, 'emailForm');
+        test('it should have an email form', function(done) {
+          flush(function() {
+            let emailForm = contactView.shadowRoot.querySelector('#emailForm');
+            assert.equal(emailForm.id, 'emailForm');
+            done();
+          });
         });
       });
     </script>

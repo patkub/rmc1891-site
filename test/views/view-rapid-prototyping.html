@@ -15,7 +15,7 @@
   <body>
     <test-fixture id="RapidPrototypingView">
       <template>
-        <view-rapid-prototyping loading="false"></view-rapid-prototyping>
+        <view-rapid-prototyping></view-rapid-prototyping>
       </template>
     </test-fixture>
     
@@ -27,19 +27,28 @@
           rapidPrototypingView = fixture('RapidPrototypingView');
         });
         
-        test('it should have a text view', function() {
-          let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+        test('it should have a text view', function(done) {
+          flush(function() {
+            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+            done();
+          });
         });
         
-        test('text view should be rapid prototyping', function() {
-          let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.view, 'rapid-prototyping');
+        test('text view should be rapid-prototyping', function(done) {
+          flush(function() {
+            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.view, 'rapid-prototyping');
+            done();
+          });
         });
         
-        test('text view title should be Rapid Prototyping', function() {
-          let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-          assert.equal(textView.title, 'Rapid Prototyping');
+        test('text view title should be Rapid Prototyping', function(done) {
+          flush(function() {
+            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+            assert.equal(textView.title, 'Rapid Prototyping');
+            done();
+          });
         });
       });
     </script>
