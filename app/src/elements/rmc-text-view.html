@@ -81,13 +81,13 @@ In typical use, add the element to your body with the desired view:
         <template is="dom-if" if="{{editable}}">
             <!-- information about markdown syntax -->
             <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="pages"></rmc-markdown-info>
-        </template>
-        
-        <template is="dom-if" if="{{editable}}">
+            
             <textarea rows="10" value="{{persistedViewText::input}}"></textarea>
+            
             <template is="dom-if" if="[[small]]">
               <h3>Preview:</h3>
             </template>
+            
             <template is="dom-if" if="[[!small]]">
               <h2>Preview:</h2>
             </template>
