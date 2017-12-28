@@ -53,16 +53,16 @@ Add the editable attribute to include features to edit the list:
         <!-- load services -->
         <iron-ajax
             auto
-            id="[[name]]GetAjax"
+            id="[[name]]ServicesListGetAjax"
             url="api/get/[[api]]"
             handle-as="json"
             last-response="{{services}}"
             loading="{{loading}}">
         </iron-ajax>
         
-        <!-- offline mirror the manufacturing services -->
+        <!-- offline mirror the services -->
         <app-indexeddb-mirror
-            key="manufacturingServices"
+            key="[[name]]ServicesListMirror"
             data="{{services}}"
             persisted-data="{{persistedServices}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -72,7 +72,7 @@ Add the editable attribute to include features to edit the list:
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
             <iron-ajax
-                id="[[name]]PutAjax"
+                id="[[name]]ServicesListPutAjax"
                 url="api/put/[[api]]"
                 handle-as="json"
                 method="PUT"
@@ -81,7 +81,7 @@ Add the editable attribute to include features to edit the list:
             
             <h5>Add a [[title]] Service</h5>
             
-            <form id="[[name]]Form" action="javascript:void(0);">
+            <form id="[[name]]ServicesListForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="[[name]]Item">Item:</label>
                     <input type="text" class="form-control" id="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
@@ -92,7 +92,7 @@ Add the editable attribute to include features to edit the list:
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
-                id="[[name]]DeleteAjax"
+                id="[[name]]ServicesListDeleteAjax"
                 url="api/delete/[[api]]"
                 handle-as="json"
                 method="DELETE"
@@ -148,11 +148,11 @@ Add the editable attribute to include features to edit the list:
       _addService(e) {
         // add the service
         let service = e.target.getAttribute('service');
-        super.doRequestBody(this.name + 'PutAjax', 'item=' + service);
+        super.doRequestBody(this.name + 'ServicesListPutAjax', 'item=' + service);
 
         // update services list and reset form
-        super.doRequest(this.name + 'GetAjax');
-        this.shadowRoot.getElementById(this.name + 'Form').reset();
+        super.doRequest(this.name + 'ServicesListGetAjax');
+        this.shadowRoot.getElementById(this.name + 'ServicesListForm').reset();
       }
       
       /**
@@ -163,10 +163,10 @@ Add the editable attribute to include features to edit the list:
       _deleteService(e) {
         // delete the service
         let service = e.target.getAttribute('service');
-        super.doRequestBody(this.name + 'DeleteAjax', 'item=' + service);
+        super.doRequestBody(this.name + 'ServicesListDeleteAjax', 'item=' + service);
 
         // update services list
-        super.doRequest(this.name + 'GetAjax');
+        super.doRequest(this.name + 'ServicesListGetAjax');
       }
     }
     
