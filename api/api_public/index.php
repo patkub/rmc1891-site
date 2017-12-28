@@ -56,6 +56,7 @@ require ROOT_PATH . 'api/routes/text.php';
 require ROOT_PATH . 'api/routes/feature-cards.php';
 require ROOT_PATH . 'api/routes/equipment-list.php';
 require ROOT_PATH . 'api/routes/manufacturing-services.php';
+require ROOT_PATH . 'api/routes/design-manufacture.php';
 require ROOT_PATH . 'api/routes/tool-room/tool-room-equipment.php';
 require ROOT_PATH . 'api/routes/tool-room/tool-room-services.php';
 require ROOT_PATH . 'api/routes/mail.php';

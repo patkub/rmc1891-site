@@ -1,14 +1,17 @@
 <!-- Polymer -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 
 <!-- Iron Ajax -->
-<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 
 <!-- App Storage -->
-<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
 
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
@@ -35,17 +38,22 @@ In typical use, add the element to an `<iron-pages>` element:
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views"></style>
     
-    <!-- container -->
-    <div class="container">
-        <!-- About Text -->
-        <rmc-text-view view="about" title="About"></rmc-text-view>
-    </div>
-    <!-- /container -->
+    <template is="dom-if" if="{{!loading}}">
+      <!-- container -->
+      <div class="container">
+          <!-- About Text -->
+          <rmc-text-view view="about" title="About" loading="{{loading}}"></rmc-text-view>
+      </div>
+      <!-- /container -->
+    </template>
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing about view. */
-    class ViewAbout extends Polymer.Element {
+    class ViewAbout extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-about';

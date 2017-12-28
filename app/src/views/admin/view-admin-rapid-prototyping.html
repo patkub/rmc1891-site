@@ -16,11 +16,14 @@
 <!-- Text View -->
 <link rel="import" href="../../elements/rmc-text-view.html">
 
+<!-- Design Manufacture List -->
+<link rel="import" href="../../elements/rmc-services-list.html">
+
 <!-- Shared Styles for Views -->
 <link rel="import" href="../../shared-styles/rmc-shared-styles-views.html">
 
 <!--
-`<view-admin-about>` is the view for the admin about page.
+`<view-admin-rapid-prototyping>` is the view for the admin rapid prototyping page.
 
 In typical use, add the element to an `<iron-pages>` element:
 
@@ -29,11 +32,11 @@ In typical use, add the element to an `<iron-pages>` element:
         attr-for-selected="id"
         role="main">
         
-        <view-admin-about id="about"></view-admin-about>
+        <view-admin-rapid-prototyping id="rapid-prototyping"></view-admin-rapid-prototyping>
         ...
     </iron-pages>
 -->
-<dom-module id="view-admin-about">
+<dom-module id="view-admin-rapid-prototyping">
   <template>
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views">
@@ -44,8 +47,17 @@ In typical use, add the element to an `<iron-pages>` element:
     
     <!-- container -->
     <div class="container">
-        <!-- About Text -->
-        <rmc-text-view view="about" title="About" loading="{{loading}}" editable></rmc-text-view>
+      <!-- rapid prototyping text -->
+      <rmc-text-view view="rapid-prototyping" title="Rapid Prototyping" loading="{{loading}}" editable></rmc-text-view>
+      
+      <!-- small headings text -->
+      <rmc-text-view view="reverse-engineering" title="Reverse Engineering" loading="{{loading}}" small editable></rmc-text-view>
+      <rmc-text-view view="design-manufacture" title="Design for Manufacture" loading="{{loading}}" small editable></rmc-text-view>
+      
+      <!-- design for manufacture list -->
+      <rmc-services-list name="designManufacturing" api="design-manufacture" title="Design Consideration" loading="{{loading}}" editable></rmc-services-list>
+      
+      <rmc-text-view view="prototypes" title="Prototypes" loading="{{loading}}" small editable></rmc-text-view>
     </div>
     <!-- /container -->
     
@@ -55,13 +67,14 @@ In typical use, add the element to an `<iron-pages>` element:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
     /* global RMCLoadingMixin */
     
-    /** Class representing admin about view. */
-    class ViewAdminAbout extends RMCLoadingMixin(Polymer.Element) {
+    /** Class representing admin rapid prototyping view. */
+    class ViewAdminRapidPrototyping extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
-        return 'view-admin-about';
+        return 'view-admin-rapid-prototyping';
       }
     }
-    window.customElements.define(ViewAdminAbout.is, ViewAdminAbout);
+    window.customElements.define(ViewAdminRapidPrototyping.is,
+      ViewAdminRapidPrototyping);
   </script>
 </dom-module>

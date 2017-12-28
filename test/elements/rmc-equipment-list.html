@@ -6,8 +6,8 @@
 
     <title>RMC Equipment List</title>
     
-    <script src="../../node_modules/@npm-polymer/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
     <link rel="import" href="../../app/src/elements/rmc-equipment-list.html">
@@ -23,7 +23,7 @@
       suite('rmc-equipment-list tests', function() {
         let rmcEquipmentList;
         
-        let equipmentAjax;
+        let equipmentListAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -67,11 +67,11 @@
         suite('when loading equipment list JSON', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            equipmentAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentAjax');
+            equipmentListAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentListAjax');
           });
           
           test('has sane defaults that love you', function() {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -80,14 +80,14 @@
           });
           
           test('has the correct xhr method', function() {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           
           test('item lengths should be equalled', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -99,7 +99,7 @@
           });
           
           test('gets item count', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -111,7 +111,7 @@
           });
           
           test('gets item force', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -123,7 +123,7 @@
           });
           
           test('gets item name', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = equipmentListAjax.generateRequest();
             server.respond();
             mirrorData();
             

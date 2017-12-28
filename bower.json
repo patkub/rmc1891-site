@@ -27,5 +27,16 @@
     "iron-component-page": "^3.0.1",
     "webcomponentsjs": "^1.0.3"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "polymer": "^2.2.0",
+    "app-route": "PolymerElements/app-route#^2.0.3",
+    "app-storage": "PolymerElements/app-storage#^2.0.2",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.6",
+    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1",
+    "iron-image": "PolymerElements/iron-image#^2.1.2",
+    "iron-pages": "PolymerElements/iron-pages#^2.0.1",
+    "marked-element": "PolymerElements/marked-element#^2.3.2",
+    "paper-progress": "PolymerElements/paper-progress#^2.0.1"
+  }
 }

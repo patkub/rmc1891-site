@@ -1,26 +1,29 @@
 <!-- Polymer -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 
 <!-- Iron Ajax -->
-<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 
 <!-- App Storage -->
-<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
 
-<!-- Manufacturing Services -->
-<link rel="import" href="../elements/rmc-manufacturing-services.html">
+<!-- Services List -->
+<link rel="import" href="../elements/rmc-services-list.html">
 
 <!-- Equipment List -->
 <link rel="import" href="../elements/rmc-equipment-list.html">
 
-<!-- Tool Room List -->
-<link rel="import" href="../elements/rmc-tool-room/rmc-tool-room-list.html">
+<!-- Tool Room Equipment -->
+<link rel="import" href="../elements/rmc-tool-room-equipment.html">
 
 <!-- Text View -->
 <link rel="import" href="../elements/rmc-text-view.html">
+
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
 
 <!-- Shared Styles for Views -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
@@ -44,35 +47,40 @@ In typical use, add the element to an `<iron-pages>` element:
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views"></style>
     
-    <!-- container -->
-    <div class="container">
-
+    <template is="dom-if" if="{{!loading}}">
+      <div class="container">
+    
         <!-- capabilities text -->
-        <rmc-text-view view="capabilities" title="Capabilities"></rmc-text-view>
+        <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}"></rmc-text-view>
         
         <h3>Manufacturing Services:</h3>
         
         <!-- manufacturing services -->
-        <rmc-manufacturing-services></rmc-manufacturing-services>
-        <br>
+        <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}"></rmc-services-list>
         
         <h3>Equipment List:</h3>
         
         <!-- equipment list -->
-        <rmc-equipment-list></rmc-equipment-list>
+        <rmc-equipment-list loading="{{loading}}"></rmc-equipment-list>
         
         <h3>Tool Room:</h3>
         
-        <rmc-tool-room-list></rmc-tool-room-list>
-        <br>
-
-    </div>
-    <!-- /container -->
+        <!-- tool room equipment -->
+        <rmc-tool-room-equipment loading="{{loading}}"></rmc-tool-room-equipment>
+        
+        <!-- tool room services -->
+        <rmc-services-list name="toolRoom" api="tool-room/services" title="Tool Room" loading="{{loading}}"></rmc-services-list>
+        
+      </div>
+    </template>
   </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class representing capabilities view. */
-    class ViewCapabilities extends Polymer.Element {
+    class ViewCapabilities extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'view-capabilities';

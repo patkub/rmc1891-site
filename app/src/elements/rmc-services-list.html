@@ -1,17 +1,17 @@
 <!-- Polymer Library -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<!-- Polymer Gesture Events -->
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <!-- Template Repeater -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <!-- Iron Ajax -->
-<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 
 <!-- App Storage -->
-<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
-
-<!-- Paper Spinner -->
-<link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
@@ -22,43 +22,42 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
 
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
-
 <!--
-`<rmc-manufacturing-services>` displays a list of manufacturing services.
+`<rmc-services-list>` displays a list of services.
 
 In typical use, just add the element to your body:
 
     <body>
-      <rmc-manufacturing-services></rmc-manufacturing-services>
+      <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing"></rmc-services-list>
 
 Add the editable attribute to include features to edit the list:
 
-    <rmc-manufacturing-services editable></rmc-manufacturing-services>
+    <rmc-services-list editable></rmc-services-list>
 -->
-<dom-module id="rmc-manufacturing-services">
+<dom-module id="rmc-services-list">
     <template>
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-list-group"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable"></style>
         
-        <!-- load manufacturing services -->
+        <!-- load services -->
         <iron-ajax
             auto
-            id="servicesAjax"
-            url="api/get/manufacturing-services"
+            id="[[name]]GetAjax"
+            url="api/get/[[api]]"
             handle-as="json"
             last-response="{{services}}"
-            loading="{{servicesLoading}}">
+            loading="{{loading}}">
         </iron-ajax>
         
         <!-- offline mirror the manufacturing services -->
@@ -69,27 +68,23 @@ Add the editable attribute to include features to edit the list:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{servicesLoading}}">
-            <paper-spinner active="{{servicesLoading}}"></paper-spinner>
-        </template>
-        
         <!-- editable state to add a new service -->
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add service -->
             <iron-ajax
-                id="add"
-                url="api/put/manufacturing-services"
+                id="[[name]]PutAjax"
+                url="api/put/[[api]]"
                 handle-as="json"
-                method="PUT">
+                method="PUT"
+                loading="{{loading}}">
             </iron-ajax>
             
-            <h5>Add a Manufacturing Service</h5>
+            <h5>Add a [[title]] Service</h5>
             
-            <form id="serviceForm" action="javascript:void(0);">
+            <form id="[[name]]Form" action="javascript:void(0);">
                 <div class="form-group">
-                    <label for="item">Item:</label>
-                    <input type="text" class="form-control" id="item" name="item" placeholder="New service" value="{{newService::input}}">
+                    <label for="[[name]]Item">Item:</label>
+                    <input type="text" class="form-control" id="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
                 <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
@@ -97,10 +92,11 @@ Add the editable attribute to include features to edit the list:
             
             <!-- iron ajax request to delete service -->
             <iron-ajax
-                id="delete"
-                url="api/delete/manufacturing-services"
+                id="[[name]]DeleteAjax"
+                url="api/delete/[[api]]"
                 handle-as="json"
-                method="DELETE">
+                method="DELETE"
+                loading="{{loading}}">
             </iron-ajax>
         </template>
         
@@ -119,15 +115,29 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
-    /** Class representing manufacturing services. */
-    class RMCManufacturingServices extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    /** Class representing services list. */
+    class RMCServicesList extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
-        return 'rmc-manufacturing-services';
+        return 'rmc-services-list';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          /** Service name. */
+          name: String,
+          
+          /** Service api. */
+          api: String,
+          
+          /** Service title. */
+          title: String,
+        };
       }
         
       /**
@@ -136,16 +146,13 @@ Add the editable attribute to include features to edit the list:
        * @param {Object} e - on-tap event, 'service' attribute is the service to add.
        */
       _addService(e) {
-        // get service to add
-        let service = e.target.getAttribute('service');
-
         // add the service
-        let params = 'item=' + service;
-        super.doRequestBody('add', params);
+        let service = e.target.getAttribute('service');
+        super.doRequestBody(this.name + 'PutAjax', 'item=' + service);
 
         // update services list and reset form
-        super.doRequest('servicesAjax');
-        this.shadowRoot.getElementById('serviceForm').reset();
+        super.doRequest(this.name + 'GetAjax');
+        this.shadowRoot.getElementById(this.name + 'Form').reset();
       }
       
       /**
@@ -154,19 +161,15 @@ Add the editable attribute to include features to edit the list:
        * @param {Object} e - on-tap event, 'service' attribute is the service to delete.
        */
       _deleteService(e) {
-        // get service to delete
-        let service = e.target.getAttribute('service');
-
         // delete the service
-        let params = 'item=' + service;
-        super.doRequestBody('delete', params);
+        let service = e.target.getAttribute('service');
+        super.doRequestBody(this.name + 'DeleteAjax', 'item=' + service);
 
         // update services list
-        super.doRequest('servicesAjax');
+        super.doRequest(this.name + 'GetAjax');
       }
     }
-
-    window.customElements.define(RMCManufacturingServices.is,
-      RMCManufacturingServices);
+    
+    window.customElements.define(RMCServicesList.is, RMCServicesList);
   </script>
 </dom-module>

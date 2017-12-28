@@ -7,8 +7,8 @@
     <title>Tests</title>
     
     <!-- Load webcomponents-lite.js to check and load any polyfills the browser needs -->
-    <script src="../node_modules/@npm-polymer/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
   </head>
   <body>
     <script>
@@ -27,7 +27,12 @@
         'views/view-capabilities.html?dom=shadow',
         // Load 'views/view-capabilities.html' test suite, using shadydom
         'views/view-capabilities.html?wc-shadydom=true',
-
+        
+        // Load 'views/view-rapid-prototyping.html' test suite, using native shadow dom
+        'views/view-rapid-prototyping.html?dom=shadow',
+        // Load 'views/view-rapid-prototyping.html' test suite, using shadydom
+        'views/view-rapid-prototyping.html?wc-shadydom=true',
+        
         // Load 'views/view-contact.html' test suite, using native shadow dom
         'views/view-contact.html?dom=shadow',
         // Load 'views/view-contact.html' test suite, using shadydom
@@ -68,25 +73,15 @@
         // Load 'elements/rmc-equipment-list.html' test suite, using shadydom
         'elements/rmc-equipment-list.html?wc-shadydom=true',
         
-        // Load 'elements/rmc-manufacturing-services.html' test suite, using native shadow dom
-        'elements/rmc-manufacturing-services.html?dom=shadow',
-        // Load 'elements/rmc-manufacturing-services.html' test suite, using shadydom
-        'elements/rmc-manufacturing-services.html?wc-shadydom=true',
+        // Load 'elements/rmc-admin-tabs.html' test suite, using native shadow dom
+        'elements/rmc-admin-tabs.html?dom=shadow',
+        // Load 'elements/rmc-admin-tabs.html' test suite, using shadydom
+        'elements/rmc-admin-tabs.html?wc-shadydom=true',
         
-        // Load 'elements/rmc-tool-room/rmc-tool-room-list.html' test suite, using native shadow dom
-        'elements/rmc-tool-room/rmc-tool-room-list.html?dom=shadow',
-        // Load 'elements/rmc-tool-room/rmc-tool-room-list.html' test suite, using shadydom
-        'elements/rmc-tool-room/rmc-tool-room-list.html?wc-shadydom=true',
-        
-        // Load 'elements/rmc-tool-room/rmc-tool-room-equipment.html' test suite, using native shadow dom
-        'elements/rmc-tool-room/rmc-tool-room-equipment.html?dom=shadow',
-        // Load 'elements/rmc-tool-room/rmc-tool-room-equipment.html' test suite, using shadydom
-        'elements/rmc-tool-room/rmc-tool-room-equipment.html?wc-shadydom=true',
-        
-        // Load 'elements/rmc-tool-room/rmc-tool-room-services.html' test suite, using native shadow dom
-        'elements/rmc-tool-room/rmc-tool-room-services.html?dom=shadow',
-        // Load 'elements/rmc-tool-room/rmc-tool-room-services.html' test suite, using shadydom
-        'elements/rmc-tool-room/rmc-tool-room-services.html?wc-shadydom=true',
+        // Load 'elements/rmc-tool-room-equipment.html' test suite, using native shadow dom
+        'elements/rmc-tool-room-equipment.html?dom=shadow',
+        // Load 'elements/rmc-tool-room-equipment.html' test suite, using shadydom
+        'elements/rmc-tool-room-equipment.html?wc-shadydom=true',
       ]);
     </script>
   </body>

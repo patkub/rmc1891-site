@@ -1,20 +1,20 @@
 <!-- Polymer Library -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<!-- Polymer Gesture Events -->
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <!-- Template Repeater -->
-<link rel="import" href="../../../node_modules/@npm-polymer/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <!-- Iron Ajax -->
-<link rel="import" href="../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 
 <!-- App Storage -->
-<link rel="import" href="../../../node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <!-- Marked Library -->
-<link rel="import" href="../../../node_modules/@npm-polymer/marked-element/marked-element.html">
-
-<!-- Paper Spinner -->
-<link rel="import" href="../../../node_modules/@npm-polymer/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../bower_components/marked-element/marked-element.html">
 
 <!-- BS4 Buttons Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
@@ -25,14 +25,14 @@
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
 <!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
 <!-- Editable State Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Paper Spinner Styles -->
-<link rel="import" href="../shared-styles/rmc-shared-styles-paper-spinner.html">
 
 <!-- RMC Markdown Info -->
 <link rel="import" href="rmc-markdown-info.html">
@@ -54,7 +54,6 @@ Add the editable attribute to include features to edit card text content:
         <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-card"></style>
         <style include="bs4-shared-styles-forms"></style>
-        <style include="rmc-shared-styles-paper-spinner"></style>
         <style include="rmc-shared-styles-editable">
           .card {
             margin-bottom: 1rem;
@@ -84,7 +83,7 @@ Add the editable attribute to include features to edit card text content:
             url="api/get/feature-cards"
             handle-as="json"
             last-response="{{featureCards}}"
-            loading="{{featureCardsLoading}}"
+            loading="{{loading}}"
             method="GET">
         </iron-ajax>
         
@@ -99,11 +98,6 @@ Add the editable attribute to include features to edit card text content:
         <template is="dom-if" if="{{editable}}">
           <!-- information about markdown syntax -->
           <rmc-markdown-info markdown="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" type="text"></rmc-markdown-info>
-        </template>
-        
-        <!-- paper-spinner while loading -->
-        <template is="dom-if" if="{{featureCardsLoading}}">
-            <paper-spinner active="{{featureCardsLoading}}"></paper-spinner>
         </template>
         
         <div class="card-deck">
@@ -144,6 +138,7 @@ Add the editable attribute to include features to edit card text content:
               id="update"
               url="api/put/feature-cards"
               handle-as="json"
+              loading="{{loading}}"
               method="PUT">
           </iron-ajax>
         </template>
@@ -151,12 +146,12 @@ Add the editable attribute to include features to edit card text content:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin"]}] */
-    /* global RMCEditableMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin */
     
     /** Class representing feature cards. */
-    class RMCFeatureCards extends
-      Polymer.GestureEventListeners(RMCEditableMixin(Polymer.Element)) {
+    class RMCFeatureCards extends Polymer.GestureEventListeners(
+      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-feature-cards';

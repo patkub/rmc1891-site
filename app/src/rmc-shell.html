@@ -1,49 +1,88 @@
 <!-- Polymer -->
-<link rel="import" href="../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
 <!-- App Location -->
-<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
 
 <!-- App Route -->
-<link rel="import" href="../../node_modules/@npm-polymer/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
 
 <!-- Iron Pages -->
-<link rel="import" href="../../node_modules/@npm-polymer/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<!-- Paper Progress -->
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
 
 <!-- RMC Footer -->
 <link rel="import" href="elements/rmc-footer.html">
+
+<!-- Loading Mixin -->
+<link rel="import" href="mixins/rmc-loading-mixin.html">
 
 <dom-module id="rmc-shell">
     <!-- Views -->
     <link rel="lazy-import" href="views/view-home.html">
     <link rel="lazy-import" href="views/view-about.html">
     <link rel="lazy-import" href="views/view-capabilities.html">
+    <link rel="lazy-import" href="views/view-rapid-prototyping.html">
     <link rel="lazy-import" href="views/view-contact.html">
     <link rel="lazy-import" href="views/view-admin.html">
     <link rel="lazy-import" href="views/view-404.html">
     
     <template>
+        <style is="custom-style">
+          paper-progress {
+            display: block;
+            width: 100%;
+          }
+          
+          paper-progress.blue {
+            --paper-progress-active-color: var(--paper-light-blue-500);
+            --paper-progress-secondary-color: var(--paper-light-blue-100);
+          }
+          
+          .loading-container {
+            /* page loading bar under navigation bar */
+            position: fixed;
+            top: 56px;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+          }
+        </style>
+        
         <app-location route="{{route}}"></app-location>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
-
+        
+        <!-- page loading bar -->
+        <div class="loading-container">
+          <template is="dom-if" if="{{loading}}">
+            <paper-progress indeterminate class="blue"></paper-progress>
+          </template>
+        </div>
+        
         <iron-pages
             selected="[[page]]"
             attr-for-selected="id"
             fallback-selection="404"
             role="main">
             
-            <view-home id="home"></view-home>
-            <view-about id="about"></view-about>
-            <view-capabilities id="capabilities"></view-capabilities>
-            <view-contact id="contact"></view-contact>
-            <view-admin id="admin"></view-admin>
+            <view-home id="home" loading="{{loading}}"></view-home>
+            <view-about id="about" loading="{{loading}}"></view-about>
+            <view-capabilities id="capabilities" loading="{{loading}}"></view-capabilities>
+            <view-rapid-prototyping id="rapid-prototyping" loading="{{loading}}"></view-rapid-prototyping>
+            <view-contact id="contact" loading="{{loading}}"></view-contact>
+            <view-admin id="admin" loading="{{loading}}"></view-admin>
             <view-404 id="404"></view-404>
         </iron-pages>
     </template>
 
   <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
     /** Class application shell. */
-    class RMCShell extends Polymer.Element {
+    class RMCShell extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-shell';

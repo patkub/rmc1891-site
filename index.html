@@ -68,10 +68,10 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
   </script>
 
   <!-- Load webcomponents-lite.js to check and load any polyfills the browser needs -->
-  <script src="node_modules/@npm-polymer/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
   <!-- RMC Theme CSS -->
-  <link rel="stylesheet" href="app/css/rmc-theme.min.css">
+  <link rel="stylesheet" href="app/css/rmc-theme.min.css" inline>
 
   <!-- Bootstrap JS -->
   <script defer src="node_modules/jquery/dist/jquery.slim.min.js"></script>
@@ -133,10 +133,11 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
 
       // set links property
       autobind.links = [
-        {text: 'Home', link: '/', icon: 'home', active: 'active'},
-        {text: 'About', link: '/about/', icon: 'info', active: ''},
-        {text: 'Capabilities', link: '/capabilities/', icon: 'cogs', active: ''},
-        {text: 'Contact', link: '/contact/', icon: 'envelope', active: ''},
+        {id: 'home', text: 'Home', link: '/', icon: 'home', active: 'active'},
+        {id: 'about', text: 'About', link: '/about/', icon: 'info', active: ''},
+        {id: 'capabilities', text: 'Capabilities', link: '/capabilities/', icon: 'cogs', active: ''},
+        {id: 'rapid-prototyping', text: 'Rapid Prototyping', link: '/rapid-prototyping/', icon: 'sort-amount-asc', active: ''},
+        {id: 'contact', text: 'Contact', link: '/contact/', icon: 'envelope', active: ''},
       ];
       
       // listen for page changed event and update active item
@@ -147,7 +148,7 @@ Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
       
           // change the active item
           for (let i = 0; i < autobind.links.length; i++) {
-            if (autobind.links[i].text.toLowerCase() === e.detail.active) {
+            if (autobind.links[i].id === e.detail.active) {
               autobind.links[i].active = 'active';
             } else {
               autobind.links[i].active = '';

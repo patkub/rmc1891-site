@@ -1,11 +1,14 @@
 <!-- Polymer -->
-<link rel="import" href="../../../../node_modules/@npm-polymer/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 
 <!-- Iron Ajax -->
-<link rel="import" href="../../../../node_modules/@npm-polymer/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../../bower_components/iron-ajax/iron-ajax.html">
 
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Loading Mixin -->
+<link rel="import" href="../../mixins/rmc-loading-mixin.html">
 
 <!-- Text View -->
 <link rel="import" href="../../elements/rmc-text-view.html">
@@ -39,17 +42,18 @@ In typical use, add the element to an `<iron-pages>` element:
     <!-- container -->
     <div class="container">
         <!-- contact text -->
-        <rmc-text-view view="contact" title="Contact" editable></rmc-text-view>
+        <rmc-text-view view="contact" title="Contact" loading="{{loading}}" editable></rmc-text-view>
     </div>
     <!-- /container -->
   </template>
   
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners"]}] */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
     
     /** Class representing admin contact view. */
     class ViewAdminContact extends
-      Polymer.GestureEventListeners(Polymer.Element) {
+      Polymer.GestureEventListeners(RMCLoadingMixin(Polymer.Element)) {
       /** HTML tag name. */
       static get is() {
         return 'view-admin-contact';

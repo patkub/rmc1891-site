@@ -1,0 +1,74 @@
+<!-- Polymer -->
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<!-- Iron Ajax -->
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+
+<!-- App Storage -->
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- BS4 Grid Styles -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
+
+<!-- Text View -->
+<link rel="import" href="../elements/rmc-text-view.html">
+
+<!-- Services List -->
+<link rel="import" href="../elements/rmc-services-list.html">
+
+<!-- Loading Mixin -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+
+<!-- Shared Styles for Views -->
+<link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
+
+<!--
+`<view-rapid-prototyping>` is the view for the rapid prototyping page.
+
+In typical use, add the element to an `<iron-pages>` element:
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="id"
+        role="main">
+        
+        <view-rapid-prototyping id="rapid-prototyping"></view-rapid-prototyping>
+        ...
+    </iron-pages>
+-->
+<dom-module id="view-rapid-prototyping">
+  <template>
+    <style include="bs4-shared-styles-grid"></style>
+    <style include="rmc-shared-styles-views"></style>
+    
+    <template is="dom-if" if="{{!loading}}">
+      <div class="container">
+          <!-- Rapid Prototyping Text -->
+          <rmc-text-view view="rapid-prototyping" title="Rapid Prototyping" loading="{{loading}}"></rmc-text-view>
+          
+          <!-- small headings text -->
+          <rmc-text-view view="reverse-engineering" title="Reverse Engineering" loading="{{loading}}" small></rmc-text-view>
+          <rmc-text-view view="design-manufacture" title="Design for Manufacture" loading="{{loading}}" small></rmc-text-view>
+          
+          <!-- design for manufacture list -->
+          <rmc-services-list name="designManufacturing" api="design-manufacture" title="Design Consideration" loading="{{loading}}"></rmc-services-list>
+          
+          <rmc-text-view view="prototypes" title="Prototypes" loading="{{loading}}" small></rmc-text-view>
+      </div>
+    </template>
+  </template>
+
+  <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
+    /* global RMCLoadingMixin */
+    
+    /** Class representing rapid prototyping view. */
+    class ViewRapidPrototyping extends RMCLoadingMixin(Polymer.Element) {
+      /** HTML tag name. */
+      static get is() {
+        return 'view-rapid-prototyping';
+      }
+    }
+    window.customElements.define(ViewRapidPrototyping.is, ViewRapidPrototyping);
+  </script>
+</dom-module>

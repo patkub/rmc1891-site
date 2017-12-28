@@ -12,8 +12,8 @@ import gulp from 'gulp';
 import del from 'del';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
+import inlineSource from 'gulp-inline-source';
 import header from 'gulp-header';
-import fs from 'fs';
 import path from 'path';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
@@ -48,9 +48,18 @@ const reload = browserSync.reload;
  * Defines the list of resources to watch for changes.
  */
 function watch() {
-  gulp.watch(['app/scss/**/*.scss'], ['css', reload]);
-  gulp.watch(['app/images/**/*', 'app/php/**/*', 'app/src/**/*'], reload);
-  gulp.watch(['index.html'], reload);
+  gulp.watch([
+    'app/scss/**/*.scss',
+  ], [
+    'css',
+    reload,
+  ]);
+  
+  gulp.watch([
+    'app/images/**/*',
+    'app/src/**/*',
+    'index.html',
+  ], reload);
 }
 
 // Stylelint
@@ -127,9 +136,9 @@ gulp.task('copy:vendor', function() {
  */
 gulp.task('inline', function() {
   return gulp.src(BUILD_PATH + 'index.html')
-    .pipe(replace('<link rel="stylesheet" href="app/css/rmc-theme.min.css">', function(s) {
-      let style = fs.readFileSync('app/css/rmc-theme.min.css', 'utf8');
-      return '<style>' + style + '</style>';
+    .pipe(inlineSource({
+      rootpath: './',
+      attribute: 'inline=""',
     }))
     .pipe(header(banner, {pkg: pkg}))
     .pipe(gulp.dest(BUILD_PATH));
@@ -138,20 +147,20 @@ gulp.task('inline', function() {
 /**
  * Generate precaching service worker
  */
-gulp.task('generate-service-worker', ['inline', 'del:after'], function(callback) {
+gulp.task('generate-service-worker', ['inline'], function(callback) {
   swPrecache.write(path.join(BUILD_PATH, 'sw.js'), {
-    staticFileGlobs: [BUILD_PATH + '/**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
+    staticFileGlobs: [BUILD_PATH + '**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
     stripPrefix: BUILD_PATH,
   }, callback);
 });
-
+ 
 /**
  * Copy app indexeddb mirror worker
  */
 gulp.task('app-indexeddb', function() {
   return gulp.src([
-    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
-    'node_modules/@npm-polymer/app-storage/app-indexeddb-mirror/common-worker-scope.js',
+    'bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
+    'bower_components/app-storage/app-indexeddb-mirror/common-worker-scope.js',
   ]).pipe(gulp.dest(BUILD_PATH));
 });
 
@@ -161,15 +170,6 @@ gulp.task('app-indexeddb', function() {
 gulp.task('del:before', function() {
   return del([
     BUILD_ROOT,
-  ]);
-});
-
-/**
- * Delete unneccessary build files
- */
-gulp.task('del:after', function() {
-  return del([
-    BUILD_PATH + 'bower_components/',
   ]);
 });
 
@@ -254,7 +254,7 @@ gulp.task('css', ['sass', 'clean-css']);
 gulp.task('build:before', ['del:before', 'css']);
 
 // After polymer build
-gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'del:after', 'generate-service-worker', 'app-indexeddb']);
+gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'generate-service-worker', 'app-indexeddb']);
 
 // Serve local
 gulp.task('serve:local', ['build:before', 'serve:browsersync:local']);
