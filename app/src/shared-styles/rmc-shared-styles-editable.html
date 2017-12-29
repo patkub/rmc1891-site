@@ -42,6 +42,23 @@ In typical use, import the element, and include it's styles
       .list-group {
         margin-bottom: 1rem;
       }
+      
+      /* what-you-see-is-what-you-get editor */
+      wysiwyg-e {
+        --wysiwyg-editable: {
+          /* editable content background */
+          background-color: #e9ecef;  /* bootstrap grays 200 */
+        }
+
+        /* match bootstrap dark navbar */
+        --wysiwyg-toolbar-background: #343a40;  /* bootstrap grays 800 */
+        --wysiwyg-toolbar-color: rgba(255, 255, 255, 0.5);
+        --wysiwyg-tool-icon-disabled-color: rgba(255, 255, 255, 0.5);
+        --wysiwyg-tool-icon-active-color: #fff;
+
+        width: 100%;
+        height: 500px;
+      }
     </style>
   </template>
 </dom-module>

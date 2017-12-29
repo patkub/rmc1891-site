@@ -52,31 +52,7 @@ In typical use, add the element to your body with the desired view:
     <template>
         <style include="bs4-shared-styles-buttons"></style>
         <style include="rmc-shared-styles-editable"></style>
-        <style include="rmc-shared-styles-views">
-            textarea {
-              min-width: 100%;
-            }
-            
-            #markdown {
-              font-size: 20px;
-            }
-            
-            wysiwyg-e {
-              --wysiwyg-editable: {
-                /* editable content background */
-                background-color: #e9ecef;  /* bootstrap grays 200 */
-              }
-
-              /* match bootstrap dark navbar */
-              --wysiwyg-toolbar-background: #343a40;  /* bootstrap grays 800 */
-              --wysiwyg-toolbar-color: rgba(255, 255, 255, 0.5);
-              --wysiwyg-tool-icon-disabled-color: rgba(255, 255, 255, 0.5);
-              --wysiwyg-tool-icon-active-color: #fff;
-
-              width: 100%;
-              height: 500px;
-            }
-        </style>
+        <style include="rmc-shared-styles-views"></style>
         
         <!-- load text -->
         <iron-ajax

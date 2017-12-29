@@ -83,6 +83,11 @@ Add the editable attribute to include features to edit card text content:
               display: none;
             }
           }
+          
+          /* what-you-see-is-what-you-get editor */
+          wysiwyg-e {
+            height: 300px;
+          }
         </style>
         
         <!-- load feature cards -->
@@ -104,47 +109,72 @@ Add the editable attribute to include features to edit card text content:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
-        <template is="dom-if" if="{{!editable}}">
-          <div class="card-deck">
-              <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
-                  <div class="card">
-                      <div class="card-img-wrapper">
-                        <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
-                      </div>
-                      <div class="card-body">
-                          <h4 class="card-title">[[card.title]]</h4>
-                          <p class="card-text">
-                            <!-- display content as html -->
-                            <div inner-h-t-m-l="[[card.text]]"></div>
-                          </p>
-                      </div>
-                      <div class="card-footer">
-                          <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
-                      </div>
-                  </div>
-              </template>
-          </div>
-        </template>
+        <!-- feature cards -->
+        <div class="card-deck">
+            <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                      <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">[[card.title]]</h4>
+                        <p class="card-text">
+                          <!-- display content as html -->
+                          <div inner-h-t-m-l="[[card.text]]"></div>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href$="[[card.link]]" class="btn btn-outline-primary" role="button"><span class$="fa fa-fw fa-[[card.icon]]" aria-hidden="true"></span>[[card.button]]</a>
+                    </div>
+                </div>
+            </template>
+        </div>
         
         <template is="dom-if" if="{{editable}}">
-          <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
-            <img src$="[[card.image]]" alt$="[[card.caption]]">
-            <h4>[[card.title]]</h4>
-            
-            <!-- what-you-see-is-what-you-get editor -->
-            <wysiwyg-e id="[[card.title]]Editor" value="[[card.text]]">
-              <wysiwyg-tool-bold></wysiwyg-tool-bold>
-              <wysiwyg-tool-italic></wysiwyg-tool-italic>
-              <wysiwyg-tool-underline></wysiwyg-tool-underline>
-              <wysiwyg-tool-clear></wysiwyg-tool-clear>
-              <wysiwyg-tool-link></wysiwyg-tool-link>
-              <wysiwyg-tool-image></wysiwyg-tool-image>
-              <wysiwyg-tool-ordered></wysiwyg-tool-ordered>
-              <wysiwyg-tool-unordered></wysiwyg-tool-unordered>
-              <wysiwyg-tool-justify right="" center="" full=""></wysiwyg-tool-justify>
-              <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
-            </wysiwyg-e>
-          </template>
+          <h3>About Card</h3>
+          <!-- what-you-see-is-what-you-get editor for About card -->
+          <wysiwyg-e id="AboutEditor" value="{{persistedFeatureCards.0.text}}">
+            <wysiwyg-tool-bold></wysiwyg-tool-bold>
+            <wysiwyg-tool-italic></wysiwyg-tool-italic>
+            <wysiwyg-tool-underline></wysiwyg-tool-underline>
+            <wysiwyg-tool-clear></wysiwyg-tool-clear>
+            <wysiwyg-tool-link></wysiwyg-tool-link>
+            <wysiwyg-tool-image></wysiwyg-tool-image>
+            <wysiwyg-tool-ordered></wysiwyg-tool-ordered>
+            <wysiwyg-tool-unordered></wysiwyg-tool-unordered>
+            <wysiwyg-tool-justify right="" center="" full=""></wysiwyg-tool-justify>
+            <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
+          </wysiwyg-e>
+          
+          <h3>Capabilities Card</h3>
+          <!-- what-you-see-is-what-you-get editor for Capabilities card -->
+          <wysiwyg-e id="CapabilitiesEditor" value="{{persistedFeatureCards.1.text}}">
+            <wysiwyg-tool-bold></wysiwyg-tool-bold>
+            <wysiwyg-tool-italic></wysiwyg-tool-italic>
+            <wysiwyg-tool-underline></wysiwyg-tool-underline>
+            <wysiwyg-tool-clear></wysiwyg-tool-clear>
+            <wysiwyg-tool-link></wysiwyg-tool-link>
+            <wysiwyg-tool-image></wysiwyg-tool-image>
+            <wysiwyg-tool-ordered></wysiwyg-tool-ordered>
+            <wysiwyg-tool-unordered></wysiwyg-tool-unordered>
+            <wysiwyg-tool-justify right="" center="" full=""></wysiwyg-tool-justify>
+            <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
+          </wysiwyg-e>
+          
+          <h3>Contact Card</h3>
+          <!-- what-you-see-is-what-you-get editor for Contact card -->
+          <wysiwyg-e id="ContactEditor" value="{{persistedFeatureCards.2.text}}">
+            <wysiwyg-tool-bold></wysiwyg-tool-bold>
+            <wysiwyg-tool-italic></wysiwyg-tool-italic>
+            <wysiwyg-tool-underline></wysiwyg-tool-underline>
+            <wysiwyg-tool-clear></wysiwyg-tool-clear>
+            <wysiwyg-tool-link></wysiwyg-tool-link>
+            <wysiwyg-tool-image></wysiwyg-tool-image>
+            <wysiwyg-tool-ordered></wysiwyg-tool-ordered>
+            <wysiwyg-tool-unordered></wysiwyg-tool-unordered>
+            <wysiwyg-tool-justify right="" center="" full=""></wysiwyg-tool-justify>
+            <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
+          </wysiwyg-e>
           
           <button class="btn btn-primary btn-submit" on-tap="_save">Save</button>
           
