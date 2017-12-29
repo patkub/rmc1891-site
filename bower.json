@@ -37,6 +37,7 @@
     "iron-image": "PolymerElements/iron-image#^2.1.2",
     "iron-pages": "PolymerElements/iron-pages#^2.0.1",
     "marked-element": "PolymerElements/marked-element#^2.3.2",
-    "paper-progress": "PolymerElements/paper-progress#^2.0.1"
+    "paper-progress": "PolymerElements/paper-progress#^2.0.1",
+    "wysiwyg-e": "miztroh/wysiwyg-e#^2.1.0"
   }
 }
