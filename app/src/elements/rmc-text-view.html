@@ -10,9 +10,6 @@
 <!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- Marked Library -->
-<link rel="import" href="../../../bower_components/marked-element/marked-element.html">
-
 <!-- what-you-see-is-what-you-get editor -->
 <link rel="import" href="../../../bower_components/wysiwyg-e/wysiwyg-e.html">
 
@@ -108,7 +105,7 @@ In typical use, add the element to your body with the desired view:
         
         <template is="dom-if" if="{{!editable}}">
           <!-- display content as html -->
-          <div inner-h-t-m-l="{{persistedViewText}}"></div>
+          <div inner-h-t-m-l="[[persistedViewText]]"></div>
         </template>
         
         <template is="dom-if" if="{{editable}}">
