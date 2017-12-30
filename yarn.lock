@@ -1607,9 +1607,9 @@ bs-recipes@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
 
-bs4-polymer@0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.8.0.tgz#2b98dd4fbf1285c40ca5e750c37b77c832de0240"
+bs4-polymer@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/bs4-polymer/-/bs4-polymer-0.9.0.tgz#100a63341e59b0cee7667c0fa19b0644ba0fd7b9"
   dependencies:
     bootstrap "4.0.0-beta.2"
     jquery "^3.2.1"
