@@ -19,11 +19,11 @@
 <!-- Iron Pages -->
 <link rel="import" href="../../../bower_components/iron-pages/iron-pages.html">
 
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
+
 <!-- BS4 Grid Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-grid/bs4-grid.html">
-
-<!-- BS4 Buttons -->
-<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
 <!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
@@ -61,13 +61,8 @@ In typical use, add the element to an `<iron-pages>` element:
 <dom-module id="view-admin">
   <template>
     <style include="bs4-shared-styles-grid"></style>
-    <style include="bs4-shared-styles-buttons"></style>
     <style include="bs4-shared-styles-forms"></style>
-    <style include="rmc-shared-styles-views">
-      .btn-submit {
-        margin-bottom: 1rem;
-      }
-    </style>
+    <style include="rmc-shared-styles-views"></style>
     
     <!-- container -->
     <div class="container">
@@ -98,7 +93,7 @@ In typical use, add the element to an `<iron-pages>` element:
                     <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 
-                <button on-tap="login" name="submit" type="submit" class="btn btn-primary btn-submit">Login</button>
+                <bs4-button name="submit" type="submit" context="primary" text="Login" on-tap="login"></bs4-button>
             </form>
         </template>
         
@@ -113,7 +108,7 @@ In typical use, add the element to an `<iron-pages>` element:
                 loading="{{loading}}">
             </iron-ajax>
             
-            <button on-tap="logout" class="btn btn-primary btn-submit">Logout</button>
+            <bs4-button context="primary" text="Logout" on-tap="logout"></bs4-button>
             
             <!-- admin page naviagtion tabs -->
             <rmc-admin-tabs active="{{page}}"></rmc-admin-tabs>

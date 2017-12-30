@@ -13,8 +13,8 @@
 <!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- BS4 Buttons -->
-<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
 <!-- BS4 Tables -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-tables/bs4-tables.html">
@@ -45,7 +45,6 @@ Add the editable attribute to include features to edit the list:
 -->
 <dom-module id="rmc-tool-room-equipment">
     <template>
-        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-tables"></style>
         <style include="bs4-shared-styles-forms"></style>
         <style include="rmc-shared-styles-editable"></style>
@@ -92,7 +91,8 @@ Add the editable attribute to include features to edit the list:
                     <input type="text" class="form-control" placeholder="New machine" value="{{newMachine::input}}">
                 </div>
                 
-                <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}">Add</button>
+                <bs4-button name="submit" type="submit" context="primary" text="Add"
+                  on-tap="_addMachine" count$="{{newCount}}" machine$="{{newMachine}}"></bs4-button>
             </form>
             
             <!-- iron ajax request to delete machine -->

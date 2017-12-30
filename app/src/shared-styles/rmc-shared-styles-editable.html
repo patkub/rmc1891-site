@@ -15,15 +15,6 @@ In typical use, import the element, and include it's styles
 <dom-module id="rmc-shared-styles-editable">
   <template>
     <style>
-      .btn-submit {
-        margin-bottom: 1rem;
-        color: #fff;
-      }
-      
-      bs4-button a {
-        margin-bottom: 1rem;
-      }
-      
       .fa.float-right {
         line-height: inherit;
         position: absolute;
@@ -41,6 +32,15 @@ In typical use, import the element, and include it's styles
       
       .list-group {
         margin-bottom: 1rem;
+      }
+      
+      /* bs4-polymer buttons */
+      bs4-button {
+        --bs4-polymer-button: {
+          margin-bottom: 1rem;
+          color: #fff !important;
+          cursor: pointer;
+        }
       }
       
       /* what-you-see-is-what-you-get editor */

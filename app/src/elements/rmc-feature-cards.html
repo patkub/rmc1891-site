@@ -28,6 +28,9 @@
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/justify.html">
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/heading.html">
 
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
+
 <!-- BS4 Buttons Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
 
@@ -79,8 +82,15 @@ Add the editable attribute to include features to edit card text content:
             height: auto;
           }
           
+          /* what-you-see-is-what-you-get editor */
+          wysiwyg-e {
+            height: 300px;
+            margin-bottom: 1rem;
+          }
+          
           /* card bottom margins */
-          .card-deck, .card {
+          .card-deck,
+          .card {
             margin-bottom: 1rem;
           }
           
@@ -94,12 +104,6 @@ Add the editable attribute to include features to edit card text content:
             .card-footer {
               display: none;
             }
-          }
-          
-          /* what-you-see-is-what-you-get editor */
-          wysiwyg-e {
-            height: 300px;
-            margin-bottom: 1rem;
           }
         </style>
         
@@ -189,7 +193,7 @@ Add the editable attribute to include features to edit card text content:
             <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
           </wysiwyg-e>
           
-          <button class="btn btn-primary btn-submit" on-tap="_save">Save</button>
+          <bs4-button context="primary" text="Save" on-tap="_save"></bs4-button>
           
           <!-- iron ajax request to update text -->
           <iron-ajax

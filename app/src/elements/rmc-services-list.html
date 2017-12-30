@@ -13,8 +13,8 @@
 <!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- BS4 Buttons -->
-<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
+<!-- BS4 Button -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
 
 <!-- BS4 List Group Styles -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-list-group/bs4-list-group.html">
@@ -45,7 +45,6 @@ Add the editable attribute to include features to edit the list:
 -->
 <dom-module id="rmc-services-list">
     <template>
-        <style include="bs4-shared-styles-buttons"></style>
         <style include="bs4-shared-styles-list-group"></style>
         <style include="bs4-shared-styles-forms"></style>
         <style include="rmc-shared-styles-editable"></style>
@@ -87,7 +86,7 @@ Add the editable attribute to include features to edit the list:
                     <input type="text" class="form-control" id="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
-                <button name="submit" type="submit" class="btn btn-primary btn-submit" on-tap="_addService" service$="{{newService}}">Add</button>
+                <bs4-button context="primary" text="Add" on-tap="_addService" service$="{{newService}}"></bs4-button>
             </form>
             
             <!-- iron ajax request to delete service -->
