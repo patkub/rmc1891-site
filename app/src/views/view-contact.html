@@ -84,7 +84,7 @@ In typical use, add the element to an `<iron-pages>` element:
                       <textarea class="form-control" name="message" rows="20" value="{{message::input}}"></textarea>
                   </div>
                   
-                  <bs4-button name="submit" type="submit" context="primary" text="Submit"
+                  <bs4-button name="submit" context="primary" text="Submit"
                     on-tap="_sendEmail" email$="{{email}}" subject$="{{subject}}" message$="{{message}}"></bs4-button>
               </form>
           </div>
