@@ -24,6 +24,7 @@
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/unordered.html">
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/justify.html">
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/heading.html">
+<link rel="import" href="wysiwyg-e-save.html">
 
 <!-- BS4 Buttons -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-buttons/bs4-buttons.html">
@@ -97,13 +98,12 @@ In typical use, add the element to your body with the desired view:
               <wysiwyg-tool-unordered></wysiwyg-tool-unordered>
               <wysiwyg-tool-justify right="" center="" full=""></wysiwyg-tool-justify>
               <wysiwyg-tool-heading h1="" h2="" h3="" h4="" h5="" h6=""></wysiwyg-tool-heading>
+              <wysiwyg-tool-save saveid="[[view]]"></wysiwyg-tool-save>
             </wysiwyg-e>
             
-            <button class="btn btn-primary btn-submit" on-tap="_save" text$="{{persistedViewText}}">Save</button>
-            
-            <!-- iron ajax request to update text -->
+            <!-- iron ajax request to save text -->
             <iron-ajax
-                id="[[view]]updateTextViewAjax"
+                id="[[view]]saveTextViewAjax"
                 url="api/put/text/[[view]]"
                 handle-as="json"
                 method="PUT"
@@ -143,21 +143,47 @@ In typical use, add the element to your body with the desired view:
           },
         };
       }
+      
+      /** Element is upgraded (when an element is created,
+        or when a previously-created element becomes defined). */
+      constructor() {
+        super();
         
+        // bind save clicked listener
+        this._boundWysiwygESaveClickedListener =
+          this._wysiwygESaveClickedListener.bind(this);
+      }
+      
+      /** Element created. */
+      connectedCallback() {
+        super.connectedCallback();
+        
+        // add save clicked listener to window
+        window.addEventListener('wysiwygESaveClicked', this._boundWysiwygESaveClickedListener);
+      }
+      
+      /** Element destroyed. */
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        
+        // remove save clicked listener from window
+        window.removeEventListener('wysiwygESaveClicked', this._boundWysiwygESaveClickedListener);
+      }
+      
       /**
-       * Saves the text
+       * wysiwyg editor save button clicked listener.
        *
-       * @param {Object} e - on-tap event, 'service' attribute is the service to add.
+       * @param {e} e - wysiwygESaveClicked event.
        */
-      _save(e) {
-        // get new text
-        let text = e.target.getAttribute('text');
+      _wysiwygESaveClickedListener(e) {
+        // check if save button was pressed for this text view
+        if (e.detail.saveid === this.view) {
+          // save the text
+          super.doRequestBody(this.view + 'saveTextViewAjax', 'text=' + this.persistedViewText);
 
-        // update the text
-        super.doRequestBody(this.view + 'updateTextViewAjax', 'text=' + text);
-
-        // update text
-        super.doRequest(this.view + 'textViewAjax');
+          // update text view
+          super.doRequest(this.view + 'textViewAjax');
+        }
       }
     }
 
