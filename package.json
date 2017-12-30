@@ -22,7 +22,8 @@
     "bootstrap": "4.0.0-beta.2",
     "bs4-polymer": "0.6.0",
     "font-awesome": "^4.7.0",
-    "popper.js": "^1.12.1",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
     "tether": "^1.4.0"
   },
   "devDependencies": {
@@ -44,7 +45,6 @@
     "gulp-strip-css-comments": "^1.2.0",
     "gulp-stylelint": "^5.0.0",
     "gulp-watch": "^4.3.11",
-    "jquery": "^3.2.1",
     "minimist": "^1.2.0",
     "node-sass": "^4.5.3",
     "polymer-cli": "^1.2.0",
