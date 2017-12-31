@@ -12,12 +12,9 @@
   ],
   "sources": [
     "app/src/**/*",
-    "app/php/**/*",
     "app/images/**/*",
-    "bower.json",
-    "package.json",
-    "manifest.json",
-    ".htaccess"
+    "index.html",
+    "manifest.json"
   ],
   "extraDependencies": [
     "node_modules/bootstrap/dist/js/bootstrap.min.js",

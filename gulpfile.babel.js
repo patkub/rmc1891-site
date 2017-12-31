@@ -9,29 +9,53 @@
 
 // include gulp & tools
 import gulp from 'gulp';
+import gulpif from 'gulp-if';
 import del from 'del';
+import log from 'fancy-log';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
+import ignore from 'gulp-ignore';
 import inlineSource from 'gulp-inline-source';
 import header from 'gulp-header';
-import path from 'path';
+import mergeStream from 'merge-stream';
+import imagemin from 'gulp-imagemin';
+
+// stylesheet tools
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 import stripCSSComments from 'gulp-strip-css-comments';
-// import styleLint from 'gulp-stylelint';
+
+// minification tools
+const htmlmin = require('gulp-htmlmin');
+const cssSlam = require('css-slam').gulp;
+const uglify = require('gulp-uglifyes');
+const babel = require('gulp-babel');
+
+// configs
+import polymerJson from './polymer.json';
+import swPrecacheConfig from './sw-precache-config.js';
+import pkg from './package.json';
+
+// polymer build
+const polymerBuild = require('polymer-build');
+const polymerProject = new polymerBuild.PolymerProject(polymerJson);
 import swPrecache from 'sw-precache';
-import sftp from 'gulp-sftp';
-import minimist from 'minimist';
+
+// build and public_html directories
+const buildDirectory = 'build';
+const buildHTMLDirectory = buildDirectory + '/public_html';
+
+// browsersync
 import browserSync from 'browser-sync';
 import historyFallback from 'connect-history-api-fallback';
-import pkg from './package.json';
-import poly from './polymer.json';
+const reload = browserSync.reload;
 
-// build path based on build name in polymer.json
-const BUILD_ROOT = 'build/';
-const BUILD_PATH = BUILD_ROOT + poly.builds[0].name + '/';
+// sftp
+import sftp from 'gulp-sftp';
+import minimist from 'minimist';
 
+// header
 const banner = ['<!--',
   '<%= pkg.name %> - <%= pkg.description %>',
   '@version v<%= pkg.version %>',
@@ -42,7 +66,207 @@ const banner = ['<!--',
   '-->',
   ''].join('\n');
 
-const reload = browserSync.reload;
+/**
+ * Waits for the given ReadableStream.
+ */
+function waitFor(stream) {
+  return new Promise((resolve, reject) => {
+    stream.on('end', resolve);
+    stream.on('error', reject);
+  });
+}
+
+// Compile & Minify Stylesheets
+gulp.task('css', function() {
+  return gulp.src('app/scss/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(purifyCSS([
+      'node_modules/bootstrap/dist/js/bootstrap.min.js',
+      'app/src/**/*.html',
+      'index.html',
+    ]))
+    .pipe(stripCSSComments({
+      preserve: false,
+    }))
+    .pipe(cleanCSS({
+      level: 2,
+    }))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('app/css/'));
+});
+
+/**
+ * Polymer build.
+ */
+function build() {
+  return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+
+    // Lets create some inline code splitters in case you need them later in your build.
+    let sourcesStreamSplitter = new polymerBuild.HtmlSplitter();
+    let dependenciesStreamSplitter = new polymerBuild.HtmlSplitter();
+    let buildStreamSplitter = new polymerBuild.HtmlSplitter();
+
+    // Okay, so first thing we do is clear the build directory
+    log(`Deleting ${buildDirectory} directory...`);
+    del([buildDirectory])
+      .then(() => {
+
+        // Let's start by getting your source files. These are all the files
+        // in your `src/` directory, or those that match your polymer.json
+        // "sources"  property if you provided one.
+        let sourcesStream = polymerProject.sources()
+
+          // If you want to optimize, minify, compile, or otherwise process
+          // any of your source code for production, you can do so here before
+          // merging your sources and dependencies together.
+          .pipe(gulpif(/\.(png|gif|jpg|svg)$/, imagemin()))
+            
+          // Inline critical path CSS
+          .pipe(gulpif('index.html', inlineSource()))
+          
+          // Add header
+          .pipe(gulpif('index.html', header(banner, {pkg: pkg})))
+          
+          // The `sourcesStreamSplitter` created above can be added here to
+          // pull any inline styles and scripts out of their HTML files and
+          // into seperate CSS and JS files in the build stream. Just be sure
+          // to rejoin those files with the `.rejoin()` method when you're done.
+          .pipe(sourcesStreamSplitter.split())
+          
+          // Minify JS
+          .pipe(gulpif(/\.js$/, babel({
+            presets: ['es2015'],
+          })))
+          
+          .pipe(gulpif(/\.js$/, uglify({
+            warnings: true,
+            ecma: 8,
+          })))
+
+          // Minify CSS
+          .pipe(gulpif(/\.(html|css)$/, cssSlam()))
+
+          // Minify HTML
+          .pipe(gulpif(/\.html$/, htmlmin({
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+          })))
+          
+          // Remember, you need to rejoin any split inline code when you're done.
+          .pipe(sourcesStreamSplitter.rejoin());
+
+
+        // Similarly, you can get your dependencies seperately and perform
+        // any dependency-only optimizations here as well.
+        let dependenciesStream = polymerProject.dependencies()
+          .pipe(dependenciesStreamSplitter.split())
+          // Add any dependency optimizations here.
+          .pipe(dependenciesStreamSplitter.rejoin());
+
+
+        // Okay, now let's merge your sources & dependencies together into a single build stream.
+        let buildStream = mergeStream(sourcesStream, dependenciesStream)
+          .once('data', () => {
+            log('Analyzing build dependencies...');
+          });
+        
+        buildStream = buildStream
+          // If you want bundling, pass the stream to polymerProject.bundler.
+          // This will bundle dependencies into your fragments so you can lazy
+          // load them.
+          .pipe(polymerProject.bundler())
+          
+          // Split build stream
+          .pipe(buildStreamSplitter.split())
+          
+          // Minify JS
+          .pipe(gulpif(/\.js$/, babel({
+            presets: ['es2015'],
+          })))
+          
+          .pipe(gulpif(/\.js$/, uglify({
+            warnings: true,
+            ecma: 8,
+          })))
+          
+          // Minify CSS
+          .pipe(gulpif(/\.(html|css)$/, cssSlam()))
+
+          // Minify HTML
+          .pipe(gulpif(/\.html$/, htmlmin({
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+          })))
+          
+          // Rejoin build stream
+          .pipe(buildStreamSplitter.rejoin())
+        
+          // Include the Custom Elements ES5 Adapter
+          .pipe(polymerProject.addCustomElementsEs5Adapter())
+        
+          // Now let's generate the HTTP/2 Push Manifest
+          .pipe(polymerProject.addPushManifest())
+        
+          // Okay, time to pipe to the build directory
+          .pipe(gulp.dest(buildHTMLDirectory));
+
+        // waitFor the buildStream to complete
+        return waitFor(buildStream);
+      })
+      .then(() => {
+        // Okay, now let's generate the Service Worker
+        log('Generating the Service Worker...');
+        return polymerBuild.addServiceWorker({
+          project: polymerProject,
+          buildRoot: buildHTMLDirectory,
+          path: 'sw.js',
+          bundled: true,
+          swPrecacheConfig: swPrecacheConfig,
+        });
+      })
+      .then(() => {
+        // Copy app indexeddb mirror worker
+        log('Copying app indexeddb mirror worker...');
+        return gulp.src([
+          'bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
+          'bower_components/app-storage/app-indexeddb-mirror/common-worker-scope.js',
+        ]).pipe(gulp.dest(buildHTMLDirectory));
+      })
+      .then(() => {
+        // Copy vendor
+        log('Copying composer php dependencies...');
+        return gulp.src([
+          'vendor/**/*',
+          'vendor/**/.*',
+        ]).pipe(gulp.dest(buildDirectory + '/vendor'));
+      })
+      .then(() => {
+        // Copy api lib
+        log('Copying api lib...');
+        return gulp.src([
+          'api/lib/**/*',
+          'api/lib/**/.*',
+        ]).pipe(gulp.dest(buildDirectory + '/api/'));
+      })
+      .then(() => {
+        // Copy api public
+        log('Copying api public...');
+        return gulp.src([
+          'api/public/**/*',
+          'api/public/**/.*',
+        ]).pipe(gulp.dest(buildHTMLDirectory + '/api/'));
+      })
+      .then(() => {
+        // You did it!
+        log('Build complete!');
+        resolve();
+      });
+  });
+}
 
 /**
  * Defines the list of resources to watch for changes.
@@ -61,117 +285,6 @@ function watch() {
     'index.html',
   ], reload);
 }
-
-// Stylelint
-// gulp.task('lint:css', function() {
-//   return gulp.src([
-//     'docs/**/*.html',
-//     'app/src/**/*.html',
-//     'test/**/*.html',
-//     'index.html',
-//   ]).pipe(styleLint({
-//     reporters: [
-//       {formatter: 'string', console: true},
-//     ],
-//   }));
-// });
-
-// Compile Stylesheets
-gulp.task('sass', function() {
-  return gulp.src('app/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('app/css/'));
-});
-
-// Minify CSS
-gulp.task('clean-css', ['sass'], function() {
-  return gulp.src('app/css/rmc-theme.css')
-    .pipe(purifyCSS([
-      'node_modules/bootstrap/dist/js/bootstrap.min.js',
-      'app/src/**/*.html',
-      'index.html',
-    ]))
-    .pipe(stripCSSComments({
-      preserve: false,
-    }))
-    .pipe(cleanCSS({
-      level: 2,
-    }))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('app/css/'));
-});
-
-/**
- * Copy api
- */
-gulp.task('copy:api', function() {
-  return gulp.src([
-    'api/api_lib/**/*',
-    'api/api_lib/**/.*',
-  ]).pipe(gulp.dest(BUILD_ROOT + 'api/'));
-});
-
-/**
- * Copy public api
- */
-gulp.task('copy:api:public', function() {
-  return gulp.src([
-    'api/api_public/**/*',
-    'api/api_public/**/.*',
-  ]).pipe(gulp.dest(BUILD_PATH + 'api/'));
-});
-
-/**
- * Copy vendor
- */
-gulp.task('copy:vendor', function() {
-  return gulp.src([
-    'vendor/**/*',
-    'vendor/**/.*',
-  ]).pipe(gulp.dest(BUILD_ROOT + 'vendor/'));
-});
-
-/**
- * Inline CSS & banner
- */
-gulp.task('inline', function() {
-  return gulp.src(BUILD_PATH + 'index.html')
-    .pipe(inlineSource({
-      rootpath: './',
-      attribute: 'inline=""',
-    }))
-    .pipe(header(banner, {pkg: pkg}))
-    .pipe(gulp.dest(BUILD_PATH));
-});
-
-/**
- * Generate precaching service worker
- */
-gulp.task('generate-service-worker', ['inline'], function(callback) {
-  swPrecache.write(path.join(BUILD_PATH, 'sw.js'), {
-    staticFileGlobs: [BUILD_PATH + '**/*.{html,css,js,otf,eot,svg,ttf,woff,woff2,png,jpg,ico}'],
-    stripPrefix: BUILD_PATH,
-  }, callback);
-});
- 
-/**
- * Copy app indexeddb mirror worker
- */
-gulp.task('app-indexeddb', function() {
-  return gulp.src([
-    'bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js',
-    'bower_components/app-storage/app-indexeddb-mirror/common-worker-scope.js',
-  ]).pipe(gulp.dest(BUILD_PATH));
-});
-
-/**
- * Delete build directory
- */
-gulp.task('del:before', function() {
-  return del([
-    BUILD_ROOT,
-  ]);
-});
 
 /**
  * Watch resources for changes.
@@ -198,12 +311,12 @@ gulp.task('serve:browsersync:local', () => {
 });
 
 /**
- * Serves production landing page from BUILD_PATH directory.
+ * Serves production landing page from buildHTMLDirectory directory.
  */
 gulp.task('serve:browsersync:build', () => {
   browserSync({
     server: {
-      baseDir: BUILD_PATH,
+      baseDir: buildHTMLDirectory,
       middleware: [
         historyFallback(),
       ],
@@ -220,7 +333,7 @@ gulp.task('deploy:db', function() {
   let args = minimist(process.argv.slice());
   
   // replace database connection info
-  return gulp.src('build/api/config.ini')
+  return gulp.src(buildDirectory + '/api/config.ini')
     .pipe(replace('{{host}}', args.dbhost))
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
@@ -237,8 +350,8 @@ gulp.task('deploy:files', function() {
   
   // copy files
   return gulp.src([
-    BUILD_ROOT + '**/*',
-    BUILD_ROOT + '**/.*',
+    buildDirectory + '/**/*',
+    buildDirectory + '/**/.*',
   ]).pipe(sftp({
     host: args.host,
     user: args.user,
@@ -247,17 +360,9 @@ gulp.task('deploy:files', function() {
   }));
 });
 
-// Compile Stylesheets
-gulp.task('css', ['sass', 'clean-css']);
-
-// Before polymer build
-gulp.task('build:before', ['del:before', 'css']);
-
-// After polymer build
-gulp.task('build:after', ['inline', 'copy:api', 'copy:api:public', 'copy:vendor', 'generate-service-worker', 'app-indexeddb']);
-
-// Serve local
-gulp.task('serve:local', ['build:before', 'serve:browsersync:local']);
-
-// Serve production
+// Browsersync serve
+gulp.task('serve:local', ['css', 'serve:browsersync:local']);
 gulp.task('serve:build', ['serve:browsersync:build']);
+
+// Build
+gulp.task('build', ['css'], build);
