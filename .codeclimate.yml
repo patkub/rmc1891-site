@@ -13,11 +13,7 @@ engines:
   fixme:
     enabled: true
   duplication:
-    enabled: true
-    config:
-      languages:
-      - javascript:
-      - php:
+    enabled: false
   phpmd:
     enabled: true
     checks:
