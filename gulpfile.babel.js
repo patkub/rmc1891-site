@@ -4,6 +4,8 @@
  * @author Patrick Kubiak
  */
 
+/* global require Promise */
+
 'use strict';
 
 // include gulp & tools
@@ -38,7 +40,6 @@ import pkg from './package.json';
 // polymer build
 const polymerBuild = require('polymer-build');
 const polymerProject = new polymerBuild.PolymerProject(polymerJson);
-import swPrecache from 'sw-precache';
 
 // build and public_html directories
 const buildDirectory = 'build';
@@ -66,6 +67,8 @@ const banner = ['<!--',
 
 /**
  * Waits for the given ReadableStream.
+ * @param {ReadableStream} stream The given stream.
+ * @return {Promise}.
  */
 function waitFor(stream) {
   return new Promise((resolve, reject) => {
@@ -95,10 +98,10 @@ gulp.task('css', function() {
 
 /**
  * Polymer build.
+ * @return {Promise}.
  */
 function build() {
-  return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
-
+  return new Promise((resolve, reject) => {
     // Lets create some inline code splitters in case you need them later in your build.
     let sourcesStreamSplitter = new polymerBuild.HtmlSplitter();
     let dependenciesStreamSplitter = new polymerBuild.HtmlSplitter();
@@ -108,7 +111,6 @@ function build() {
     log(`Deleting ${buildDirectory} directory...`);
     del([buildDirectory])
       .then(() => {
-
         // Let's start by getting your source files. These are all the files
         // in your `src/` directory, or those that match your polymer.json
         // "sources"  property if you provided one.
