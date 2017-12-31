@@ -346,7 +346,7 @@ gulp.task('deploy:db', function() {
     .pipe(replace('{{name}}', args.dbname))
     .pipe(replace('{{user}}', args.dbuser))
     .pipe(replace('{{pass}}', args.dbpass))
-    .pipe(gulp.dest('build/api/'));
+    .pipe(gulp.dest(buildDirectory + '/api/'));
 });
 
 /**
