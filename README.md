@@ -69,7 +69,7 @@ yarn run serve:local
 ```
 
 This command serves the production, minified version of the app at
-http://127.0.0.1:3000 and Browsersync UI at http://127.0.0.1:3001:
+http://127.0.0.1:3002 and Browsersync UI at http://127.0.0.1:3003:
 
 ```sh
 yarn run serve:build

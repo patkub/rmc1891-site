@@ -304,6 +304,10 @@ gulp.task('serve:browsersync:local', () => {
         historyFallback(),
       ],
     },
+    port: 3000,
+    ui: {
+      port: 3001,
+    },
     browser: 'chrome',
   });
 
@@ -320,6 +324,10 @@ gulp.task('serve:browsersync:build', () => {
       middleware: [
         historyFallback(),
       ],
+    },
+    port: 3002,
+    ui: {
+      port: 3003,
     },
     browser: 'chrome',
   });
