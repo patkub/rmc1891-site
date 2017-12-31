@@ -1,8 +1,7 @@
 /**
  * RMC gulpfile
  *
- * @license
- * Copyright (c) 2017 Rogers Manufacturing Company. All rights reserved.
+ * @author Patrick Kubiak
  */
 
 'use strict';
@@ -14,7 +13,6 @@ import del from 'del';
 import log from 'fancy-log';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
-import ignore from 'gulp-ignore';
 import inlineSource from 'gulp-inline-source';
 import header from 'gulp-header';
 import mergeStream from 'merge-stream';
@@ -29,7 +27,7 @@ import stripCSSComments from 'gulp-strip-css-comments';
 // minification tools
 const htmlmin = require('gulp-htmlmin');
 const cssSlam = require('css-slam').gulp;
-const uglify = require('gulp-uglifyes');
+const uglifyes = require('gulp-uglifyes');
 const babel = require('gulp-babel');
 
 // configs
@@ -138,7 +136,7 @@ function build() {
             presets: ['es2015'],
           })))
           
-          .pipe(gulpif(/\.js$/, uglify({
+          .pipe(gulpif(/\.js$/, uglifyes({
             warnings: true,
             ecma: 8,
           })))
@@ -186,7 +184,7 @@ function build() {
             presets: ['es2015'],
           })))
           
-          .pipe(gulpif(/\.js$/, uglify({
+          .pipe(gulpif(/\.js$/, uglifyes({
             warnings: true,
             ecma: 8,
           })))
