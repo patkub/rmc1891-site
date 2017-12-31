@@ -124,9 +124,6 @@ function build() {
           // Inline critical path CSS
           .pipe(gulpif('index.html', inlineSource()))
           
-          // Add header
-          .pipe(gulpif('index.html', header(banner, {pkg: pkg})))
-          
           // The `sourcesStreamSplitter` created above can be added here to
           // pull any inline styles and scripts out of their HTML files and
           // into seperate CSS and JS files in the build stream. Just be sure
@@ -153,7 +150,7 @@ function build() {
             removeAttributeQuotes: true,
             removeComments: true,
           })))
-          
+
           // Remember, you need to rejoin any split inline code when you're done.
           .pipe(sourcesStreamSplitter.rejoin());
 
@@ -201,6 +198,9 @@ function build() {
             removeAttributeQuotes: true,
             removeComments: true,
           })))
+          
+          // Add header
+          .pipe(gulpif('index.html', header(banner, {pkg: pkg})))
           
           // Rejoin build stream
           .pipe(buildStreamSplitter.rejoin())
