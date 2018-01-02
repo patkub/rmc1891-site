@@ -34,12 +34,5 @@
       "set-unknown-attribute",
       "databind-with-unknown-property"
     ]
-  },
-  "builds": [
-    {
-      "preset": "es5-bundled",
-      "name": "public_html",
-      "addServiceWorker": false
-    }
-  ]
+  }
 }
