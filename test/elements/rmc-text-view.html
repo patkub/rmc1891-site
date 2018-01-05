@@ -27,12 +27,14 @@
           rmcTextView = fixture('RMCTextView');
         });
         
-        test('defines the "view" property', function() {
-          assert.equal(rmcTextView.view, 'view');
-        });
-        
-        test('defines the "title" property', function() {
-          assert.equal(rmcTextView.title, 'title');
+        suite('defines properties', function() {
+          test('defines the "view" property', function() {
+            assert.equal(rmcTextView.view, 'view');
+          });
+          
+          test('defines the "title" property', function() {
+            assert.equal(rmcTextView.title, 'title');
+          });
         });
       });
     </script>

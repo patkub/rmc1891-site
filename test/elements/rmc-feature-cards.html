@@ -56,11 +56,13 @@
           server.restore();
         });
         
-        test('defines the "editable" property', function() {
-          assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
+        suite('defines properties', function() {
+          test('defines the "editable" property', function() {
+            assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
+          });
         });
         
-        suite('when loading feature cards JSON', function() {
+        suite('when loading feature cards', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
             featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsAjax');

@@ -56,11 +56,13 @@
           server.restore();
         });
         
-        test('defines the "editable" property', function() {
-          assert.equal(rmcToolRoomEquipment.hasAttribute('editable'), true);
+        suite('defines properties', function() {
+          test('defines the "editable" property', function() {
+            assert.equal(rmcToolRoomEquipment.hasAttribute('editable'), true);
+          });
         });
         
-        suite('when loading tool room equipment JSON', function() {
+        suite('when loading tool room equipment', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
             equipmentAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#equipmentAjax');

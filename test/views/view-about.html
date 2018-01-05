@@ -31,27 +31,29 @@
           assert.equal(aboutView.loading, false);
         });
         
-        test('it should have a text view', function(done) {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('.container > rmc-text-view');
-            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
-            done();
+        suite('contians elements', function() {
+          test('it should have a text view', function(done) {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('.container > rmc-text-view');
+              assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+              done();
+            });
           });
-        });
 
-        test('text view should be about', function(done) {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.view, 'about');
-            done();
+          test('text view should be about', function(done) {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.view, 'about');
+              done();
+            });
           });
-        });
-        
-        test('text view title should be About', function() {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.title, 'About');
-            done();
+          
+          test('text view title should be About', function() {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.title, 'About');
+              done();
+            });
           });
         });
       });

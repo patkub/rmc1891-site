@@ -27,27 +27,29 @@
           rapidPrototypingView = fixture('RapidPrototypingView');
         });
         
-        test('it should have a text view', function(done) {
-          flush(function() {
-            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
-            done();
+        suite('contians elements', function() {
+          test('it should have a text view', function(done) {
+            flush(function() {
+              let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+              done();
+            });
           });
-        });
-        
-        test('text view should be rapid-prototyping', function(done) {
-          flush(function() {
-            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.view, 'rapid-prototyping');
-            done();
+          
+          test('text view should be rapid-prototyping', function(done) {
+            flush(function() {
+              let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.view, 'rapid-prototyping');
+              done();
+            });
           });
-        });
-        
-        test('text view title should be Rapid Prototyping', function(done) {
-          flush(function() {
-            let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.title, 'Rapid Prototyping');
-            done();
+          
+          test('text view title should be Rapid Prototyping', function(done) {
+            flush(function() {
+              let textView = rapidPrototypingView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.title, 'Rapid Prototyping');
+              done();
+            });
           });
         });
       });
