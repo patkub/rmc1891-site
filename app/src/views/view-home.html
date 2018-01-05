@@ -8,7 +8,7 @@
 <link rel="import" href="../elements/rmc-jumbotron.html">
 
 <!-- Carousel -->
-<link rel="import" href="../elements/carousel/my-carousel.html">
+<link rel="import" href="../elements/rmc-carousel.html">
 
 <!-- Feature Cards -->
 <link rel="import" href="../elements/rmc-feature-cards.html">
@@ -37,7 +37,7 @@ In typical use, add the element to an `<iron-pages>` element:
   <template>
     <style include="bs4-shared-styles-grid"></style>
     <style include="rmc-shared-styles-views">
-        my-carousel {
+        rmc-carousel {
           width: 100%;
           max-height: 400px;
           contain: content;
@@ -45,14 +45,14 @@ In typical use, add the element to an `<iron-pages>` element:
           overflow: hidden;
         }
 
-        my-carousel::after {
+        rmc-carousel::after {
           display: block;
           content: '';
           padding-top: 50%; /* 2:1 = height is 50% of width */
         }
         
         /* center image inside carousel */
-        my-carousel img {
+        rmc-carousel img {
           position: absolute;
           top: -9999px;
           bottom: -9999px;
@@ -98,17 +98,17 @@ In typical use, add the element to an `<iron-pages>` element:
         }
         
         @media print {
-          my-carousel {
+          rmc-carousel {
             display: none;
           }
         }
     </style>
     
-    <my-carousel>
+    <rmc-carousel>
       <img data-src="app/images/carousel/slide1.jpg">
       <img data-src="app/images/carousel/slide2.jpg">
       <img data-src="app/images/carousel/slide3.jpg">
-    </my-carousel>
+    </rmc-carousel>
     
     <!-- container -->
     <div class="container">
