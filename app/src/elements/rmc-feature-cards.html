@@ -211,7 +211,11 @@ Add the editable attribute to include features to edit card text content:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
     /* global RMCEditableMixin RMCLoadingMixin */
     
-    /** Class representing feature cards. */
+    /**
+     * Class representing feature cards.
+     * @appliesMixin RMCEditableMixin
+     * @appliesMixin RMCLoadingMixin
+     */
     class RMCFeatureCards extends Polymer.GestureEventListeners(
       RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */

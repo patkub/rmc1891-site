@@ -131,7 +131,10 @@ In typical use, add the element to an `<iron-pages>` element:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
     /* global RMCLoadingMixin */
     
-    /** Class representing home view. */
+    /**
+     * Class representing home view.
+     * @appliesMixin RMCLoadingMixin
+     */
     class ViewHome extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {

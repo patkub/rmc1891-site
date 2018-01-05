@@ -117,7 +117,11 @@ Add the editable attribute to include features to edit the list:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
     /* global RMCEditableMixin RMCLoadingMixin */
     
-    /** Class representing services list. */
+    /**
+     * Class representing services list.
+     * @appliesMixin RMCEditableMixin
+     * @appliesMixin RMCLoadingMixin
+     */
     class RMCServicesList extends Polymer.GestureEventListeners(
       RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */

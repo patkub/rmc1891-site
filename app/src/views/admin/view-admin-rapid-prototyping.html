@@ -67,7 +67,10 @@ In typical use, add the element to an `<iron-pages>` element:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["RMCLoadingMixin"]}] */
     /* global RMCLoadingMixin */
     
-    /** Class representing admin rapid prototyping view. */
+    /**
+     * Class representing admin rapid prototyping view.
+     * @appliesMixin RMCLoadingMixin
+     */
     class ViewAdminRapidPrototyping extends RMCLoadingMixin(Polymer.Element) {
       /** HTML tag name. */
       static get is() {
