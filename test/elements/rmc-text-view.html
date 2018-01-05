@@ -18,6 +18,11 @@
         <rmc-text-view view="view" title="title"></rmc-text-view>
       </template>
     </test-fixture>
+    <test-fixture id="RMCTextViewEditable">
+      <template>
+        <rmc-text-view view="view" title="title" editable></rmc-text-view>
+      </template>
+    </test-fixture>
 
     <script>
       suite('rmc-text-view tests', function() {
@@ -27,12 +32,48 @@
           rmcTextView = fixture('RMCTextView');
         });
         
-        test('defines the "view" property', function() {
-          assert.equal(rmcTextView.view, 'view');
+        suite('defines properties', function() {
+          test('defines the "view" property', function() {
+            assert.equal(rmcTextView.view, 'view');
+          });
+          
+          test('defines the "title" property', function() {
+            assert.equal(rmcTextView.title, 'title');
+          });
         });
         
-        test('defines the "title" property', function() {
-          assert.equal(rmcTextView.title, 'title');
+        suite('contians elements', function() {
+          test('it should have an iron-ajax element to load the text', function(done) {
+            flush(function() {
+              let el = rmcTextView.shadowRoot.querySelector('#' + rmcTextView.view + 'textViewAjax');
+              assert.equal(el.id, rmcTextView.view + 'textViewAjax');
+              done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcTextViewEditable;
+          
+          setup(function() {
+            rmcTextViewEditable = fixture('RMCTextViewEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcTextViewEditable.editable, true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a what-you-see-is-what-you-get editor', function(done) {
+              flush(function() {
+                let el = rmcTextViewEditable.shadowRoot.querySelector('wysiwyg-e');
+                assert.equal(el.tagName, 'WYSIWYG-E');
+                done();
+              });
+            });
+          });
         });
       });
     </script>

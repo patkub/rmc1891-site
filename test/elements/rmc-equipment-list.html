@@ -56,15 +56,19 @@
           server.restore();
         });
         
-        test('defines the "editable" property', function() {
-          assert.equal(rmcEquipmentList.hasAttribute('editable'), true);
+        suite('defines properties', function() {
+          test('defines the "editable" property', function() {
+            assert.equal(rmcEquipmentList.hasAttribute('editable'), true);
+          });
         });
         
-        test('has a form to add a machine', function() {
-          rmcEquipmentList.shadowRoot.querySelector('#machineForm');
+        suite('contians elements', function() {
+          test('it should have a form to add a machine', function() {
+            rmcEquipmentList.shadowRoot.querySelector('#machineForm');
+          });
         });
         
-        suite('when loading equipment list JSON', function() {
+        suite('when loading equipment list', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
             equipmentListAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentListAjax');

@@ -27,8 +27,10 @@
           rmcAdminTabs = fixture('RMCAdminTabs');
         });
         
-        test('defines the "active" property', function() {
-          assert.equal(rmcAdminTabs.active, 'home');
+        suite('defines properties', function() {
+          test('defines the "active" property', function() {
+            assert.equal(rmcAdminTabs.active, 'home');
+          });
         });
       });
     </script>

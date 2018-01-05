@@ -83,7 +83,7 @@ Add the editable attribute to include features to edit the list:
             <form id="[[name]]ServicesListForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="[[name]]Item">Item:</label>
-                    <input type="text" class="form-control" id="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
+                    <input type="text" class="form-control" id$="[[name]]Item" name="item" placeholder="New service" value="{{newService::input}}">
                 </div>
                 
                 <bs4-button context="primary" text="Add" on-tap="_addService" service$="{{newService}}"></bs4-button>

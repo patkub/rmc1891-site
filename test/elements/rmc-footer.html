@@ -29,13 +29,17 @@
           footerEl = rmcFooter.shadowRoot.querySelector('footer');
         });
         
-        test('defines the "text" property', function() {
-          assert.equal(rmcFooter.text, 'demo text');
+        suite('defines properties', function() {
+          test('defines the "text" property', function() {
+            assert.equal(rmcFooter.text, 'demo text');
+          });
         });
         
-        test('it should have a text body', function() {
-          let footerText = footerEl.querySelector('span.text-muted');
-          assert.equal(rmcFooter.getAttribute('text'), footerText.textContent);
+        suite('contians elements', function() {
+          test('it should have a text body', function() {
+            let footerText = footerEl.querySelector('span.text-muted');
+            assert.equal(rmcFooter.getAttribute('text'), footerText.textContent);
+          });
         });
       });
     </script>

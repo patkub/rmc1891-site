@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>RMC Manufacturing Services</title>
+    
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../../app/src/elements/rmc-services-list.html">
+  </head>
+  <body>
+    <test-fixture id="ServicesList">
+      <template>
+        <rmc-services-list name="test" api="test" title="Test"></rmc-services-list>
+      </template>
+    </test-fixture>
+    <test-fixture id="ServicesListEditable">
+      <template>
+        <rmc-services-list name="test" api="test" title="Test" editable></rmc-services-list>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rmc-services-list tests', function() {
+        let rmcServicesList;
+        
+        let servicesAjax;
+        let request;
+        let server;
+        let responseHeaders = {
+          json: {'Content-Type': 'application/json'},
+        };
+        
+        /**
+         * Mirror <iron-ajax> data to persisted attribute in <app-indexeddb-mirror>
+         */
+        function mirrorData() {
+          // set persistedServices to ajax response
+          rmcServicesList.persistedServices = request.response;
+        }
+        
+        setup(function() {
+          rmcServicesList = fixture('ServicesList');
+          
+          server = sinon.fakeServer.create();
+          server.respondWith(
+            'GET',
+            'api/get/test', [
+              200,
+              responseHeaders.json,
+              '[{"name":"Service 1"}]',
+            ]
+          );
+        });
+        
+        suite('defines properties', function() {
+          test('defines the "name" property', function() {
+            assert.equal(rmcServicesList.name, 'test');
+          });
+          
+          test('defines the "api" property', function() {
+            assert.equal(rmcServicesList.api, 'test');
+          });
+          
+          test('defines the "title" property', function() {
+            assert.equal(rmcServicesList.title, 'Test');
+          });
+        });
+        
+        suite('contians elements', function() {
+          test('it should have an iron-ajax element to load services', function(done) {
+            flush(function() {
+              let el = rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
+              assert.equal(el.id, rmcServicesList.name + 'ServicesListGetAjax');
+              done();
+            });
+          });
+        });
+        
+        suite('when loading services', function() {
+          setup(function() {
+            // get fresh instance of iron-ajax before every test
+            servicesAjax = rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
+          });
+          
+          test('it has sane defaults that love you', function() {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('Array');
+            expect(request.status).to.be.equal(200);
+          });
+          
+          test('it has the correct xhr method', function() {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            
+            expect(request.xhr.method).to.be.equal('GET');
+          });
+          
+          test('item lengths should be equalled', function(done) {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let listRows = rmcServicesList.shadowRoot.querySelectorAll('.list-group > li');
+              assert.equal(listRows.length, 1);
+              done();
+            });
+          });
+          
+          test('gets item name', function(done) {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            mirrorData();
+            
+            flush(function() {
+              let name = rmcServicesList.shadowRoot.querySelector('.list-group > li');
+              assert.equal(name.textContent, 'Service 1');
+              done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcServicesListEditable;
+          
+          setup(function() {
+            rmcServicesListEditable = fixture('ServicesListEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcServicesListEditable.editable, true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a form to add a service', function(done) {
+              flush(function() {
+                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListForm');
+                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListForm');
+                done();
+              });
+            });
+            
+            test('it should have an iron-ajax element to delete a service', function(done) {
+              flush(function() {
+                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListDeleteAjax');
+                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListDeleteAjax');
+                done();
+              });
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
