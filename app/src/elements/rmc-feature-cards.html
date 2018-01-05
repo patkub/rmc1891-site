@@ -110,7 +110,7 @@ Add the editable attribute to include features to edit card text content:
         <!-- load feature cards -->
         <iron-ajax
             auto
-            id="featureCardsAjax"
+            id="featureCardsGetAjax"
             url="api/get/feature-cards"
             handle-as="json"
             last-response="{{featureCards}}"
@@ -120,7 +120,7 @@ Add the editable attribute to include features to edit card text content:
         
         <!-- offline mirror the feature cards -->
         <app-indexeddb-mirror
-            key="featureCards"
+            key="featureCardsMirror"
             data="{{featureCards}}"
             persisted-data="{{persistedFeatureCards}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -197,7 +197,7 @@ Add the editable attribute to include features to edit card text content:
           
           <!-- iron ajax request to update text -->
           <iron-ajax
-              id="updateFeatureCardsAjax"
+              id="featureCardsPutAjax"
               url="api/put/feature-cards"
               handle-as="json"
               loading="{{loading}}"
@@ -233,10 +233,10 @@ Add the editable attribute to include features to edit card text content:
         // save the text
         let params = 'AboutText=' + aboutText + '&CapabilitiesText=' +
             capabilitiesText + '&ContactText=' + contactText;
-        super.doRequestBody('updateFeatureCardsAjax', params);
+        super.doRequestBody('featureCardsPutAjax', params);
         
         // update feature cards
-        super.doRequest('featureCardsAjax');
+        super.doRequest('featureCardsGetAjax');
       }
     }
 

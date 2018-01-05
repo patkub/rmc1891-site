@@ -54,7 +54,7 @@ In typical use, add the element to your body with the desired view:
         <!-- load text -->
         <iron-ajax
             auto
-            id="[[view]]textViewAjax"
+            id="[[view]]textViewGetAjax"
             url="api/get/text/[[view]]"
             handle-as="json"
             last-response="{{viewText}}"
@@ -63,7 +63,7 @@ In typical use, add the element to your body with the desired view:
         
         <!-- offline mirror the text -->
         <app-indexeddb-mirror
-            key="[[view]]Text"
+            key="[[view]]textViewMirror"
             data="{{viewText}}"
             persisted-data="{{persistedViewText}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -99,7 +99,7 @@ In typical use, add the element to your body with the desired view:
             
             <!-- iron ajax request to save text -->
             <iron-ajax
-                id="[[view]]saveTextViewAjax"
+                id="[[view]]textViewSaveAjax"
                 url="api/put/text/[[view]]"
                 handle-as="json"
                 method="PUT"
@@ -175,10 +175,10 @@ In typical use, add the element to your body with the desired view:
         // check if save button was pressed for this text view
         if (e.detail.saveid === this.view) {
           // save the text
-          super.doRequestBody(this.view + 'saveTextViewAjax', 'text=' + this.persistedViewText);
+          super.doRequestBody(this.view + 'textViewSaveAjax', 'text=' + this.persistedViewText);
 
           // update text view
-          super.doRequest(this.view + 'textViewAjax');
+          super.doRequest(this.view + 'textViewGetAjax');
         }
       }
     }

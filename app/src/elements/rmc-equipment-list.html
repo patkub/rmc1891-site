@@ -52,7 +52,7 @@ Add the editable attribute to include features to edit the list:
         <!-- load equipment list -->
         <iron-ajax
             auto
-            id="equipmentListAjax"
+            id="equipmentListGetAjax"
             url="api/get/equipment-list"
             handle-as="json"
             last-response="{{equipment}}"
@@ -61,7 +61,7 @@ Add the editable attribute to include features to edit the list:
         
         <!-- offline mirror the equipment list -->
         <app-indexeddb-mirror
-            key="equipmentList"
+            key="equipmentListMirror"
             data="{{equipment}}"
             persisted-data="{{persistedEquipment}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -80,7 +80,7 @@ Add the editable attribute to include features to edit the list:
             
             <h5>Add a Machine</h5>
             
-            <form id="addEquipmentMachineForm" action="javascript:void(0);">
+            <form id="equipmentListAddMachineForm" action="javascript:void(0);">
                 <div class="form-group">
                     <label for="count">Count:</label>
                     <input type="text" class="form-control" name="count" placeholder="Count" value="{{count::input}}">
@@ -164,8 +164,8 @@ Add the editable attribute to include features to edit the list:
         super.doRequestBody('addEquipmentListAjax', params);
         
         // update equipment list and reset form
-        super.doRequest('equipmentListAjax');
-        this.shadowRoot.getElementById('addEquipmentMachineForm').reset();
+        super.doRequest('equipmentListGetAjax');
+        this.shadowRoot.getElementById('equipmentListAddMachineForm').reset();
       }
         
       /**
@@ -184,7 +184,7 @@ Add the editable attribute to include features to edit the list:
         super.doRequestBody('deleteEquipmentListAjax', params);
         
         // update equipment list
-        super.doRequest('equipmentListAjax');
+        super.doRequest('equipmentListGetAjax');
       }
     }
 

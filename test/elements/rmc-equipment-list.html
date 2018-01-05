@@ -15,6 +15,11 @@
   <body>
     <test-fixture id="RMCEquipmentList">
       <template>
+        <rmc-equipment-list></rmc-equipment-list>
+      </template>
+    </test-fixture>
+    <test-fixture id="RMCEquipmentListEditable">
+      <template>
         <rmc-equipment-list editable></rmc-equipment-list>
       </template>
     </test-fixture>
@@ -23,7 +28,7 @@
       suite('rmc-equipment-list tests', function() {
         let rmcEquipmentList;
         
-        let equipmentListAjax;
+        let equipmentListGetAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -56,12 +61,6 @@
           server.restore();
         });
         
-        suite('defines properties', function() {
-          test('defines the "editable" property', function() {
-            assert.equal(rmcEquipmentList.hasAttribute('editable'), true);
-          });
-        });
-        
         suite('contians elements', function() {
           test('it should have a form to add a machine', function() {
             rmcEquipmentList.shadowRoot.querySelector('#machineForm');
@@ -71,11 +70,11 @@
         suite('when loading equipment list', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            equipmentListAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentListAjax');
+            equipmentListGetAjax = rmcEquipmentList.shadowRoot.querySelector('#equipmentListGetAjax');
           });
           
           test('has sane defaults that love you', function() {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -84,14 +83,14 @@
           });
           
           test('has the correct xhr method', function() {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           
           test('item lengths should be equalled', function(done) {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -103,7 +102,7 @@
           });
           
           test('gets item count', function(done) {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -115,7 +114,7 @@
           });
           
           test('gets item force', function(done) {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -127,7 +126,7 @@
           });
           
           test('gets item name', function(done) {
-            request = equipmentListAjax.generateRequest();
+            request = equipmentListGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -135,6 +134,38 @@
               let name = rmcEquipmentList.shadowRoot.querySelector('.table > tbody > tr > td:nth-child(3)');
               assert.equal(name.textContent, 'Machine 1');
               done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcEquipmentListEditable;
+          
+          setup(function() {
+            rmcEquipmentListEditable = fixture('RMCEquipmentListEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcEquipmentListEditable.hasAttribute('editable'), true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a form to add a machine', function(done) {
+              flush(function() {
+                let el = rmcEquipmentListEditable.shadowRoot.querySelector('#equipmentListAddMachineForm');
+                assert.equal(el.id, 'equipmentListAddMachineForm');
+                done();
+              });
+            });
+            
+            test('it should have an iron-ajax element to delete a machine', function(done) {
+              flush(function() {
+                let el = rmcEquipmentListEditable.shadowRoot.querySelector('#deleteEquipmentListAjax');
+                assert.equal(el.id, 'deleteEquipmentListAjax');
+                done();
+              });
             });
           });
         });

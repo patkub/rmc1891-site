@@ -23,7 +23,7 @@
       suite('rmc-feature-cards tests', function() {
         let rmcFeatureCards;
         
-        let featureCardsAjax;
+        let featureCardsGetAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -65,10 +65,10 @@
         suite('when loading feature cards', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsAjax');
+            featureCardsGetAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsGetAjax');
           });
           test('has sane defaults that love you', function() {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -76,13 +76,13 @@
             expect(request.status).to.be.equal(200);
           });
           test('has the correct xhr method', function() {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           test('item lengths should be equalled', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -93,7 +93,7 @@
             });
           });
           test('gets card titles', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -105,7 +105,7 @@
             });
           });
           test('gets card images', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -117,7 +117,7 @@
             });
           });
           test('gets card captions', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             

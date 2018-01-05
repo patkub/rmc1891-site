@@ -28,7 +28,7 @@
       suite('rmc-tool-room-equipment tests', function() {
         let rmcToolRoomEquipment;
         
-        let equipmentAjax;
+        let toolRoomEquipmentGetAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -64,11 +64,11 @@
         suite('when loading tool room equipment', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            equipmentAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#equipmentAjax');
+            toolRoomEquipmentGetAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#toolRoomEquipmentGetAjax');
           });
           
           test('has sane defaults that love you', function() {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -77,14 +77,14 @@
           });
           
           test('has the correct xhr method', function() {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           
           test('item lengths should be equalled', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -96,7 +96,7 @@
           });
           
           test('gets item count', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -108,7 +108,7 @@
           });
           
           test('gets item name', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -136,16 +136,16 @@
           suite('contians elements', function() {
             test('it should have a form to add a machine', function(done) {
               flush(function() {
-                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#machineForm');
-                assert.equal(el.id, 'machineForm');
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#toolRoomEquipmentAddMachineForm');
+                assert.equal(el.id, 'toolRoomEquipmentAddMachineForm');
                 done();
               });
             });
             
-            test('it should have an iron-ajax element to delete a service', function(done) {
+            test('it should have an iron-ajax element to delete a machine', function(done) {
               flush(function() {
-                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#delete');
-                assert.equal(el.id, 'delete');
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#toolRoomEquipmentDeleteAjax');
+                assert.equal(el.id, 'toolRoomEquipmentDeleteAjax');
                 done();
               });
             });
