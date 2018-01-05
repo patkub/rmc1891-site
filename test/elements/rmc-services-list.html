@@ -13,7 +13,12 @@
     <link rel="import" href="../../app/src/elements/rmc-services-list.html">
   </head>
   <body>
-    <test-fixture id="RMCServicesList">
+    <test-fixture id="ServicesList">
+      <template>
+        <rmc-services-list name="test" api="test" title="Test"></rmc-services-list>
+      </template>
+    </test-fixture>
+    <test-fixture id="ServicesListEditable">
       <template>
         <rmc-services-list name="test" api="test" title="Test" editable></rmc-services-list>
       </template>
@@ -39,7 +44,7 @@
         }
         
         setup(function() {
-          rmcServicesList = fixture('RMCServicesList');
+          rmcServicesList = fixture('ServicesList');
           
           server = sinon.fakeServer.create();
           server.respondWith(
@@ -54,37 +59,25 @@
         
         suite('defines properties', function() {
           test('defines the "name" property', function() {
-            assert.equal(rmcServicesList.name, "test");
+            assert.equal(rmcServicesList.name, 'test');
           });
           
           test('defines the "api" property', function() {
-            assert.equal(rmcServicesList.api, "test");
+            assert.equal(rmcServicesList.api, 'test');
           });
           
           test('defines the "title" property', function() {
-            assert.equal(rmcServicesList.title, "Test");
-          });
-          
-          test('defines the "editable" property', function() {
-            assert.equal(rmcServicesList.editable, true);
+            assert.equal(rmcServicesList.title, 'Test');
           });
         });
         
         suite('contians elements', function() {
-          test('it should have a form to add a service', function() {
-            rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListForm');
-          });
-          
-          test('it should have an iron-ajax element to load services', function() {
-            rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
-          });
-          
-          test('it should have an iron-ajax element to add a service', function() {
-            rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListPutAjax');
-          });
-          
-          test('it should have an iron-ajax element to delete a service', function() {
-            rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListDeleteAjax');
+          test('it should have an iron-ajax element to load services', function(done) {
+            flush(function() {
+              let el = rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
+              assert.equal(el.id, rmcServicesList.name + 'ServicesListGetAjax');
+              done();
+            });
           });
         });
         
@@ -133,7 +126,38 @@
               done();
             });
           });
+        });
+        
+        suite('when editable', function() {
+          let rmcServicesListEditable;
           
+          setup(function() {
+            rmcServicesListEditable = fixture('ServicesListEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcServicesListEditable.editable, true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a form to add a service', function(done) {
+              flush(function() {
+                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListForm');
+                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListForm');
+                done();
+              });
+            });
+            
+            test('it should have an iron-ajax element to delete a service', function(done) {
+              flush(function() {
+                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListDeleteAjax');
+                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListDeleteAjax');
+                done();
+              });
+            });
+          });
         });
       });
     </script>

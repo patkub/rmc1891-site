@@ -15,6 +15,11 @@
   <body>
     <test-fixture id="RMCToolRoomEquipment">
       <template>
+        <rmc-tool-room-equipment></rmc-tool-room-equipment>
+      </template>
+    </test-fixture>
+    <test-fixture id="RMCToolRoomEquipmentEditable">
+      <template>
         <rmc-tool-room-equipment editable></rmc-tool-room-equipment>
       </template>
     </test-fixture>
@@ -54,12 +59,6 @@
         
         teardown(function() {
           server.restore();
-        });
-        
-        suite('defines properties', function() {
-          test('defines the "editable" property', function() {
-            assert.equal(rmcToolRoomEquipment.hasAttribute('editable'), true);
-          });
         });
         
         suite('when loading tool room equipment', function() {
@@ -117,6 +116,38 @@
               let name = rmcToolRoomEquipment.shadowRoot.querySelector('.table > tbody > tr > td');
               assert.equal(name.textContent, 'Machine 1');
               done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcToolRoomEquipmentEditable;
+          
+          setup(function() {
+            rmcToolRoomEquipmentEditable = fixture('RMCToolRoomEquipmentEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcToolRoomEquipmentEditable.editable, true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a form to add a machine', function(done) {
+              flush(function() {
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#machineForm');
+                assert.equal(el.id, 'machineForm');
+                done();
+              });
+            });
+            
+            test('it should have an iron-ajax element to delete a service', function(done) {
+              flush(function() {
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#delete');
+                assert.equal(el.id, 'delete');
+                done();
+              });
             });
           });
         });
