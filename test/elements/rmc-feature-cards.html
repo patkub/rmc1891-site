@@ -15,10 +15,15 @@
   <body>
     <test-fixture id="RMCFeatureCards">
       <template>
+        <rmc-feature-cards></rmc-feature-cards>
+      </template>
+    </test-fixture>
+    <test-fixture id="RMCFeatureCardsEditable">
+      <template>
         <rmc-feature-cards editable></rmc-feature-cards>
       </template>
     </test-fixture>
-
+    
     <script>
       suite('rmc-feature-cards tests', function() {
         let rmcFeatureCards;
@@ -54,12 +59,6 @@
         
         teardown(function() {
           server.restore();
-        });
-        
-        suite('defines properties', function() {
-          test('defines the "editable" property', function() {
-            assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
-          });
         });
         
         suite('when loading feature cards', function() {
@@ -126,6 +125,20 @@
               assert.equal(cardImg[0].getAttribute('alt'), 'caption1');
               assert.equal(cardImg[1].getAttribute('alt'), 'caption2');
               done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcFeatureCardsEditable;
+          
+          setup(function() {
+            rmcFeatureCardsEditable = fixture('RMCFeatureCardsEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcFeatureCardsEditable.hasAttribute('editable'), true);
             });
           });
         });
