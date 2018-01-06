@@ -115,6 +115,7 @@ Add the editable attribute to include features to edit the list:
      * Class representing services list.
      * @appliesMixin RMCEditableMixin
      * @appliesMixin RMCLoadingMixin
+     * @appliesMixin RMCTitleMixin
      */
     class RMCServicesList extends Polymer.GestureEventListeners(
       RMCEditableMixin(RMCLoadingMixin(RMCTitleMixin(Polymer.Element)))) {

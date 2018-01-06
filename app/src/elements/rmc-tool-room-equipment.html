@@ -132,6 +132,7 @@ Add the editable attribute to include features to edit the list:
      * Class representing list of tool room equipment.
      * @appliesMixin RMCEditableMixin
      * @appliesMixin RMCLoadingMixin
+     * @appliesMixin RMCTitleMixin
      */
     class RMCToolRoomEquipment extends Polymer.GestureEventListeners(
       RMCEditableMixin(RMCLoadingMixin(RMCTitleMixin(Polymer.Element)))) {
