@@ -1,34 +1,23 @@
 <!-- Polymer Library -->
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-
-<!-- Polymer Gesture Events -->
 <link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
-
-<!-- Template Repeater -->
 <link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
-<!-- Iron Ajax -->
+<!-- Elements -->
 <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
-
-<!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
-<!-- BS4 Button -->
+<!-- BS4 Polymer -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
-
-<!-- BS4 Tables -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-tables/bs4-tables.html">
-
-<!-- BS4 Forms -->
 <link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
 
-<!-- Loading Mixin -->
+<!-- Mixins -->
 <link rel="import" href="../mixins/rmc-loading-mixin.html">
-
-<!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
+<link rel="import" href="../mixins/rmc-title-mixin.html">
 
-<!-- Editable State Styles -->
+<!-- Shared Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
 
 <!--
@@ -67,6 +56,11 @@ Add the editable attribute to include features to edit the list:
             worker-url="app-indexeddb-mirror-worker.js">
         </app-indexeddb-mirror>
         
+        <!-- title heading -->
+        <template is="dom-if" if="[[title]]">
+          <h3>[[title]]</h3>
+        </template>
+        
         <!-- editable state to add a new machine -->
         <template is="dom-if" if="{{editable}}">
             <!-- iron ajax request to add machine -->
@@ -78,7 +72,7 @@ Add the editable attribute to include features to edit the list:
                 loading="{{loading}}">
             </iron-ajax>
             
-            <h5>Add a Machine</h5>
+            <h5>Add a [[editorTitle]]</h5>
             
             <form id="toolRoomEquipmentAddMachineForm" action="javascript:void(0);">
                 <div class="form-group">
@@ -131,8 +125,8 @@ Add the editable attribute to include features to edit the list:
     </template>
 
   <script>
-    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
-    /* global RMCEditableMixin RMCLoadingMixin */
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin", "RMCTitleMixin"]}] */
+    /* global RMCEditableMixin RMCLoadingMixin RMCTitleMixin */
     
     /**
      * Class representing list of tool room equipment.
@@ -140,12 +134,12 @@ Add the editable attribute to include features to edit the list:
      * @appliesMixin RMCLoadingMixin
      */
     class RMCToolRoomEquipment extends Polymer.GestureEventListeners(
-      RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
+      RMCEditableMixin(RMCLoadingMixin(RMCTitleMixin(Polymer.Element)))) {
       /** HTML tag name. */
       static get is() {
         return 'rmc-tool-room-equipment';
       }
-        
+      
       /**
        * Adds a machine
        *
