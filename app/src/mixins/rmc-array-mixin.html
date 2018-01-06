@@ -1,0 +1,26 @@
+<script>
+  /* eslint no-unused-vars: 0 */
+  
+  /**
+   * @polymerMixin
+   * @mixin
+   * @param {Class} superclass
+   * @return {void}
+   */
+  const RMCArrayMixin = (superclass) => class extends superclass {
+    /**
+     * Convert object to array for use with dom-repeat.
+     *
+     * @param {Object} obj - object.
+     * @return {Array} array.
+     */
+    toArray(obj) {
+      return Object.keys(obj).map(function(key) {
+        return {
+          name: key,
+          value: obj[key],
+        };
+      });
+    }
+  };
+</script>
