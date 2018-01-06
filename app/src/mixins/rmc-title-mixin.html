@@ -1,0 +1,22 @@
+<script>
+  /* eslint no-unused-vars: 0 */
+  
+  /**
+   * @polymerMixin
+   * @mixin
+   * @param {Class} superclass
+   * @return {void}
+   */
+  const RMCTitleMixin = (superclass) => class extends superclass {
+    /** Declared properties. */
+    static get properties() {
+      return {
+        /** Service title. */
+        title: String,
+        
+        /** Service editor title. */
+        editorTitle: String,
+      };
+    }
+  };
+</script>

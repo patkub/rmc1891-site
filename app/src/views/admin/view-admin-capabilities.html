@@ -56,23 +56,17 @@ In typical use, add the element to an `<iron-pages>` element:
       <!-- capabilities text -->
       <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}" editable></rmc-text-view>
       
-      <h3>Manufacturing Services:</h3>
-      
       <!-- manufacturing services -->
-      <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}" editable></rmc-services-list>
-      
-      <h3>Equipment List:</h3>
+      <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" editor-title="Manufacturing" loading="{{loading}}" editable></rmc-services-list>
       
       <!-- equipment list -->
-      <rmc-equipment-list loading="{{loading}}" editable></rmc-equipment-list>
-      
-      <h3>Tool Room:</h3>
+      <rmc-equipment-list title="Equipment List" editor-title="Machine" loading="{{loading}}" editable></rmc-equipment-list>
       
       <!-- tool room equipment -->
-      <rmc-tool-room-equipment loading="{{loading}}" editable></rmc-tool-room-equipment>
+      <rmc-tool-room-equipment title="Tool Room" editor-title="Machine" loading="{{loading}}" editable></rmc-tool-room-equipment>
       
       <!-- tool room services -->
-      <rmc-services-list name="toolRoom" api="tool-room/services" title="Tool Room" loading="{{loading}}" editable></rmc-services-list>
+      <rmc-services-list name="toolRoom" api="tool-room/services" title="Tool Room" editor-title="Tool Room" loading="{{loading}}" editable></rmc-services-list>
     </div>
     <!-- /container -->
     

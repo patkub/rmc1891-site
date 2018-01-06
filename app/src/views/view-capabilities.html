@@ -53,23 +53,17 @@ In typical use, add the element to an `<iron-pages>` element:
         <!-- capabilities text -->
         <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}"></rmc-text-view>
         
-        <h3>Manufacturing Services:</h3>
-        
         <!-- manufacturing services -->
         <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}"></rmc-services-list>
         
-        <h3>Equipment List:</h3>
-        
         <!-- equipment list -->
-        <rmc-equipment-list loading="{{loading}}"></rmc-equipment-list>
-        
-        <h3>Tool Room:</h3>
+        <rmc-equipment-list title="Equipment List" loading="{{loading}}"></rmc-equipment-list>
         
         <!-- tool room equipment -->
-        <rmc-tool-room-equipment loading="{{loading}}"></rmc-tool-room-equipment>
+        <rmc-tool-room-equipment title="Tool Room" loading="{{loading}}"></rmc-tool-room-equipment>
         
         <!-- tool room services -->
-        <rmc-services-list name="toolRoom" api="tool-room/services" title="Tool Room" loading="{{loading}}"></rmc-services-list>
+        <rmc-services-list name="toolRoom" api="tool-room/services" loading="{{loading}}"></rmc-services-list>
         
       </div>
     </template>
