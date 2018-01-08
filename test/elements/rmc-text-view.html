@@ -64,16 +64,6 @@
               assert.equal(rmcTextViewEditable.editable, true);
             });
           });
-          
-          suite('contians elements', function() {
-            test('it should have a what-you-see-is-what-you-get editor', function(done) {
-              flush(function() {
-                let el = rmcTextViewEditable.shadowRoot.querySelector('wysiwyg-e');
-                assert.equal(el.tagName, 'WYSIWYG-E');
-                done();
-              });
-            });
-          });
         });
       });
     </script>
