@@ -1,15 +1,3 @@
 {
-  "suites": ["test/"],
-  "plugins": {
-    "local": {
-      "browsers": [
-        "chrome"
-      ]
-    },
-    "sauce": {
-      "browsers": [
-        "windows 10/chrome@latest"
-      ]
-    }
-  }
+  "suites": ["test/index.html"]
 }

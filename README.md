@@ -77,7 +77,7 @@ yarn run serve:build
 
 ### Run tests
 
-Tests are run on Chrome in headless mode on Travis CI and Sauce Labs using CircleCI.
+Chrome is tested in headless mode on Travis CI and Chrome, Edge, and Safari are tested on Sauce Labs with CircleCI.
 
 This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
 against the chrome browser currently installed on your machine:
