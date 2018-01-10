@@ -69,8 +69,7 @@
     "lint:polymer": "polymer lint",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build",
-    "test:local": "wct --plugin local --skip-plugin sauce",
-    "test:sauce": "wct --plugin sauce --skip-plugin local",
+    "test:local": "wct -l chrome -l firefox",
     "test:integration": "gulp build"
   },
   "babel": {
