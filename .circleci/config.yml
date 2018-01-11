@@ -55,6 +55,7 @@ jobs:
           key: cache-lockfile
           paths:
             - ~/.cache/yarn
+            
   # Linting
   lint:
     docker:
@@ -117,6 +118,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+            
   # Test build
   test:
     docker:
@@ -184,6 +186,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+            
   # Sauce Labs
   sauce:
     docker:
@@ -252,6 +255,100 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+            
+  # Polymer analyze docs
+  docs:
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
+            - cache-docs-{{ checksum "package.json" }}
+            # Fallback cache
+            - cache-docs
+            
+      # Print versions
+      - run:
+          name: node-version
+          command: 'node --version'
+      - run:
+          name: npm-version
+          command: 'npm --version'
+      - run:
+          name: yarn-version
+          command: 'yarn --version'
+      
+      # Install dependencies
+      - run:
+          name: yarn-install-global
+          command: 'sudo yarn global add polymer-cli'
+      
+      # Polymer analyze
+      - run:
+          name: polymer-analyze
+          command: 'yarn run docs'
+          
+      - run:
+          name: git-config-email
+          command: 'git config user.email "pk9948@rit.edu"'
+          
+      - run:
+          name: git-config-name
+          command: 'git config user.name "rmc1891[bot]"'
+          
+      - run:
+          name: git-add
+          command: 'git add -f docs/analysis.json'
+          
+      - run:
+          name: git-stash
+          command: 'git stash'
+          
+      - run:
+          name: git-checkout
+          command: 'git checkout gh-pages'
+          
+      - run:
+          name: git-stash-pop
+          command: 'git stash pop'
+          
+      - run:
+          name: mv
+          command: 'mv docs/analysis.json analysis.json'
+          
+      - run:
+          name: git-reset
+          command: 'git reset'
+          
+      - run:
+          name: git-add
+          command: 'git add analysis.json'
+          
+      - run:
+          name: git-commit
+          command: 'git commit -m "chore(polymer): update analysis.json"'
+          
+      - run:
+          name: git-push
+          command: 'git push origin gh-pages'
+      
+      # Save cache
+      - save_cache:
+          # package.json cache
+          key: cache-docs-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+      - save_cache:
+          # Fallback cache
+          key: cache-docs
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+            
   # Deploy site
   deploy:
     docker:
@@ -310,6 +407,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
             - bower_components
+            
 workflows:
   version: 2
   build_and_test:
@@ -350,6 +448,14 @@ workflows:
           requires:
             # make sure greenkeeper-lockfile runs first in workflow
             - lockfile
+      
+      - docs:
+          requires:
+            # make sure greenkeeper-lockfile runs first in workflow
+            - lockfile
+            - lint
+            - test
+            - sauce
       
       # Require approval before deploying site
       - approve-production:
