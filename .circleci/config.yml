@@ -266,7 +266,7 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-docs-{{ checksum "analysis.json" }}
+            - cache-docs-{{ checksum "package.json" }}
             # Fallback cache
             - cache-docs
             
@@ -291,6 +291,7 @@ jobs:
           name: polymer-analyze
           command: 'yarn run docs'
           
+      # Git config
       - run:
           name: git-config-email
           command: 'git config user.email "pk9948@rit.edu"'
@@ -299,6 +300,9 @@ jobs:
           name: git-config-name
           command: 'git config user.name "rmc1891[bot]"'
           
+      # 1) Stash docs/analysis.json from master branch
+      # 2) Pop on gh-pages branch and move from docs/analysis.json to analysis.json
+      # 3) Commit changes
       - run:
           name: git-add
           command: 'git add -f docs/analysis.json'
@@ -334,11 +338,16 @@ jobs:
       - run:
           name: git-push
           command: 'git push origin gh-pages'
+          
+      # Checkout master to use package.json for cache key checksum
+      - run:
+          name: git-checkout-master
+          command: 'git checkout master'
       
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-docs-{{ checksum "analysis.json" }}
+          key: cache-docs-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
