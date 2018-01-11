@@ -24,3 +24,4 @@ ratings:
     - "app/scss/**.scss"
 exclude_paths:
     - "gulpfile.babel.js"
+    - "app/js/loadCSS.js"
