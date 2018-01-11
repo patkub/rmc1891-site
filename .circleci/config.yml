@@ -329,7 +329,7 @@ jobs:
           
       - run:
           name: git-commit
-          command: 'git commit -m "chore(polymer): update analysis.json"'
+          command: 'git commit -m "chore(polymer): update analysis.json" 2>/dev/null || true'
           
       - run:
           name: git-push
