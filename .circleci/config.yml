@@ -456,6 +456,9 @@ workflows:
             - lint
             - test
             - sauce
+          filters:
+            branches:
+              only: master
       
       # Require approval before deploying site
       - approve-production:
