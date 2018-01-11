@@ -266,7 +266,7 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-docs-{{ checksum "package.json" }}
+            - cache-docs-{{ checksum "analysis.json" }}
             # Fallback cache
             - cache-docs
             
@@ -338,7 +338,7 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-docs-{{ checksum "package.json" }}
+          key: cache-docs-{{ checksum "analysis.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -456,6 +456,9 @@ workflows:
             - lint
             - test
             - sauce
+          filters:
+            branches:
+              only: master
       
       # Require approval before deploying site
       - approve-production:
