@@ -39,6 +39,7 @@ In typical use, add the element to an `<iron-pages>` element:
           contain: content;
           position: relative;
           overflow: hidden;
+          margin-top: 56px; /* fixed navbar height */
         }
 
         rmc-carousel::after {
@@ -58,39 +59,8 @@ In typical use, add the element to an `<iron-pages>` element:
         }
         
         .container {
+          /* remove fixed navbar height from rmc-shared-styles-views */
           margin-top: 0;
-        }
-        
-        /* match bootstrap bottom margin */
-        .jumbotron {
-          margin-top: 2rem;
-        }
-		
-        .display-4 {
-          font-weight: 600;
-          font-size: 2rem;
-        }
-        
-        .lead {
-          font-weight: 500;
-        }
-        
-        @media (min-width: 576px) {
-          .display-4 {
-            font-size: 2rem;
-          }
-        }
-        
-        @media (min-width: 768px) {
-          .display-4 {
-            font-size: 2.5rem;
-          }
-        }
-        
-        @media (min-width: 1200px) {
-          .display-4 {
-            font-size: 3.5rem;
-          }
         }
         
         @media print {

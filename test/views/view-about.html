@@ -34,7 +34,7 @@
         suite('contians elements', function() {
           test('it should have a text view', function(done) {
             flush(function() {
-              let textView = aboutView.shadowRoot.querySelector('.container > rmc-text-view');
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
               assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
               done();
             });
@@ -48,7 +48,7 @@
             });
           });
           
-          test('text view title should be About', function() {
+          test('text view title should be About', function(done) {
             flush(function() {
               let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
               assert.equal(textView.title, 'About');

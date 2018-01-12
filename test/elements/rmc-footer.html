@@ -22,11 +22,9 @@
     <script>
       suite('rmc-footer tests', function() {
         let rmcFooter;
-        let footerEl;
 
         setup(function() {
           rmcFooter = fixture('RMCFooter');
-          footerEl = rmcFooter.shadowRoot.querySelector('footer');
         });
         
         suite('defines properties', function() {
@@ -37,8 +35,8 @@
         
         suite('contians elements', function() {
           test('it should have a text body', function() {
-            let footerText = footerEl.querySelector('span.text-muted');
-            assert.equal(rmcFooter.getAttribute('text'), footerText.textContent);
+            let footerText = rmcFooter.shadowRoot.querySelector('.footer > span.text-muted');
+            assert.equal(rmcFooter.text, footerText.textContent);
           });
         });
       });

@@ -41,12 +41,12 @@
 
       test('Location /404', function() {
         setLocation('/404');
-        let appLoction = view404.shadowRoot.querySelector('app-location');
+        let appLoction = view404.shadowRoot.querySelector('.container > app-location');
         assert.equal(appLoction.route.path, '/404');
       });
 
       test('Go back home', function() {
-        let a = view404.shadowRoot.querySelector('a');
+        let a = view404.shadowRoot.querySelector('.container > p > a');
         assert.equal(a.getAttribute('href'), '/');
       });
     });

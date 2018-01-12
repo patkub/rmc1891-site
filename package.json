@@ -50,7 +50,7 @@
     "gulp-sftp": "^0.1.5",
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-uglifyes": "^0.1.2",
-    "gulp-watch": "^4.3.11",
+    "gulp-watch": "^5.0.0",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "polymer-build": "^2.1.1",
@@ -69,8 +69,7 @@
     "lint:polymer": "polymer lint",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build",
-    "test:local": "wct --plugin local --skip-plugin sauce",
-    "test:sauce": "wct --plugin sauce --skip-plugin local",
+    "test:local": "wct -l chrome -l firefox",
     "test:integration": "gulp build"
   },
   "babel": {
