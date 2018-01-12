@@ -3,8 +3,9 @@ node_modules/
 vendor/
 build/
 app/css/
+app/js/
 fonts/
 docs/analysis.json
-npm-debug*
 *.min.*
+npm-debug*
 yarn-error.log

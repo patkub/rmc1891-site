@@ -31,6 +31,7 @@ const htmlmin = require('gulp-htmlmin');
 const cssSlam = require('css-slam').gulp;
 const uglifyes = require('gulp-uglifyes');
 const babel = require('gulp-babel');
+import concat from 'gulp-concat';
 
 // configs
 import polymerJson from './polymer.json';
@@ -80,6 +81,7 @@ function waitFor(stream) {
 
 // Compile & Minify Stylesheets
 gulp.task('css', function() {
+  log('Compiling & minifying CSS...');
   return gulp.src('app/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(purifyCSS([
@@ -95,6 +97,21 @@ gulp.task('css', function() {
     }))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('app/css/'));
+});
+
+// Concatenate & Minify JavaScript
+gulp.task('js', function() {
+  log('Concatenating & minifying JS...');
+  return gulp.src([
+    // Bootstrap JavaScript for Navbar
+    'node_modules/bootstrap/js/dist/util.js',
+    'node_modules/bootstrap/js/dist/collapse.js',
+  ]).pipe(concat('deferred.min.js'))
+    .pipe(uglifyes({
+      warnings: true,
+      ecma: 8,
+    }))
+    .pipe(gulp.dest('app/js/'));
 });
 
 /**
@@ -389,8 +406,8 @@ gulp.task('deploy:files', function() {
 });
 
 // Browsersync serve
-gulp.task('serve:local', ['css', 'serve:browsersync:local']);
+gulp.task('serve:local', ['css', 'js', 'serve:browsersync:local']);
 gulp.task('serve:build', ['serve:browsersync:build']);
 
 // Build
-gulp.task('build', ['css'], build);
+gulp.task('build', ['css', 'js'], build);

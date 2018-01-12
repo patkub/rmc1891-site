@@ -2,4 +2,10 @@ bower_components/
 node_modules/
 vendor/
 build/
-app/js/loadCSS.js
+app/css/
+app/js/
+fonts/
+docs/analysis.json
+*.min.*
+npm-debug*
+yarn-error.log

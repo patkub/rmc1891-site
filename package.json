@@ -1,6 +1,6 @@
 {
   "name": "rmc1891",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "The Rogers Manufacturing Company website",
   "author": "Patrick Kubiak <pk9948@rit.edu> (http://antuple.net)",
   "main": "index.html",
@@ -21,10 +21,9 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "bs4-polymer": "0.11.0",
+    "fg-loadcss": "^2.0.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.9",
-    "tether": "^1.4.0"
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "browser-sync": "^2.18.12",
@@ -38,6 +37,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.4.2",
+    "gulp-concat": "^2.6.1",
     "gulp-header": "^1.8.8",
     "gulp-htmlmin": "^4.0.0",
     "gulp-if": "^2.0.2",
@@ -64,10 +64,10 @@
   "scripts": {
     "build": "gulp build",
     "docs": "polymer analyze > docs/analysis.json",
-    "lint": "gulp css && yarn run lint:javascript && yarn run lint:css && yarn run lint:polymer",
+    "lint": "yarn run lint:javascript && yarn run lint:css && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
     "lint:css": "stylelint --config .stylelintrc docs/**/*.html app/src/**/*.html test/**/*.html index.html",
-    "lint:polymer": "polymer lint",
+    "lint:polymer": "gulp css && gulp js && polymer lint",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build",
     "test:local": "wct -l chrome -l firefox",
