@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "bs4-polymer": "0.11.0",
+    "fg-loadcss": "^2.0.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1"
   },
