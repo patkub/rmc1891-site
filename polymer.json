@@ -13,6 +13,7 @@
   "sources": [
     "app/src/**/*",
     "app/images/**/*",
+    "app/css/deferred.min.css",
     "index.html",
     "manifest.json",
     ".htaccess"
