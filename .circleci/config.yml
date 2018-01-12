@@ -390,8 +390,11 @@ jobs:
       
       # Install dependencies
       - run:
-          name: yarn-install-gulp
+          name: yarn-install-global
           command: 'sudo yarn global add gulp-cli'
+      - run:
+          name: yarn-install
+          command: 'yarn install'
       
       # Deploy
       - run:
