@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>404 View</title>
+    <title>404 View Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -41,12 +41,12 @@
 
       test('Location /404', function() {
         setLocation('/404');
-        let appLoction = view404.shadowRoot.querySelector('app-location');
+        let appLoction = view404.shadowRoot.querySelector('.container > app-location');
         assert.equal(appLoction.route.path, '/404');
       });
 
       test('Go back home', function() {
-        let a = view404.shadowRoot.querySelector('a');
+        let a = view404.shadowRoot.querySelector('.container > p > a');
         assert.equal(a.getAttribute('href'), '/');
       });
     });

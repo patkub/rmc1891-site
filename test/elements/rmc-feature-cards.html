@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>RMC Feature Cards</title>
+    <title>RMC Feature Cards Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -15,15 +15,20 @@
   <body>
     <test-fixture id="RMCFeatureCards">
       <template>
+        <rmc-feature-cards></rmc-feature-cards>
+      </template>
+    </test-fixture>
+    <test-fixture id="RMCFeatureCardsEditable">
+      <template>
         <rmc-feature-cards editable></rmc-feature-cards>
       </template>
     </test-fixture>
-
+    
     <script>
       suite('rmc-feature-cards tests', function() {
         let rmcFeatureCards;
         
-        let featureCardsAjax;
+        let featureCardsGetAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -56,17 +61,13 @@
           server.restore();
         });
         
-        test('defines the "editable" property', function() {
-          assert.equal(rmcFeatureCards.hasAttribute('editable'), true);
-        });
-        
-        suite('when loading feature cards JSON', function() {
+        suite('when loading feature cards', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            featureCardsAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsAjax');
+            featureCardsGetAjax = rmcFeatureCards.shadowRoot.querySelector('#featureCardsGetAjax');
           });
           test('has sane defaults that love you', function() {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -74,13 +75,13 @@
             expect(request.status).to.be.equal(200);
           });
           test('has the correct xhr method', function() {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           test('item lengths should be equalled', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -91,7 +92,7 @@
             });
           });
           test('gets card titles', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -103,7 +104,7 @@
             });
           });
           test('gets card images', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -115,7 +116,7 @@
             });
           });
           test('gets card captions', function(done) {
-            request = featureCardsAjax.generateRequest();
+            request = featureCardsGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -124,6 +125,20 @@
               assert.equal(cardImg[0].getAttribute('alt'), 'caption1');
               assert.equal(cardImg[1].getAttribute('alt'), 'caption2');
               done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcFeatureCardsEditable;
+          
+          setup(function() {
+            rmcFeatureCardsEditable = fixture('RMCFeatureCardsEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcFeatureCardsEditable.hasAttribute('editable'), true);
             });
           });
         });

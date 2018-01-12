@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>RMC Text View</title>
+    <title>RMC Text View Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -18,6 +18,11 @@
         <rmc-text-view view="view" title="title"></rmc-text-view>
       </template>
     </test-fixture>
+    <test-fixture id="RMCTextViewEditable">
+      <template>
+        <rmc-text-view view="view" title="title" editable></rmc-text-view>
+      </template>
+    </test-fixture>
 
     <script>
       suite('rmc-text-view tests', function() {
@@ -27,12 +32,38 @@
           rmcTextView = fixture('RMCTextView');
         });
         
-        test('defines the "view" property', function() {
-          assert.equal(rmcTextView.view, 'view');
+        suite('defines properties', function() {
+          test('defines the "view" property', function() {
+            assert.equal(rmcTextView.view, 'view');
+          });
+          
+          test('defines the "title" property', function() {
+            assert.equal(rmcTextView.title, 'title');
+          });
         });
         
-        test('defines the "title" property', function() {
-          assert.equal(rmcTextView.title, 'title');
+        suite('contians elements', function() {
+          test('it should have an iron-ajax element to load the text', function(done) {
+            flush(function() {
+              let el = rmcTextView.shadowRoot.querySelector('#' + rmcTextView.view + 'textViewGetAjax');
+              assert.equal(el.id, rmcTextView.view + 'textViewGetAjax');
+              done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcTextViewEditable;
+          
+          setup(function() {
+            rmcTextViewEditable = fixture('RMCTextViewEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcTextViewEditable.editable, true);
+            });
+          });
         });
       });
     </script>

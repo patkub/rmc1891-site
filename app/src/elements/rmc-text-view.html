@@ -1,13 +1,9 @@
 <!-- Polymer Library -->
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-
-<!-- Polymer Gesture Events -->
 <link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
-<!-- Iron Ajax -->
+<!-- Elements -->
 <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
-
-<!-- App Storage -->
 <link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <!-- what-you-see-is-what-you-get editor -->
@@ -26,16 +22,12 @@
 <link rel="import" href="../../../bower_components/wysiwyg-e/tools/heading.html">
 <link rel="import" href="wysiwyg-e-save.html">
 
-<!-- Loading Mixin -->
+<!-- Mixins -->
 <link rel="import" href="../mixins/rmc-loading-mixin.html">
-
-<!-- Editable Mixin -->
 <link rel="import" href="../mixins/rmc-editable-mixin.html">
 
-<!-- Editable State Styles -->
+<!-- Shared Styles -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-editable.html">
-
-<!-- Shared Styles for Views -->
 <link rel="import" href="../shared-styles/rmc-shared-styles-views.html">
 
 <!--
@@ -54,7 +46,7 @@ In typical use, add the element to your body with the desired view:
         <!-- load text -->
         <iron-ajax
             auto
-            id="[[view]]textViewAjax"
+            id="[[view]]textViewGetAjax"
             url="api/get/text/[[view]]"
             handle-as="json"
             last-response="{{viewText}}"
@@ -63,7 +55,7 @@ In typical use, add the element to your body with the desired view:
         
         <!-- offline mirror the text -->
         <app-indexeddb-mirror
-            key="[[view]]Text"
+            key="[[view]]textViewMirror"
             data="{{viewText}}"
             persisted-data="{{persistedViewText}}"
             worker-url="app-indexeddb-mirror-worker.js">
@@ -99,7 +91,7 @@ In typical use, add the element to your body with the desired view:
             
             <!-- iron ajax request to save text -->
             <iron-ajax
-                id="[[view]]saveTextViewAjax"
+                id="[[view]]textViewSaveAjax"
                 url="api/put/text/[[view]]"
                 handle-as="json"
                 method="PUT"
@@ -113,7 +105,11 @@ In typical use, add the element to your body with the desired view:
     /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCEditableMixin", "RMCLoadingMixin"]}] */
     /* global RMCEditableMixin RMCLoadingMixin */
     
-    /** Class representing text for a page. */
+    /**
+     * Class representing text for a page.
+     * @appliesMixin RMCEditableMixin
+     * @appliesMixin RMCLoadingMixin
+     */
     class RMCTextView extends Polymer.GestureEventListeners(
       RMCEditableMixin(RMCLoadingMixin(Polymer.Element))) {
       /** HTML tag name. */
@@ -175,10 +171,10 @@ In typical use, add the element to your body with the desired view:
         // check if save button was pressed for this text view
         if (e.detail.saveid === this.view) {
           // save the text
-          super.doRequestBody(this.view + 'saveTextViewAjax', 'text=' + this.persistedViewText);
+          super.doRequestBody(this.view + 'textViewSaveAjax', 'text=' + this.persistedViewText);
 
           // update text view
-          super.doRequest(this.view + 'textViewAjax');
+          super.doRequest(this.view + 'textViewGetAjax');
         }
       }
     }

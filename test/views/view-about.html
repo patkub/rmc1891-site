@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>AboutView</title>
+    <title>About View Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -31,27 +31,29 @@
           assert.equal(aboutView.loading, false);
         });
         
-        test('it should have a text view', function(done) {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('.container > rmc-text-view');
-            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
-            done();
+        suite('contians elements', function() {
+          test('it should have a text view', function(done) {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+              done();
+            });
           });
-        });
 
-        test('text view should be about', function(done) {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.view, 'about');
-            done();
+          test('text view should be about', function(done) {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.view, 'about');
+              done();
+            });
           });
-        });
-        
-        test('text view title should be About', function() {
-          flush(function() {
-            let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.title, 'About');
-            done();
+          
+          test('text view title should be About', function(done) {
+            flush(function() {
+              let textView = aboutView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.title, 'About');
+              done();
+            });
           });
         });
       });

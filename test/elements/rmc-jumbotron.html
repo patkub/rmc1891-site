@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>RMCJumbotron</title>
+    <title>RMC Jumbotron Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -26,21 +26,23 @@
         setup(function() {
           rmcJumbotron = fixture('RMCJumbotron');
         });
-
-        test('defines the "title" property', function() {
-          assert.equal(rmcJumbotron.title, 'demo title');
-        });
         
-        test('defines the "text" property', function() {
-          assert.equal(rmcJumbotron.text, 'demo text');
-        });
-        
-        test('defines the "button" property', function() {
-          assert.equal(rmcJumbotron.button, 'demo button');
-        });
-        
-        test('defines the "link" property', function() {
-          assert.equal(rmcJumbotron.link, '/demo/path-example/');
+        suite('defines properties', function() {
+          test('defines the "title" property', function() {
+            assert.equal(rmcJumbotron.title, 'demo title');
+          });
+          
+          test('defines the "text" property', function() {
+            assert.equal(rmcJumbotron.text, 'demo text');
+          });
+          
+          test('defines the "button" property', function() {
+            assert.equal(rmcJumbotron.button, 'demo button');
+          });
+          
+          test('defines the "link" property', function() {
+            assert.equal(rmcJumbotron.link, '/demo/path-example/');
+          });
         });
         
         test('button should navigate to link', function() {

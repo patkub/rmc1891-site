@@ -7,16 +7,15 @@
    * @param {Class} superclass
    * @return {void}
    */
-  const RMCLoadingMixin = (superclass) => class extends superclass {
+  const RMCTitleMixin = (superclass) => class extends superclass {
     /** Declared properties. */
     static get properties() {
       return {
-        /** Whether the element is currently loading data. */
-        loading: {
-          type: Boolean,
-          value: false,
-          notify: true,
-        },
+        /** Service title. */
+        title: String,
+        
+        /** Service editor title. */
+        editorTitle: String,
       };
     }
   };

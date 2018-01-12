@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>RMC Tool Room Equipment</title>
+    <title>RMC Tool Room Equipment Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -15,6 +15,11 @@
   <body>
     <test-fixture id="RMCToolRoomEquipment">
       <template>
+        <rmc-tool-room-equipment></rmc-tool-room-equipment>
+      </template>
+    </test-fixture>
+    <test-fixture id="RMCToolRoomEquipmentEditable">
+      <template>
         <rmc-tool-room-equipment editable></rmc-tool-room-equipment>
       </template>
     </test-fixture>
@@ -23,7 +28,7 @@
       suite('rmc-tool-room-equipment tests', function() {
         let rmcToolRoomEquipment;
         
-        let equipmentAjax;
+        let toolRoomEquipmentGetAjax;
         let request;
         let server;
         let responseHeaders = {
@@ -56,18 +61,14 @@
           server.restore();
         });
         
-        test('defines the "editable" property', function() {
-          assert.equal(rmcToolRoomEquipment.hasAttribute('editable'), true);
-        });
-        
-        suite('when loading tool room equipment JSON', function() {
+        suite('when loading tool room equipment', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            equipmentAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#equipmentAjax');
+            toolRoomEquipmentGetAjax = rmcToolRoomEquipment.shadowRoot.querySelector('#toolRoomEquipmentGetAjax');
           });
           
           test('has sane defaults that love you', function() {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             
             expect(request.response).to.be.ok;
@@ -76,14 +77,14 @@
           });
           
           test('has the correct xhr method', function() {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             
             expect(request.xhr.method).to.be.equal('GET');
           });
           
           test('item lengths should be equalled', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -95,7 +96,7 @@
           });
           
           test('gets item count', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -107,7 +108,7 @@
           });
           
           test('gets item name', function(done) {
-            request = equipmentAjax.generateRequest();
+            request = toolRoomEquipmentGetAjax.generateRequest();
             server.respond();
             mirrorData();
             
@@ -115,6 +116,38 @@
               let name = rmcToolRoomEquipment.shadowRoot.querySelector('.table > tbody > tr > td');
               assert.equal(name.textContent, 'Machine 1');
               done();
+            });
+          });
+        });
+        
+        suite('when editable', function() {
+          let rmcToolRoomEquipmentEditable;
+          
+          setup(function() {
+            rmcToolRoomEquipmentEditable = fixture('RMCToolRoomEquipmentEditable');
+          });
+          
+          suite('defines properties', function() {
+            test('defines the "editable" property', function() {
+              assert.equal(rmcToolRoomEquipmentEditable.editable, true);
+            });
+          });
+          
+          suite('contians elements', function() {
+            test('it should have a form to add a machine', function(done) {
+              flush(function() {
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#toolRoomEquipmentAddMachineForm');
+                assert.equal(el.id, 'toolRoomEquipmentAddMachineForm');
+                done();
+              });
+            });
+            
+            test('it should have an iron-ajax element to delete a machine', function(done) {
+              flush(function() {
+                let el = rmcToolRoomEquipmentEditable.shadowRoot.querySelector('#toolRoomEquipmentDeleteAjax');
+                assert.equal(el.id, 'toolRoomEquipmentDeleteAjax');
+                done();
+              });
             });
           });
         });

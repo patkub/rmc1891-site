@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>ContactView</title>
+    <title>Contact View Tests</title>
     
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
@@ -27,27 +27,29 @@
           contactView = fixture('ContactView');
         });
         
-        test('it should have a text view', function(done) {
-          flush(function() {
-            let textView = contactView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
-            done();
+        suite('contians elements', function() {
+          test('it should have a text view', function(done) {
+            flush(function() {
+              let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.tagName, 'RMC-TEXT-VIEW');
+              done();
+            });
           });
-        });
-        
-        test('text view should be contact', function(done) {
-          flush(function() {
-            let textView = contactView.shadowRoot.querySelector('rmc-text-view');
-            assert.equal(textView.view, 'contact');
-            done();
+          
+          test('text view should be contact', function(done) {
+            flush(function() {
+              let textView = contactView.shadowRoot.querySelector('rmc-text-view');
+              assert.equal(textView.view, 'contact');
+              done();
+            });
           });
-        });
-        
-        test('it should have an email form', function(done) {
-          flush(function() {
-            let emailForm = contactView.shadowRoot.querySelector('#emailForm');
-            assert.equal(emailForm.id, 'emailForm');
-            done();
+          
+          test('it should have an email form', function(done) {
+            flush(function() {
+              let emailForm = contactView.shadowRoot.querySelector('#emailForm');
+              assert.equal(emailForm.id, 'emailForm');
+              done();
+            });
           });
         });
       });

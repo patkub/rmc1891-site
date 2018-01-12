@@ -28,8 +28,6 @@
   "lint": {
     "rules": ["polymer-2"],
     "ignoreWarnings": [
-      "multiple-doc-comments",
-      "set-unknown-attribute",
       "databind-with-unknown-property"
     ]
   }
