@@ -5,6 +5,6 @@ build/
 app/css/
 fonts/
 docs/analysis.json
-npm-debug*
 *.min.*
+npm-debug*
 yarn-error.log

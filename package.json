@@ -22,9 +22,7 @@
     "bootstrap": "4.0.0-beta.2",
     "bs4-polymer": "0.11.0",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.9",
-    "tether": "^1.4.0"
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "browser-sync": "^2.18.12",
@@ -38,6 +36,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.4.2",
+    "gulp-concat": "^2.6.1",
     "gulp-header": "^1.8.8",
     "gulp-htmlmin": "^4.0.0",
     "gulp-if": "^2.0.2",

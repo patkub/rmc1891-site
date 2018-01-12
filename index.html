@@ -68,18 +68,16 @@
   <!-- Critical Path CSS -->
   <link rel="stylesheet" href="app/css/critical.min.css" inline>
   
+  <!-- RMC Shell -->
+  <link async rel="import" href="app/src/rmc-shell.html">
+  
   <!-- Deferred CSS -->
   <link rel="preload" href="app/css/deferred.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script src="app/js/loadCSS.js" inline></script>
 
-  <!-- Bootstrap JS -->
+  <!-- Deferred JS -->
   <script defer src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-  <script defer src="node_modules/tether/dist/js/tether.min.js"></script>
-  <script defer src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script defer src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  
-  <!-- RMC Shell -->
-  <link async rel="import" href="app/src/rmc-shell.html">
+  <script defer src="app/js/deferred.min.js"></script>
 
 </head>
 
