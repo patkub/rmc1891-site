@@ -65,8 +65,12 @@
   <!-- Load webcomponents-loader.js to check and load any polyfills the browser needs -->
   <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
-  <!-- RMC Theme CSS -->
-  <link rel="stylesheet" href="app/css/rmc-theme.min.css" inline>
+  <!-- Critical Path CSS -->
+  <link rel="stylesheet" href="app/css/critical.min.css" inline>
+  
+  <!-- Deferred CSS -->
+  <link rel="preload" href="app/css/deferred.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <script src="app/js/loadCSS.js" inline></script>
 
   <!-- Bootstrap JS -->
   <script defer src="node_modules/jquery/dist/jquery.slim.min.js"></script>

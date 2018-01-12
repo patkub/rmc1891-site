@@ -1,5 +1,5 @@
 # Duration of cache
-Header set Cache-Control "max-age=2592000, public"
+Header set Cache-Control "max-age=31536000, public"
 
 # Don't cache service worker
 <FilesMatch "sw\\.js$">
