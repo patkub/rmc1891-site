@@ -30,7 +30,6 @@ import stripCSSComments from 'gulp-strip-css-comments';
 const htmlmin = require('gulp-htmlmin');
 const cssSlam = require('css-slam').gulp;
 const uglifyes = require('gulp-uglifyes');
-const babel = require('gulp-babel');
 import concat from 'gulp-concat';
 
 // configs
@@ -108,7 +107,7 @@ gulp.task('js', function() {
   ]).pipe(concat('deferred.min.js'))
     .pipe(uglifyes({
       warnings: true,
-      ecma: 8,
+      ecma: 5,
     }))
     .pipe(gulp.dest('app/js/'));
 });
@@ -148,13 +147,9 @@ function build() {
           .pipe(sourcesStreamSplitter.split())
           
           // Minify JS
-          .pipe(gulpif(/\.js$/, babel({
-            presets: ['es2015'],
-          })))
-          
           .pipe(gulpif(/\.js$/, uglifyes({
             warnings: true,
-            ecma: 8,
+            ecma: 5,
           })))
 
           // Minify CSS
@@ -196,13 +191,9 @@ function build() {
           .pipe(buildStreamSplitter.split())
           
           // Minify JS
-          .pipe(gulpif(/\.js$/, babel({
-            presets: ['es2015'],
-          })))
-          
           .pipe(gulpif(/\.js$/, uglifyes({
             warnings: true,
-            ecma: 8,
+            ecma: 5,
           })))
           
           // Minify CSS
