@@ -47,9 +47,11 @@
   <meta name="msapplication-tap-highlight" content="no">
   
   <script>
-    // Enable Shady DOM instead of default Shadow DOM
+    // Force custom elements polyfill
+    if (window.customElements) window.customElements.forcePolyfill = true;
+    
+    // Use Shady DOM instead of default Shadow DOM
     window.ShadyDOM = {force: true};
-    window.customElements.forcePolyfill = true;
     
     // Register the base URL
     const baseUrl = document.querySelector('base').href;

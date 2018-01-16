@@ -165,13 +165,16 @@ jobs:
       - run:
           name: test-integration
           command: 'yarn run test:integration'
-     
-      # Save cache
-      - save_cache:
-          # build directory
-          key: cache-production-{{ checksum "package.json" }}
+      
+      # Persist build directory
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory
+          root: ./
+          # Must be relative path from root
           paths:
             - build
+      
+      # Save cache
       - save_cache:
           # package.json cache
           key: cache-test-{{ checksum "package.json" }}
@@ -371,12 +374,12 @@ jobs:
             - cache-deploy-{{ checksum "package.json" }}
             # Fallback cache
             - cache-deploy
-            
-      # Restore build directory cache
-      - restore_cache:
-          keys:
-            - cache-production-{{ checksum "package.json" }}
-            
+      
+      # Attach build directory
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ./build
+      
       # Print versions
       - run:
           name: node-version
