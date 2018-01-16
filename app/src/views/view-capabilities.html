@@ -10,8 +10,7 @@
 
 <!-- Elements -->
 <link rel="import" href="../elements/rmc-services-list.html">
-<link rel="import" href="../elements/rmc-equipment-list.html">
-<link rel="import" href="../elements/rmc-tool-room-equipment.html">
+<link rel="import" href="../elements/rmc-table-view.html">
 <link rel="import" href="../elements/rmc-text-view.html">
 
 <!-- Mixins -->
@@ -46,13 +45,13 @@ In typical use, add the element to an `<iron-pages>` element:
         <rmc-text-view view="capabilities" title="Capabilities" loading="{{loading}}"></rmc-text-view>
         
         <!-- manufacturing services -->
-        <rmc-services-list name="manufacturing" api="manufacturing-services" title="Manufacturing" loading="{{loading}}"></rmc-services-list>
+        <rmc-services-list name="manufacturing" title="Manufacturing" api="manufacturing-services" loading="{{loading}}"></rmc-services-list>
         
         <!-- equipment list -->
-        <rmc-equipment-list title="Equipment List" loading="{{loading}}"></rmc-equipment-list>
+        <rmc-table-view name="equipment" title="Equipment List" api="equipment-list" header='["#", "Clamping Force", "Name"]' suffix='["", "Ton", ""]' loading="{{loading}}"></rmc-table-view>
         
         <!-- tool room equipment -->
-        <rmc-tool-room-equipment title="Tool Room" loading="{{loading}}"></rmc-tool-room-equipment>
+        <rmc-table-view name="toolRoomEquipment" title="Tool Room" api="tool-room/equipment" header='["#", "Name"]' loading="{{loading}}"></rmc-table-view>
         
         <!-- tool room services -->
         <rmc-services-list name="toolRoom" api="tool-room/services" loading="{{loading}}"></rmc-services-list>

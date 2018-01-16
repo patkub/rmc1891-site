@@ -4,29 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>RMC Services List Tests</title>
-
+    <title>RMC Table View</title>
+    
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../node_modules/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../../app/src/elements/rmc-services-list.html">
+    <link rel="import" href="../../app/src/elements/rmc-table-view.html">
   </head>
   <body>
-    <test-fixture id="ServicesList">
+    <test-fixture id="TableView">
       <template>
-        <rmc-services-list name="test" api="test" title="Test"></rmc-services-list>
-      </template>
-    </test-fixture>
-    <test-fixture id="ServicesListEditable">
-      <template>
-        <rmc-services-list name="test" api="test" title="Test" editable></rmc-services-list>
+        <rmc-table-view name="test" title="Test" api="test" header='["Name", "Count"]' suffix='["", ""]'></rmc-table-view>
       </template>
     </test-fixture>
 
     <script>
-      suite('rmc-services-list tests', function() {
-        let rmcServicesList;
+      suite('rmc-table-view tests', function() {
+        let rmcTableView;
         
         let servicesAjax;
         let request;
@@ -40,11 +35,11 @@
          */
         function mirrorData() {
           // set persistedServices to ajax response
-          rmcServicesList.persistedServices = request.response;
+          rmcTableView.persistedServices = request.response;
         }
         
         setup(function() {
-          rmcServicesList = fixture('ServicesList');
+          rmcTableView = fixture('TableView');
           
           server = sinon.fakeServer.create();
           server.respondWith(
@@ -52,30 +47,40 @@
             'api/get/test', [
               200,
               responseHeaders.json,
-              '[{"name":"Service 1"}]',
+              '[{"name":"Service 1", "count":"1"}]',
             ]
           );
         });
         
         suite('defines properties', function() {
           test('defines the "name" property', function() {
-            assert.equal(rmcServicesList.name, 'test');
-          });
-          
-          test('defines the "api" property', function() {
-            assert.equal(rmcServicesList.api, 'test');
+            assert.equal(rmcTableView.name, 'test');
           });
           
           test('defines the "title" property', function() {
-            assert.equal(rmcServicesList.title, 'Test');
+            assert.equal(rmcTableView.title, 'Test');
+          });
+          
+          test('defines the "api" property', function() {
+            assert.equal(rmcTableView.api, 'test');
+          });
+          
+          test('defines the "header" property', function() {
+            assert.equal(rmcTableView.header[0], 'Name');
+            assert.equal(rmcTableView.header[1], 'Count');
+          });
+          
+          test('defines the "suffix" property', function() {
+            assert.equal(rmcTableView.suffix[0], '');
+            assert.equal(rmcTableView.suffix[1], '');
           });
         });
         
         suite('contians elements', function() {
-          test('it should have an iron-ajax element to load services', function(done) {
+          test('it should have an iron-ajax element to load the table', function(done) {
             flush(function() {
-              let el = rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
-              assert.equal(el.id, rmcServicesList.name + 'ServicesListGetAjax');
+              let el = rmcTableView.shadowRoot.querySelector('#' + rmcTableView.name + 'ServicesTableGetAjax');
+              assert.equal(el.id, rmcTableView.name + 'ServicesTableGetAjax');
               done();
             });
           });
@@ -84,7 +89,7 @@
         suite('when loading services', function() {
           setup(function() {
             // get fresh instance of iron-ajax before every test
-            servicesAjax = rmcServicesList.shadowRoot.querySelector('#' + rmcServicesList.name + 'ServicesListGetAjax');
+            servicesAjax = rmcTableView.shadowRoot.querySelector('#' + rmcTableView.name + 'ServicesTableGetAjax');
           });
           
           test('it has sane defaults that love you', function() {
@@ -109,7 +114,7 @@
             mirrorData();
             
             flush(function() {
-              let listRows = rmcServicesList.shadowRoot.querySelectorAll('.list-group > li');
+              let listRows = rmcTableView.shadowRoot.querySelectorAll('.table > tbody > tr > th');
               assert.equal(listRows.length, 1);
               done();
             });
@@ -121,41 +126,21 @@
             mirrorData();
             
             flush(function() {
-              let name = rmcServicesList.shadowRoot.querySelector('.list-group > li');
-              assert.equal(name.textContent, 'Service 1');
+              let name = rmcTableView.shadowRoot.querySelector('.table > tbody > tr > th');
+              assert.equal(name.textContent.trim(), 'Service 1');
               done();
             });
           });
-        });
-        
-        suite('when editable', function() {
-          let rmcServicesListEditable;
           
-          setup(function() {
-            rmcServicesListEditable = fixture('ServicesListEditable');
-          });
-          
-          suite('defines properties', function() {
-            test('defines the "editable" property', function() {
-              assert.equal(rmcServicesListEditable.editable, true);
-            });
-          });
-          
-          suite('contians elements', function() {
-            test('it should have a form to add a service', function(done) {
-              flush(function() {
-                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListForm');
-                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListForm');
-                done();
-              });
-            });
+          test('gets item count', function(done) {
+            request = servicesAjax.generateRequest();
+            server.respond();
+            mirrorData();
             
-            test('it should have an iron-ajax element to delete a service', function(done) {
-              flush(function() {
-                let el = rmcServicesListEditable.shadowRoot.querySelector('#' + rmcServicesListEditable.name + 'ServicesListDeleteAjax');
-                assert.equal(el.id, rmcServicesListEditable.name + 'ServicesListDeleteAjax');
-                done();
-              });
+            flush(function() {
+              let name = rmcTableView.shadowRoot.querySelector('.table > tbody > tr > td');
+              assert.equal(name.textContent.trim(), '1');
+              done();
             });
           });
         });

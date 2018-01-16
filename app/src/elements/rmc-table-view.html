@@ -1,0 +1,147 @@
+<!-- Polymer Library -->
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<!-- Elements -->
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
+<!-- BS4 Polymer -->
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/elements/bs4-button/bs4-button.html">
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-tables/bs4-tables.html">
+<link rel="import" href="../../../node_modules/bs4-polymer/dist/shared-styles/bs4-forms/bs4-forms.html">
+
+<!-- Mixins -->
+<link rel="import" href="../mixins/rmc-loading-mixin.html">
+<link rel="import" href="../mixins/rmc-array-mixin.html">
+<link rel="import" href="../mixins/rmc-title-mixin.html">
+
+<!--
+`<rmc-table-view>` displays a table listing.
+
+In typical use, just add the element to your body:
+
+    <body>
+      <rmc-table-view></rmc-table-view>
+
+Add the editable attribute to include features to edit the table:
+
+    <rmc-table-view editable></rmc-table-view>
+-->
+<dom-module id="rmc-table-view">
+    <template>
+        <style include="bs4-shared-styles-tables"></style>
+        
+        <!-- load table -->
+        <iron-ajax
+            auto
+            id="[[name]]ServicesTableGetAjax"
+            url="api/get/[[api]]"
+            handle-as="json"
+            last-response="{{services}}"
+            loading="{{loading}}">
+        </iron-ajax>
+        
+        <!-- offline mirror the table -->
+        <app-indexeddb-mirror
+            key="[[name]]ServicesTableMirror"
+            data="{{services}}"
+            persisted-data="{{persistedServices}}"
+            worker-url="app-indexeddb-mirror-worker.js">
+        </app-indexeddb-mirror>
+        
+        <!-- title heading -->
+        <template is="dom-if" if="[[title]]">
+          <h3>[[title]]</h3>
+        </template>
+        
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <template is="dom-repeat" items="[[header]]">
+                  <th>[[item]]</th>
+                </template>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <template is="dom-repeat" items="{{persistedServices}}" as="service">
+                <tr>
+                  <template is="dom-repeat" items="{{toArray(service)}}">
+                    <template is="dom-if" if="{{_first(index)}}">
+                      <th scope="row">[[_rowValue(item.value, index)]]</th>
+                    </template>
+                    <template is="dom-if" if="{{!_first(index)}}">
+                      <td>[[_rowValue(item.value, index)]]</td>
+                    </template>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+        </table>
+    </template>
+
+  <script>
+    /* eslint new-cap: [2, {"capIsNewExceptions": ["Polymer.GestureEventListeners", "RMCLoadingMixin", "RMCArrayMixin", "RMCTitleMixin"]}] */
+    /* global RMCLoadingMixin RMCArrayMixin RMCTitleMixin */
+    
+    /**
+     * Class representing services table.
+     * @appliesMixin RMCLoadingMixin
+     * @appliesMixin RMCArrayMixin
+     * @appliesMixin RMCTitleMixin
+     */
+    class RMCTableView extends Polymer.GestureEventListeners(
+      RMCLoadingMixin(RMCArrayMixin(RMCTitleMixin(Polymer.Element)))) {
+      /** HTML tag name. */
+      static get is() {
+        return 'rmc-table-view';
+      }
+      
+      /** Declared properties. */
+      static get properties() {
+        return {
+          /** Service name. */
+          name: String,
+          
+          /** Service api. */
+          api: String,
+          
+          /** Service table header. */
+          header: Object,
+          
+          /** Service item suffix. */
+          suffix: Object,
+        };
+      }
+      
+      /**
+       * Determines if item is first in row.
+       *
+       * @param {Number} index - index.
+       * @return {Boolean} true if first, false otherwise.
+       */
+      _first(index) {
+        return (index === 0);
+      }
+      
+      /**
+       * Determines value for row by appending suffix.
+       *
+       * @param {String} value - value.
+       * @param {Number} index - index.
+       * @return {String} value.
+       */
+      _rowValue(value, index) {
+        let row = value;
+        if (this.suffix) {
+          row += ' ' + this.suffix[index];
+        }
+        return row;
+      }
+    }
+
+    window.customElements.define(RMCTableView.is, RMCTableView);
+  </script>
+</dom-module>
