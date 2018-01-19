@@ -81,7 +81,10 @@ function waitFor(stream) {
 gulp.task('css', function() {
   log('Compiling & minifying CSS...');
   return gulp.src('app/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded',
+      precision: 6,
+    }).on('error', sass.logError))
     .pipe(purifyCSS([
       'node_modules/bootstrap/dist/js/bootstrap.min.js',
       'app/src/**/*.html',
