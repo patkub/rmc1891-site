@@ -24,7 +24,6 @@ import imagemin from 'gulp-imagemin';
 import sass from 'gulp-sass';
 import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
-import stripCSSComments from 'gulp-strip-css-comments';
 
 // minification tools
 const htmlmin = require('gulp-htmlmin');
@@ -90,9 +89,6 @@ gulp.task('css', function() {
       'app/src/**/*.html',
       'index.html',
     ]))
-    .pipe(stripCSSComments({
-      preserve: false,
-    }))
     .pipe(cleanCSS({
       level: 2,
     }))
