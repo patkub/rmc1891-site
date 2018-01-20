@@ -80,13 +80,7 @@ Add the editable attribute to include features to edit card text content:
             margin-bottom: 1rem;
           }
           
-          .card-img-wrapper {
-            max-height: 250px;
-            overflow: hidden;
-          }
-          
           @media print {
-            .card-img-wrapper,
             .card-footer {
               display: none;
             }
@@ -116,9 +110,7 @@ Add the editable attribute to include features to edit card text content:
         <div class="card-deck">
             <template is="dom-repeat" items="{{persistedFeatureCards}}" as="card">
                 <div class="card">
-                    <div class="card-img-wrapper">
-                      <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
-                    </div>
+                    <img class="card-img-top" src$="[[card.image]]" alt$="[[card.caption]]">
                     <div class="card-body">
                         <h4 class="card-title">[[card.title]]</h4>
                         <p class="card-text">
