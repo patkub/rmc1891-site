@@ -109,7 +109,7 @@
             mirrorData();
             
             flush(function() {
-              let cardImg = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-img-wrapper > .card-img-top');
+              let cardImg = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-img-top');
               assert.equal(cardImg[0].getAttribute('src'), 'image1.jpg');
               assert.equal(cardImg[1].getAttribute('src'), 'image2.jpg');
               done();
@@ -121,7 +121,7 @@
             mirrorData();
             
             flush(function() {
-              let cardImg = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-img-wrapper > .card-img-top');
+              let cardImg = rmcFeatureCards.shadowRoot.querySelectorAll('.card-deck > .card > .card-img-top');
               assert.equal(cardImg[0].getAttribute('alt'), 'caption1');
               assert.equal(cardImg[1].getAttribute('alt'), 'caption2');
               done();
