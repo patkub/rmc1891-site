@@ -26,9 +26,10 @@ import purifyCSS from 'gulp-purifycss';
 import cleanCSS from 'gulp-clean-css';
 
 // minification tools
-const htmlmin = require('gulp-htmlmin');
+import htmlmin from 'gulp-htmlmin';
 const cssSlam = require('css-slam').gulp;
-const uglifyes = require('gulp-uglifyes');
+import babel from 'gulp-babel';
+import uglifyes from 'gulp-uglifyes';
 import concat from 'gulp-concat';
 
 // configs
@@ -145,6 +146,11 @@ function build() {
           // to rejoin those files with the `.rejoin()` method when you're done.
           .pipe(sourcesStreamSplitter.split())
           
+          // Compile ES6(ES2015) to ES5
+          .pipe(gulpif(/\.js$/, babel({
+            presets: ['es2015'],
+          })))
+          
           // Minify JS
           .pipe(gulpif(/\.js$/, uglifyes({
             warnings: true,
@@ -188,6 +194,11 @@ function build() {
           
           // Split build stream
           .pipe(buildStreamSplitter.split())
+          
+          // Compile ES6(ES2015) to ES5
+          .pipe(gulpif(/\.js$/, babel({
+            presets: ['es2015'],
+          })))
           
           // Minify JS
           .pipe(gulpif(/\.js$/, uglifyes({
