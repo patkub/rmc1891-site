@@ -17,9 +17,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-lockfile-{{ checksum "package.json" }}
+            - v1-cache-lockfile-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-lockfile
+            - v1-cache-lockfile
       
       # Print versions
       - run:
@@ -47,12 +47,12 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-lockfile-{{ checksum "package.json" }}
+          key: v1-cache-lockfile-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
       - save_cache:
           # Fallback cache
-          key: cache-lockfile
+          key: v1-cache-lockfile
           paths:
             - ~/.cache/yarn
             
@@ -69,9 +69,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-lint-{{ checksum "package.json" }}
+            - v1-cache-lint-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-lint
+            - v1-cache-lint
       
       # Print versions
       - run:
@@ -106,14 +106,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-lint-{{ checksum "package.json" }}
+          key: v1-cache-lint-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: cache-lint
+          key: v1-cache-lint
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -132,9 +132,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-test-{{ checksum "package.json" }}
+            - v1-cache-test-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-test
+            - v1-cache-test
       
       # Print versions
       - run:
@@ -177,14 +177,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-test-{{ checksum "package.json" }}
+          key: v1-cache-test-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: cache-test
+          key: v1-cache-test
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -203,9 +203,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-sauce-{{ checksum "package.json" }}
+            - v1-cache-sauce-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-sauce
+            - v1-cache-sauce
       
       # Print versions
       - run:
@@ -246,14 +246,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-sauce-{{ checksum "package.json" }}
+          key: v1-cache-sauce-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: cache-sauce
+          key: v1-cache-sauce
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -269,9 +269,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-docs-{{ checksum "package.json" }}
+            - v1-cache-docs-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-docs
+            - v1-cache-docs
             
       # Print versions
       - run:
@@ -350,13 +350,13 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-docs-{{ checksum "package.json" }}
+          key: v1-cache-docs-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
       - save_cache:
           # Fallback cache
-          key: cache-docs
+          key: v1-cache-docs
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -371,9 +371,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - cache-deploy-{{ checksum "package.json" }}
+            - v1-cache-deploy-{{ checksum "package.json" }}
             # Fallback cache
-            - cache-deploy
+            - v1-cache-deploy
       
       # Attach build directory
       - attach_workspace:
@@ -410,14 +410,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: cache-deploy-{{ checksum "package.json" }}
+          key: v1-cache-deploy-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: cache-deploy
+          key: v1-cache-deploy
           paths:
             - ~/.cache/yarn
             - node_modules
