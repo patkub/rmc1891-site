@@ -48,7 +48,7 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^4.0.0",
     "gulp-sftp": "^0.1.5",
     "gulp-uglifyes": "^0.1.2",
     "gulp-watch": "^5.0.0",
