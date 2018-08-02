@@ -7,7 +7,7 @@ jobs:
   # Lockfile
   lockfile:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       # Checkout source code
       - checkout
@@ -17,9 +17,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-lockfile-{{ checksum "package.json" }}
+            - v2-cache-lockfile-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-lockfile
+            - v2-cache-lockfile
       
       # Print versions
       - run:
@@ -47,19 +47,19 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-lockfile-{{ checksum "package.json" }}
+          key: v2-cache-lockfile-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
       - save_cache:
           # Fallback cache
-          key: v1-cache-lockfile
+          key: v2-cache-lockfile
           paths:
             - ~/.cache/yarn
             
   # Linting
   lint:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       # Checkout source code
       - checkout
@@ -69,9 +69,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-lint-{{ checksum "package.json" }}
+            - v2-cache-lint-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-lint
+            - v2-cache-lint
       
       # Print versions
       - run:
@@ -106,14 +106,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-lint-{{ checksum "package.json" }}
+          key: v2-cache-lint-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v1-cache-lint
+          key: v2-cache-lint
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -122,7 +122,7 @@ jobs:
   # Test build
   test:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       # Checkout source code
       - checkout
@@ -132,9 +132,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-test-{{ checksum "package.json" }}
+            - v2-cache-test-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-test
+            - v2-cache-test
       
       # Print versions
       - run:
@@ -177,14 +177,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-test-{{ checksum "package.json" }}
+          key: v2-cache-test-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v1-cache-test
+          key: v2-cache-test
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -193,7 +193,7 @@ jobs:
   # Sauce Labs
   sauce:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       # Checkout source code
       - checkout
@@ -203,9 +203,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-sauce-{{ checksum "package.json" }}
+            - v2-cache-sauce-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-sauce
+            - v2-cache-sauce
       
       # Print versions
       - run:
@@ -246,14 +246,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-sauce-{{ checksum "package.json" }}
+          key: v2-cache-sauce-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v1-cache-sauce
+          key: v2-cache-sauce
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -262,16 +262,16 @@ jobs:
   # Polymer analyze docs
   docs:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       - checkout
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-docs-{{ checksum "package.json" }}
+            - v2-cache-docs-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-docs
+            - v2-cache-docs
             
       # Print versions
       - run:
@@ -350,13 +350,13 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-docs-{{ checksum "package.json" }}
+          key: v2-cache-docs-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
       - save_cache:
           # Fallback cache
-          key: v1-cache-docs
+          key: v2-cache-docs
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -364,16 +364,16 @@ jobs:
   # Deploy site
   deploy:
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     steps:
       - checkout
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v1-cache-deploy-{{ checksum "package.json" }}
+            - v2-cache-deploy-{{ checksum "package.json" }}
             # Fallback cache
-            - v1-cache-deploy
+            - v2-cache-deploy
       
       # Attach build directory
       - attach_workspace:
@@ -410,14 +410,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v1-cache-deploy-{{ checksum "package.json" }}
+          key: v2-cache-deploy-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v1-cache-deploy
+          key: v2-cache-deploy
           paths:
             - ~/.cache/yarn
             - node_modules
