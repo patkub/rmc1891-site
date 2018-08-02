@@ -87,7 +87,7 @@ jobs:
       # Install dependencies
       - run:
           name: npm-install-global
-          command: 'sudo npm install -g bower web-component-tester'
+          command: 'sudo npm install --unsafe-perm -g bower web-component-tester'
       - run:
           name: yarn-install-global
           command: 'sudo yarn global add gulp-cli stylelint'
@@ -150,7 +150,7 @@ jobs:
       # Install dependencies
       - run:
           name: npm-install-global
-          command: 'sudo npm install -g bower web-component-tester'
+          command: 'sudo npm install --unsafe-perm -g bower web-component-tester'
       - run:
           name: yarn-install-global
           command: 'sudo yarn global add gulp-cli'
@@ -221,7 +221,7 @@ jobs:
       # Install dependencies
       - run:
           name: npm-install-global
-          command: 'sudo npm install -g bower web-component-tester'
+          command: 'sudo npm install --unsafe-perm -g bower web-component-tester'
       - run:
           name: yarn-install-global
           command: 'sudo yarn global add gulp-cli'
