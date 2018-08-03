@@ -8,7 +8,7 @@
       "properties": [
         {
           "name": "text",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Footer text",
           "privacy": "public",
           "sourceRange": {
@@ -22,7 +22,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         }
       ],
@@ -58,7 +60,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
@@ -76,7 +78,7 @@
       "properties": [
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Jumbotron title",
           "privacy": "public",
           "sourceRange": {
@@ -90,12 +92,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "text",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Jumbotron text",
           "privacy": "public",
           "sourceRange": {
@@ -109,12 +113,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "button",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Jumbotron button text",
           "privacy": "public",
           "sourceRange": {
@@ -128,12 +134,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "link",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Jumbotron button link",
           "privacy": "public",
           "sourceRange": {
@@ -147,7 +155,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         }
       ],
@@ -183,7 +193,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "text",
@@ -199,7 +209,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "button",
@@ -215,7 +225,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "link",
@@ -231,7 +241,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
@@ -274,7 +284,10 @@
               "type": "Object",
               "description": "old selected object."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "previous",
@@ -291,7 +304,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "next",
@@ -308,7 +324,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_loadImage",
@@ -331,7 +350,10 @@
               "type": "String",
               "description": "image to load from 'data-src' attribute."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_translateX",
@@ -364,7 +386,10 @@
               "type": "Boolean",
               "description": "apply transform transition."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "ready",
@@ -381,7 +406,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_installListeners",
@@ -398,7 +426,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_resetChildrenStyles",
@@ -415,7 +446,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_touchstart",
@@ -438,7 +472,10 @@
               "type": "e",
               "description": "touchstart event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_touchmove",
@@ -461,7 +498,10 @@
               "type": "e",
               "description": "touchmove event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_touchend",
@@ -484,7 +524,10 @@
               "type": "e",
               "description": "touch end event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -514,7 +557,6 @@
           "description": "",
           "name": "",
           "range": {
-            "file": "app/src/elements/rmc-carousel.html",
             "start": {
               "line": 50,
               "column": 6
@@ -535,7 +577,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -550,14 +592,16 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -573,7 +617,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -604,6 +649,9 @@
               "description": "<iron-ajax> element id."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -634,6 +682,9 @@
               "description": "ajax request body parameters."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -657,7 +708,10 @@
               "type": "Object",
               "description": "on-tap event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -692,7 +746,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -710,7 +764,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -733,7 +787,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -749,7 +803,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -789,7 +844,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -811,7 +866,7 @@
       "properties": [
         {
           "name": "saveid",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "The save id",
           "privacy": "public",
           "sourceRange": {
@@ -825,7 +880,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         }
       ],
@@ -845,7 +902,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "execCommand",
@@ -868,7 +928,10 @@
               "type": "Object",
               "description": "click target."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -902,7 +965,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
@@ -920,7 +983,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -935,14 +998,16 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -958,7 +1023,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -966,7 +1032,7 @@
         },
         {
           "name": "view",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "The view that is being edited",
           "privacy": "public",
           "sourceRange": {
@@ -980,12 +1046,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Page title",
           "privacy": "public",
           "sourceRange": {
@@ -999,12 +1067,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "small",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Heading size",
           "privacy": "public",
           "sourceRange": {
@@ -1018,7 +1088,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false"
         }
@@ -1047,6 +1119,9 @@
               "description": "<iron-ajax> element id."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1077,6 +1152,9 @@
               "description": "ajax request body parameters."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1094,7 +1172,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "disconnectedCallback",
@@ -1111,7 +1192,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_wysiwygESaveClickedListener",
@@ -1134,7 +1218,10 @@
               "type": "e",
               "description": "wysiwygESaveClicked event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -1169,7 +1256,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1187,7 +1274,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -1204,7 +1291,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "title",
@@ -1220,7 +1307,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "small",
@@ -1236,7 +1323,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean | null | undefined"
         }
       ],
       "events": [],
@@ -1258,7 +1345,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -1274,7 +1361,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -1314,7 +1402,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -1336,7 +1424,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -1351,14 +1439,16 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -1374,7 +1464,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -1382,7 +1473,7 @@
         },
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service title.",
           "privacy": "public",
           "sourceRange": {
@@ -1397,13 +1488,15 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         },
         {
           "name": "editorTitle",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service editor title.",
           "privacy": "public",
           "sourceRange": {
@@ -1418,13 +1511,15 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         },
         {
           "name": "name",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service name.",
           "privacy": "public",
           "sourceRange": {
@@ -1438,12 +1533,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "api",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service api.",
           "privacy": "public",
           "sourceRange": {
@@ -1457,7 +1554,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         }
       ],
@@ -1485,6 +1584,9 @@
               "description": "<iron-ajax> element id."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1515,6 +1617,9 @@
               "description": "ajax request body parameters."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1538,7 +1643,10 @@
               "type": "Object",
               "description": "on-tap event, 'service' attribute is the service to add."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_deleteService",
@@ -1561,7 +1669,10 @@
               "type": "Object",
               "description": "on-tap event, 'service' attribute is the service to delete."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -1596,7 +1707,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1614,7 +1725,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -1632,7 +1743,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         },
         {
@@ -1650,7 +1761,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         },
         {
@@ -1667,7 +1778,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "api",
@@ -1683,7 +1794,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
@@ -1706,7 +1817,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -1721,14 +1832,16 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -1744,7 +1857,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -1752,7 +1866,7 @@
         },
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service title.",
           "privacy": "public",
           "sourceRange": {
@@ -1767,13 +1881,15 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         },
         {
           "name": "editorTitle",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service editor title.",
           "privacy": "public",
           "sourceRange": {
@@ -1788,7 +1904,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         }
@@ -1817,6 +1935,9 @@
               "description": "<iron-ajax> element id."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1847,6 +1968,9 @@
               "description": "ajax request body parameters."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1870,7 +1994,10 @@
               "type": "Object",
               "description": "on-tap event, 'machine' attribute is the machine to add."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_deleteMachine",
@@ -1893,7 +2020,10 @@
               "type": "Object",
               "description": "on-tap event, 'machine' attribute is the machine to delete."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -1928,7 +2058,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -1946,7 +2076,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -1964,7 +2094,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         },
         {
@@ -1982,7 +2112,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         }
       ],
@@ -2006,7 +2136,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -2021,14 +2151,16 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2044,7 +2176,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2052,7 +2185,7 @@
         },
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service title.",
           "privacy": "public",
           "sourceRange": {
@@ -2067,13 +2200,15 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         },
         {
           "name": "editorTitle",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service editor title.",
           "privacy": "public",
           "sourceRange": {
@@ -2088,7 +2223,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "inheritedFrom": "RMCTitleMixin"
         }
@@ -2117,6 +2254,9 @@
               "description": "<iron-ajax> element id."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -2147,6 +2287,9 @@
               "description": "ajax request body parameters."
             }
           ],
+          "return": {
+            "type": "void"
+          },
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -2170,7 +2313,10 @@
               "type": "Object",
               "description": "on-tap event, 'machine' attribute is the machine to add."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_deleteMachine",
@@ -2193,7 +2339,10 @@
               "type": "Object",
               "description": "on-tap event, 'machine' attribute is the machine to delete."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -2228,7 +2377,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCEditableMixin"
         },
         {
@@ -2246,7 +2395,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -2264,7 +2413,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         },
         {
@@ -2282,7 +2431,7 @@
             }
           },
           "metadata": {},
-          "type": "string",
+          "type": "string | null | undefined",
           "inheritedFrom": "RMCTitleMixin"
         }
       ],
@@ -2306,7 +2455,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2322,7 +2471,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2362,7 +2512,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -2384,7 +2534,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2400,7 +2550,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2440,7 +2591,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -2462,7 +2613,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2478,7 +2629,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2486,7 +2638,7 @@
         },
         {
           "name": "sent",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Initially undefined. True if email has been sent\n                successfuly, false on error.",
           "privacy": "public",
           "sourceRange": {
@@ -2500,7 +2652,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           }
         }
       ],
@@ -2526,7 +2680,10 @@
               "type": "Object",
               "description": "on-tap event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_emailResponse",
@@ -2549,7 +2706,10 @@
               "type": "Object",
               "description": "ajax response."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -2584,7 +2744,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -2601,7 +2761,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean | null | undefined"
         }
       ],
       "events": [],
@@ -2622,7 +2782,7 @@
       "properties": [
         {
           "name": "active",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Current active tab",
           "privacy": "public",
           "sourceRange": {
@@ -2638,7 +2798,8 @@
           "metadata": {
             "polymer": {
               "notify": true,
-              "observer": "\"_activeTabChanged\""
+              "observer": "\"_activeTabChanged\"",
+              "attributeType": "String"
             }
           }
         }
@@ -2670,7 +2831,10 @@
               "type": "String",
               "description": "old page."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_setActiveTab",
@@ -2725,7 +2889,10 @@
               "type": "Object",
               "description": "on-tap event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -2759,7 +2926,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [
@@ -2784,7 +2951,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2800,7 +2967,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2840,7 +3008,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -2862,7 +3030,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2878,7 +3046,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2918,7 +3087,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -2940,7 +3109,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -2956,7 +3125,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -2996,7 +3166,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -3018,7 +3188,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -3034,7 +3204,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -3074,7 +3245,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -3096,7 +3267,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -3112,7 +3283,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -3152,7 +3324,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         }
       ],
@@ -3174,7 +3346,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -3190,7 +3362,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false",
@@ -3198,7 +3371,7 @@
         },
         {
           "name": "loggedIn",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
@@ -3212,13 +3385,15 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false"
         },
         {
           "name": "page",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
@@ -3232,7 +3407,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           },
           "defaultValue": "\"home\""
         }
@@ -3259,7 +3436,10 @@
               "type": "Object",
               "description": "on-tap event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "loginResponse",
@@ -3282,7 +3462,10 @@
               "type": "Object",
               "description": "ajax response."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "logout",
@@ -3305,7 +3488,10 @@
               "type": "Object",
               "description": "on-tap event."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "logoutResponse",
@@ -3328,7 +3514,10 @@
               "type": "Object",
               "description": "ajax response."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -3363,7 +3552,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "inheritedFrom": "RMCLoadingMixin"
         },
         {
@@ -3380,7 +3569,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean | null | undefined"
         },
         {
           "name": "page",
@@ -3396,7 +3585,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
@@ -3448,7 +3637,7 @@
       "properties": [
         {
           "name": "page",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
@@ -3463,13 +3652,14 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_pageChanged\""
+              "observer": "\"_pageChanged\"",
+              "attributeType": "String"
             }
           }
         },
         {
           "name": "routeData",
-          "type": "Object",
+          "type": "Object | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
@@ -3483,7 +3673,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Object"
+            }
           }
         }
       ],
@@ -3509,7 +3701,10 @@
               "type": "String",
               "description": "new page."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_pageChanged",
@@ -3532,7 +3727,10 @@
               "type": "String",
               "description": "new page."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_showPage404",
@@ -3549,7 +3747,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -3583,7 +3784,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "route-data",
@@ -3599,7 +3800,7 @@
             }
           },
           "metadata": {},
-          "type": "Object"
+          "type": "Object | null | undefined"
         }
       ],
       "events": [],
@@ -3619,7 +3820,7 @@
       "properties": [
         {
           "name": "loading",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether the element is currently loading data.",
           "privacy": "public",
           "sourceRange": {
@@ -3634,7 +3835,8 @@
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "notify": true,
+              "attributeType": "Boolean"
             }
           },
           "defaultValue": "false"
@@ -3671,7 +3873,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean | null | undefined"
         }
       ],
       "events": [],
@@ -3688,7 +3890,7 @@
       "properties": [
         {
           "name": "selected",
-          "type": "Object",
+          "type": "Object | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
@@ -3703,7 +3905,8 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_selectedChanged\""
+              "observer": "\"_selectedChanged\"",
+              "attributeType": "Object"
             }
           }
         }
@@ -3724,7 +3927,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_selectedChanged",
@@ -3752,7 +3958,10 @@
               "type": "Object",
               "description": "old selected object."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "_resetSelected",
@@ -3769,7 +3978,10 @@
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -3802,7 +4014,7 @@
             }
           },
           "metadata": {},
-          "type": "Object"
+          "type": "Object | null | undefined"
         }
       ],
       "events": [],
@@ -3819,7 +4031,7 @@
       "properties": [
         {
           "name": "editable",
-          "type": "boolean",
+          "type": "boolean | null | undefined",
           "description": "Whether this element is editable.",
           "privacy": "public",
           "sourceRange": {
@@ -3833,7 +4045,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "Boolean"
+            }
           },
           "defaultValue": "false"
         }
@@ -3860,7 +4074,10 @@
               "type": "String",
               "description": "<iron-ajax> element id."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         },
         {
           "name": "doRequestBody",
@@ -3888,7 +4105,10 @@
               "type": "String",
               "description": "ajax request body parameters."
             }
-          ]
+          ],
+          "return": {
+            "type": "void"
+          }
         }
       ],
       "staticMethods": [],
@@ -3921,7 +4141,7 @@
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean | null | undefined"
         }
       ],
       "events": [],
@@ -3938,7 +4158,7 @@
       "properties": [
         {
           "name": "title",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service title.",
           "privacy": "public",
           "sourceRange": {
@@ -3952,12 +4172,14 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         },
         {
           "name": "editorTitle",
-          "type": "string",
+          "type": "string | null | undefined",
           "description": "Service editor title.",
           "privacy": "public",
           "sourceRange": {
@@ -3971,7 +4193,9 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "attributeType": "String"
+            }
           }
         }
       ],
@@ -4006,7 +4230,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         },
         {
           "name": "editor-title",
@@ -4022,7 +4246,7 @@
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string | null | undefined"
         }
       ],
       "events": [],
