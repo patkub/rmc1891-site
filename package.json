@@ -57,7 +57,7 @@
     "polymer-build": "^2.1.1",
     "polymer-cli": "^1.2.0",
     "postcss-sass": "^0.3.0",
-    "stylelint": "^9.1.1",
+    "stylelint": "^9.6.0",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-processor-html": "^1.0.0",
     "web-component-tester": "^6.0.0"
