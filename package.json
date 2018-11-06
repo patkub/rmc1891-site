@@ -43,7 +43,7 @@
     "gulp-header": "^2.0.1",
     "gulp-htmlmin": "^4.0.0",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^4.1.0",
+    "gulp-imagemin": "^5.0.1",
     "gulp-inline-source": "^3.1.0",
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
