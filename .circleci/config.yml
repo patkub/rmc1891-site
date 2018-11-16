@@ -17,9 +17,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-lockfile-{{ checksum "package.json" }}
+            - v3-cache-lockfile-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-lockfile
+            - v3-cache-lockfile
       
       # Print versions
       - run:
@@ -47,12 +47,12 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-lockfile-{{ checksum "package.json" }}
+          key: v3-cache-lockfile-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
       - save_cache:
           # Fallback cache
-          key: v2-cache-lockfile
+          key: v3-cache-lockfile
           paths:
             - ~/.cache/yarn
             
@@ -69,9 +69,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-lint-{{ checksum "package.json" }}
+            - v3-cache-lint-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-lint
+            - v3-cache-lint
       
       # Print versions
       - run:
@@ -106,14 +106,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-lint-{{ checksum "package.json" }}
+          key: v3-cache-lint-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v2-cache-lint
+          key: v3-cache-lint
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -132,9 +132,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-test-{{ checksum "package.json" }}
+            - v3-cache-test-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-test
+            - v3-cache-test
       
       # Print versions
       - run:
@@ -177,14 +177,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-test-{{ checksum "package.json" }}
+          key: v3-cache-test-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v2-cache-test
+          key: v3-cache-test
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -203,9 +203,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-sauce-{{ checksum "package.json" }}
+            - v3-cache-sauce-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-sauce
+            - v3-cache-sauce
       
       # Print versions
       - run:
@@ -246,14 +246,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-sauce-{{ checksum "package.json" }}
+          key: v3-cache-sauce-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v2-cache-sauce
+          key: v3-cache-sauce
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -269,9 +269,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-docs-{{ checksum "package.json" }}
+            - v3-cache-docs-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-docs
+            - v3-cache-docs
             
       # Print versions
       - run:
@@ -350,13 +350,13 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-docs-{{ checksum "package.json" }}
+          key: v3-cache-docs-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
       - save_cache:
           # Fallback cache
-          key: v2-cache-docs
+          key: v3-cache-docs
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -371,9 +371,9 @@ jobs:
           keys:
             # Find a cache corresponding to this specific package.json checksum
             # when this file is changed, this key will fail
-            - v2-cache-deploy-{{ checksum "package.json" }}
+            - v3-cache-deploy-{{ checksum "package.json" }}
             # Fallback cache
-            - v2-cache-deploy
+            - v3-cache-deploy
       
       # Attach build directory
       - attach_workspace:
@@ -410,14 +410,14 @@ jobs:
       # Save cache
       - save_cache:
           # package.json cache
-          key: v2-cache-deploy-{{ checksum "package.json" }}
+          key: v3-cache-deploy-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
             - node_modules
             - bower_components
       - save_cache:
           # Fallback cache
-          key: v2-cache-deploy
+          key: v3-cache-deploy
           paths:
             - ~/.cache/yarn
             - node_modules
