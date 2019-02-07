@@ -55,7 +55,7 @@
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "polymer-build": "^2.1.1",
-    "polymer-cli": "^1.2.0",
+    "polymer-cli": "^1.9.6",
     "postcss-sass": "^0.3.0",
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.0.0",
