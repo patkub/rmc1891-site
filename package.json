@@ -60,7 +60,8 @@
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-processor-html": "^1.0.0",
-    "web-component-tester": "^6.0.0"
+    "web-component-tester": "^6.0.0",
+    "workbox-build": "^2.1.2"
   },
   "resolutions": {
     "natives": "1.1.3"

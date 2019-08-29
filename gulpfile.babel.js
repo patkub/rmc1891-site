@@ -40,6 +40,7 @@ import pkg from './package.json';
 // polymer build
 const polymerBuild = require('polymer-build');
 const polymerProject = new polymerBuild.PolymerProject(polymerJson);
+import workbox from 'workbox-build';
 
 // build and public_html directories
 const buildDirectory = 'build';
@@ -238,12 +239,31 @@ function build() {
       .then(() => {
         // Okay, now let's generate the Service Worker
         log('Generating the Service Worker...');
-        return polymerBuild.addServiceWorker({
-          project: polymerProject,
-          buildRoot: buildHTMLDirectory,
-          path: 'sw.js',
-          bundled: true,
-          swPrecacheConfig: swPrecacheConfig,
+        return workbox.generateSW({
+          globDirectory: buildHTMLDirectory,
+          globPatterns: ['**\/*.{html,js,css}', 'node_modules/**/*'],
+          globIgnores: [],
+          runtimeCaching: [{
+            // You can use a RegExp as the pattern:
+            urlPattern: '/api/*',
+            handler: 'cacheFirst',
+            // Any options provided will be used when
+            // creating the caching strategy.
+            options: {
+              cacheName: 'api',
+              cacheExpiration: {
+                maxEntries: 10,
+              },
+            },
+          }],
+          navigateFallback: 'index.html',
+          swDest: buildHTMLDirectory + '/sw.js',
+          clientsClaim: true,
+          skipWaiting: true
+        }).then(() => {
+          console.info('Service worker generation completed.');
+        }).catch((error) => {
+          console.warn('Service worker generation failed: ' + error);
         });
       })
       .then(() => {
