@@ -53,7 +53,7 @@
     "gulp-uglifyes": "^0.1.2",
     "gulp-watch": "^5.0.0",
     "merge-stream": "^1.0.1",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "polymer-build": "^2.1.1",
     "polymer-cli": "^1.2.0",
     "postcss-sass": "^0.3.0",
