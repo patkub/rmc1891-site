@@ -17,7 +17,6 @@ cache:
     - bower_components
 install:
   - yarn --version
-  - yarn global add stylelint
   - npm install -g bower web-component-tester
   - yarn install
   - bower install

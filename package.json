@@ -68,9 +68,8 @@
   "scripts": {
     "build": "gulp build",
     "docs": "polymer analyze > docs/analysis.json",
-    "lint": "yarn run lint:javascript && yarn run lint:css && yarn run lint:polymer",
+    "lint": "yarn run lint:javascript && yarn run lint:polymer",
     "lint:javascript": "eslint . --ext js,html",
-    "lint:css": "stylelint --config .stylelintrc docs/**/*.html app/src/**/*.html test/**/*.html index.html",
     "lint:polymer": "gulp css && gulp js && polymer lint",
     "serve:local": "gulp serve:local",
     "serve:build": "gulp serve:build",

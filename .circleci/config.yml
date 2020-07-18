@@ -90,7 +90,7 @@ jobs:
           command: 'sudo npm install --unsafe-perm -g bower web-component-tester'
       - run:
           name: yarn-install-global
-          command: 'sudo yarn global add gulp-cli stylelint'
+          command: 'sudo yarn global add gulp-cli'
       - run:
           name: yarn-install
           command: 'yarn install'
