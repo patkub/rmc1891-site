@@ -262,7 +262,7 @@ jobs:
   # Polymer analyze docs
   docs:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
