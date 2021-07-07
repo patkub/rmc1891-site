@@ -62,16 +62,16 @@
           
           test('it should have a list of equipment', function(done) {
             flush(function() {
-              let equipmentList = capabilitiesView.shadowRoot.querySelector('rmc-equipment-list');
-              assert.equal(equipmentList.tagName, 'RMC-EQUIPMENT-LIST');
+              let equipmentList = capabilitiesView.shadowRoot.querySelector('rmc-table-view[name="equipment"]');
+              assert.equal(equipmentList.name, 'equipment');
               done();
             });
           });
           
           test('it should have a list of tool room equipment', function(done) {
             flush(function() {
-              let toolRoomList = capabilitiesView.shadowRoot.querySelector('rmc-tool-room-equipment');
-              assert.equal(toolRoomList.tagName, 'RMC-TOOL-ROOM-EQUIPMENT');
+              let toolRoomList = capabilitiesView.shadowRoot.querySelector('rmc-table-view[name="toolRoomEquipment"]');
+              assert.equal(toolRoomList.name, 'toolRoomEquipment');
               done();
             });
           });
